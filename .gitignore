@@ -1,0 +1,11 @@
+# 英语复习题资料（非游戏项目文件）
+人教新起点英语*.md
+
+# 系统文件
+Thumbs.db
+.DS_Store
+*.swp
+
+# 编辑器/IDE
+.vscode/
+.idea/

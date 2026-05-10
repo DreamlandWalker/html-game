@@ -1,0 +1,425 @@
+{
+  "id": 11,
+  "name": "暗影沼泽",
+  "playerStart": {
+    "x": 1,
+    "y": 1
+  },
+  "exit": {
+    "x": 11,
+    "y": 6
+  },
+  "map": {
+    "width": 13,
+    "height": 8,
+    "tiles": [
+      "WWWWWWWWWWWWW",
+      "W..........WW",
+      "W....W.....WW",
+      "W.....W....WW",
+      "W..........WW",
+      "W..........WW",
+      "W..W........W",
+      "WWWWWWWWWWWWW"
+    ]
+  },
+  "monsterSpawns": [
+    {
+      "x": 10,
+      "y": 2,
+      "rate": 0.9089195086802699,
+      "monsterIdx": 0
+    },
+    {
+      "x": 8,
+      "y": 3,
+      "rate": 0.9611932520875556,
+      "monsterIdx": 0
+    },
+    {
+      "x": 2,
+      "y": 4,
+      "rate": 0.9913818429097803,
+      "monsterIdx": 0
+    },
+    {
+      "x": 10,
+      "y": 5,
+      "rate": 0.9124923363948553,
+      "monsterIdx": 0
+    }
+  ],
+  "bossSpawn": {
+    "x": 9,
+    "y": 6,
+    "rate": 1,
+    "monsterIdx": 1
+  },
+  "chestSpawns": [
+    {
+      "x": 9,
+      "y": 5,
+      "rate": 0.9639125678806273,
+      "lootPool": [
+        {
+          "type": "gold",
+          "name": "金币",
+          "icon": "💰",
+          "min": 27,
+          "max": 59,
+          "chance": 1
+        },
+        {
+          "type": "item",
+          "id": "hp_potion",
+          "name": "生命药水",
+          "icon": "🧪",
+          "desc": "恢复 80 点生命值",
+          "qty": 2,
+          "chance": 0.555
+        }
+      ]
+    },
+    {
+      "x": 7,
+      "y": 3,
+      "rate": 0.9483487478535546,
+      "lootPool": [
+        {
+          "type": "gold",
+          "name": "金币",
+          "icon": "💰",
+          "min": 27,
+          "max": 59,
+          "chance": 1
+        },
+        {
+          "type": "item",
+          "id": "hp_potion",
+          "name": "生命药水",
+          "icon": "🧪",
+          "desc": "恢复 80 点生命值",
+          "qty": 2,
+          "chance": 0.555
+        },
+        {
+          "type": "item",
+          "id": "mp_potion",
+          "name": "法力药水",
+          "icon": "💧",
+          "desc": "恢复 40 点法力值",
+          "qty": 2,
+          "chance": 0.4
+        },
+        {
+          "type": "equipment",
+          "id": "chest_equip_lvl11_1",
+          "name": "宝箱装备",
+          "icon": "🪖",
+          "desc": "从宝箱中发现的装备",
+          "slot": "ring2",
+          "stats": {
+            "str": 2,
+            "agi": 2
+          },
+          "sellPrice": 27,
+          "chance": 0.155
+        }
+      ]
+    },
+    {
+      "x": 6,
+      "y": 5,
+      "rate": 0.9557700639388267,
+      "lootPool": [
+        {
+          "type": "gold",
+          "name": "金币",
+          "icon": "💰",
+          "min": 27,
+          "max": 59,
+          "chance": 1
+        },
+        {
+          "type": "item",
+          "id": "hp_potion",
+          "name": "生命药水",
+          "icon": "🧪",
+          "desc": "恢复 80 点生命值",
+          "qty": 2,
+          "chance": 0.555
+        },
+        {
+          "type": "item",
+          "id": "mp_potion",
+          "name": "法力药水",
+          "icon": "💧",
+          "desc": "恢复 40 点法力值",
+          "qty": 2,
+          "chance": 0.4
+        }
+      ]
+    }
+  ],
+  "monsters": [
+    {
+      "name": "飞龙幼崽",
+      "icon": "🐉",
+      "hp": 51,
+      "attack": 16,
+      "aggro": 2,
+      "xpReward": 51,
+      "skills": [
+        {
+          "name": "普通攻击",
+          "icon": "💥",
+          "dmgMul": 1.3
+        },
+        {
+          "name": "重击",
+          "icon": "💢",
+          "dmgMul": 2.22
+        }
+      ],
+      "loot": [
+        {
+          "type": "gold",
+          "icon": "💰",
+          "min": 16,
+          "max": 33,
+          "chance": 1
+        },
+        {
+          "type": "item",
+          "id": "hp_potion",
+          "name": "生命药水",
+          "icon": "🧪",
+          "desc": "恢复 80 点生命值",
+          "qty": 1,
+          "sellPrice": 10,
+          "chance": 0.25
+        },
+        {
+          "type": "item",
+          "id": "mp_potion",
+          "name": "法力药水",
+          "icon": "💧",
+          "desc": "恢复 40 点法力值",
+          "qty": 1,
+          "sellPrice": 7,
+          "chance": 0.2
+        },
+        {
+          "type": "material",
+          "id": "mat_lvl11",
+          "name": "材料·飞龙幼崽",
+          "icon": "📦",
+          "desc": "从飞龙幼崽身上获得的材料",
+          "qty": 1,
+          "qtyMax": 2,
+          "sellPrice": 5,
+          "chance": 0.5
+        }
+      ]
+    }
+  ],
+  "boss": {
+    "name": "飞龙王",
+    "icon": "🐲",
+    "hp": 357,
+    "maxHp": 357,
+    "attack": 24,
+    "aggro": 3,
+    "xpReward": 153,
+    "skills": [
+      {
+        "name": "BOSS·横扫",
+        "icon": "💥",
+        "dmgMul": 2
+      },
+      {
+        "name": "BOSS·毁灭一击",
+        "icon": "☠️",
+        "dmgMul": 3.72
+      }
+    ],
+    "loot": [
+      {
+        "type": "gold",
+        "icon": "💰",
+        "min": 43,
+        "max": 75,
+        "chance": 1
+      },
+      {
+        "type": "item",
+        "id": "hp_big_potion",
+        "name": "大生命药水",
+        "icon": "🧪",
+        "desc": "恢复 200 点生命值",
+        "qty": 2,
+        "sellPrice": 25,
+        "chance": 0.5
+      },
+      {
+        "type": "item",
+        "id": "mp_potion",
+        "name": "法力药水",
+        "icon": "💧",
+        "desc": "恢复 40 点法力值",
+        "qty": 2,
+        "sellPrice": 7,
+        "chance": 0.4
+      },
+      {
+        "type": "equipment",
+        "id": "boss_loot_lvl11",
+        "name": "飞龙王的遗物",
+        "icon": "👑",
+        "desc": "击败飞龙王获得的战利品",
+        "slot": "trinket1",
+        "stats": {
+          "str": 3,
+          "int": 3,
+          "agi": 3,
+          "spr": 3
+        },
+        "sellPrice": 43,
+        "chance": 0.2
+      }
+    ]
+  },
+  "questions": [
+    {
+      "type": "choice",
+      "question": "Tom is ___ than Mike.",
+      "options": [
+        "tall",
+        "taller",
+        "tallest",
+        "more tall"
+      ],
+      "answer": 1,
+      "timeThreshold": 7
+    },
+    {
+      "type": "fill",
+      "question": "This pen is ___ (cheap) than that one.",
+      "answer": "cheaper",
+      "timeThreshold": 8
+    },
+    {
+      "type": "choice",
+      "question": "They ___ going to go on a trip.",
+      "options": [
+        "am",
+        "is",
+        "are",
+        "be"
+      ],
+      "answer": 2,
+      "timeThreshold": 7
+    },
+    {
+      "type": "fill",
+      "question": "like → 过去式：___",
+      "answer": "liked",
+      "timeThreshold": 7
+    },
+    {
+      "type": "fill",
+      "question": "take → 过去式：___",
+      "answer": "took",
+      "timeThreshold": 7
+    },
+    {
+      "type": "choice",
+      "question": "I ___ TV yesterday.",
+      "options": [
+        "watch",
+        "watched",
+        "watching",
+        "watches"
+      ],
+      "answer": 1,
+      "timeThreshold": 7
+    },
+    {
+      "type": "choice",
+      "question": "I ___ going to visit my grandpa.",
+      "options": [
+        "am",
+        "is",
+        "are",
+        "be"
+      ],
+      "answer": 0,
+      "timeThreshold": 7
+    },
+    {
+      "type": "choice",
+      "question": "My bag is ___ (big) than yours.",
+      "options": [
+        "big",
+        "bigger",
+        "biggest",
+        "more big"
+      ],
+      "answer": 1,
+      "timeThreshold": 7
+    },
+    {
+      "type": "fill",
+      "question": "play → 过去式：___",
+      "answer": "played",
+      "timeThreshold": 7
+    },
+    {
+      "type": "choice",
+      "question": "She didn't ___ basketball.",
+      "options": [
+        "play",
+        "played",
+        "playing",
+        "plays"
+      ],
+      "answer": 0,
+      "timeThreshold": 9
+    },
+    {
+      "type": "choice",
+      "question": "She ___ going to learn swimming.",
+      "options": [
+        "am",
+        "is",
+        "are",
+        "be"
+      ],
+      "answer": 1,
+      "timeThreshold": 7
+    },
+    {
+      "type": "choice",
+      "question": "This book is ___ than that one.",
+      "options": [
+        "interesting",
+        "more interesting",
+        "most interesting",
+        "interestinger"
+      ],
+      "answer": 1,
+      "timeThreshold": 9
+    },
+    {
+      "type": "fill",
+      "question": "study → 过去式：___",
+      "answer": "studied",
+      "timeThreshold": 7
+    }
+  ],
+  "merchant": null,
+  "reward": {
+    "gold": 118,
+    "xp": 225
+  }
+}

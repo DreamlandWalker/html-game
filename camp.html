@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>营地</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{min-height:100vh;background:#0b0d17;font-family:'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif;display:flex;align-items:center;justify-content:center;padding:20px}
+.camp-wrap{width:1024px;max-width:100%;background:linear-gradient(145deg,#14182a,#1a1f35);border-radius:32px;padding:28px 30px 32px;box-shadow:0 20px 60px rgba(0,0,0,.7);border:1px solid rgba(255,255,255,.05)}
+
+.camp-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px}
+.camp-header h2{font-size:22px;font-weight:800;letter-spacing:2px;background:linear-gradient(135deg,#f0e6d0,#c9b38c);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.camp-header .camp-links a{padding:7px 16px;border:1px solid rgba(255,255,255,.1);border-radius:10px;background:rgba(255,255,255,.04);color:rgba(255,255,255,.5);font-size:13px;text-decoration:none;transition:all .2s}
+.camp-header .camp-links a:hover{border-color:rgba(255,255,255,.2);color:rgba(255,255,255,.8)}
+
+.camp-status{display:flex;align-items:center;gap:16px;margin-bottom:16px;padding:10px 16px;border-radius:12px;border:1px solid rgba(255,255,255,.04);background:rgba(0,0,0,.12)}
+.camp-status .cs-avatar{width:36px;height:36px;border-radius:50%;border:1px solid rgba(255,215,128,.15);overflow:hidden;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.3);flex-shrink:0}
+.camp-status .cs-avatar img{width:28px;height:28px;object-fit:none;image-rendering:pixelated}
+.camp-status .cs-info{flex:1;min-width:0;display:flex;align-items:center;gap:12px}
+.camp-status .cs-name{font-size:14px;font-weight:700;color:#e8ddce}
+.camp-status .cs-stat{font-size:11px;color:rgba(255,255,255,.4)}
+.camp-status .cs-stat strong{color:#ffd780}
+
+.camp-tabs{display:flex;gap:6px;margin-bottom:16px}
+.camp-tab{padding:8px 22px;border:1px solid rgba(255,255,255,.06);border-radius:10px;background:rgba(0,0,0,.15);color:rgba(255,255,255,.3);font-size:14px;font-family:inherit;cursor:pointer;transition:all .2s;font-weight:600}
+.camp-tab.active{border-color:rgba(255,215,128,.3);color:#ffd780;background:rgba(255,215,128,.06)}
+.camp-tab:hover:not(.active){border-color:rgba(255,255,255,.12);color:rgba(255,255,255,.5)}
+
+.camp-panel{display:none}
+.camp-panel.active{display:block}
+
+/* ── Shop / Sell items ── */
+.shop-grid{display:grid;gap:6px;max-height:400px;overflow-y:auto;scrollbar-width:thin;padding:4px}
+.shop-grid::-webkit-scrollbar{width:4px}
+.shop-grid::-webkit-scrollbar-thumb{background:rgba(255,255,255,.06);border-radius:2px}
+.shop-item{display:flex;align-items:center;gap:10px;padding:10px 14px;border-radius:10px;border:1px solid rgba(255,255,255,.04);background:rgba(255,255,255,.02);transition:all .2s}
+.shop-item:hover{border-color:rgba(255,255,255,.08);background:rgba(255,255,255,.04)}
+.shop-item .si-icon{font-size:24px}
+.shop-item .si-info{flex:1;min-width:0}
+.shop-item .si-name{font-size:14px;color:#e8ddce;font-weight:600}
+.shop-item .si-desc{font-size:11px;color:rgba(255,255,255,.25);margin-top:1px}
+.shop-item .si-price{font-size:13px;color:#ffd780;white-space:nowrap}
+.shop-item .si-btn{padding:6px 16px;border:1px solid rgba(255,215,128,.2);border-radius:8px;background:rgba(255,215,128,.06);color:#ffd780;font-size:12px;font-family:inherit;cursor:pointer;transition:all .2s;white-space:nowrap;font-weight:600}
+.shop-item .si-btn:hover{background:rgba(255,215,128,.15);border-color:#ffd780}
+.shop-item .si-btn:disabled{opacity:.2;cursor:default}
+.shop-item .si-qty{font-size:11px;color:rgba(255,255,255,.2)}
+.shop-empty{text-align:center;padding:40px 0;color:rgba(255,255,255,.15);font-size:14px}
+
+/* ── Crafting ── */
+.craft-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;max-height:420px;overflow-y:auto;scrollbar-width:thin;padding:4px}
+.craft-grid::-webkit-scrollbar{width:4px}
+.craft-grid::-webkit-scrollbar-thumb{background:rgba(255,255,255,.06);border-radius:2px}
+@media(max-width:640px){.craft-grid{grid-template-columns:1fr}}
+.craft-card{border:1px solid rgba(255,255,255,.06);border-radius:12px;padding:14px;background:rgba(255,255,255,.02);transition:all .2s}
+.craft-card:hover{border-color:rgba(255,255,255,.1)}
+.craft-card .cc-header{display:flex;align-items:center;gap:8px;margin-bottom:8px}
+.craft-card .cc-icon{font-size:24px}
+.craft-card .cc-name{font-size:14px;font-weight:700;color:#e8ddce}
+.craft-card .cc-desc{font-size:11px;color:rgba(255,255,255,.3);margin-bottom:8px}
+.craft-card .cc-mats{font-size:11px;color:rgba(255,255,255,.4);margin-bottom:8px;line-height:1.6}
+.craft-card .cc-mats .have{color:#8aff8a}
+.craft-card .cc-mats .need{color:#ff8a8a}
+.craft-card .cc-btn{padding:6px 20px;border:1px solid rgba(108,219,108,.2);border-radius:8px;background:rgba(108,219,108,.06);color:#8aff8a;font-size:12px;font-family:inherit;cursor:pointer;transition:all .2s;font-weight:600}
+.craft-card .cc-btn:hover{background:rgba(108,219,108,.15);border-color:#8aff8a}
+.craft-card .cc-btn:disabled{opacity:.2;cursor:default}
+
+/* ── Inventory ── */
+.inv-section{margin-top:12px;border-top:1px solid rgba(255,255,255,.04);padding-top:12px}
+.inv-section .is-title{font-size:12px;color:rgba(255,255,255,.2);margin-bottom:8px;letter-spacing:1px}
+.inv-mini{display:flex;flex-wrap:wrap;gap:4px}
+.inv-mini .im-item{padding:4px 10px;border-radius:6px;border:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.02);font-size:11px;color:rgba(255,255,255,.4);display:flex;align-items:center;gap:4px}
+.inv-mini .im-item .im-qty{color:rgba(255,255,255,.2);font-size:10px}
+
+/* ── Equipment manager ── */
+.equip-panel{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:640px){.equip-panel{grid-template-columns:1fr}}
+.equip-panel .ep-col{border:1px solid rgba(255,255,255,.04);border-radius:12px;padding:14px}
+.equip-panel .ep-col .ep-title{font-size:12px;color:rgba(255,255,255,.2);letter-spacing:1px;margin-bottom:8px}
+.equip-slot-row{display:flex;align-items:center;gap:8px;padding:6px 8px;border-radius:8px;border:1px solid rgba(255,255,255,.04);margin-bottom:4px;transition:all .2s;cursor:pointer}
+.equip-slot-row:hover{border-color:rgba(255,255,255,.12);background:rgba(255,255,255,.03)}
+.equip-slot-row .es-icon{font-size:16px}
+.equip-slot-row .es-label{font-size:11px;color:rgba(255,255,255,.2);width:44px}
+.equip-slot-row .es-item{flex:1;font-size:12px;color:#8ab8ff;font-weight:600}
+.equip-slot-row .es-empty{font-size:11px;color:rgba(255,255,255,.12);flex:1}
+.equip-slot-row .es-unequip{font-size:10px;color:rgba(224,108,108,.4);cursor:pointer;opacity:0;transition:opacity .2s}
+.equip-slot-row:hover .es-unequip{opacity:1}
+
+/* Modal */
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.65);z-index:50;align-items:center;justify-content:center}
+.modal-overlay.show{display:flex}
+.modal-box{background:#1a1f35;border:1px solid rgba(255,255,255,.08);border-radius:18px;padding:24px 28px;max-width:420px;width:90vw;box-shadow:0 20px 60px rgba(0,0,0,.6)}
+.modal-title{font-size:15px;font-weight:700;color:#ffd780;margin-bottom:12px;text-align:center}
+.modal-items{display:flex;flex-direction:column;gap:4px;max-height:300px;overflow-y:auto}
+.modal-item{padding:8px 12px;border-radius:8px;border:1px solid rgba(255,255,255,.04);background:rgba(255,255,255,.02);display:flex;align-items:center;gap:8px;cursor:pointer;transition:all .2s}
+.modal-item:hover{border-color:rgba(255,255,255,.12);background:rgba(255,255,255,.04)}
+.modal-item .mi-icon{font-size:18px}
+.modal-item .mi-info{flex:1}
+.modal-item .mi-name{font-size:13px;color:#e8ddce}
+.modal-item .mi-stats{font-size:10px;color:rgba(255,255,255,.25)}
+.modal-cancel{display:block;margin:12px auto 0;padding:8px 28px;border:1px solid rgba(255,255,255,.1);border-radius:10px;background:rgba(255,255,255,.04);color:rgba(255,255,255,.5);font-size:13px;font-family:inherit;cursor:pointer;transition:all .2s}
+.modal-cancel:hover{background:rgba(255,255,255,.08);color:rgba(255,255,255,.7)}
+</style>
+</head>
+<body>
+
+<div class="camp-wrap">
+  <div class="camp-header">
+    <h2>🏕️ 营地</h2>
+    <div class="camp-links">
+      <a href="main_map.html">🗺 返回地图</a>
+      <a href="character.html">📋 角色</a>
+    </div>
+  </div>
+
+  <div class="camp-status">
+    <div class="cs-avatar"><img src="images/character/face/warrior-male.png" alt="" id="campAvatar"></div>
+    <div class="cs-info">
+      <span class="cs-name" id="campName">战士 ♂</span>
+      <span class="cs-stat">Lv.<strong id="campLevel">1</strong></span>
+      <span class="cs-stat">💰 <strong id="campGold">100</strong></span>
+    </div>
+  </div>
+
+  <div class="camp-tabs">
+    <button class="camp-tab active" onclick="switchTab('shop')">🛒 购买</button>
+    <button class="camp-tab" onclick="switchTab('sell')">💰 出售</button>
+    <button class="camp-tab" onclick="switchTab('craft')">🔨 制作</button>
+    <button class="camp-tab" onclick="switchTab('equip')">⚔️ 装备</button>
+  </div>
+
+  <!-- ══ 购买面板 ══ -->
+  <div class="camp-panel active" id="panel-shop">
+    <div class="shop-grid" id="shopItems"></div>
+  </div>
+
+  <!-- ══ 出售面板 ══ -->
+  <div class="camp-panel" id="panel-sell">
+    <div class="shop-grid" id="sellItems"></div>
+  </div>
+
+  <!-- ══ 制作面板 ══ -->
+  <div class="camp-panel" id="panel-craft">
+    <div class="craft-grid" id="craftItems"></div>
+  </div>
+
+  <!-- ══ 装备面板 ══ -->
+  <div class="camp-panel" id="panel-equip">
+    <div class="equip-panel" id="equipPanel"></div>
+  </div>
+
+  <!-- ══ 物品选择弹窗 ══ -->
+  <div class="modal-overlay" id="pickModal">
+    <div class="modal-box">
+      <div class="modal-title" id="pickTitle">选择物品</div>
+      <div class="modal-items" id="pickItems"></div>
+      <button class="modal-cancel" onclick="closePick()">取消</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// ─── Data ───
+function getData(){
+  try{return JSON.parse(localStorage.getItem('hanako_game_data'))||{};}catch(e){return {};}
+}
+function saveData(d){localStorage.setItem('hanako_game_data',JSON.stringify(d));}
+
+const nameMap={warrior:'战士',mage:'法师',priest:'牧师',archer:'弓箭手'};
+const genderMap={male:'♂',female:'♀'};
+const classMap={warrior:'Warrior',mage:'Mage',priest:'Priest',archer:'Archer'};
+
+// ─── 商品目录（全品类商店） ───
+const SHOP_CATALOG = [
+  {id:'hp_potion',name:'生命药水',icon:'🧪',desc:'恢复 80 点生命值',buyPrice:20,sellPrice:10,category:'消耗品'},
+  {id:'mp_potion',name:'法力药水',icon:'💧',desc:'恢复 40 点法力值',buyPrice:15,sellPrice:7,category:'消耗品'},
+  {id:'hp_big_potion',name:'大生命药水',icon:'🧪',desc:'恢复 200 点生命值',buyPrice:50,sellPrice:25,category:'消耗品'},
+  {id:'scroll_of_fire',name:'火焰卷轴',icon:'📜',desc:'战斗中使用，造成50点火伤害',buyPrice:45,sellPrice:22,category:'卷轴'},
+  {id:'scroll_of_ice',name:'冰霜卷轴',icon:'📜',desc:'战斗中使用，造成45点冰伤害',buyPrice:40,sellPrice:20,category:'卷轴'},
+  {id:'scroll_of_lightning',name:'闪电卷轴',icon:'📜',desc:'战斗中使用，造成60点雷伤害',buyPrice:55,sellPrice:28,category:'卷轴'},
+  // 装备
+  {id:'camp_iron_sword',name:'精铁剑',icon:'⚔️',desc:'铁匠锻造的精良长剑',buyPrice:120,sellPrice:60,category:'武器',slot:'weapon',stats:{str:8,agi:3}},
+  {id:'camp_archer_bow',name:'猎弓',icon:'🏹',desc:'精准的狩猎长弓',buyPrice:110,sellPrice:55,category:'武器',slot:'weapon',stats:{agi:9,str:2}},
+  {id:'camp_mage_staff',name:'魔力法杖',icon:'🔮',desc:'嵌有魔力水晶的法杖',buyPrice:130,sellPrice:65,category:'武器',slot:'weapon',stats:{int:10,spr:4}},
+  {id:'camp_priest_tome',name:'祝福圣典',icon:'📖',desc:'记载着祝福祷言的圣典',buyPrice:120,sellPrice:60,category:'武器',slot:'weapon',stats:{spr:9,int:4}},
+  {id:'camp_leather_armor',name:'硬皮甲',icon:'🛡️',desc:'鞣制过的硬皮甲',buyPrice:100,sellPrice:50,category:'防具',slot:'chest',stats:{hp:35,str:4}},
+  {id:'camp_iron_helm',name:'铁头盔',icon:'🪖',desc:'保护头部的铁盔',buyPrice:80,sellPrice:40,category:'防具',slot:'head',stats:{hp:20,str:2}},
+  {id:'camp_speed_boots',name:'疾风靴',icon:'🥾',desc:'轻便灵活的皮靴',buyPrice:70,sellPrice:35,category:'防具',slot:'shoes',stats:{agi:6}},
+  {id:'camp_defense_belt',name:'铁扣腰带',icon:'🎗️',desc:'加固的军用腰带',buyPrice:60,sellPrice:30,category:'防具',slot:'waist',stats:{hp:15,str:3}},
+  {id:'camp_magic_ring',name:'魔力指环',icon:'💍',desc:'提升魔法亲和力的指环',buyPrice:90,sellPrice:45,category:'饰品',slot:'ring1',stats:{int:5,spr:3}},
+  {id:'camp_protect_ring',name:'守护指环',icon:'💍',desc:'提供额外防护的戒指',buyPrice:85,sellPrice:42,category:'饰品',slot:'ring2',stats:{hp:25,str:2}},
+  {id:'camp_health_amulet',name:'生命护符',icon:'📿',desc:'蕴藏生命能量的护符',buyPrice:95,sellPrice:48,category:'饰品',slot:'neck',stats:{hp:30,spr:3}}
+];
+
+// ─── 制作配方 ───
+const CRAFT_RECIPES = [
+  {id:'craft_hp_pot',name:'生命药水',icon:'🧪',desc:'恢复 80 点生命值',result:{id:'hp_potion',qty:3},materials:[{id:'mat_herb',name:'草药',qty:2},{id:'mat_water',name:'清水',qty:1}]},
+  {id:'craft_mp_pot',name:'法力药水',icon:'💧',desc:'恢复 40 点法力值',result:{id:'mp_potion',qty:3},materials:[{id:'mat_crystal',name:'水晶碎片',qty:2},{id:'mat_water',name:'清水',qty:1}]},
+  {id:'craft_hp_big',name:'大生命药水',icon:'🧪',desc:'恢复 200 点生命值',result:{id:'hp_big_potion',qty:1},materials:[{id:'hp_potion',qty:2},{id:'mat_herb',name:'草药',qty:3}]},
+  {id:'craft_scroll_fire',name:'火焰卷轴',icon:'📜',desc:'造成50点火伤害',result:{id:'scroll_of_fire',qty:1},materials:[{id:'mat_herb',name:'草药',qty:3},{id:'mat_crystal',name:'水晶碎片',qty:2}]},
+  {id:'craft_scroll_ice',name:'冰霜卷轴',icon:'📜',desc:'造成45点冰伤害',result:{id:'scroll_of_ice',qty:1},materials:[{id:'mat_crystal',name:'水晶碎片',qty:3},{id:'mat_water',name:'清水',qty:2}]},
+  {id:'craft_speed_boots',name:'疾风靴',icon:'🥾',desc:'轻便灵活的皮靴',result:{id:'camp_speed_boots',qty:1},materials:[{id:'mat_leather',name:'皮革',qty:3},{id:'mat_iron',name:'铁锭',qty:1}]},
+  {id:'craft_leather_armor',name:'硬皮甲',icon:'🛡️',desc:'鞣制过的硬皮甲',result:{id:'camp_leather_armor',qty:1},materials:[{id:'mat_leather',name:'皮革',qty:5},{id:'mat_iron',name:'铁锭',qty:3}]},
+  {id:'craft_iron_sword',name:'精铁剑',icon:'⚔️',desc:'铁匠锻造的精良长剑',result:{id:'camp_iron_sword',qty:1},materials:[{id:'mat_iron',name:'铁锭',qty:4},{id:'mat_wood',name:'木材',qty:2}]},
+  {id:'craft_magic_ring',name:'魔力指环',icon:'💍',desc:'提升魔法亲和力',result:{id:'camp_magic_ring',qty:1},materials:[{id:'mat_crystal',name:'水晶碎片',qty:4},{id:'mat_iron',name:'铁锭',qty:2}]}
+];
+
+// ─── 基础材料（玩家背包里的材料做兜底） ───
+const BASE_MATERIALS = [
+  {id:'mat_herb',name:'草药',icon:'🌿'},
+  {id:'mat_water',name:'清水',icon:'💧'},
+  {id:'mat_crystal',name:'水晶碎片',icon:'💎'},
+  {id:'mat_leather',name:'皮革',icon:'🧶'},
+  {id:'mat_iron',name:'铁锭',icon:'⛏️'},
+  {id:'mat_wood',name:'木材',icon:'🪵'}
+];
+
+function getMatIcon(id){
+  const m = BASE_MATERIALS.find(b=>b.id===id);
+  return m ? m.icon : '📦';
+}
+
+// ─── Render ───
+let data = getData();
+let tab = 'shop';
+
+function init(){
+  const c = data.selectedClass||'warrior', g = data.selectedGender||'male';
+  document.getElementById('campAvatar').src = 'images/character/face/'+c+'-'+g+'.png';
+  document.getElementById('campName').textContent = (nameMap[c]||'战士')+' '+(genderMap[g]||'♂');
+  const ch = data.character||{};
+  document.getElementById('campLevel').textContent = ch.level||1;
+  document.getElementById('campGold').textContent = ch.gold||0;
+  renderShop();
+  renderSell();
+  renderCraft();
+  renderEquip();
+}
+
+function switchTab(t){
+  tab = t;
+  document.querySelectorAll('.camp-tab').forEach(el=>el.classList.remove('active'));
+  document.querySelector('.camp-tab[onclick*="'+t+'"]').classList.add('active');
+  document.querySelectorAll('.camp-panel').forEach(el=>el.classList.remove('active'));
+  document.getElementById('panel-'+t).classList.add('active');
+}
+
+// ─── 购买 ───
+function renderShop(){
+  const g = document.getElementById('shopItems');
+  g.innerHTML = '';
+  const gold = (data.character||{}).gold||0;
+  SHOP_CATALOG.forEach(item=>{
+    const div = document.createElement('div');
+    div.className = 'shop-item';
+    const canBuy = gold >= item.buyPrice;
+    div.innerHTML = `<span class="si-icon">${item.icon}</span>
+      <div class="si-info"><div class="si-name">${item.name}</div>
+      <div class="si-desc">${item.desc}</div></div>
+      <span class="si-price">${item.buyPrice}💰</span>
+      <button class="si-btn"${canBuy?'':' disabled'} onclick="buyItem('${item.id}')">购买</button>`;
+    g.appendChild(div);
+  });
+}
+
+function buyItem(id){
+  const catalog = SHOP_CATALOG.find(i=>i.id===id);
+  if(!catalog) return;
+  const ch = data.character||{};
+  if((ch.gold||0) < catalog.buyPrice) return;
+  ch.gold = (ch.gold||0) - catalog.buyPrice;
+  data.character = ch;
+  // 添加到背包
+  if(!data.inventory) data.inventory = [];
+  const existing = data.inventory.find(i=>i.id===id);
+  if(catalog.stats){
+    // 装备类只给一个
+    if(existing) existing.qty = (existing.qty||1)+1;
+    else data.inventory.push({id:catalog.id,name:catalog.name,icon:catalog.icon,desc:catalog.desc,qty:1,sellPrice:catalog.sellPrice||0,slot:catalog.slot,stats:{...catalog.stats}});
+  } else {
+    if(existing) existing.qty = (existing.qty||1)+1;
+    else data.inventory.push({id:catalog.id,name:catalog.name,icon:catalog.icon,desc:catalog.desc,qty:1,sellPrice:catalog.sellPrice||0});
+  }
+  saveData(data);
+  data = getData();
+  document.getElementById('campGold').textContent = ch.gold||0;
+  renderShop();
+  renderSell();
+}
+
+// ─── 出售 ───
+function renderSell(){
+  const g = document.getElementById('sellItems');
+  g.innerHTML = '';
+  const inv = data.inventory||[];
+  if(inv.length === 0){
+    g.innerHTML = '<div class="shop-empty">背包空空如也，去打些材料来卖吧</div>';
+    return;
+  }
+  inv.forEach((item,idx)=>{
+    const sellPrice = getSellPrice(item);
+    if(sellPrice <= 0) return;
+    const div = document.createElement('div');
+    div.className = 'shop-item';
+    div.innerHTML = `<span class="si-icon">${item.icon||'📦'}</span>
+      <div class="si-info"><div class="si-name">${item.name||'未知'}</div>
+      <div class="si-desc">${item.desc||''}</div></div>
+      <span class="si-price">${sellPrice}💰</span>
+      <span class="si-qty">×${item.qty||1}</span>
+      <button class="si-btn" onclick="sellItem(${idx})">出售</button>`;
+    g.appendChild(div);
+  });
+}
+
+function getSellPrice(item){
+  if(item.sellPrice) return item.sellPrice;
+  // 检查商品目录
+  const catalog = SHOP_CATALOG.find(i=>i.id===item.id);
+  if(catalog && catalog.sellPrice) return catalog.sellPrice;
+  return Math.floor((item.buyPrice||0)*0.5) || 1;
+}
+
+function sellItem(idx){
+  const inv = data.inventory||[];
+  const item = inv[idx];
+  if(!item) return;
+  const price = getSellPrice(item);
+  if(price <= 0) return;
+  if(!data.character) data.character = {};
+  data.character.gold = (data.character.gold||0) + price;
+  if((item.qty||1) > 1) item.qty--;
+  else inv.splice(idx,1);
+  data.inventory = inv;
+  saveData(data);
+  data = getData();
+  document.getElementById('campGold').textContent = data.character.gold||0;
+  renderSell();
+  renderShop();
+  renderCraft();
+}
+
+// ─── 制作 ───
+function renderCraft(){
+  const g = document.getElementById('craftItems');
+  g.innerHTML = '';
+  CRAFT_RECIPES.forEach(recipe=>{
+    const canCraft = checkMaterials(recipe.materials);
+    const card = document.createElement('div');
+    card.className = 'craft-card';
+    const matHtml = recipe.materials.map(m => {
+      const have = countMaterial(m.id);
+      const ok = have >= m.qty;
+      return `<span class="${ok?'have':'need'}">${getMatIcon(m.id)} ${m.name} ${have}/${m.qty}</span>`;
+    }).join(' + ');
+    card.innerHTML = `
+      <div class="cc-header">
+        <span class="cc-icon">${recipe.icon}</span>
+        <span class="cc-name">${recipe.name}</span>
+        <span style="font-size:11px;color:rgba(255,255,255,.2);margin-left:auto">×${recipe.result.qty}</span>
+      </div>
+      <div class="cc-desc">${recipe.desc}</div>
+      <div class="cc-mats">所需材料：${matHtml}</div>
+      <button class="cc-btn"${canCraft?'':' disabled'} onclick="craftItem('${recipe.id}')">🔨 制作</button>`;
+    g.appendChild(card);
+  });
+}
+
+function countMaterial(id){
+  const inv = data.inventory||[];
+  let total = 0;
+  inv.forEach(i=>{ if(i.id === id) total += (i.qty||1); });
+  // 如果是基础材料，玩家可能没有，都是打怪掉落
+  return total;
+}
+
+function checkMaterials(mats){
+  for(const m of mats){
+    if(countMaterial(m.id) < m.qty) return false;
+  }
+  return true;
+}
+
+function consumeMaterials(mats){
+  const inv = data.inventory||[];
+  for(const m of mats){
+    let remaining = m.qty;
+    for(let i = inv.length-1; i >= 0 && remaining > 0; i--){
+      if(inv[i].id === m.id){
+        if(inv[i].qty > remaining){
+          inv[i].qty -= remaining;
+          remaining = 0;
+        } else {
+          remaining -= (inv[i].qty||1);
+          inv.splice(i, 1);
+        }
+      }
+    }
+  }
+  data.inventory = inv;
+}
+
+function craftItem(recipeId){
+  const recipe = CRAFT_RECIPES.find(r=>r.id===recipeId);
+  if(!recipe || !checkMaterials(recipe.materials)) return;
+  consumeMaterials(recipe.materials);
+  // 添加产物
+  const result = recipe.result;
+  const existing = data.inventory.find(i=>i.id===result.id);
+  if(result.id.startsWith('camp_') && SHOP_CATALOG.find(c=>c.id===result.id && c.stats)){
+    // 装备类
+    const cat = SHOP_CATALOG.find(c=>c.id===result.id);
+    if(existing) existing.qty = (existing.qty||1)+result.qty;
+    else data.inventory.push({id:cat.id,name:cat.name,icon:cat.icon,desc:cat.desc,
+      qty:result.qty,sellPrice:cat.sellPrice||0,slot:cat.slot,stats:{...cat.stats}});
+  } else {
+    if(existing) existing.qty = (existing.qty||1)+result.qty;
+    else {
+      const cat = SHOP_CATALOG.find(c=>c.id===result.id);
+      data.inventory.push({id:result.id,name:cat?cat.name:result.id,icon:cat?cat.icon:'📦',
+        desc:cat?cat.desc:'',qty:result.qty,sellPrice:cat?cat.sellPrice:0});
+    }
+  }
+  // 保存基础材料存档（首次使用自动添加材料到背包模拟）
+  saveData(data);
+  data = getData();
+  renderCraft();
+  renderSell();
+  document.getElementById('campGold').textContent = (data.character||{}).gold||0;
+}
+
+// ─── 装备管理 ───
+function renderEquip(){
+  const eq = data.equipment||{};
+  const inv = data.inventory||[];
+  const g = document.getElementById('equipPanel');
+
+  const slotNames = {
+    weapon:'武器', offhand:'副手', head:'头盔', neck:'项链',
+    chest:'胸甲', legs:'裤子', shoes:'鞋子', hands:'手套',
+    waist:'腰带', back:'披风', wrist:'护腕', shoulder:'肩膀',
+    ring1:'戒指Ⅰ', ring2:'戒指Ⅱ', trinket1:'饰品Ⅰ', trinket2:'饰品Ⅱ'
+  };
+  const slotIcons = {
+    weapon:'⚔️', offhand:'🛡️', head:'🪖', neck:'📿',
+    chest:'👕', legs:'👖', shoes:'🥾', hands:'🧤',
+    waist:'🎗️', back:'🧣', wrist:'⌛', shoulder:'🛡️',
+    ring1:'💍', ring2:'💍', trinket1:'🔮', trinket2:'🔮'
+  };
+
+  const leftSlots = ['weapon','head','chest','legs','shoes','back'];
+  const rightSlots = ['offhand','neck','hands','waist','wrist','shoulder','ring1','ring2','trinket1','trinket2'];
+
+  function renderColumn(slots, title){
+    let html = `<div class="ep-col"><div class="ep-title">${title}</div>`;
+    slots.forEach(slot => {
+      const item = eq[slot];
+      if(item){
+        const statsStr = item.stats ? Object.entries(item.stats).map(([k,v])=>{
+          const m={str:'力量',int:'智力',agi:'敏捷',spr:'精神',hp:'生命',mp:'法力'};
+          return (m[k]||k)+'+'+v;
+        }).join(' ') : '';
+        html += `<div class="equip-slot-row" onclick="unequipItem('${slot}')">
+          <span class="es-icon">${slotIcons[slot]||'●'}</span>
+          <span class="es-label">${slotNames[slot]||slot}</span>
+          <span class="es-item">${item.icon} ${item.name}</span>
+          <span class="es-unequip">✕ 脱下</span>
+        </div>`;
+      } else {
+        const compatible = inv.filter(i=>i.slot===slot);
+        html += `<div class="equip-slot-row" onclick="${compatible.length>0?`showPick('${slot}')`:'alert(\'无可用装备\')'}">
+          <span class="es-icon">${slotIcons[slot]||'●'}</span>
+          <span class="es-label">${slotNames[slot]||slot}</span>
+          <span class="es-empty">—— 空 ——</span>
+        </div>`;
+      }
+    });
+    html += '</div>';
+    return html;
+  }
+
+  g.innerHTML = renderColumn(leftSlots, '主装备') + renderColumn(rightSlots, '饰品 & 其他');
+}
+
+function showPick(slot){
+  const inv = data.inventory||[];
+  const compatible = inv.filter(i=>i.slot===slot && i.id && i.qty>=1);
+  if(compatible.length === 0){ alert('背包中没有适合此槽位的装备'); return; }
+  document.getElementById('pickTitle').textContent = '选择 '+(slotNames[slot]||slot);
+  const body = document.getElementById('pickItems');
+  body.innerHTML = compatible.map((item,idx)=>{
+    const statsStr = item.stats ? Object.entries(item.stats).map(([k,v])=>{
+      const m={str:'力量',int:'智力',agi:'敏捷',spr:'精神',hp:'生命',mp:'法力'};
+      return (m[k]||k)+'+'+v;
+    }).join(' ') : '';
+    return `<div class="modal-item" onclick="equipItem('${slot}',${data.inventory.indexOf(item)})">
+      <span class="mi-icon">${item.icon||'📦'}</span>
+      <div class="mi-info"><div class="mi-name">${item.name}</div>
+      <div class="mi-stats">${statsStr||item.desc||''}</div></div>
+      <span style="font-size:11px;color:rgba(255,255,255,.2)">×${item.qty||1}</span>
+    </div>`;
+  }).join('');
+  document.getElementById('pickModal').classList.add('show');
+}
+
+function closePick(){
+  document.getElementById('pickModal').classList.remove('show');
+}
+
+function equipItem(slot, invIdx){
+  const inv = data.inventory||[];
+  const item = inv[invIdx];
+  if(!item) return;
+  if(!data.equipment) data.equipment = {};
+  // 如果该槽已有装备，先放回背包
+  if(data.equipment[slot]){
+    const old = data.equipment[slot];
+    const oldExist = inv.find(i=>i.id===old.id);
+    if(oldExist) oldExist.qty = (oldExist.qty||1)+1;
+    else inv.push({...old, qty:1});
+  }
+  // 从背包移除
+  if((item.qty||1) > 1) item.qty--;
+  else inv.splice(invIdx, 1);
+  // 装备
+  data.equipment[slot] = {id:item.id, name:item.name, icon:item.icon, desc:item.desc, slot:item.slot, stats:{...item.stats}};
+  data.inventory = inv;
+  saveData(data);
+  data = getData();
+  closePick();
+  renderEquip();
+  document.getElementById('campGold').textContent = (data.character||{}).gold||0;
+}
+
+function unequipItem(slot){
+  const eq = data.equipment||{};
+  const item = eq[slot];
+  if(!item) return;
+  const inv = data.inventory||[];
+  const existing = inv.find(i=>i.id===item.id);
+  if(existing) existing.qty = (existing.qty||1)+1;
+  else inv.push({id:item.id, name:item.name, icon:item.icon, desc:item.desc, qty:1, sellPrice:item.sellPrice||0, slot:item.slot, stats:{...item.stats}});
+  delete eq[slot];
+  data.equipment = eq;
+  data.inventory = inv;
+  saveData(data);
+  data = getData();
+  renderEquip();
+}
+
+const slotNames = {weapon:'武器',offhand:'副手',head:'头盔',neck:'项链',chest:'胸甲',legs:'裤子',shoes:'鞋子',hands:'手套',waist:'腰带',back:'披风',wrist:'护腕',shoulder:'肩膀',ring1:'戒指Ⅰ',ring2:'戒指Ⅱ',trinket1:'饰品Ⅰ',trinket2:'饰品Ⅱ'};
+
+init();
+</script>
+</body>
+</html>

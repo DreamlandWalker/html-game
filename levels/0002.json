@@ -1,0 +1,375 @@
+{
+  "id": 2,
+  "name": "密林小径",
+  "playerStart": {
+    "x": 1,
+    "y": 1
+  },
+  "exit": {
+    "x": 9,
+    "y": 8
+  },
+  "map": {
+    "width": 11,
+    "height": 10,
+    "tiles": [
+      "WWWWWWWWWWW",
+      "W........WW",
+      "W.WWW.WW.WW",
+      "W.W....W.WW",
+      "W...WW...WW",
+      "WW.W..W.WWW",
+      "W..W..W..WW",
+      "W........WW",
+      "WWWWWWWWW.W",
+      "WWWWWWWWWWW"
+    ]
+  },
+  "monsterSpawns": [
+    {
+      "x": 3,
+      "y": 2,
+      "rate": 0.934438030107099,
+      "monsterIdx": 0
+    },
+    {
+      "x": 3,
+      "y": 5,
+      "rate": 0.8667168047496274,
+      "monsterIdx": 0
+    },
+    {
+      "x": 2,
+      "y": 6,
+      "rate": 0.8266371629491229,
+      "monsterIdx": 0
+    },
+    {
+      "x": 4,
+      "y": 4,
+      "rate": 0.9500841092179623,
+      "monsterIdx": 0
+    }
+  ],
+  "bossSpawn": {
+    "x": 7,
+    "y": 8,
+    "rate": 1,
+    "monsterIdx": 1
+  },
+  "chestSpawns": [
+    {
+      "x": 4,
+      "y": 7,
+      "rate": 0.914466602455337,
+      "lootPool": [
+        {
+          "type": "gold",
+          "name": "金币",
+          "icon": "💰",
+          "min": 9,
+          "max": 23,
+          "chance": 1
+        },
+        {
+          "type": "item",
+          "id": "hp_potion",
+          "name": "生命药水",
+          "icon": "🧪",
+          "desc": "恢复 80 点生命值",
+          "qty": 1,
+          "chance": 0.51
+        }
+      ]
+    },
+    {
+      "x": 7,
+      "y": 4,
+      "rate": 0.9783173471488253,
+      "lootPool": [
+        {
+          "type": "gold",
+          "name": "金币",
+          "icon": "💰",
+          "min": 9,
+          "max": 23,
+          "chance": 1
+        },
+        {
+          "type": "item",
+          "id": "hp_potion",
+          "name": "生命药水",
+          "icon": "🧪",
+          "desc": "恢复 80 点生命值",
+          "qty": 1,
+          "chance": 0.51
+        },
+        {
+          "type": "item",
+          "id": "mp_potion",
+          "name": "法力药水",
+          "icon": "💧",
+          "desc": "恢复 40 点法力值",
+          "qty": 1,
+          "chance": 0.4
+        }
+      ]
+    }
+  ],
+  "monsters": [
+    {
+      "name": "冰狼",
+      "icon": "🐺",
+      "hp": 22,
+      "attack": 6,
+      "aggro": 1,
+      "xpReward": 22,
+      "skills": [
+        {
+          "name": "普通攻击",
+          "icon": "💥",
+          "dmgMul": 1.3
+        },
+        {
+          "name": "重击",
+          "icon": "💢",
+          "dmgMul": 2.04
+        }
+      ],
+      "loot": [
+        {
+          "type": "gold",
+          "icon": "💰",
+          "min": 3,
+          "max": 6,
+          "chance": 1
+        },
+        {
+          "type": "material",
+          "id": "mat_lvl2",
+          "name": "材料·冰狼",
+          "icon": "📦",
+          "desc": "从冰狼身上获得的材料",
+          "qty": 1,
+          "qtyMax": 2,
+          "sellPrice": 2,
+          "chance": 0.5
+        }
+      ]
+    }
+  ],
+  "boss": {
+    "name": "巨魔首领",
+    "icon": "👊",
+    "hp": 110,
+    "maxHp": 110,
+    "attack": 9,
+    "aggro": 3,
+    "xpReward": 66,
+    "skills": [
+      {
+        "name": "BOSS·横扫",
+        "icon": "💥",
+        "dmgMul": 2
+      },
+      {
+        "name": "BOSS·毁灭一击",
+        "icon": "☠️",
+        "dmgMul": 3.54
+      }
+    ],
+    "loot": [
+      {
+        "type": "gold",
+        "icon": "💰",
+        "min": 16,
+        "max": 30,
+        "chance": 1
+      },
+      {
+        "type": "item",
+        "id": "hp_big_potion",
+        "name": "大生命药水",
+        "icon": "🧪",
+        "desc": "恢复 200 点生命值",
+        "qty": 1,
+        "sellPrice": 25,
+        "chance": 0.5
+      },
+      {
+        "type": "equipment",
+        "id": "boss_loot_lvl2",
+        "name": "巨魔首领的遗物",
+        "icon": "👑",
+        "desc": "击败巨魔首领获得的战利品",
+        "slot": "trinket1",
+        "stats": {
+          "str": 0,
+          "int": 0,
+          "agi": 0,
+          "spr": 0
+        },
+        "sellPrice": 16,
+        "chance": 0.2
+      }
+    ]
+  },
+  "questions": [
+    {
+      "type": "fill",
+      "question": "They ___ teachers.",
+      "answer": "are",
+      "timeThreshold": 7
+    },
+    {
+      "type": "fill",
+      "question": "I smell with my ___（鼻子）.",
+      "answer": "nose",
+      "alternatives": [
+        "Nose"
+      ],
+      "timeThreshold": 9
+    },
+    {
+      "type": "fill",
+      "question": "I hear with my ___（耳朵）.",
+      "answer": "ear",
+      "alternatives": [
+        "ears",
+        "Ear"
+      ],
+      "timeThreshold": 9
+    },
+    {
+      "type": "choice",
+      "question": "___ apple",
+      "options": [
+        "A",
+        "An",
+        "The",
+        "/"
+      ],
+      "answer": 1,
+      "timeThreshold": 7
+    },
+    {
+      "type": "fill",
+      "question": "Your mother's sister → ___（姨妈）",
+      "answer": "aunt",
+      "timeThreshold": 9
+    },
+    {
+      "type": "choice",
+      "question": "Is it a dog? — ___, it isn't.",
+      "options": [
+        "Yes",
+        "No",
+        "OK",
+        "Fine"
+      ],
+      "answer": 1,
+      "timeThreshold": 7
+    },
+    {
+      "type": "choice",
+      "question": "I ___ a student.",
+      "options": [
+        "am",
+        "is",
+        "are",
+        "be"
+      ],
+      "answer": 0,
+      "timeThreshold": 8
+    },
+    {
+      "type": "fill",
+      "question": "Your father's brother → ___（叔叔）",
+      "answer": "uncle",
+      "timeThreshold": 9
+    },
+    {
+      "type": "fill",
+      "question": "I eat with my ___（嘴巴）.",
+      "answer": "mouth",
+      "alternatives": [
+        "Mouth"
+      ],
+      "timeThreshold": 9
+    },
+    {
+      "type": "fill",
+      "question": "I ___ a boy.（用am/is/are）",
+      "answer": "am",
+      "timeThreshold": 7
+    },
+    {
+      "type": "fill",
+      "question": "Your father's father → ___（爷爷）",
+      "answer": "grandpa",
+      "alternatives": [
+        "grandfather",
+        "granddad"
+      ],
+      "timeThreshold": 9
+    },
+    {
+      "type": "fill",
+      "question": "I see with my ___（眼睛）.",
+      "answer": "eye",
+      "alternatives": [
+        "eyes",
+        "Eye"
+      ],
+      "timeThreshold": 9
+    },
+    {
+      "type": "choice",
+      "question": "___ egg",
+      "options": [
+        "A",
+        "An",
+        "The",
+        "/"
+      ],
+      "answer": 1,
+      "timeThreshold": 7
+    },
+    {
+      "type": "fill",
+      "question": "She ___ my mother.",
+      "answer": "is",
+      "timeThreshold": 7
+    }
+  ],
+  "merchant": {
+    "x": 6,
+    "y": 5,
+    "npcName": "旅行商人",
+    "npcIcon": "🧳",
+    "stock": [
+      {
+        "id": "hp_potion",
+        "name": "生命药水",
+        "icon": "🧪",
+        "desc": "恢复 80 点生命值",
+        "buyPrice": 20,
+        "sellPrice": 10,
+        "qty": 4
+      },
+      {
+        "id": "mp_potion",
+        "name": "法力药水",
+        "icon": "💧",
+        "desc": "恢复 40 点法力值",
+        "buyPrice": 15,
+        "sellPrice": 7,
+        "qty": 3
+      }
+    ]
+  },
+  "reward": {
+    "gold": 46,
+    "xp": 90
+  }
+}

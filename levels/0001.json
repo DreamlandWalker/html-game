@@ -1,0 +1,364 @@
+{
+  "id": 1,
+  "name": "初阵森林",
+  "playerStart": {
+    "x": 1,
+    "y": 1
+  },
+  "exit": {
+    "x": 10,
+    "y": 6
+  },
+  "map": {
+    "width": 12,
+    "height": 8,
+    "tiles": [
+      "WWWWWWWWWWWW",
+      "W..........W",
+      "W....W.....W",
+      "W.....W....W",
+      "W..........W",
+      "W..........W",
+      "W..W.......W",
+      "WWWWWWWWWWWW"
+    ]
+  },
+  "monsterSpawns": [
+    {
+      "x": 7,
+      "y": 3,
+      "rate": 0.8417701227021146,
+      "monsterIdx": 0
+    },
+    {
+      "x": 4,
+      "y": 3,
+      "rate": 0.892857392367902,
+      "monsterIdx": 0
+    },
+    {
+      "x": 8,
+      "y": 2,
+      "rate": 0.9944138070394846,
+      "monsterIdx": 0
+    },
+    {
+      "x": 5,
+      "y": 5,
+      "rate": 0.9490567491730588,
+      "monsterIdx": 0
+    }
+  ],
+  "bossSpawn": {
+    "x": 8,
+    "y": 6,
+    "rate": 1,
+    "monsterIdx": 1
+  },
+  "chestSpawns": [
+    {
+      "x": 7,
+      "y": 4,
+      "rate": 0.9906030424368059,
+      "lootPool": [
+        {
+          "type": "gold",
+          "name": "金币",
+          "icon": "💰",
+          "min": 7,
+          "max": 19,
+          "chance": 1
+        },
+        {
+          "type": "item",
+          "id": "hp_potion",
+          "name": "生命药水",
+          "icon": "🧪",
+          "desc": "恢复 80 点生命值",
+          "qty": 1,
+          "chance": 0.505
+        }
+      ]
+    },
+    {
+      "x": 3,
+      "y": 4,
+      "rate": 0.9227765376634631,
+      "lootPool": [
+        {
+          "type": "gold",
+          "name": "金币",
+          "icon": "💰",
+          "min": 7,
+          "max": 19,
+          "chance": 1
+        },
+        {
+          "type": "item",
+          "id": "hp_potion",
+          "name": "生命药水",
+          "icon": "🧪",
+          "desc": "恢复 80 点生命值",
+          "qty": 1,
+          "chance": 0.505
+        },
+        {
+          "type": "item",
+          "id": "mp_potion",
+          "name": "法力药水",
+          "icon": "💧",
+          "desc": "恢复 40 点法力值",
+          "qty": 1,
+          "chance": 0.4
+        }
+      ]
+    }
+  ],
+  "monsters": [
+    {
+      "name": "史莱姆",
+      "icon": "🟢",
+      "hp": 19,
+      "attack": 5,
+      "aggro": 1,
+      "xpReward": 19,
+      "skills": [
+        {
+          "name": "普通攻击",
+          "icon": "💥",
+          "dmgMul": 1.3
+        },
+        {
+          "name": "重击",
+          "icon": "💢",
+          "dmgMul": 2.02
+        }
+      ],
+      "loot": [
+        {
+          "type": "gold",
+          "icon": "💰",
+          "min": 1,
+          "max": 3,
+          "chance": 1
+        },
+        {
+          "type": "material",
+          "id": "mat_lvl1",
+          "name": "材料·史莱姆",
+          "icon": "📦",
+          "desc": "从史莱姆身上获得的材料",
+          "qty": 1,
+          "qtyMax": 2,
+          "sellPrice": 2,
+          "chance": 0.5
+        }
+      ]
+    }
+  ],
+  "boss": {
+    "name": "树精王",
+    "icon": "🌳",
+    "hp": 95,
+    "maxHp": 95,
+    "attack": 8,
+    "aggro": 3,
+    "xpReward": 57,
+    "skills": [
+      {
+        "name": "BOSS·横扫",
+        "icon": "💥",
+        "dmgMul": 2
+      },
+      {
+        "name": "BOSS·毁灭一击",
+        "icon": "☠️",
+        "dmgMul": 3.52
+      }
+    ],
+    "loot": [
+      {
+        "type": "gold",
+        "icon": "💰",
+        "min": 13,
+        "max": 25,
+        "chance": 1
+      },
+      {
+        "type": "item",
+        "id": "hp_big_potion",
+        "name": "大生命药水",
+        "icon": "🧪",
+        "desc": "恢复 200 点生命值",
+        "qty": 1,
+        "sellPrice": 25,
+        "chance": 0.5
+      },
+      {
+        "type": "equipment",
+        "id": "boss_loot_lvl1",
+        "name": "树精王的遗物",
+        "icon": "👑",
+        "desc": "击败树精王获得的战利品",
+        "slot": "trinket1",
+        "stats": {
+          "str": 0,
+          "int": 0,
+          "agi": 0,
+          "spr": 0
+        },
+        "sellPrice": 13,
+        "chance": 0.2
+      }
+    ]
+  },
+  "questions": [
+    {
+      "type": "fill",
+      "question": "I hear with my ___（耳朵）.",
+      "answer": "ear",
+      "alternatives": [
+        "ears",
+        "Ear"
+      ],
+      "timeThreshold": 9
+    },
+    {
+      "type": "choice",
+      "question": "Is it a dog? — ___, it isn't.",
+      "options": [
+        "Yes",
+        "No",
+        "OK",
+        "Fine"
+      ],
+      "answer": 1,
+      "timeThreshold": 7
+    },
+    {
+      "type": "fill",
+      "question": "Arrange: this / What / is / ?",
+      "answer": "What is this",
+      "alternatives": [
+        "what is this"
+      ],
+      "timeThreshold": 12
+    },
+    {
+      "type": "choice",
+      "question": "How many cats? — ___.",
+      "options": [
+        "Fine",
+        "Red",
+        "Three",
+        "Yes"
+      ],
+      "answer": 2,
+      "timeThreshold": 7
+    },
+    {
+      "type": "choice",
+      "question": "I ___ a student.",
+      "options": [
+        "am",
+        "is",
+        "are",
+        "be"
+      ],
+      "answer": 0,
+      "timeThreshold": 8
+    },
+    {
+      "type": "choice",
+      "question": "What colour is it? — It's ___.",
+      "options": [
+        "red",
+        "a cat",
+        "three",
+        "fine"
+      ],
+      "answer": 0,
+      "timeThreshold": 7
+    },
+    {
+      "type": "fill",
+      "question": "I eat with my ___（嘴巴）.",
+      "answer": "mouth",
+      "alternatives": [
+        "Mouth"
+      ],
+      "timeThreshold": 9
+    },
+    {
+      "type": "fill",
+      "question": "Arrange: It's / blue / .",
+      "answer": "It's blue",
+      "alternatives": [
+        "it is blue",
+        "it's blue"
+      ],
+      "timeThreshold": 12
+    },
+    {
+      "type": "fill",
+      "question": "I smell with my ___（鼻子）.",
+      "answer": "nose",
+      "alternatives": [
+        "Nose"
+      ],
+      "timeThreshold": 9
+    },
+    {
+      "type": "choice",
+      "question": "What's this? — It's ___ apple.",
+      "options": [
+        "a",
+        "an",
+        "the",
+        "/"
+      ],
+      "answer": 1,
+      "timeThreshold": 8
+    },
+    {
+      "type": "fill",
+      "question": "I see with my ___（眼睛）.",
+      "answer": "eye",
+      "alternatives": [
+        "eyes",
+        "Eye"
+      ],
+      "timeThreshold": 9
+    }
+  ],
+  "merchant": {
+    "x": 4,
+    "y": 4,
+    "npcName": "神秘商贩",
+    "npcIcon": "🧳",
+    "stock": [
+      {
+        "id": "hp_potion",
+        "name": "生命药水",
+        "icon": "🧪",
+        "desc": "恢复 80 点生命值",
+        "buyPrice": 19,
+        "sellPrice": 9,
+        "qty": 4
+      },
+      {
+        "id": "mp_potion",
+        "name": "法力药水",
+        "icon": "💧",
+        "desc": "恢复 40 点法力值",
+        "buyPrice": 14,
+        "sellPrice": 6,
+        "qty": 3
+      }
+    ]
+  },
+  "reward": {
+    "gold": 38,
+    "xp": 75
+  }
+}

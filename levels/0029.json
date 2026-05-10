@@ -1,0 +1,553 @@
+{
+  "id": 29,
+  "name": "凌云渡",
+  "playerStart": {
+    "x": 1,
+    "y": 1
+  },
+  "exit": {
+    "x": 12,
+    "y": 8
+  },
+  "map": {
+    "width": 14,
+    "height": 10,
+    "tiles": [
+      "WWWWWWWWWWWWWW",
+      "W.....W.....WW",
+      "W..WWW.WWW..WW",
+      "W...........WW",
+      "W..WWWWWWW..WW",
+      "W...........WW",
+      "W..WWWWWWW..WW",
+      "W...........WW",
+      "W..WWW.WWW...W",
+      "WWWWWWWWWWWWWW"
+    ]
+  },
+  "monsterSpawns": [
+    {
+      "x": 3,
+      "y": 3,
+      "rate": 0.8543498601394662,
+      "monsterIdx": 0
+    },
+    {
+      "x": 4,
+      "y": 7,
+      "rate": 0.9337366910158299,
+      "monsterIdx": 1
+    },
+    {
+      "x": 3,
+      "y": 5,
+      "rate": 0.9535895455918513,
+      "monsterIdx": 0
+    },
+    {
+      "x": 6,
+      "y": 6,
+      "rate": 0.9804126827630757,
+      "monsterIdx": 1
+    }
+  ],
+  "bossSpawn": {
+    "x": 10,
+    "y": 8,
+    "rate": 1,
+    "monsterIdx": 2
+  },
+  "chestSpawns": [
+    {
+      "x": 5,
+      "y": 6,
+      "rate": 0.9372340152526153,
+      "lootPool": [
+        {
+          "type": "gold",
+          "name": "金币",
+          "icon": "💰",
+          "min": 63,
+          "max": 131,
+          "chance": 1
+        },
+        {
+          "type": "item",
+          "id": "hp_potion",
+          "name": "生命药水",
+          "icon": "🧪",
+          "desc": "恢复 80 点生命值",
+          "qty": 4,
+          "chance": 0.645
+        }
+      ]
+    },
+    {
+      "x": 10,
+      "y": 3,
+      "rate": 0.9770449523736612,
+      "lootPool": [
+        {
+          "type": "gold",
+          "name": "金币",
+          "icon": "💰",
+          "min": 63,
+          "max": 131,
+          "chance": 1
+        },
+        {
+          "type": "item",
+          "id": "hp_potion",
+          "name": "生命药水",
+          "icon": "🧪",
+          "desc": "恢复 80 点生命值",
+          "qty": 4,
+          "chance": 0.645
+        },
+        {
+          "type": "item",
+          "id": "mp_potion",
+          "name": "法力药水",
+          "icon": "💧",
+          "desc": "恢复 40 点法力值",
+          "qty": 3,
+          "chance": 0.4
+        },
+        {
+          "type": "equipment",
+          "id": "chest_equip_lvl29_1",
+          "name": "宝箱装备",
+          "icon": "🪖",
+          "desc": "从宝箱中发现的装备",
+          "slot": "ring2",
+          "stats": {
+            "str": 7,
+            "agi": 7
+          },
+          "sellPrice": 63,
+          "chance": 0.245
+        }
+      ]
+    },
+    {
+      "x": 6,
+      "y": 4,
+      "rate": 0.9852573035186507,
+      "lootPool": [
+        {
+          "type": "gold",
+          "name": "金币",
+          "icon": "💰",
+          "min": 63,
+          "max": 131,
+          "chance": 1
+        },
+        {
+          "type": "item",
+          "id": "hp_potion",
+          "name": "生命药水",
+          "icon": "🧪",
+          "desc": "恢复 80 点生命值",
+          "qty": 4,
+          "chance": 0.645
+        },
+        {
+          "type": "item",
+          "id": "mp_potion",
+          "name": "法力药水",
+          "icon": "💧",
+          "desc": "恢复 40 点法力值",
+          "qty": 3,
+          "chance": 0.4
+        }
+      ]
+    },
+    {
+      "x": 9,
+      "y": 7,
+      "rate": 0.9803842183770178,
+      "lootPool": [
+        {
+          "type": "gold",
+          "name": "金币",
+          "icon": "💰",
+          "min": 63,
+          "max": 131,
+          "chance": 1
+        },
+        {
+          "type": "item",
+          "id": "hp_potion",
+          "name": "生命药水",
+          "icon": "🧪",
+          "desc": "恢复 80 点生命值",
+          "qty": 4,
+          "chance": 0.645
+        },
+        {
+          "type": "item",
+          "id": "mp_potion",
+          "name": "法力药水",
+          "icon": "💧",
+          "desc": "恢复 40 点法力值",
+          "qty": 3,
+          "chance": 0.4
+        }
+      ]
+    }
+  ],
+  "monsters": [
+    {
+      "name": "熔岩小鬼",
+      "icon": "👹",
+      "hp": 109,
+      "attack": 35,
+      "aggro": 4,
+      "xpReward": 109,
+      "skills": [
+        {
+          "name": "普通攻击",
+          "icon": "💥",
+          "dmgMul": 1.3
+        },
+        {
+          "name": "重击",
+          "icon": "💢",
+          "dmgMul": 2.58
+        }
+      ],
+      "loot": [
+        {
+          "type": "gold",
+          "icon": "💰",
+          "min": 43,
+          "max": 87,
+          "chance": 1
+        },
+        {
+          "type": "item",
+          "id": "hp_potion",
+          "name": "生命药水",
+          "icon": "🧪",
+          "desc": "恢复 80 点生命值",
+          "qty": 1,
+          "sellPrice": 10,
+          "chance": 0.25
+        },
+        {
+          "type": "item",
+          "id": "mp_potion",
+          "name": "法力药水",
+          "icon": "💧",
+          "desc": "恢复 40 点法力值",
+          "qty": 1,
+          "sellPrice": 7,
+          "chance": 0.2
+        },
+        {
+          "type": "material",
+          "id": "mat_lvl29",
+          "name": "材料·熔岩小鬼",
+          "icon": "📦",
+          "desc": "从熔岩小鬼身上获得的材料",
+          "qty": 1,
+          "qtyMax": 2,
+          "sellPrice": 14,
+          "chance": 0.5
+        }
+      ]
+    },
+    {
+      "name": "深渊幽灵",
+      "icon": "👻",
+      "hp": 150,
+      "attack": 41,
+      "aggro": 4,
+      "xpReward": 150,
+      "skills": [
+        {
+          "name": "普通攻击",
+          "icon": "💥",
+          "dmgMul": 1.3
+        },
+        {
+          "name": "重击",
+          "icon": "💢",
+          "dmgMul": 2.58
+        }
+      ],
+      "loot": [
+        {
+          "type": "gold",
+          "icon": "💰",
+          "min": 43,
+          "max": 87,
+          "chance": 1
+        },
+        {
+          "type": "item",
+          "id": "hp_potion",
+          "name": "生命药水",
+          "icon": "🧪",
+          "desc": "恢复 80 点生命值",
+          "qty": 1,
+          "sellPrice": 10,
+          "chance": 0.25
+        },
+        {
+          "type": "item",
+          "id": "mp_potion",
+          "name": "法力药水",
+          "icon": "💧",
+          "desc": "恢复 40 点法力值",
+          "qty": 1,
+          "sellPrice": 7,
+          "chance": 0.2
+        },
+        {
+          "type": "material",
+          "id": "mat_lvl29",
+          "name": "材料·深渊幽灵",
+          "icon": "📦",
+          "desc": "从深渊幽灵身上获得的材料",
+          "qty": 1,
+          "qtyMax": 2,
+          "sellPrice": 14,
+          "chance": 0.5
+        }
+      ]
+    }
+  ],
+  "boss": {
+    "name": "骷髅将军",
+    "icon": "💀",
+    "hp": 1199,
+    "maxHp": 1199,
+    "attack": 53,
+    "aggro": 3,
+    "xpReward": 327,
+    "skills": [
+      {
+        "name": "BOSS·横扫",
+        "icon": "💥",
+        "dmgMul": 2
+      },
+      {
+        "name": "BOSS·毁灭一击",
+        "icon": "☠️",
+        "dmgMul": 4.08
+      }
+    ],
+    "loot": [
+      {
+        "type": "gold",
+        "icon": "💰",
+        "min": 97,
+        "max": 165,
+        "chance": 1
+      },
+      {
+        "type": "item",
+        "id": "hp_big_potion",
+        "name": "大生命药水",
+        "icon": "🧪",
+        "desc": "恢复 200 点生命值",
+        "qty": 3,
+        "sellPrice": 25,
+        "chance": 0.5
+      },
+      {
+        "type": "item",
+        "id": "mp_potion",
+        "name": "法力药水",
+        "icon": "💧",
+        "desc": "恢复 40 点法力值",
+        "qty": 2,
+        "sellPrice": 7,
+        "chance": 0.4
+      },
+      {
+        "type": "equipment",
+        "id": "boss_loot_lvl29",
+        "name": "骷髅将军的遗物",
+        "icon": "👑",
+        "desc": "击败骷髅将军获得的战利品",
+        "slot": "trinket1",
+        "stats": {
+          "str": 9,
+          "int": 9,
+          "agi": 9,
+          "spr": 9
+        },
+        "sellPrice": 97,
+        "chance": 0.2
+      }
+    ]
+  },
+  "questions": [
+    {
+      "type": "fill",
+      "question": "I ___ (have/has) been to Beijing.",
+      "answer": "have",
+      "timeThreshold": 7
+    },
+    {
+      "type": "fill",
+      "question": "She ___ (have/has) eaten sushi.",
+      "answer": "has",
+      "timeThreshold": 7
+    },
+    {
+      "type": "fill",
+      "question": "They ___ (have/has) seen that film.",
+      "answer": "have",
+      "timeThreshold": 7
+    },
+    {
+      "type": "choice",
+      "question": "The capital of USA is ___.",
+      "options": [
+        "London",
+        "Tokyo",
+        "Washington D.C.",
+        "Canberra"
+      ],
+      "answer": 2,
+      "timeThreshold": 8
+    },
+    {
+      "type": "choice",
+      "question": "We clean the classroom. → The classroom ___ cleaned.",
+      "options": [
+        "is",
+        "are",
+        "was",
+        "were"
+      ],
+      "answer": 0,
+      "timeThreshold": 9
+    },
+    {
+      "type": "fill",
+      "question": "The sports day ___ (hold) by students.（被动语态）",
+      "answer": "will be held",
+      "alternatives": [
+        "will be holded"
+      ],
+      "timeThreshold": 12
+    },
+    {
+      "type": "choice",
+      "question": "People ___ live on Mars in future.",
+      "options": [
+        "will",
+        "are going to",
+        "is going to",
+        "have"
+      ],
+      "answer": 0,
+      "timeThreshold": 8
+    },
+    {
+      "type": "choice",
+      "question": "always → ___ → often → sometimes → never",
+      "options": [
+        "usually",
+        "seldom",
+        "ever",
+        "hardly"
+      ],
+      "answer": 0,
+      "timeThreshold": 9
+    },
+    {
+      "type": "choice",
+      "question": "If you ___ hard, you will get good grades.",
+      "options": [
+        "study",
+        "studies",
+        "studied",
+        "will study"
+      ],
+      "answer": 0,
+      "timeThreshold": 9
+    },
+    {
+      "type": "choice",
+      "question": "I ___ be a doctor when I grow up.",
+      "options": [
+        "will",
+        "am going to",
+        "have",
+        "was"
+      ],
+      "answer": 1,
+      "timeThreshold": 8
+    },
+    {
+      "type": "choice",
+      "question": "My mother washed the dishes. → The dishes ___ washed.",
+      "options": [
+        "is",
+        "are",
+        "was",
+        "were"
+      ],
+      "answer": 3,
+      "timeThreshold": 9
+    },
+    {
+      "type": "fill",
+      "question": "Look at clouds! It ___ (rain).（有迹象）",
+      "answer": "is going to rain",
+      "timeThreshold": 11
+    },
+    {
+      "type": "choice",
+      "question": "He ___ gone to the supermarket（去了未回）.",
+      "options": [
+        "has been to",
+        "has gone to",
+        "have been to",
+        "have gone to"
+      ],
+      "answer": 1,
+      "timeThreshold": 10
+    },
+    {
+      "type": "fill",
+      "question": "If she ___ (have) time, she will go shopping.",
+      "answer": "has",
+      "timeThreshold": 8
+    },
+    {
+      "type": "choice",
+      "question": "I have ___ eaten snake soup.（从未）",
+      "options": [
+        "ever",
+        "never",
+        "always",
+        "usually"
+      ],
+      "answer": 1,
+      "timeThreshold": 7
+    },
+    {
+      "type": "choice",
+      "question": "The capital of UK is ___.",
+      "options": [
+        "Beijing",
+        "London",
+        "Tokyo",
+        "Paris"
+      ],
+      "answer": 1,
+      "timeThreshold": 7
+    }
+  ],
+  "merchant": null,
+  "reward": {
+    "gold": 262,
+    "xp": 495
+  }
+}

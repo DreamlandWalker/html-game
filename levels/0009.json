@@ -1,0 +1,386 @@
+{
+  "id": 9,
+  "name": "云巅前哨",
+  "playerStart": {
+    "x": 1,
+    "y": 1
+  },
+  "exit": {
+    "x": 13,
+    "y": 8
+  },
+  "map": {
+    "width": 15,
+    "height": 10,
+    "tiles": [
+      "WWWWWWWWWWWWWWW",
+      "W.....W.....WWW",
+      "W..WWW.WWW..WWW",
+      "W...........WWW",
+      "W..WWWWWWW..WWW",
+      "W...........WWW",
+      "W..WWWWWWW..WWW",
+      "W...........WWW",
+      "W..WWW.WWW..W.W",
+      "WWWWWWWWWWWWWWW"
+    ]
+  },
+  "monsterSpawns": [
+    {
+      "x": 8,
+      "y": 2,
+      "rate": 0.9584259338209147,
+      "monsterIdx": 0
+    },
+    {
+      "x": 3,
+      "y": 5,
+      "rate": 0.8667470187015687,
+      "monsterIdx": 0
+    },
+    {
+      "x": 12,
+      "y": 3,
+      "rate": 0.8863754711030842,
+      "monsterIdx": 0
+    },
+    {
+      "x": 10,
+      "y": 6,
+      "rate": 0.8592666418960799,
+      "monsterIdx": 0
+    }
+  ],
+  "bossSpawn": {
+    "x": 12,
+    "y": 8,
+    "rate": 1,
+    "monsterIdx": 1
+  },
+  "chestSpawns": [
+    {
+      "x": 4,
+      "y": 5,
+      "rate": 0.9186573101675523,
+      "lootPool": [
+        {
+          "type": "gold",
+          "name": "金币",
+          "icon": "💰",
+          "min": 23,
+          "max": 51,
+          "chance": 1
+        },
+        {
+          "type": "item",
+          "id": "hp_potion",
+          "name": "生命药水",
+          "icon": "🧪",
+          "desc": "恢复 80 点生命值",
+          "qty": 2,
+          "chance": 0.545
+        }
+      ]
+    },
+    {
+      "x": 11,
+      "y": 7,
+      "rate": 0.9385986374183417,
+      "lootPool": [
+        {
+          "type": "gold",
+          "name": "金币",
+          "icon": "💰",
+          "min": 23,
+          "max": 51,
+          "chance": 1
+        },
+        {
+          "type": "item",
+          "id": "hp_potion",
+          "name": "生命药水",
+          "icon": "🧪",
+          "desc": "恢复 80 点生命值",
+          "qty": 2,
+          "chance": 0.545
+        },
+        {
+          "type": "item",
+          "id": "mp_potion",
+          "name": "法力药水",
+          "icon": "💧",
+          "desc": "恢复 40 点法力值",
+          "qty": 1,
+          "chance": 0.4
+        },
+        {
+          "type": "equipment",
+          "id": "chest_equip_lvl9_1",
+          "name": "宝箱装备",
+          "icon": "🪖",
+          "desc": "从宝箱中发现的装备",
+          "slot": "ring2",
+          "stats": {
+            "str": 2,
+            "agi": 2
+          },
+          "sellPrice": 23,
+          "chance": 0.14500000000000002
+        }
+      ]
+    }
+  ],
+  "monsters": [
+    {
+      "name": "熔岩小鬼",
+      "icon": "👹",
+      "hp": 45,
+      "attack": 14,
+      "aggro": 2,
+      "xpReward": 45,
+      "skills": [
+        {
+          "name": "普通攻击",
+          "icon": "💥",
+          "dmgMul": 1.3
+        },
+        {
+          "name": "重击",
+          "icon": "💢",
+          "dmgMul": 2.18
+        }
+      ],
+      "loot": [
+        {
+          "type": "gold",
+          "icon": "💰",
+          "min": 13,
+          "max": 27,
+          "chance": 1
+        },
+        {
+          "type": "item",
+          "id": "hp_potion",
+          "name": "生命药水",
+          "icon": "🧪",
+          "desc": "恢复 80 点生命值",
+          "qty": 1,
+          "sellPrice": 10,
+          "chance": 0.25
+        },
+        {
+          "type": "material",
+          "id": "mat_lvl9",
+          "name": "材料·熔岩小鬼",
+          "icon": "📦",
+          "desc": "从熔岩小鬼身上获得的材料",
+          "qty": 1,
+          "qtyMax": 2,
+          "sellPrice": 4,
+          "chance": 0.5
+        }
+      ]
+    }
+  ],
+  "boss": {
+    "name": "骷髅将军",
+    "icon": "💀",
+    "hp": 315,
+    "maxHp": 315,
+    "attack": 21,
+    "aggro": 3,
+    "xpReward": 135,
+    "skills": [
+      {
+        "name": "BOSS·横扫",
+        "icon": "💥",
+        "dmgMul": 2
+      },
+      {
+        "name": "BOSS·毁灭一击",
+        "icon": "☠️",
+        "dmgMul": 3.68
+      }
+    ],
+    "loot": [
+      {
+        "type": "gold",
+        "icon": "💰",
+        "min": 37,
+        "max": 65,
+        "chance": 1
+      },
+      {
+        "type": "item",
+        "id": "hp_big_potion",
+        "name": "大生命药水",
+        "icon": "🧪",
+        "desc": "恢复 200 点生命值",
+        "qty": 1,
+        "sellPrice": 25,
+        "chance": 0.5
+      },
+      {
+        "type": "item",
+        "id": "mp_potion",
+        "name": "法力药水",
+        "icon": "💧",
+        "desc": "恢复 40 点法力值",
+        "qty": 2,
+        "sellPrice": 7,
+        "chance": 0.4
+      },
+      {
+        "type": "equipment",
+        "id": "boss_loot_lvl9",
+        "name": "骷髅将军的遗物",
+        "icon": "👑",
+        "desc": "击败骷髅将军获得的战利品",
+        "slot": "trinket1",
+        "stats": {
+          "str": 3,
+          "int": 3,
+          "agi": 3,
+          "spr": 3
+        },
+        "sellPrice": 37,
+        "chance": 0.2
+      }
+    ]
+  },
+  "questions": [
+    {
+      "type": "fill",
+      "question": "child → 复数：___",
+      "answer": "children",
+      "timeThreshold": 7
+    },
+    {
+      "type": "fill",
+      "question": "bus → 复数：___",
+      "answer": "buses",
+      "timeThreshold": 7
+    },
+    {
+      "type": "fill",
+      "question": "baby → 复数：___",
+      "answer": "babies",
+      "timeThreshold": 7
+    },
+    {
+      "type": "fill",
+      "question": "cat → 复数：___",
+      "answer": "cats",
+      "timeThreshold": 6
+    },
+    {
+      "type": "fill",
+      "question": "noodles → 中文：___",
+      "answer": "面条",
+      "timeThreshold": 7
+    },
+    {
+      "type": "choice",
+      "question": "___ a book on the desk.",
+      "options": [
+        "There is",
+        "There are",
+        "There was",
+        "There were"
+      ],
+      "answer": 0,
+      "timeThreshold": 7
+    },
+    {
+      "type": "choice",
+      "question": "The book is ___ the desk（在……上）.",
+      "options": [
+        "in",
+        "on",
+        "under",
+        "behind"
+      ],
+      "answer": 1,
+      "timeThreshold": 7
+    },
+    {
+      "type": "choice",
+      "question": "___ two pens in the case.",
+      "options": [
+        "There is",
+        "There are",
+        "There was",
+        "There were"
+      ],
+      "answer": 1,
+      "timeThreshold": 7
+    },
+    {
+      "type": "fill",
+      "question": "man → 复数：___",
+      "answer": "men",
+      "timeThreshold": 7
+    },
+    {
+      "type": "choice",
+      "question": "The cat is ___ the chair（在……下）.",
+      "options": [
+        "in",
+        "on",
+        "under",
+        "behind"
+      ],
+      "answer": 2,
+      "timeThreshold": 7
+    },
+    {
+      "type": "fill",
+      "question": "hamburger → 中文：___",
+      "answer": "汉堡包",
+      "alternatives": [
+        "汉堡",
+        "汉堡包"
+      ],
+      "timeThreshold": 7
+    }
+  ],
+  "merchant": {
+    "x": 7,
+    "y": 8,
+    "npcName": "神秘商贩",
+    "npcIcon": "🧳",
+    "stock": [
+      {
+        "id": "hp_potion",
+        "name": "生命药水",
+        "icon": "🧪",
+        "desc": "恢复 80 点生命值",
+        "buyPrice": 27,
+        "sellPrice": 13,
+        "qty": 5
+      },
+      {
+        "id": "mp_potion",
+        "name": "法力药水",
+        "icon": "💧",
+        "desc": "恢复 40 点法力值",
+        "buyPrice": 22,
+        "sellPrice": 10,
+        "qty": 4
+      },
+      {
+        "id": "hp_big_potion",
+        "name": "大生命药水",
+        "icon": "🧪",
+        "desc": "恢复 200 点生命值",
+        "buyPrice": 58,
+        "sellPrice": 29,
+        "qty": 2
+      }
+    ]
+  },
+  "reward": {
+    "gold": 102,
+    "xp": 195
+  }
+}

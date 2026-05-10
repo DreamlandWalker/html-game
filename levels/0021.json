@@ -1,0 +1,552 @@
+{
+  "id": 21,
+  "name": "语法之塔·终",
+  "playerStart": {
+    "x": 1,
+    "y": 1
+  },
+  "exit": {
+    "x": 12,
+    "y": 6
+  },
+  "map": {
+    "width": 14,
+    "height": 8,
+    "tiles": [
+      "WWWWWWWWWWWWWW",
+      "W..........WWW",
+      "W....W.....WWW",
+      "W.....W....WWW",
+      "W..........WWW",
+      "W..........WWW",
+      "W..W.......W.W",
+      "WWWWWWWWWWWWWW"
+    ]
+  },
+  "monsterSpawns": [
+    {
+      "x": 11,
+      "y": 5,
+      "rate": 0.9463258864049744,
+      "monsterIdx": 0
+    },
+    {
+      "x": 9,
+      "y": 2,
+      "rate": 0.8971860621771077,
+      "monsterIdx": 1
+    },
+    {
+      "x": 5,
+      "y": 2,
+      "rate": 0.8715586708815798,
+      "monsterIdx": 0
+    },
+    {
+      "x": 2,
+      "y": 5,
+      "rate": 0.8971186152973146,
+      "monsterIdx": 1
+    }
+  ],
+  "bossSpawn": {
+    "x": 11,
+    "y": 6,
+    "rate": 1,
+    "monsterIdx": 2
+  },
+  "chestSpawns": [
+    {
+      "x": 8,
+      "y": 3,
+      "rate": 0.9557657280132884,
+      "lootPool": [
+        {
+          "type": "gold",
+          "name": "金币",
+          "icon": "💰",
+          "min": 47,
+          "max": 99,
+          "chance": 1
+        },
+        {
+          "type": "item",
+          "id": "hp_potion",
+          "name": "生命药水",
+          "icon": "🧪",
+          "desc": "恢复 80 点生命值",
+          "qty": 3,
+          "chance": 0.605
+        }
+      ]
+    },
+    {
+      "x": 5,
+      "y": 4,
+      "rate": 0.9720647099515052,
+      "lootPool": [
+        {
+          "type": "gold",
+          "name": "金币",
+          "icon": "💰",
+          "min": 47,
+          "max": 99,
+          "chance": 1
+        },
+        {
+          "type": "item",
+          "id": "hp_potion",
+          "name": "生命药水",
+          "icon": "🧪",
+          "desc": "恢复 80 点生命值",
+          "qty": 3,
+          "chance": 0.605
+        },
+        {
+          "type": "item",
+          "id": "mp_potion",
+          "name": "法力药水",
+          "icon": "💧",
+          "desc": "恢复 40 点法力值",
+          "qty": 3,
+          "chance": 0.4
+        },
+        {
+          "type": "equipment",
+          "id": "chest_equip_lvl21_1",
+          "name": "宝箱装备",
+          "icon": "🪖",
+          "desc": "从宝箱中发现的装备",
+          "slot": "ring2",
+          "stats": {
+            "str": 5,
+            "agi": 5
+          },
+          "sellPrice": 47,
+          "chance": 0.20500000000000002
+        }
+      ]
+    },
+    {
+      "x": 7,
+      "y": 5,
+      "rate": 0.9384803871556405,
+      "lootPool": [
+        {
+          "type": "gold",
+          "name": "金币",
+          "icon": "💰",
+          "min": 47,
+          "max": 99,
+          "chance": 1
+        },
+        {
+          "type": "item",
+          "id": "hp_potion",
+          "name": "生命药水",
+          "icon": "🧪",
+          "desc": "恢复 80 点生命值",
+          "qty": 3,
+          "chance": 0.605
+        },
+        {
+          "type": "item",
+          "id": "mp_potion",
+          "name": "法力药水",
+          "icon": "💧",
+          "desc": "恢复 40 点法力值",
+          "qty": 3,
+          "chance": 0.4
+        }
+      ]
+    },
+    {
+      "x": 11,
+      "y": 3,
+      "rate": 0.9725165131764747,
+      "lootPool": [
+        {
+          "type": "gold",
+          "name": "金币",
+          "icon": "💰",
+          "min": 47,
+          "max": 99,
+          "chance": 1
+        },
+        {
+          "type": "item",
+          "id": "hp_potion",
+          "name": "生命药水",
+          "icon": "🧪",
+          "desc": "恢复 80 点生命值",
+          "qty": 3,
+          "chance": 0.605
+        },
+        {
+          "type": "item",
+          "id": "mp_potion",
+          "name": "法力药水",
+          "icon": "💧",
+          "desc": "恢复 40 点法力值",
+          "qty": 3,
+          "chance": 0.4
+        }
+      ]
+    }
+  ],
+  "monsters": [
+    {
+      "name": "史莱姆",
+      "icon": "🟢",
+      "hp": 83,
+      "attack": 27,
+      "aggro": 3,
+      "xpReward": 83,
+      "skills": [
+        {
+          "name": "普通攻击",
+          "icon": "💥",
+          "dmgMul": 1.3
+        },
+        {
+          "name": "重击",
+          "icon": "💢",
+          "dmgMul": 2.42
+        }
+      ],
+      "loot": [
+        {
+          "type": "gold",
+          "icon": "💰",
+          "min": 31,
+          "max": 63,
+          "chance": 1
+        },
+        {
+          "type": "item",
+          "id": "hp_potion",
+          "name": "生命药水",
+          "icon": "🧪",
+          "desc": "恢复 80 点生命值",
+          "qty": 1,
+          "sellPrice": 10,
+          "chance": 0.25
+        },
+        {
+          "type": "item",
+          "id": "mp_potion",
+          "name": "法力药水",
+          "icon": "💧",
+          "desc": "恢复 40 点法力值",
+          "qty": 1,
+          "sellPrice": 7,
+          "chance": 0.2
+        },
+        {
+          "type": "material",
+          "id": "mat_lvl21",
+          "name": "材料·史莱姆",
+          "icon": "📦",
+          "desc": "从史莱姆身上获得的材料",
+          "qty": 1,
+          "qtyMax": 2,
+          "sellPrice": 10,
+          "chance": 0.5
+        }
+      ]
+    },
+    {
+      "name": "野兔",
+      "icon": "🐰",
+      "hp": 114,
+      "attack": 32,
+      "aggro": 3,
+      "xpReward": 114,
+      "skills": [
+        {
+          "name": "普通攻击",
+          "icon": "💥",
+          "dmgMul": 1.3
+        },
+        {
+          "name": "重击",
+          "icon": "💢",
+          "dmgMul": 2.42
+        }
+      ],
+      "loot": [
+        {
+          "type": "gold",
+          "icon": "💰",
+          "min": 31,
+          "max": 63,
+          "chance": 1
+        },
+        {
+          "type": "item",
+          "id": "hp_potion",
+          "name": "生命药水",
+          "icon": "🧪",
+          "desc": "恢复 80 点生命值",
+          "qty": 1,
+          "sellPrice": 10,
+          "chance": 0.25
+        },
+        {
+          "type": "item",
+          "id": "mp_potion",
+          "name": "法力药水",
+          "icon": "💧",
+          "desc": "恢复 40 点法力值",
+          "qty": 1,
+          "sellPrice": 7,
+          "chance": 0.2
+        },
+        {
+          "type": "material",
+          "id": "mat_lvl21",
+          "name": "材料·野兔",
+          "icon": "📦",
+          "desc": "从野兔身上获得的材料",
+          "qty": 1,
+          "qtyMax": 2,
+          "sellPrice": 10,
+          "chance": 0.5
+        }
+      ]
+    }
+  ],
+  "boss": {
+    "name": "树精王",
+    "icon": "🌳",
+    "hp": 747,
+    "maxHp": 747,
+    "attack": 41,
+    "aggro": 3,
+    "xpReward": 249,
+    "skills": [
+      {
+        "name": "BOSS·横扫",
+        "icon": "💥",
+        "dmgMul": 2
+      },
+      {
+        "name": "BOSS·毁灭一击",
+        "icon": "☠️",
+        "dmgMul": 3.92
+      }
+    ],
+    "loot": [
+      {
+        "type": "gold",
+        "icon": "💰",
+        "min": 73,
+        "max": 125,
+        "chance": 1
+      },
+      {
+        "type": "item",
+        "id": "hp_big_potion",
+        "name": "大生命药水",
+        "icon": "🧪",
+        "desc": "恢复 200 点生命值",
+        "qty": 3,
+        "sellPrice": 25,
+        "chance": 0.5
+      },
+      {
+        "type": "item",
+        "id": "mp_potion",
+        "name": "法力药水",
+        "icon": "💧",
+        "desc": "恢复 40 点法力值",
+        "qty": 2,
+        "sellPrice": 7,
+        "chance": 0.4
+      },
+      {
+        "type": "equipment",
+        "id": "boss_loot_lvl21",
+        "name": "树精王的遗物",
+        "icon": "👑",
+        "desc": "击败树精王获得的战利品",
+        "slot": "trinket1",
+        "stats": {
+          "str": 7,
+          "int": 7,
+          "agi": 7,
+          "spr": 7
+        },
+        "sellPrice": 73,
+        "chance": 0.2
+      }
+    ]
+  },
+  "questions": [
+    {
+      "type": "choice",
+      "question": "I have finished homework. 是什么时态？",
+      "options": [
+        "一般现在时",
+        "现在进行时",
+        "一般过去时",
+        "现在完成时"
+      ],
+      "answer": 3,
+      "timeThreshold": 7
+    },
+    {
+      "type": "choice",
+      "question": "If you ___ hard, you will get good grades.",
+      "options": [
+        "study",
+        "studies",
+        "studied",
+        "will study"
+      ],
+      "answer": 0,
+      "timeThreshold": 9
+    },
+    {
+      "type": "fill",
+      "question": "He went to the park. → ___ he go to the park?（一般疑问句）",
+      "answer": "Did",
+      "timeThreshold": 8
+    },
+    {
+      "type": "choice",
+      "question": "She don't like cats.（改错）",
+      "options": [
+        "She doesn't like cats",
+        "She don't likes cats",
+        "She not like cats",
+        "She isn't like cats"
+      ],
+      "answer": 0,
+      "timeThreshold": 10
+    },
+    {
+      "type": "fill",
+      "question": "If she ___ (have) time, she will go shopping.",
+      "answer": "has",
+      "timeThreshold": 8
+    },
+    {
+      "type": "choice",
+      "question": "There is two cats.（改错）",
+      "options": [
+        "There are two cats",
+        "There is two cat",
+        "There was two cats",
+        "There is a two cats"
+      ],
+      "answer": 0,
+      "timeThreshold": 10
+    },
+    {
+      "type": "fill",
+      "question": "I get up at 7. → ___ ___ do you get up?（提问）",
+      "answer": "What time",
+      "alternatives": [
+        "what time"
+      ],
+      "timeThreshold": 8
+    },
+    {
+      "type": "choice",
+      "question": "I am playing football now. 是什么时态？",
+      "options": [
+        "一般现在时",
+        "现在进行时",
+        "一般过去时",
+        "现在完成时"
+      ],
+      "answer": 1,
+      "timeThreshold": 7
+    },
+    {
+      "type": "choice",
+      "question": "I play football every day. 是什么时态？",
+      "options": [
+        "一般现在时",
+        "现在进行时",
+        "一般过去时",
+        "现在完成时"
+      ],
+      "answer": 0,
+      "timeThreshold": 7
+    },
+    {
+      "type": "fill",
+      "question": "My name is Tom. → ___ is your name?（提问）",
+      "answer": "What",
+      "alternatives": [
+        "what"
+      ],
+      "timeThreshold": 7
+    },
+    {
+      "type": "fill",
+      "question": "Look at clouds! It ___ (rain).（有迹象）",
+      "answer": "is going to rain",
+      "timeThreshold": 11
+    },
+    {
+      "type": "choice",
+      "question": "If it ___ tomorrow, we will stay home.",
+      "options": [
+        "rain",
+        "rains",
+        "rained",
+        "will rain"
+      ],
+      "answer": 1,
+      "timeThreshold": 9
+    },
+    {
+      "type": "fill",
+      "question": "They are playing. → ___ they playing?（一般疑问句）",
+      "answer": "Are",
+      "timeThreshold": 8
+    }
+  ],
+  "merchant": {
+    "x": 3,
+    "y": 3,
+    "npcName": "神秘商贩",
+    "npcIcon": "🧳",
+    "stock": [
+      {
+        "id": "hp_potion",
+        "name": "生命药水",
+        "icon": "🧪",
+        "desc": "恢复 80 点生命值",
+        "buyPrice": 39,
+        "sellPrice": 19,
+        "qty": 8
+      },
+      {
+        "id": "mp_potion",
+        "name": "法力药水",
+        "icon": "💧",
+        "desc": "恢复 40 点法力值",
+        "buyPrice": 34,
+        "sellPrice": 16,
+        "qty": 6
+      },
+      {
+        "id": "hp_big_potion",
+        "name": "大生命药水",
+        "icon": "🧪",
+        "desc": "恢复 200 点生命值",
+        "buyPrice": 82,
+        "sellPrice": 41,
+        "qty": 4
+      }
+    ]
+  },
+  "reward": {
+    "gold": 198,
+    "xp": 375
+  }
+}

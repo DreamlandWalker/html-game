@@ -1,0 +1,1463 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>角色档案</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      min-height: 100vh;
+      background: #0b0d17;
+      font-family: 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+      padding: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .char-container {
+      width: 1024px;
+      max-width: 100%;
+      background: linear-gradient(145deg, #14182a 0%, #1a1f35 100%);
+      border-radius: 32px;
+      padding: 28px 30px 36px;
+      box-shadow:
+        0 20px 60px rgba(0,0,0,.7),
+        inset 0 1px 0 rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.05);
+    }
+
+    /* ── Header ── */
+    .char-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 24px;
+    }
+    .char-header h1 {
+      font-size: 24px;
+      font-weight: 800;
+      letter-spacing: 3px;
+      background: linear-gradient(135deg, #f0e6d0 0%, #c9b38c 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .header-links {
+      display: flex;
+      gap: 10px;
+    }
+    .header-links a {
+      padding: 7px 18px;
+      border: 1px solid rgba(255,255,255,.1);
+      border-radius: 10px;
+      background: rgba(255,255,255,.04);
+      color: rgba(255,255,255,.5);
+      font-size: 13px;
+      cursor: pointer;
+      transition: all .2s;
+      font-family: inherit;
+      text-decoration: none;
+    }
+    .header-links a:hover {
+      border-color: rgba(255,255,255,.2);
+      color: rgba(255,255,255,.8);
+      background: rgba(255,255,255,.08);
+    }
+
+    /* ── Main content ── */
+    .main-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    /* ── Paper Doll (left) ── */
+    .paper-doll {
+      position: relative;
+      background: rgba(0,0,0,.15);
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,.04);
+      padding: 16px;
+      min-height: 380px;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .equip-column {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .equip-column.left { align-items: flex-end; }
+    .equip-column.right { align-items: flex-start; }
+
+    .equip-slot {
+      width: 62px;
+      height: 34px;
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: 6px;
+      background: rgba(255,255,255,.02);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      transition: all .2s;
+      position: relative;
+      cursor: pointer;
+    }
+    .equip-slot:hover {
+      border-color: rgba(255,255,255,.15);
+      background: rgba(255,255,255,.05);
+    }
+    .equip-slot .slot-icon {
+      font-size: 14px;
+      flex-shrink: 0;
+    }
+    .equip-slot .slot-label {
+      font-size: 9px;
+      color: rgba(255,255,255,.2);
+      letter-spacing: 0;
+      white-space: nowrap;
+    }
+    .equip-slot .slot-item {
+      font-size: 11px;
+      color: #8ab8ff;
+      font-weight: 600;
+      letter-spacing: 0;
+      white-space: nowrap;
+    }
+    .equip-slot.has-item {
+      border-color: rgba(138,184,255,.25);
+      background: rgba(138,184,255,.06);
+    }
+    .equip-slot.has-item:hover {
+      border-color: rgba(138,184,255,.5);
+      background: rgba(138,184,255,.1);
+    }
+
+    .equip-slot .slot-tooltip {
+      display: none;
+      position: absolute;
+      top: -8px;
+      left: calc(100% + 8px);
+      background: #1a1f35;
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 8px;
+      padding: 8px 12px;
+      font-size: 11px;
+      color: rgba(255,255,255,.7);
+      line-height: 1.6;
+      white-space: nowrap;
+      z-index: 10;
+      box-shadow: 0 8px 24px rgba(0,0,0,.5);
+      min-width: 120px;
+    }
+    .equip-slot .slot-tooltip strong {
+      color: #ffd780;
+    }
+    .equip-slot:hover .slot-tooltip {
+      display: block;
+    }
+    .equip-column.right .equip-slot .slot-tooltip {
+      left: auto;
+      right: calc(100% + 8px);
+    }
+
+    /* center avatar — positioned between columns */
+    .doll-center {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 12px 10px;
+      min-width: 120px;
+    }
+    .doll-avatar {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      border: 2px solid rgba(255,215,128,.25);
+      background: rgba(0,0,0,.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      margin-bottom: 8px;
+      box-shadow: 0 0 16px rgba(255,215,128,.08);
+    }
+    .doll-avatar img {
+      width: 52px;
+      height: 52px;
+      object-fit: none;
+      image-rendering: pixelated;
+      image-rendering: crisp-edges;
+    }
+    .doll-info {
+      text-align: center;
+    }
+    .doll-info .di-name {
+      font-size: 16px;
+      font-weight: 700;
+      color: #e8ddce;
+      letter-spacing: 1px;
+    }
+    .doll-info .di-class {
+      font-size: 11px;
+      color: rgba(255,255,255,.35);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+    .doll-info .di-level {
+      font-size: 12px;
+      color: rgba(255,215,128,.6);
+      margin-top: 2px;
+    }
+    .doll-status {
+      width: 100%;
+      margin-top: 8px;
+    }
+    .doll-status .bar-row {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 10px;
+      color: rgba(255,255,255,.45);
+      margin-bottom: 3px;
+    }
+    .doll-status .bar-row .bar-label {
+      width: 22px;
+      text-align: right;
+      flex-shrink: 0;
+    }
+    .doll-status .bar-bg {
+      flex: 1;
+      height: 6px;
+      background: rgba(255,255,255,.06);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    .doll-status .bar-fill {
+      height: 100%;
+      border-radius: 4px;
+      transition: width .5s ease;
+    }
+    .bar-fill.hp  { background: linear-gradient(90deg, #e06c6c, #ff6b6b); }
+    .bar-fill.mp  { background: linear-gradient(90deg, #6ca0ff, #5b9aff); }
+    .bar-fill.xp  { background: linear-gradient(90deg, #c084f0, #b070e0); }
+
+    /* ── Bar Tooltip ── */
+    .doll-status .bar-row { position:relative }
+    .doll-status .bar-row .bar-tooltip {
+      display:none; position:absolute; top:-28px; left:50%; transform:translateX(-50%);
+      background:#1a1f35; border:1px solid rgba(255,255,255,.08); border-radius:6px;
+      padding:4px 10px; font-size:11px; color:rgba(255,255,255,.7); white-space:nowrap;
+      z-index:20; box-shadow:0 4px 16px rgba(0,0,0,.4)
+    }
+    .doll-status .bar-row:hover .bar-tooltip { display:block }
+
+    /* ── Right side ── */
+    .right-panel {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    /* ── Attribute cards ── */
+    .attr-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+    }
+    .attr-card {
+      background: rgba(255,255,255,.03);
+      border: 1px solid rgba(255,255,255,.06);
+      border-radius: 10px;
+      padding: 10px 8px;
+      text-align: center;
+    }
+    .attr-card .attr-icon {
+      font-size: 18px;
+      margin-bottom: 2px;
+    }
+    .attr-card .attr-label {
+      font-size: 10px;
+      color: rgba(255,255,255,.35);
+      letter-spacing: 1px;
+    }
+    .attr-card .attr-value {
+      font-size: 18px;
+      font-weight: 700;
+      color: #e8ddce;
+      margin-top: 2px;
+    }
+    .attr-card .attr-sub {
+      font-size: 10px;
+      color: rgba(255,255,255,.2);
+    }
+    .attr-card.str .attr-value { color: #ff8a8a; }
+    .attr-card.int .attr-value { color: #8ab8ff; }
+    .attr-card.agi .attr-value { color: #8aff8a; }
+    .attr-card.spr .attr-value { color: #d8a0ff; }
+
+    /* ── Skill Panel ── */
+    .skill-panel { background: rgba(255,255,255,.02); border:1px solid rgba(255,255,255,.04); border-radius:12px; padding:16px; margin-top:16px }
+    .skill-panel-title { font-size:13px; font-weight:600; color:rgba(255,215,128,.7); margin-bottom:8px; letter-spacing:1px; display:block }
+    .skill-slots { display:grid; grid-template-columns:repeat(4,1fr); gap:8px; margin-bottom:12px }
+    .skill-slot { aspect-ratio:1; border:1px dashed rgba(255,255,255,.08); border-radius:10px; display:flex; flex-direction:column; align-items:center; justify-content:center; background:rgba(0,0,0,.2); transition:all .2s; cursor:pointer; position:relative; font-size:11px; color:rgba(255,255,255,.2); text-align:center; gap:2px; user-select:none }
+    .skill-slot:hover { border-color:rgba(255,255,255,.15); background:rgba(255,255,255,.03) }
+    .skill-slot.drag-over { border-color:#ffd780; background:rgba(255,215,128,.08); box-shadow:0 0 12px rgba(255,215,128,.1) }
+    .skill-slot.has-skill { border-style:solid; border-color:rgba(255,215,128,.15); background:rgba(255,215,128,.03); color:rgba(255,255,255,.6); cursor:grab }
+    .skill-slot .skill-slot-icon { font-size:20px; line-height:1 }
+    .skill-slot .skill-slot-name { font-size:10px; line-height:1.2; color:rgba(255,255,255,.4) }
+    .skill-slot .skill-slot-cost { font-size:9px; color:rgba(255,255,255,.25) }
+    .skill-slot .skill-remove { position:absolute; top:2px; right:4px; font-size:12px; color:rgba(224,108,108,.4); cursor:pointer; opacity:0; transition:opacity .2s }
+    .skill-slot:hover .skill-remove { opacity:1 }
+    .skill-pool { display:flex; gap:6px; flex-wrap:wrap }
+    .skill-pool-label { width:100%; font-size:10px; color:rgba(255,255,255,.2); margin-bottom:2px; display:block }
+    .skill-chip { display:flex; align-items:center; gap:4px; padding:5px 10px; border:1px solid rgba(255,255,255,.06); border-radius:8px; background:rgba(0,0,0,.2); font-size:11px; color:rgba(255,255,255,.4); cursor:grab; transition:all .2s; user-select:none }
+    .skill-chip:hover { border-color:rgba(255,215,128,.2); background:rgba(255,215,128,.05); color:rgba(255,215,128,.8) }
+    .skill-chip.dragging { opacity:.4 }
+    @media(max-width:640px){.skill-slots{grid-template-columns:repeat(4,1fr);gap:4px}}
+
+    /* ── Passive Panel ── */
+    .passive-panel{background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.04);border-radius:12px;padding:16px;margin-top:16px}
+    .passive-panel-title{font-size:13px;font-weight:600;color:rgba(255,215,128,.7);margin-bottom:8px;letter-spacing:1px;display:block}
+    .passive-row{display:flex;gap:10px;align-items:flex-start;margin-bottom:10px}
+    .passive-fixed{flex:1;border:1px solid rgba(255,215,128,.12);border-radius:10px;background:rgba(255,215,128,.03);padding:10px 14px;display:flex;align-items:center;gap:10px}
+    .passive-fixed .pf-icon{font-size:22px}
+    .passive-fixed .pf-info{flex:1;min-width:0}
+    .passive-fixed .pf-name{font-size:13px;color:#e8ddce;font-weight:600}
+    .passive-fixed .pf-desc{font-size:10px;color:rgba(255,255,255,.3)}
+    .passive-fixed .pf-tag{font-size:9px;color:rgba(255,215,128,.5);border:1px solid rgba(255,215,128,.15);border-radius:4px;padding:1px 6px;white-space:nowrap}
+    .passive-slot{width:80px;aspect-ratio:1;border:1px dashed rgba(255,255,255,.08);border-radius:10px;display:flex;flex-direction:column;align-items:center;justify-content:center;background:rgba(0,0,0,.2);transition:all .2s;cursor:pointer;font-size:10px;color:rgba(255,255,255,.15);text-align:center;gap:2px;user-select:none;flex-shrink:0}
+    .passive-slot:hover{border-color:rgba(255,255,255,.15);background:rgba(255,255,255,.03)}
+    .passive-slot.drag-over{border-color:#ffd780;background:rgba(255,215,128,.08)}
+    .passive-slot.equipped{border-style:solid;border-color:rgba(255,215,128,.15);background:rgba(255,215,128,.03);color:rgba(255,255,255,.6)}
+    .passive-slot.locked{opacity:.3;cursor:not-allowed;border-style:dashed}
+    .passive-slot .ps-icon{font-size:20px;line-height:1}
+    .passive-slot .ps-name{font-size:9px;line-height:1.2;color:rgba(255,255,255,.4)}
+    .passive-pool{display:flex;gap:6px;flex-wrap:wrap}
+    .passive-chip{display:flex;align-items:center;gap:4px;padding:5px 10px;border:1px solid rgba(255,255,255,.06);border-radius:8px;background:rgba(0,0,0,.2);font-size:11px;color:rgba(255,255,255,.4);cursor:grab;transition:all .2s;user-select:none}
+    .passive-chip:hover{border-color:rgba(255,215,128,.2);background:rgba(255,215,128,.05);color:rgba(255,215,128,.8)}
+    .passive-chip.dragging{opacity:.4}
+
+    /* ── Inventory ── */
+    .inventory {
+      background: rgba(255,255,255,.02);
+      border: 1px solid rgba(255,255,255,.04);
+      border-radius: 12px;
+      padding: 12px 14px;
+    }
+    .inv-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px;
+    }
+    .inv-header .inv-title {
+      font-size: 12px;
+      color: rgba(255,255,255,.3);
+      letter-spacing: 2px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .inv-header .inv-gold {
+      font-size: 12px;
+      color: #ffd780;
+      font-weight: 600;
+    }
+    .inv-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 4px;
+    }
+    .inv-cell {
+      aspect-ratio: 1;
+      border: 1px solid rgba(255,255,255,.06);
+      border-radius: 6px;
+      background: rgba(255,255,255,.02);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      cursor: default;
+      transition: all .2s;
+      position: relative;
+    }
+    .inv-cell:hover {
+      border-color: rgba(255,255,255,.15);
+      background: rgba(255,255,255,.05);
+    }
+    .inv-cell.has-item {
+      border-color: rgba(255,255,255,.1);
+    }
+    .inv-cell .inv-item-icon {
+      font-size: 16px;
+      line-height: 1;
+    }
+    .inv-cell .inv-item-name {
+      font-size: 7px;
+      color: rgba(255,255,255,.3);
+      margin-top: 1px;
+      max-width: 100%;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      padding: 0 2px;
+    }
+    .inv-cell .inv-qty {
+      position: absolute;
+      top: 1px;
+      right: 3px;
+      font-size: 8px;
+      font-weight: 700;
+      color: rgba(255,255,255,.45);
+    }
+    .inv-cell .inv-tooltip {
+      display: none;
+      position: absolute;
+      bottom: calc(100% + 6px);
+      left: 50%;
+      transform: translateX(-50%);
+      background: #1a1f35;
+      border: 1px solid rgba(255,255,255,.1);
+      border-radius: 8px;
+      padding: 6px 10px;
+      font-size: 10px;
+      color: rgba(255,255,255,.7);
+      white-space: nowrap;
+      z-index: 10;
+      box-shadow: 0 4px 16px rgba(0,0,0,.5);
+    }
+    .inv-cell:hover .inv-tooltip {
+      display: block;
+    }
+    .inv-cell .inv-discard {
+      display: none;
+      position: absolute;
+      top: 2px;
+      right: 4px;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      border: none;
+      background: rgba(224,108,108,.15);
+      color: rgba(224,108,108,.6);
+      font-size: 11px;
+      line-height: 18px;
+      text-align: center;
+      cursor: pointer;
+      transition: all .2s;
+      z-index: 5;
+    }
+    .inv-cell:hover .inv-discard { display: block }
+    .inv-cell .inv-discard:hover { background: rgba(224,108,108,.3); color: #ff6b6b }
+
+    /* ── Responsive ── */
+    @media (max-width: 820px) {
+      .main-content { grid-template-columns: 1fr; }
+      .paper-doll { min-height: auto; }
+    }
+    @media (max-width: 500px) {
+      .char-container { padding: 20px 14px 24px; }
+      .attr-grid { grid-template-columns: repeat(2, 1fr); }
+      .inv-grid { grid-template-columns: repeat(4, 1fr); }
+      .paper-doll { flex-direction: column; align-items: center; }
+      .equip-column { flex-direction: row; flex-wrap: wrap; justify-content: center; }
+      .equip-column.left, .equip-column.right { align-items: center; }
+    }
+
+    /* ── Equipment Modal ── */
+    .equip-modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,.6);
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .equip-modal {
+      background: #1a1f35;
+      border: 1px solid rgba(255,255,255,.1);
+      border-radius: 16px;
+      padding: 20px 24px;
+      min-width: 300px;
+      max-width: 90vw;
+      max-height: 70vh;
+      box-shadow: 0 20px 60px rgba(0,0,0,.6);
+    }
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 14px;
+    }
+    .modal-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: #e8ddce;
+      letter-spacing: 1px;
+    }
+    .modal-close {
+      font-size: 18px;
+      color: rgba(255,255,255,.3);
+      cursor: pointer;
+      padding: 4px;
+      transition: color .2s;
+    }
+    .modal-close:hover {
+      color: rgba(255,255,255,.7);
+    }
+    .modal-body {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      max-height: 50vh;
+      overflow-y: auto;
+    }
+    .modal-body .pick-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 12px;
+      border-radius: 8px;
+      background: rgba(255,255,255,.03);
+      border: 1px solid rgba(255,255,255,.06);
+      cursor: pointer;
+      transition: all .2s;
+    }
+    .modal-body .pick-item:hover {
+      background: rgba(255,255,255,.08);
+      border-color: rgba(255,255,255,.15);
+    }
+    .modal-body .pick-item .pi-icon { font-size: 18px; }
+    .modal-body .pick-item .pi-info { flex: 1; }
+    .modal-body .pick-item .pi-name { font-size: 13px; color: #e8ddce; font-weight: 600; }
+    .modal-body .pick-item .pi-stats { font-size: 10px; color: rgba(255,255,255,.35); }
+    .modal-body .pick-item .pi-action { font-size: 11px; color: #6ca0ff; }
+    .modal-body .pick-empty {
+      text-align: center;
+      padding: 24px 0;
+      color: rgba(255,255,255,.2);
+      font-size: 13px;
+    }
+    .modal-btn {
+      padding: 8px 24px;
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 10px;
+      font-size: 13px;
+      font-family: inherit;
+      cursor: pointer;
+      transition: all .2s;
+      font-weight: 600;
+      letter-spacing: 1px;
+    }
+    .modal-btn-cancel {
+      background: rgba(255,255,255,.04);
+      color: rgba(255,255,255,.5);
+    }
+    .modal-btn-cancel:hover {
+      background: rgba(255,255,255,.08);
+      color: rgba(255,255,255,.7);
+    }
+    .modal-btn-ok {
+      background: linear-gradient(135deg, rgba(224,108,108,.2), rgba(255,107,107,.1));
+      border-color: rgba(224,108,108,.3);
+      color: #ff8a8a;
+    }
+    .modal-btn-ok:hover {
+      background: linear-gradient(135deg, rgba(224,108,108,.3), rgba(255,107,107,.2));
+      border-color: rgba(224,108,108,.5);
+    }
+  </style>
+</head>
+<body>
+
+<div class="char-container">
+
+  <div class="char-header">
+    <h1>📋 角色档案</h1>
+    <div class="header-links" id="headerLinks">
+      <a href="main_map.html" id="mapLink">🗺 地图</a>
+      <a href="index.html">👤 切换角色</a>
+    </div>
+  </div>
+
+  <div class="main-content">
+
+    <!-- ── Left: Paper Doll ── -->
+    <div class="paper-doll">
+
+      <!-- Left equipment column -->
+      <div class="equip-column left">
+        <div class="equip-slot" data-slot="head"><span class="slot-icon">🪖</span><span class="slot-label">头盔</span></div>
+        <div class="equip-slot" data-slot="neck"><span class="slot-icon">📿</span><span class="slot-label">项链</span></div>
+        <div class="equip-slot" data-slot="shoulder"><span class="slot-icon">🛡️</span><span class="slot-label">肩膀</span></div>
+        <div class="equip-slot" data-slot="back"><span class="slot-icon">🧣</span><span class="slot-label">披风</span></div>
+        <div class="equip-slot" data-slot="chest"><span class="slot-icon">👕</span><span class="slot-label">胸甲</span></div>
+        <div class="equip-slot" data-slot="wrist"><span class="slot-icon">⌛</span><span class="slot-label">护腕</span></div>
+        <div class="equip-slot" data-slot="hands"><span class="slot-icon">🧤</span><span class="slot-label">手套</span></div>
+        <div class="equip-slot" data-slot="waist"><span class="slot-icon">🎗️</span><span class="slot-label">腰带</span></div>
+        <div class="equip-slot" data-slot="legs"><span class="slot-icon">👖</span><span class="slot-label">裤子</span></div>
+        <div class="equip-slot" data-slot="shoes"><span class="slot-icon">🥾</span><span class="slot-label">鞋子</span></div>
+      </div>
+
+      <!-- Center avatar -->
+      <div class="doll-center">
+        <div class="doll-avatar">
+          <img src="images/character/face/warrior-male.png" alt="avatar" class="pixel-art">
+        </div>
+        <div class="doll-info">
+          <div class="di-name">战士</div>
+          <div class="di-class">Warrior</div>
+          <div class="di-level">Lv.5</div>
+        </div>
+        <div class="doll-status">
+          <div class="bar-row"><span class="bar-label">HP</span><div class="bar-bg"><div class="bar-fill hp" style="width:78%"></div></div><span class="bar-tooltip" id="hpTooltip">HP 100/100</span></div>
+          <div class="bar-row"><span class="bar-label">MP</span><div class="bar-bg"><div class="bar-fill mp" style="width:60%"></div></div><span class="bar-tooltip" id="mpTooltip">MP 50/50</span></div>
+          <div class="bar-row"><span class="bar-label">XP</span><div class="bar-bg"><div class="bar-fill xp" style="width:45%"></div></div><span class="bar-tooltip" id="xpTooltip">XP 0/200</span></div>
+        </div>
+      </div>
+
+      <!-- Right equipment column (weapons & accessories) -->
+      <div class="equip-column right">
+        <div class="equip-slot" data-slot="weapon"><span class="slot-icon">⚔️</span><span class="slot-label">武器</span></div>
+        <div class="equip-slot" data-slot="offhand"><span class="slot-icon">🛡️</span><span class="slot-label">副手</span></div>
+        <div class="equip-slot" data-slot="ring1"><span class="slot-icon">💍</span><span class="slot-label">戒指Ⅰ</span></div>
+        <div class="equip-slot" data-slot="ring2"><span class="slot-icon">💍</span><span class="slot-label">戒指Ⅱ</span></div>
+        <div class="equip-slot" data-slot="trinket1"><span class="slot-icon">🔮</span><span class="slot-label">饰品Ⅰ</span></div>
+        <div class="equip-slot" data-slot="trinket2"><span class="slot-icon">🔮</span><span class="slot-label">饰品Ⅱ</span></div>
+      </div>
+
+    </div>
+
+    <!-- ── Right Panel ── -->
+    <div class="right-panel">
+
+      <!-- Attributes -->
+      <div class="attr-grid">
+        <div class="attr-card str">
+          <div class="attr-icon">💪</div>
+          <div class="attr-label">力量</div>
+          <div class="attr-value">85</div>
+          <div class="attr-sub">+12 攻击力</div>
+        </div>
+        <div class="attr-card int">
+          <div class="attr-icon">🧠</div>
+          <div class="attr-label">智力</div>
+          <div class="attr-value">20</div>
+          <div class="attr-sub">+4 法术强度</div>
+        </div>
+        <div class="attr-card agi">
+          <div class="attr-icon">💨</div>
+          <div class="attr-label">敏捷</div>
+          <div class="attr-value">50</div>
+          <div class="attr-sub">+8 闪避</div>
+        </div>
+        <div class="attr-card spr">
+          <div class="attr-icon">✨</div>
+          <div class="attr-label">精神</div>
+          <div class="attr-value">40</div>
+          <div class="attr-sub">+6 回蓝</div>
+        </div>
+      </div>
+
+      <!-- (equipment detail removed, shown directly on paper doll) -->
+
+      <!-- Equipment Picker Modal -->
+      <div class="equip-modal-overlay" id="equipModal" style="display:none">
+        <div class="equip-modal">
+          <div class="modal-header">
+            <span class="modal-title" id="modalTitle">选择装备</span>
+            <span class="modal-close" id="modalClose">✕</span>
+          </div>
+          <div class="modal-body" id="modalBody"></div>
+        </div>
+      </div>
+
+      <!-- Confirm Modal -->
+      <div class="equip-modal-overlay" id="confirmModal" style="display:none">
+        <div class="equip-modal" style="max-width:340px">
+          <div class="modal-header">
+            <span class="modal-title">确认操作</span>
+            <span class="modal-close" id="confirmClose">✕</span>
+          </div>
+          <div class="modal-body" id="confirmBody" style="gap:16px">
+            <div id="confirmText" style="text-align:center;padding:8px 0;color:rgba(255,255,255,.6);font-size:14px;line-height:1.6;"></div>
+            <div style="display:flex;gap:10px;justify-content:center">
+              <button id="confirmCancel" class="modal-btn modal-btn-cancel">取消</button>
+              <button id="confirmOk" class="modal-btn modal-btn-ok">确认脱下</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Inventory -->
+      <div class="inventory">
+        <div class="inv-header">
+          <span class="inv-title">📦 背包</span>
+          <span class="inv-gold" id="goldDisplay">💰 0</span>
+        </div>
+        <div class="inv-grid" id="invGrid">
+          <div class="inv-cell has-item"><span class="inv-item-icon">🧪</span><span class="inv-item-name">生命药水</span><span class="inv-qty">3</span>
+            <div class="inv-tooltip">生命药水 · 恢复 50 HP</div>
+          </div>
+          <div class="inv-cell has-item"><span class="inv-item-icon">📜</span><span class="inv-item-name">火焰卷轴</span><span class="inv-qty">1</span>
+            <div class="inv-tooltip">火焰卷轴 · 造成 80 火焰伤害</div>
+          </div>
+          <div class="inv-cell has-item"><span class="inv-item-icon">⚡</span><span class="inv-item-name">闪电石</span><span class="inv-qty">2</span>
+            <div class="inv-tooltip">闪电石 · 投掷造成 40 伤害</div>
+          </div>
+          <div class="inv-cell"></div>
+          <div class="inv-cell"></div>
+          <div class="inv-cell"></div>
+          <div class="inv-cell"></div>
+          <div class="inv-cell"></div>
+          <div class="inv-cell"></div>
+          <div class="inv-cell"></div>
+          <div class="inv-cell"></div>
+          <div class="inv-cell"></div>
+          <div class="inv-cell"></div>
+          <div class="inv-cell"></div>
+          <div class="inv-cell"></div>
+        </div>
+      </div>
+
+      <!-- Skill Panel -->
+      <div class="skill-panel">
+        <span class="skill-panel-title">⚔️ 技能 (拖拽装配)</span>
+        <div class="skill-slots" id="skillSlots">
+          <div class="skill-slot" data-slot="0">—— 空 ——</div>
+          <div class="skill-slot" data-slot="1">—— 空 ——</div>
+          <div class="skill-slot" data-slot="2">—— 空 ——</div>
+          <div class="skill-slot" data-slot="3">—— 空 ——</div>
+        </div>
+        <span class="skill-pool-label">已学会</span>
+        <div class="skill-pool" id="skillPool"></div>
+      </div>
+
+      <!-- Passive Panel -->
+      <div class="passive-panel">
+        <span class="passive-panel-title">⭐ 被动技能</span>
+        <div class="passive-row">
+          <div class="passive-fixed" id="passiveFixed">
+            <span class="pf-icon">—</span>
+            <div class="pf-info">
+              <div class="pf-name">尚未习得</div>
+              <div class="pf-desc">升级到 Lv.3 解锁第一个被动</div>
+            </div>
+            <span class="pf-tag">固定</span>
+          </div>
+          <div class="passive-slot" id="passiveSlot" data-slot="1">
+            —— 空 ——
+          </div>
+        </div>
+        <span class="skill-pool-label">已习得被动</span>
+        <div class="passive-pool" id="passivePool"></div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script>
+  // ── Read data ──
+  function getPlayerData() {
+    try {
+      const raw = localStorage.getItem('hanako_game_data');
+      if (raw) return JSON.parse(raw);
+    } catch(e) {}
+    return {
+      selectedClass: 'warrior',
+      selectedGender: 'male',
+      currentLevel: 1,
+      levels: {},
+      character: {
+        level: 1, xp: 0, xpMax: 200,
+        hp: 100, hpMax: 100,
+        mp: 50, mpMax: 50,
+        gold: 100
+      },
+      equipment: {},
+      inventory: []
+    };
+  }
+
+  const data = getPlayerData();
+
+  // ── 从关卡跳转过来时，显示返回按钮 ──
+  const urlParams = new URLSearchParams(window.location.search);
+  if (urlParams.get('from') === 'game') {
+    const lvl = urlParams.get('level') || 1;
+    const links = document.getElementById('headerLinks');
+    const back = document.createElement('a');
+    back.href = 'game.html?level=' + lvl;
+    back.textContent = '🎮 返回关卡';
+    back.style.borderColor = 'rgba(255,215,128,.3)';
+    back.style.color = '#ffd780';
+    links.prepend(back);
+    document.getElementById('mapLink').href = 'game.html?level=' + lvl;
+    document.getElementById('mapLink').textContent = '🎮 返回';
+  }
+
+  // ── 技能注册表 ──
+  const SKILL_REGISTRY={
+    warrior_1:{id:'warrior_1',cls:'warrior',name:'猛击',icon:'⚔️',mpCost:12,tier:1,effect:{type:'damage',multiplier:2.5},desc:'2.5 倍攻击力伤害'},
+    warrior_2:{id:'warrior_2',cls:'warrior',name:'战吼',icon:'📣',mpCost:8,tier:2,effect:{type:'buff_attack',multiplier:1.4,maxStacks:1},desc:'攻击力 +40% (可叠1次)'},
+    warrior_3:{id:'warrior_3',cls:'warrior',name:'铁壁',icon:'🛡️',mpCost:5,tier:3,effect:{type:'immune'},desc:'本回合免疫所有伤害'},
+    mage_1:{id:'mage_1',cls:'mage',name:'炎爆术',icon:'🔥',mpCost:24,tier:1,effect:{type:'damage_int',multiplier:3,bonus:5},desc:'3倍智力伤害+5点燃烧'},
+    mage_2:{id:'mage_2',cls:'mage',name:'寒冰箭',icon:'❄️',mpCost:16,tier:2,effect:{type:'damage_int',multiplier:1.5,freeze:true},desc:'1.5倍智力伤害+冻结1回合'},
+    mage_3:{id:'mage_3',cls:'mage',name:'法力护盾',icon:'🔮',mpCost:8,tier:3,effect:{type:'mana_shield'},desc:'受伤转MP消耗(1伤→2MP)'},
+    priest_1:{id:'priest_1',cls:'priest',name:'圣光术',icon:'✨',mpCost:18,tier:1,effect:{type:'heal',percent:0.4},desc:'恢复40%最大HP'},
+    priest_2:{id:'priest_2',cls:'priest',name:'惩戒',icon:'⚡',mpCost:12,tier:2,effect:{type:'damage_int_heal',multiplier:1.5},desc:'1.5倍智力伤害+回复等量HP'},
+    priest_3:{id:'priest_3',cls:'priest',name:'庇护',icon:'🙏',mpCost:8,tier:3,effect:{type:'shield_half',duration:2},desc:'2回合受伤害减半'},
+    archer_1:{id:'archer_1',cls:'archer',name:'致命一击',icon:'🎯',mpCost:18,tier:1,effect:{type:'damage_agi',multiplier:3},desc:'3倍敏捷伤害'},
+    archer_2:{id:'archer_2',cls:'archer',name:'连射',icon:'🏹',mpCost:12,tier:2,effect:{type:'damage_agi_double',multiplier:0.8},desc:'两次攻击各0.8倍(合计1.6倍)'},
+    archer_3:{id:'archer_3',cls:'archer',name:'风之步',icon:'💨',mpCost:6,tier:3,effect:{type:'dodge'},desc:'本回合完全闪避所有伤害'}
+  };
+
+  const PASSIVE_REGISTRY={
+    warrior_passive_1:{id:'warrior_passive_1',cls:'warrior',name:'铁骨',icon:'🦴',unlockLevel:3,effect:{type:'dmg_taken_reduce',value:0.10},desc:'受到所有伤害 -10%'},
+    warrior_passive_2:{id:'warrior_passive_2',cls:'warrior',name:'血怒',icon:'😡',unlockLevel:6,effect:{type:'atk_boost_low_hp',threshold:0.4,value:0.30},desc:'HP 低于 40% 时，攻击力 +30%'},
+    warrior_passive_3:{id:'warrior_passive_3',cls:'warrior',name:'战意',icon:'⚡',unlockLevel:10,effect:{type:'atk_per_kill',value:2},desc:'每击败一个怪物，本场攻击 +2'},
+    mage_passive_1:{id:'mage_passive_1',cls:'mage',name:'法术专注',icon:'📖',unlockLevel:3,effect:{type:'mp_cost_reduce',value:0.15},desc:'技能 MP 消耗 -15%'},
+    mage_passive_2:{id:'mage_passive_2',cls:'mage',name:'魔力涌动',icon:'💫',unlockLevel:6,effect:{type:'mp_regen',value:3},desc:'每回合回复 3 MP'},
+    mage_passive_3:{id:'mage_passive_3',cls:'mage',name:'元素亲和',icon:'🌋',unlockLevel:10,effect:{type:'skill_dmg_boost',skills:['mage_1','mage_2'],value:0.25},desc:'炎爆术和寒冰箭伤害 +25%'},
+    priest_passive_1:{id:'priest_passive_1',cls:'priest',name:'仁慈',icon:'💚',unlockLevel:3,effect:{type:'heal_boost',value:0.20},desc:'所有治疗效果 +20%'},
+    priest_passive_2:{id:'priest_passive_2',cls:'priest',name:'坚韧',icon:'💪',unlockLevel:6,effect:{type:'first_hit_half'},desc:'每场战斗首次被击中时伤害减半'},
+    priest_passive_3:{id:'priest_passive_3',cls:'priest',name:'圣盾',icon:'🔰',unlockLevel:10,effect:{type:'auto_block',interval:3},desc:'每隔 3 回合自动获得一次格挡'},
+    archer_passive_1:{id:'archer_passive_1',cls:'archer',name:'鹰眼',icon:'🦅',unlockLevel:3,effect:{type:'atk_boost',value:0.15},desc:'攻击力 +15%'},
+    archer_passive_2:{id:'archer_passive_2',cls:'archer',name:'轻灵',icon:'🍃',unlockLevel:6,effect:{type:'dodge_chance',value:0.15},desc:'15% 概率闪避怪物攻击'},
+    archer_passive_3:{id:'archer_passive_3',cls:'archer',name:'淬毒',icon:'☠️',unlockLevel:10,effect:{type:'poison_on_hit',chance:0.25,dmg:3,turns:2},desc:'攻击有 25% 概率附加 3 点中毒伤害（2 回合）'}
+  };
+
+  // ── Populate avatar ──
+  const avatarImg = document.querySelector('.doll-avatar img');
+  avatarImg.src = `images/character/face/${data.selectedClass}-${data.selectedGender}.png`;
+
+  // ── Populate info ──
+  const nameMap = { warrior: '战士', mage: '法师', priest: '牧师', archer: '弓箭手' };
+  const classMap = { warrior: 'Warrior', mage: 'Mage', priest: 'Priest', archer: 'Archer' };
+  const genderMap = { male: '♂', female: '♀' };
+
+  const diName = document.querySelector('.di-name');
+  const diClass = document.querySelector('.di-class');
+  const diLevel = document.querySelector('.di-level');
+  diName.textContent = `${nameMap[data.selectedClass] || '战士'} ${genderMap[data.selectedGender] || '♂'}`;
+  diClass.textContent = classMap[data.selectedClass] || 'Warrior';
+  diLevel.textContent = `Lv.${data.character?.level || 1}`;
+
+  // ── Populate status bars ──
+  const char = data.character || { hp: 100, hpMax: 100, mp: 50, mpMax: 50, xp: 0, xpMax: 200 };
+  // 装备对 HP/MP 的加成
+  const equipStatsLocal = data.equipment
+    ? sumEquipmentStats(data.equipment)
+    : { hp:0, mp:0 };
+  const totalHp = char.hp + (equipStatsLocal.hp || 0);
+  const totalHpMax = char.hpMax + (equipStatsLocal.hp || 0);
+  const totalMp = char.mp + (equipStatsLocal.mp || 0);
+  const totalMpMax = char.mpMax + (equipStatsLocal.mp || 0);
+
+  const hpPct = Math.round((totalHp / totalHpMax) * 100);
+  const mpPct = Math.round((totalMp / totalMpMax) * 100);
+  const xpPct = Math.round((char.xp / char.xpMax) * 100);
+
+  document.querySelector('.bar-fill.hp').style.width = hpPct + '%';
+  document.querySelector('.bar-fill.mp').style.width = mpPct + '%';
+  document.querySelector('.bar-fill.xp').style.width = xpPct + '%';
+
+  // 状态条提示框
+  const hpBonus = equipStatsLocal.hp || 0;
+  const mpBonus = equipStatsLocal.mp || 0;
+  document.getElementById('hpTooltip').textContent = 'HP ' + totalHp + '/' + totalHpMax + (hpBonus ? ' (基础 ' + char.hpMax + ' +' + hpBonus + ' 装备)' : '');
+  document.getElementById('mpTooltip').textContent = 'MP ' + totalMp + '/' + totalMpMax + (mpBonus ? ' (基础 ' + char.mpMax + ' +' + mpBonus + ' 装备)' : '');
+  document.getElementById('xpTooltip').textContent = '经验 ' + char.xp + '/' + char.xpMax;
+
+  // ── 各职业基础属性 ──
+  const classBaseStats = {
+    warrior: { str: 85, int: 20, agi: 50, spr: 40 },
+    mage:    { str: 18, int: 92, agi: 30, spr: 75 },
+    priest:  { str: 30, int: 55, agi: 28, spr: 92 },
+    archer:  { str: 45, int: 22, agi: 90, spr: 50 }
+  };
+  const baseStats = classBaseStats[data.selectedClass] || classBaseStats.warrior;
+
+  // ── 装备 ──
+  const equipment = data.equipment || {};
+  const slotNames = {
+    head: '头盔', neck: '项链', shoulder: '肩膀', back: '披风',
+    chest: '胸甲', wrist: '护腕', hands: '手套', waist: '腰带',
+    legs: '裤子', shoes: '鞋子',
+    weapon: '武器', offhand: '副手',
+    ring1: '戒指Ⅰ', ring2: '戒指Ⅱ',
+    trinket1: '饰品Ⅰ', trinket2: '饰品Ⅱ'
+  };
+
+  // 计算装备加成总和
+  function sumEquipmentStats(equip) {
+    const total = { str: 0, int: 0, agi: 0, spr: 0, hp: 0, mp: 0 };
+    for (const key in equip) {
+      const item = equip[key];
+      if (item && item.stats) {
+        for (const stat in item.stats) {
+          total[stat] = (total[stat] || 0) + item.stats[stat];
+        }
+      }
+    }
+    return total;
+  }
+
+  const equipStats = sumEquipmentStats(equipment);
+
+  // 合计属性 = 基础 + 装备
+  const totalStats = {};
+  for (const s of ['str','int','agi','spr']) {
+    totalStats[s] = (baseStats[s] || 0) + (equipStats[s] || 0);
+  }
+
+  // 更新属性卡片
+  const statLabels = { str:'力量', int:'智力', agi:'敏捷', spr:'精神' };
+  for (const key of ['str','int','agi','spr']) {
+    const card = document.querySelector(`.attr-card.${key}`);
+    if (!card) continue;
+    const valEl = card.querySelector('.attr-value');
+    const subEl = card.querySelector('.attr-sub');
+    const base = baseStats[key] || 0;
+    const bonus = equipStats[key] || 0;
+    valEl.textContent = totalStats[key];
+    if (bonus > 0) {
+      subEl.innerHTML = `基础 ${base} <span style="color:#6ca0ff">+${bonus} 装备</span>`;
+    } else {
+      subEl.textContent = `基础 ${base}`;
+    }
+  }
+
+  // ── 更新纸娃娃装备槽 ──
+  document.querySelectorAll('.equip-slot').forEach(slot => {
+    const slotKey = slot.dataset.slot;
+    const item = equipment[slotKey];
+
+    // 清空槽位，重建内容
+    slot.innerHTML = '';
+
+    if (item) {
+      // 已装备：显示物品图标 + 物品名
+      slot.classList.add('has-item');
+      const iconSpan = document.createElement('span');
+      iconSpan.className = 'slot-icon';
+      iconSpan.textContent = item.icon || '📦';
+      slot.appendChild(iconSpan);
+
+      const nameSpan = document.createElement('span');
+      nameSpan.className = 'slot-item';
+      nameSpan.textContent = item.name || '?';
+      slot.appendChild(nameSpan);
+
+      // Tooltip：物品名 + 描述 + 属性
+      const tip = document.createElement('div');
+      tip.className = 'slot-tooltip';
+      let tipHtml = `<strong>${item.name}</strong>`;
+      if (item.desc) tipHtml += `<br><span style="font-size:10px;color:rgba(255,255,255,.5)">${item.desc}</span>`;
+      if (item.stats) {
+        tipHtml += '<br>';
+        const m = { str:'力量', int:'智力', agi:'敏捷', spr:'精神', hp:'生命', mp:'法力' };
+        tipHtml += Object.entries(item.stats)
+          .map(([k,v]) => `<span style="color:#8ab8ff">${m[k]||k} +${v}</span>`)
+          .join('  ');
+      }
+      tip.innerHTML = tipHtml;
+      slot.appendChild(tip);
+    } else {
+      // 空槽位：显示默认图标 + 名称
+      slot.classList.remove('has-item');
+      const iconMap = {
+        head:'🪖', neck:'📿', shoulder:'🛡️', back:'🧣',
+        chest:'👕', wrist:'⌛', hands:'🧤', waist:'🎗️',
+        legs:'👖', shoes:'🥾',
+        weapon:'⚔️', offhand:'🛡️',
+        ring1:'💍', ring2:'💍',
+        trinket1:'🔮', trinket2:'🔮'
+      };
+      const iconSpan = document.createElement('span');
+      iconSpan.className = 'slot-icon';
+      iconSpan.textContent = iconMap[slotKey] || '●';
+      slot.appendChild(iconSpan);
+
+      const labelSpan = document.createElement('span');
+      labelSpan.className = 'slot-label';
+      labelSpan.textContent = slotNames[slotKey] || slotKey;
+      slot.appendChild(labelSpan);
+    }
+  });
+
+  // ── 保存 & 重渲染 ──
+  function saveData() {
+    localStorage.setItem('hanako_game_data', JSON.stringify(data));
+  }
+
+  function renderAll() {
+    location.reload(); // 简单可靠，重新读取 localStorage
+  }
+
+  // ── 装备/脱下系统 ──
+  document.querySelectorAll('.equip-slot').forEach(slot => {
+    slot.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const slotKey = slot.dataset.slot;
+      const item = data.equipment[slotKey];
+
+      if (item) {
+        // 已装备 → 弹出确认
+        showConfirm(slotKey, item);
+      } else {
+        // 空槽位 → 从背包选择
+        const compatible = data.inventory.filter(i => i.slot === slotKey && i.id);
+        if (compatible.length === 0) {
+          // 无兼容物品时，显示所有可装备物品（有 slot 字段的）
+          const allEquippable = data.inventory.filter(i => i.slot);
+          if (allEquippable.length === 0) {
+            showAlert('背包中没有可装备到此槽位的物品');
+            return;
+          }
+          showPicker(slotKey, allEquippable);
+        } else {
+          showPicker(slotKey, compatible);
+        }
+      }
+    });
+  });
+
+  // ── 通用消息弹窗 ──
+  function showAlert(msg) {
+    const modal = document.getElementById('confirmModal');
+    const text = document.getElementById('confirmText');
+    const close = document.getElementById('confirmClose');
+    const cancel = document.getElementById('confirmCancel');
+    const ok = document.getElementById('confirmOk');
+
+    text.innerHTML = msg;
+    modal.style.display = 'flex';
+    cancel.style.display = 'none';
+    ok.textContent = '知道了';
+    ok.className = 'modal-btn modal-btn-ok';
+    ok.style.color = '#8ab8ff';
+    ok.style.borderColor = 'rgba(108,160,255,.3)';
+    ok.style.background = 'rgba(108,160,255,.1)';
+
+    function closeModal() {
+      modal.style.display = 'none';
+      cancel.style.display = '';
+      ok.textContent = '确认脱下';
+      ok.className = 'modal-btn modal-btn-ok';
+      ok.style.color = '';
+      ok.style.borderColor = '';
+      ok.style.background = '';
+    }
+    close.onclick = closeModal;
+    modal.onclick = (e) => { if (e.target === modal) closeModal(); };
+    ok.onclick = closeModal;
+    ok.onclick = closeModal;
+  }
+
+  // ── 确认脱下弹窗 ──
+  function showConfirm(slotKey, item) {
+    const modal = document.getElementById('confirmModal');
+    const text = document.getElementById('confirmText');
+    const close = document.getElementById('confirmClose');
+    const cancel = document.getElementById('confirmCancel');
+    const ok = document.getElementById('confirmOk');
+
+    text.innerHTML = `脱下 <strong style="color:#8ab8ff">${item.icon} ${item.name}</strong> ？<br><span style="font-size:12px;color:rgba(255,255,255,.35)">装备将放回背包</span>`;
+    modal.style.display = 'flex';
+
+    function closeModal() { modal.style.display = 'none'; }
+    close.onclick = closeModal;
+    modal.onclick = (e) => { if (e.target === modal) closeModal(); };
+    cancel.onclick = closeModal;
+
+    ok.onclick = () => {
+      delete data.equipment[slotKey];
+      const existing = data.inventory.find(i => i.id === item.id);
+      if (existing) {
+        existing.qty = (existing.qty || 1) + 1;
+      } else {
+        data.inventory.push({ ...item, qty: 1 });
+      }
+      saveData();
+      renderAll();
+    };
+  }
+
+  // ── 装备选择弹窗 ──
+  function showPicker(slotKey, items) {
+    const modal = document.getElementById('equipModal');
+    const title = document.getElementById('modalTitle');
+    const body = document.getElementById('modalBody');
+    const close = document.getElementById('modalClose');
+
+    const slotLabel = slotNames[slotKey] || slotKey;
+    title.textContent = `选择 ${slotLabel}`;
+    modal.style.display = 'flex';
+
+    function closeModal() {
+      modal.style.display = 'none';
+    }
+    close.onclick = closeModal;
+    modal.onclick = (e) => { if (e.target === modal) closeModal(); };
+
+    if (items.length === 0) {
+      body.innerHTML = '<div class="pick-empty">没有可装备的物品</div>';
+      return;
+    }
+
+    body.innerHTML = items.map((item, idx) => {
+      const statsStr = item.stats
+        ? Object.entries(item.stats).map(([k,v]) => {
+            const m = { str:'力量', int:'智力', agi:'敏捷', spr:'精神', hp:'生命', mp:'法力' };
+            return `${m[k]||k}+${v}`;
+          }).join(' ')
+        : '';
+      return `<div class="pick-item" data-idx="${idx}">
+        <span class="pi-icon">${item.icon || '📦'}</span>
+        <div class="pi-info">
+          <div class="pi-name">${item.name}</div>
+          <div class="pi-stats">${statsStr}</div>
+        </div>
+        <span class="pi-action">装备</span>
+      </div>`;
+    }).join('');
+
+    body.querySelectorAll('.pick-item').forEach(el => {
+      el.addEventListener('click', () => {
+        const idx = parseInt(el.dataset.idx);
+        const item = items[idx];
+        equipItem(slotKey, item);
+        closeModal();
+      });
+    });
+  }
+
+  function equipItem(slotKey, item) {
+    // 如果该槽已有装备，先脱下到背包
+    if (data.equipment[slotKey]) {
+      const old = data.equipment[slotKey];
+      const existing = data.inventory.find(i => i.id === old.id);
+      if (existing) {
+        existing.qty = (existing.qty || 1) + 1;
+      } else {
+        data.inventory.push({ ...old, qty: 1 });
+      }
+    }
+
+    // 从背包移除一件
+    const invIdx = data.inventory.findIndex(i => i.id === item.id);
+    if (invIdx !== -1) {
+      if (item.qty > 1) {
+        item.qty -= 1;
+      } else {
+        data.inventory.splice(invIdx, 1);
+      }
+    }
+
+    // 装备到槽位
+    const equipItem = { ...item, qty: undefined };
+    delete equipItem.qty;
+    data.equipment[slotKey] = equipItem;
+
+    saveData();
+    renderAll();
+  }
+
+  // ── 金币 ──
+  const gold = (data.character && data.character.gold) || 0;
+  document.getElementById('goldDisplay').textContent = '💰 ' + gold.toLocaleString();
+
+  // ── 背包 ──
+  const inventory = data.inventory || [];
+  const invGrid = document.getElementById('invGrid');
+  const cells = invGrid.querySelectorAll('.inv-cell');
+  cells.forEach(c => { c.className = 'inv-cell'; c.innerHTML = ''; });
+
+  inventory.forEach((item, idx) => {
+    if (idx < cells.length) {
+      const cell = cells[idx];
+      cell.className = 'inv-cell has-item';
+      cell.dataset.itemIdx = idx;
+      cell.innerHTML = `
+        <span class="inv-item-icon">${item.icon || '📦'}</span>
+        <span class="inv-item-name">${item.name || '未知'}</span>
+        ${item.qty > 1 ? `<span class="inv-qty">${item.qty}</span>` : ''}
+        <div class="inv-tooltip">${item.desc || item.name || '未知物品'}</div>
+        <button class="inv-discard" data-idx="${idx}" onclick="discardItem(event,${idx})">×</button>
+      `;
+      // 动态追加属性行（与装备槽位同样的展示方式）
+      if(item.stats){
+        const tip=cell.querySelector('.inv-tooltip');
+        if(tip){
+          const m={str:'力量',int:'智力',agi:'敏捷',spr:'精神',hp:'生命',mp:'法力'};
+          const st=Object.entries(item.stats).map(([k,v]) => '<span style="color:#8ab8ff">'+m[k]+' +'+v+'</span>').join('  ');
+          tip.innerHTML+='<br>'+st;
+        }
+      }
+      // 双击使用药水
+      cell.addEventListener('dblclick', () => useItem(idx));
+    }
+  });
+
+  // ── 使用物品（药水） ──
+  window.useItem = function(idx) {
+    const items = data.inventory || [];
+    const item = items[idx];
+    if (!item) return;
+
+    if (item.id === 'hp_potion') {
+      if (!data.character) data.character = { hp: 100, hpMax: 100, mp: 50, mpMax: 50 };
+      const heal = 80;
+      data.character.hp = Math.min(data.character.hpMax || 100, (data.character.hp || 100) + heal);
+      consumeItem(idx);
+      showItemMsg('🧪', '使用了生命药水，恢复 ' + heal + ' 点生命值');
+    } else if (item.id === 'mp_potion') {
+      if (!data.character) data.character = { hp: 100, hpMax: 100, mp: 50, mpMax: 50 };
+      const restore = 40;
+      data.character.mp = Math.min(data.character.mpMax || 50, (data.character.mp || 50) + restore);
+      consumeItem(idx);
+      showItemMsg('💧', '使用了法力药水，恢复 ' + restore + ' 点法力值');
+    } else {
+      showItemMsg('❌', '该物品无法使用');
+    }
+  };
+
+  function consumeItem(idx) {
+    const item = data.inventory[idx];
+    if (!item) return;
+    if (item.qty > 1) {
+      item.qty -= 1;
+    } else {
+      data.inventory.splice(idx, 1);
+    }
+    localStorage.setItem('hanako_game_data', JSON.stringify(data));
+    location.reload();
+  }
+
+  function showItemMsg(icon, text) {
+    const modal = document.getElementById('confirmModal');
+    const close = document.getElementById('confirmClose');
+    const cancel = document.getElementById('confirmCancel');
+    const ok = document.getElementById('confirmOk');
+    const msg = document.getElementById('confirmText');
+
+    cancel.style.display = 'none';
+    ok.textContent = '知道了';
+    ok.style.cssText = 'color:#8ab8ff;border-color:rgba(108,160,255,.3);background:rgba(108,160,255,.1)';
+    msg.innerHTML = icon + ' ' + text;
+    modal.style.display = 'flex';
+
+    function closeModal() {
+      modal.style.display = 'none';
+      cancel.style.display = '';
+      ok.textContent = '确认脱下';
+      ok.style.cssText = '';
+    }
+    close.onclick = closeModal;
+    modal.onclick = (e) => { if (e.target === modal) closeModal(); };
+    ok.onclick = closeModal;
+  }
+
+  // ── 丢弃物品 ──
+  window.discardItem = function(e, idx) {
+    e.stopPropagation();
+    const items = data.inventory || [];
+    const item = items[idx];
+    if (!item) return;
+    const modal = document.getElementById('confirmModal');
+    const close = document.getElementById('confirmClose');
+    const cancel = document.getElementById('confirmCancel');
+    const ok = document.getElementById('confirmOk');
+    const msg = document.getElementById('confirmText');
+    cancel.style.display = '';
+    ok.textContent = '确认丢弃';
+    ok.style.cssText = '';
+    msg.innerHTML = '确定要丢弃 <strong>' + (item.icon||'') + ' ' + (item.name||'') + '</strong> 吗？';
+    modal.style.display = 'flex';
+    function closeModal() { modal.style.display = 'none'; }
+    close.onclick = closeModal;
+    cancel.onclick = closeModal;
+    modal.onclick = (e2) => { if (e2.target === modal) closeModal(); };
+    ok.onclick = function() {
+      if (item.qty > 1) item.qty--;
+      else data.inventory.splice(idx, 1);
+      saveData();
+      location.reload();
+    };
+  };
+
+  // ════════ 技能装配（拖拽） ════════
+  const learnedSkills=data.learnedSkills||[];
+  const equippedSkills=data.equippedSkills&&data.equippedSkills.length===4?[...data.equippedSkills]:[null,null,null,null];
+
+  function saveSkills(){
+    data.learnedSkills=learnedSkills;
+    data.equippedSkills=equippedSkills;
+    localStorage.setItem('hanako_game_data',JSON.stringify(data));
+  }
+
+  function renderSkills(){
+    // 技能槽
+    const slots=document.getElementById('skillSlots');
+    slots.querySelectorAll('.skill-slot').forEach(s=>{
+      const idx=parseInt(s.dataset.slot);
+      const skillId=equippedSkills[idx];
+      if(skillId&&SKILL_REGISTRY[skillId]){
+        const sk=SKILL_REGISTRY[skillId];
+        s.className='skill-slot has-skill';
+        s.innerHTML='<span class="skill-slot-icon">'+sk.icon+'</span><span class="skill-slot-name">'+sk.name+'</span><span class="skill-slot-cost">MP'+sk.mpCost+'</span><span class="skill-remove" data-slot="'+idx+'">×</span>';
+        s.querySelector('.skill-remove').addEventListener('click',(e)=>{
+          e.stopPropagation();equippedSkills[idx]=null;saveSkills();renderSkills();
+        });
+      }else{
+        s.className='skill-slot';
+        s.innerHTML='—— 空 ——';
+      }
+      // 拖放事件
+      s.addEventListener('dragover',(e)=>{e.preventDefault();s.classList.add('drag-over');});
+      s.addEventListener('dragleave',()=>s.classList.remove('drag-over'));
+      s.addEventListener('drop',(e)=>{
+        e.preventDefault();
+        s.classList.remove('drag-over');
+        const dropId=e.dataTransfer.getData('text/plain');
+        if(dropId&&SKILL_REGISTRY[dropId]){
+          // 检查是否已装备（去重）
+          const existingSlot=equippedSkills.indexOf(dropId);
+          if(existingSlot>=0) equippedSkills[existingSlot]=null;
+          equippedSkills[idx]=dropId;
+          saveSkills();renderSkills();
+        }
+      });
+    });
+
+    // 技能池
+    const pool=document.getElementById('skillPool');
+    pool.innerHTML='';
+    learnedSkills.forEach(skillId=>{
+      const sk=SKILL_REGISTRY[skillId];
+      if(!sk)return;
+      const chip=document.createElement('div');
+      chip.className='skill-chip';
+      chip.draggable=true;
+      chip.innerHTML='<span>'+sk.icon+'</span><span>'+sk.name+'</span><span style="font-size:9px;opacity:.4">MP'+sk.mpCost+'</span>';
+      chip.addEventListener('dragstart',(e)=>{
+        e.dataTransfer.setData('text/plain',skillId);
+        chip.classList.add('dragging');
+      });
+      chip.addEventListener('dragend',()=>chip.classList.remove('dragging'));
+      pool.appendChild(chip);
+    });
+  }
+
+  renderSkills();
+
+  // ════════ 被动技能 ════════
+  const learnedPassives=data.learnedPassives||[];
+  const equippedPassive=data.equippedPassive||null;
+  const passiveSlotUnlocked=data.passiveSlotUnlocked||false;
+
+  function savePassives(){
+    data.learnedPassives=learnedPassives;
+    data.equippedPassive=equippedPassive;
+    data.passiveSlotUnlocked=passiveSlotUnlocked;
+    localStorage.setItem('hanako_game_data',JSON.stringify(data));
+  }
+
+  function renderPassives(){
+    const currentLevel=data.character?.level||1;
+    const firstPassive=learnedPassives[0];
+
+    // 固定被动
+    const pfDiv=document.getElementById('passiveFixed');
+    if(firstPassive&&PASSIVE_REGISTRY[firstPassive]){
+      const p=PASSIVE_REGISTRY[firstPassive];
+      const unlocked=currentLevel>=p.unlockLevel;
+      pfDiv.innerHTML='<span class="pf-icon">'+p.icon+'</span><div class="pf-info"><div class="pf-name">'+p.name+(unlocked?'':' (Lv.'+p.unlockLevel+' 解锁)')+'</div><div class="pf-desc">'+p.desc+'</div></div><span class="pf-tag">固定</span>';
+      if(!unlocked) pfDiv.style.opacity='0.4';
+      else pfDiv.style.opacity='1';
+    }else{
+      pfDiv.innerHTML='<span class="pf-icon">—</span><div class="pf-info"><div class="pf-name">尚未习得</div><div class="pf-desc">升级到 Lv.3 解锁第一个被动</div></div><span class="pf-tag">固定</span>';
+      pfDiv.style.opacity='0.4';
+    }
+
+    // 装备槽
+    const slot=document.getElementById('passiveSlot');
+    if(!passiveSlotUnlocked){
+      slot.className='passive-slot locked';
+      slot.innerHTML='🔒 Lv.5 解锁';
+    }else if(equippedPassive&&PASSIVE_REGISTRY[equippedPassive]){
+      const p=PASSIVE_REGISTRY[equippedPassive];
+      slot.className='passive-slot equipped';
+      slot.innerHTML='<span class="ps-icon">'+p.icon+'</span><span class="ps-name">'+p.name+'</span>';
+    }else{
+      slot.className='passive-slot';
+      slot.innerHTML='—— 空 ——';
+    }
+    // 拖放
+    if(passiveSlotUnlocked){
+      slot.style.cursor='pointer';
+      slot.addEventListener('dragover',(e)=>{e.preventDefault();slot.classList.add('drag-over');});
+      slot.addEventListener('dragleave',()=>slot.classList.remove('drag-over'));
+      slot.addEventListener('drop',(e)=>{
+        e.preventDefault();slot.classList.remove('drag-over');
+        const dropId=e.dataTransfer.getData('text/plain');
+        if(dropId&&PASSIVE_REGISTRY[dropId]){
+          data.equippedPassive=dropId;
+          savePassives();
+          const pdata=getPlayerData();
+          pdata.equippedPassive=dropId;
+          localStorage.setItem('hanako_game_data',JSON.stringify(pdata));
+          location.reload();
+        }
+      });
+      // 点击卸下
+      slot.addEventListener('click',()=>{
+        if(data.equippedPassive){
+          data.equippedPassive=null;
+          savePassives();
+          const pdata=getPlayerData();
+          pdata.equippedPassive=null;
+          localStorage.setItem('hanako_game_data',JSON.stringify(pdata));
+          location.reload();
+        }
+      });
+    }
+
+    // 被动池
+    const pool=document.getElementById('passivePool');
+    pool.innerHTML='';
+    if(learnedPassives.length===0){
+      pool.innerHTML='<span style="font-size:10px;color:rgba(255,255,255,.15)">暂无已习得的被动</span>';
+    }else{
+      learnedPassives.forEach(skillId=>{
+        const p=PASSIVE_REGISTRY[skillId];
+        if(!p)return;
+        const chip=document.createElement('div');
+        chip.className='passive-chip';
+        chip.draggable=true;
+        chip.innerHTML='<span>'+p.icon+'</span><span>'+p.name+'</span><span style="font-size:9px;opacity:.4">Lv.'+p.unlockLevel+'</span>';
+        chip.addEventListener('dragstart',(e)=>{
+          e.dataTransfer.setData('text/plain',skillId);
+          chip.classList.add('dragging');
+        });
+        chip.addEventListener('dragend',()=>chip.classList.remove('dragging'));
+        pool.appendChild(chip);
+      });
+    }
+  }
+
+  renderPassives();
+</script>
+</body>
+</html>
