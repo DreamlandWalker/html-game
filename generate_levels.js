@@ -318,6 +318,46 @@ function pick(arr) { return arr[Math.floor(Math.random()*arr.length)]; }
 function rng(min,max) { return Math.floor(Math.random()*(max-min+1))+min; }
 function shuffle(a) { for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];} return a; }
 
+// ─── BFS 寻路 ───
+function bfsPath(tiles, sx, sy, ex, ey, w, h) {
+  const visited = Array.from({length: h}, () => Array(w).fill(false));
+  const queue = [{x:sx, y:sy}];
+  visited[sy][sx] = true;
+  const dirs = [[0,-1],[0,1],[-1,0],[1,0]];
+  while(queue.length) {
+    const {x,y} = queue.shift();
+    if(x===ex && y===ey) return true;
+    for(const [dx,dy] of dirs) {
+      const nx=x+dx, ny=y+dy;
+      if(nx>=0&&nx<w&&ny>=0&&ny<h&&!visited[ny][nx]&&tiles[ny][nx]!=='W') {
+        visited[ny][nx]=true;
+        queue.push({x:nx, y:ny});
+      }
+    }
+  }
+  return false;
+}
+
+// 确保从起点到出口有路可走，否则人工开道
+function ensurePath(tiles, sx, sy, ex, ey, w, h) {
+  if(bfsPath(tiles, sx, sy, ex, ey, w, h)) return;
+  // 简单策略：从起点向右下方向走一条直线到出口，沿途墙壁全部变成地板
+  let cx=sx, cy=sy;
+  while(cx!==ex || cy!==ey) {
+    if(tiles[cy][cx]==='W') tiles[cy] = tiles[cy].substring(0, cx) + '.' + tiles[cy].substring(cx+1);
+    if(cx < ex) cx++;
+    else if(cx > ex) cx--;
+    else if(cy < ey) cy++;
+    else if(cy > ey) cy--;
+  }
+  tiles[ey] = tiles[ey].substring(0, ex) + '.' + tiles[ey].substring(ex+1);
+}
+
+function isFloor(tiles, x, y, w, h) {
+  if(x<0||x>=w||y<0||y>=h) return false;
+  return tiles[y][x] !== 'W';
+}
+
 // ─── 生成地图 ───
 function generateMap(lvl) {
   const tmplIndex = (lvl - 1) % MAP_TEMPLATES.length;
@@ -352,7 +392,36 @@ function generateMap(lvl) {
   // 把出口那格设为'.'
   tiles[exitY] = tiles[exitY].substring(0, exitX) + '.' + tiles[exitY].substring(exitX + 1);
 
+  // 确保起点周围至少有一格可以走（向上/右优先）
+  const sx=1, sy=1;
+  const clearDirs = [[0,1],[1,0],[0,-1],[-1,0]];
+  for(const [dx,dy] of clearDirs) {
+    const nx=sx+dx, ny=sy+dy;
+    if(nx>0&&nx<adjW-1&&ny>0&&ny<adjH-1&&tiles[ny][nx]==='W')
+      tiles[ny] = tiles[ny].substring(0, nx) + '.' + tiles[ny].substring(nx+1);
+  }
+  // 最后确认有路可走
+  ensurePath(tiles, sx, sy, exitX, exitY, adjW, adjH);
+
   return {width: adjW, height: adjH, tiles, exitX, exitY};
+}
+
+// ─── 基础材料表 ───
+const BASE_MATS = [
+  {id:'mat_herb', name:'草药', icon:'🌿'},
+  {id:'mat_water', name:'清水', icon:'💧'},
+  {id:'mat_crystal', name:'水晶碎片', icon:'💎'},
+  {id:'mat_leather', name:'皮革', icon:'🧶'},
+  {id:'mat_iron', name:'铁锭', icon:'⛏️'},
+  {id:'mat_wood', name:'木材', icon:'🪵'}
+];
+
+function getMaterialForLevel(lvl, monsterIdx) {
+  // 随关卡推进逐步解锁更多材料类型
+  const poolSize = Math.min(2 + Math.floor(lvl / 6), BASE_MATS.length);
+  // 用 (怪物序号×7 + 关卡) 替代单纯序号，让材料分布更分散
+  const idx = (monsterIdx * 7 + lvl) % poolSize;
+  return BASE_MATS[idx];
 }
 
 // ─── 生成怪物 ───
@@ -361,13 +430,14 @@ function generateMonsters(lvl) {
   const baseATK = 5 + Math.floor(lvl * 1.2);
   const xpReward = 20 + lvl * 4;
 
-  // 2-3种怪物
-  const count = 1 + Math.floor((lvl - 1) / 15);
+  // 逐级增加怪物类型，保证材料覆盖
+  const count = Math.min(1 + Math.floor(lvl / 8), 6);
   const monsters = [];
-  for (let i = 0; i < Math.min(count, 3); i++) {
+  for (let i = 0; i < count; i++) {
     const mi = ((lvl - 1) * 3 + i) % MONSTER_NAMES.length;
     const m = MONSTER_NAMES[mi];
     const hpMul = 0.8 + i * 0.3;
+    const mat = getMaterialForLevel(lvl, i);
     monsters.push({
       name: m.n,
       icon: m.i,
@@ -381,9 +451,9 @@ function generateMonsters(lvl) {
       ],
       loot: [
         {type:'gold', icon:'💰', min: Math.max(1, Math.floor(lvl*1.5)), max: Math.max(3, Math.floor(lvl*3)), chance:1.0},
-        ...(lvl >= 5 ? [{type:'item', id:'hp_potion', name:'生命药水', icon:'🧪', desc:'恢复 80 点生命值', qty:1, sellPrice:10, chance:0.25}] : []),
-        ...(lvl >= 10 ? [{type:'item', id:'mp_potion', name:'法力药水', icon:'💧', desc:'恢复 40 点法力值', qty:1, sellPrice:7, chance:0.2}] : []),
-        {type:'material', id:`mat_lvl${lvl}`, name:`材料·${m.n}`, icon:'📦', desc:`从${m.n}身上获得的材料`, qty:1, qtyMax:2, sellPrice: Math.max(2, Math.floor(lvl/2)), chance:0.5}
+        ...(lvl >= 5 ? [{type:'item', id:'hp_potion', name:'生命药水', icon:'🧪', desc:'恢复 80 点生命值', qty:1, sellPrice:10, chance:0.15}] : []),
+        ...(lvl >= 10 ? [{type:'item', id:'mp_potion', name:'法力药水', icon:'💧', desc:'恢复 40 点法力值', qty:1, sellPrice:7, chance:0.10}] : []),
+        {type:'material', id:mat.id, name:mat.name, icon:mat.icon, desc:`从${m.n}身上获得的${mat.name}`, qty:1, qtyMax:2, sellPrice: 3, chance:0.5}
       ]
     });
   }
@@ -410,8 +480,8 @@ function generateBoss(lvl, monsters) {
     ],
     loot: [
       {type:'gold', icon:'💰', min: 10 + lvl * 3, max: 20 + lvl * 5, chance:1.0},
-      {type:'item', id:'hp_big_potion', name:'大生命药水', icon:'🧪', desc:'恢复 200 点生命值', qty: 1 + Math.floor(lvl/10), sellPrice:25, chance:0.5},
-      ...(lvl >= 8 ? [{type:'item', id:'mp_potion', name:'法力药水', icon:'💧', desc:'恢复 40 点法力值', qty: 2, sellPrice:7, chance:0.4}] : []),
+      {type:'item', id:'hp_big_potion', name:'大生命药水', icon:'🧪', desc:'恢复 200 点生命值', qty: 1 + Math.floor(lvl/10), sellPrice:25, chance:0.3},
+      ...(lvl >= 8 ? [{type:'item', id:'mp_potion', name:'法力药水', icon:'💧', desc:'恢复 40 点法力值', qty: 2, sellPrice:7, chance:0.25}] : []),
       {type:'equipment', id:`boss_loot_lvl${lvl}`, name:`${b.n}的遗物`, icon:'👑', desc:`击败${b.n}获得的战利品`,
         slot: 'trinket1', stats: {str: Math.floor(lvl/3), int: Math.floor(lvl/3), agi: Math.floor(lvl/3), spr: Math.floor(lvl/3)},
         sellPrice: 10 + lvl * 3, chance: 0.2}
@@ -445,7 +515,7 @@ function generateQuestions(lvl, poolKeys) {
 }
 
 // ─── 生成刷怪点 ───
-function generateSpawns(mapW, mapH, monsterCount, bossPos) {
+function generateSpawns(tiles, mapW, mapH, monsterCount, bossPos) {
   const spawns = [];
   const count = Math.min(4 + Math.floor((monsterCount) / 3), 12);
   for (let i = 0; i < count; i++) {
@@ -459,6 +529,7 @@ function generateSpawns(mapW, mapH, monsterCount, bossPos) {
       (x === bossPos.x && y === bossPos.y) ||
       spawns.some(s => Math.abs(s.x-x)+Math.abs(s.y-y) < 2)
     ));
+    if(!isFloor(tiles, x, y, mapW, mapH)) continue;
     const mIdx = i % monsterCount;
     spawns.push({x, y, rate: 0.8 + Math.random() * 0.2, monsterIdx: mIdx});
   }
@@ -466,7 +537,7 @@ function generateSpawns(mapW, mapH, monsterCount, bossPos) {
 }
 
 // ─── 生成宝箱 ───
-function generateChests(mapW, mapH, lvl, bossPos) {
+function generateChests(tiles, mapW, mapH, lvl, bossPos) {
   const count = 2 + Math.floor((lvl - 1) / 10);
   const chests = [];
   for (let i = 0; i < count; i++) {
@@ -480,15 +551,16 @@ function generateChests(mapW, mapH, lvl, bossPos) {
       (x === bossPos.x && y === bossPos.y) ||
       chests.some(c => Math.abs(c.x-x)+Math.abs(c.y-y) < 3)
     ));
+    if(!isFloor(tiles, x, y, mapW, mapH)) continue;
     const pool = [
       {type:'gold', name:'金币', icon:'💰', min: 5 + lvl * 2, max: 15 + lvl * 4, chance: 1.0},
       {type:'item', id:'hp_potion', name:'生命药水', icon:'🧪', desc:'恢复 80 点生命值', qty: 1 + Math.floor(lvl/8), chance: 0.5 + lvl * 0.005}
     ];
     if (i > 0) {
-      pool.push({type:'item', id:'mp_potion', name:'法力药水', icon:'💧', desc:'恢复 40 点法力值', qty: 1 + Math.floor(lvl/10), chance: 0.4});
+      pool.push({type:'item', id:'mp_potion', name:'法力药水', icon:'💧', desc:'恢复 40 点法力值', qty: 1 + Math.floor(lvl/10), chance: 0.25});
     }
     if (lvl >= 5 && i === 1) {
-      pool.push({type:'equipment', id:`chest_equip_lvl${lvl}_${i}`, name:'宝箱装备', icon:'🪖',
+      pool.push({type:'equipment', id:'chest_equip_lvl'+lvl+'_'+i, name:'宝箱装备', icon:'🪖',
         desc:'从宝箱中发现的装备', slot: i%2===0?'ring1':'ring2',
         stats: {str: Math.floor(lvl/4), agi: Math.floor(lvl/4)}, sellPrice: 5 + lvl*2, chance: 0.1 + lvl*0.005});
     }
@@ -498,7 +570,7 @@ function generateChests(mapW, mapH, lvl, bossPos) {
 }
 
 // ─── 生成商人 ───
-function generateMerchant(mapW, mapH, lvl, bossPos) {
+function generateMerchant(tiles, mapW, mapH, lvl, bossPos) {
   if (lvl % 3 !== 0 && lvl !== 40 && lvl > 2) return null;
   let x, y, tries = 0;
   do {
@@ -508,6 +580,7 @@ function generateMerchant(mapW, mapH, lvl, bossPos) {
   } while (tries < 20 && (
     (x === 1 && y === 1) || (x === bossPos.x && y === bossPos.y)
   ));
+  if(!isFloor(tiles, x, y, mapW, mapH)) return null;
   const stock = [
     {id:'hp_potion', name:'生命药水', icon:'🧪', desc:'恢复 80 点生命值', buyPrice: 18 + lvl, sellPrice: 9 + Math.floor(lvl/2), qty: 4 + Math.floor(lvl/5)},
     {id:'mp_potion', name:'法力药水', icon:'💧', desc:'恢复 40 点法力值', buyPrice: 13 + lvl, sellPrice: 6 + Math.floor(lvl/2), qty: 3 + Math.floor(lvl/6)}
@@ -516,9 +589,7 @@ function generateMerchant(mapW, mapH, lvl, bossPos) {
     stock.push({id:'hp_big_potion', name:'大生命药水', icon:'🧪', desc:'恢复 200 点生命值', buyPrice: 40 + lvl*2, sellPrice: 20 + lvl, qty: 2 + Math.floor(lvl/10)});
   }
   return {x, y, npcName: lvl % 2 === 0 ? '旅行商人' : '神秘商贩', npcIcon: '🧳', stock};
-}
-
-// ─── 生成奖励 ───
+}// ─── 生成奖励 ───
 function generateReward(lvl) {
   return {gold: 30 + lvl * 8, xp: 60 + lvl * 15};
 }
@@ -527,13 +598,37 @@ function generateReward(lvl) {
 function generateLevel(lvl) {
   const mapData = generateMap(lvl);
   const monsters = generateMonsters(lvl);
-  const bossPos = {x: mapData.exitX - 2 + ((lvl % 3 === 0) ? 1 : 0), y: mapData.exitY};
+  // BOSS 位置：在出口附近找一块空地（不能和出口重叠）
+  let bossX = mapData.exitX - 2 + ((lvl % 3 === 0) ? 1 : 0);
+  let bossY = mapData.exitY;
+  if(bossX === mapData.exitX && bossY === mapData.exitY){
+    bossX = bossX - 1; // 向右偏移避免重叠
+  }
+  if(!isFloor(mapData.tiles, bossX, bossY, mapData.width, mapData.height)){
+    // 在出口周围搜索最近的非出口空地
+    const candidates = [];
+    for(let dy=-3; dy<=0; dy++){
+      for(let dx=-3; dx<=3; dx++){
+        const cx = mapData.exitX + dx;
+        const cy = mapData.exitY + dy;
+        if(isFloor(mapData.tiles, cx, cy, mapData.width, mapData.height) && !(cx===mapData.exitX && cy===mapData.exitY)){
+          candidates.push({x:cx, y:cy, dist:Math.abs(dx)+Math.abs(dy)});
+        }
+      }
+    }
+    if(candidates.length > 0){
+      candidates.sort((a,b) => a.dist - b.dist);
+      bossX = candidates[0].x;
+      bossY = candidates[0].y;
+    }
+  }
+  const bossPos = {x: bossX, y: bossY};
   const bossMonster = generateBoss(lvl, monsters);
   const qMap = LEVEL_Q_MAP[lvl];
   const questions = generateQuestions(lvl, qMap.pool);
-  const spawns = generateSpawns(mapData.width, mapData.height, monsters.length, bossPos);
-  const chests = generateChests(mapData.width, mapData.height, lvl, bossPos);
-  const merchant = generateMerchant(mapData.width, mapData.height, lvl, bossPos);
+  const spawns = generateSpawns(mapData.tiles, mapData.width, mapData.height, monsters.length, bossPos);
+  const chests = generateChests(mapData.tiles, mapData.width, mapData.height, lvl, bossPos);
+  const merchant = generateMerchant(mapData.tiles, mapData.width, mapData.height, lvl, bossPos);
 
   return {
     id: lvl,

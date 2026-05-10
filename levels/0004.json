@@ -29,41 +29,35 @@
   },
   "monsterSpawns": [
     {
-      "x": 7,
-      "y": 5,
-      "rate": 0.862491670207878,
+      "x": 8,
+      "y": 8,
+      "rate": 0.8365571764546594,
       "monsterIdx": 0
     },
     {
-      "x": 7,
+      "x": 5,
       "y": 8,
-      "rate": 0.8396892826132952,
+      "rate": 0.8718857792178546,
       "monsterIdx": 0
     },
     {
       "x": 6,
-      "y": 7,
-      "rate": 0.9072369486309457,
-      "monsterIdx": 0
-    },
-    {
-      "x": 4,
-      "y": 3,
-      "rate": 0.8605958279134235,
+      "y": 9,
+      "rate": 0.8801623350614879,
       "monsterIdx": 0
     }
   ],
   "bossSpawn": {
-    "x": 7,
-    "y": 10,
+    "x": 9,
+    "y": 9,
     "rate": 1,
     "monsterIdx": 1
   },
   "chestSpawns": [
     {
-      "x": 8,
-      "y": 3,
-      "rate": 0.9365107630221454,
+      "x": 6,
+      "y": 4,
+      "rate": 0.9839133547565404,
       "lootPool": [
         {
           "type": "gold",
@@ -85,9 +79,9 @@
       ]
     },
     {
-      "x": 3,
+      "x": 6,
       "y": 8,
-      "rate": 0.9486387110432032,
+      "rate": 0.957354853709189,
       "lootPool": [
         {
           "type": "gold",
@@ -113,7 +107,7 @@
           "icon": "💧",
           "desc": "恢复 40 点法力值",
           "qty": 1,
-          "chance": 0.4
+          "chance": 0.25
         }
       ]
     }
@@ -148,13 +142,13 @@
         },
         {
           "type": "material",
-          "id": "mat_lvl4",
-          "name": "材料·渡魂使者",
-          "icon": "📦",
-          "desc": "从渡魂使者身上获得的材料",
+          "id": "mat_herb",
+          "name": "草药",
+          "icon": "🌿",
+          "desc": "从渡魂使者身上获得的草药",
           "qty": 1,
           "qtyMax": 2,
-          "sellPrice": 2,
+          "sellPrice": 3,
           "chance": 0.5
         }
       ]
@@ -196,7 +190,7 @@
         "desc": "恢复 200 点生命值",
         "qty": 1,
         "sellPrice": 25,
-        "chance": 0.5
+        "chance": 0.3
       },
       {
         "type": "equipment",
@@ -218,12 +212,15 @@
   },
   "questions": [
     {
-      "type": "fill",
-      "question": "___ time is it?",
-      "answer": "What",
-      "alternatives": [
-        "what"
+      "type": "choice",
+      "question": "They ___ summer.",
+      "options": [
+        "like",
+        "likes",
+        "liked",
+        "liking"
       ],
+      "answer": 0,
       "timeThreshold": 7
     },
     {
@@ -240,38 +237,14 @@
     },
     {
       "type": "choice",
-      "question": "It's six ___.",
+      "question": "Which is a season?",
       "options": [
-        "o'clock",
-        "clock",
-        "time",
-        "hour"
+        "Monday",
+        "spring",
+        "bus",
+        "sunny"
       ],
-      "answer": 0,
-      "timeThreshold": 6
-    },
-    {
-      "type": "choice",
-      "question": "I ___ up at 7 o'clock.",
-      "options": [
-        "get",
-        "gets",
-        "getting",
-        "got"
-      ],
-      "answer": 0,
-      "timeThreshold": 7
-    },
-    {
-      "type": "choice",
-      "question": "They ___ summer.",
-      "options": [
-        "like",
-        "likes",
-        "liked",
-        "liking"
-      ],
-      "answer": 0,
+      "answer": 1,
       "timeThreshold": 7
     },
     {
@@ -285,33 +258,6 @@
       ],
       "answer": 0,
       "timeThreshold": 7
-    },
-    {
-      "type": "choice",
-      "question": "Which is a season?",
-      "options": [
-        "Monday",
-        "spring",
-        "bus",
-        "sunny"
-      ],
-      "answer": 1,
-      "timeThreshold": 7
-    },
-    {
-      "type": "fill",
-      "question": "___ you like summer?（Do/Does）",
-      "answer": "Do",
-      "timeThreshold": 7
-    },
-    {
-      "type": "fill",
-      "question": "We ___ go to school on Sunday.",
-      "answer": "don't",
-      "alternatives": [
-        "do not"
-      ],
-      "timeThreshold": 8
     },
     {
       "type": "fill",
@@ -333,6 +279,54 @@
       ],
       "answer": 2,
       "timeThreshold": 7
+    },
+    {
+      "type": "fill",
+      "question": "___ you like summer?（Do/Does）",
+      "answer": "Do",
+      "timeThreshold": 7
+    },
+    {
+      "type": "choice",
+      "question": "It's six ___.",
+      "options": [
+        "o'clock",
+        "clock",
+        "time",
+        "hour"
+      ],
+      "answer": 0,
+      "timeThreshold": 6
+    },
+    {
+      "type": "fill",
+      "question": "___ time is it?",
+      "answer": "What",
+      "alternatives": [
+        "what"
+      ],
+      "timeThreshold": 7
+    },
+    {
+      "type": "choice",
+      "question": "I ___ up at 7 o'clock.",
+      "options": [
+        "get",
+        "gets",
+        "getting",
+        "got"
+      ],
+      "answer": 0,
+      "timeThreshold": 7
+    },
+    {
+      "type": "fill",
+      "question": "We ___ go to school on Sunday.",
+      "answer": "don't",
+      "alternatives": [
+        "do not"
+      ],
+      "timeThreshold": 8
     }
   ],
   "merchant": null,

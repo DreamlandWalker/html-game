@@ -14,59 +14,53 @@
     "height": 15,
     "tiles": [
       "WWWWWWWWW",
-      "W......WW",
-      "W.WW.W.WW",
-      "W......WW",
-      "W.WW.W.WW",
-      "W......WW",
-      "W.WWWW.WW",
-      "W......WW",
-      "W......WW",
-      "W.WWWW.WW",
-      "W......WW",
-      "W......WW",
-      "W......WW",
+      "W.......W",
+      "W.WW.W..W",
+      "W.......W",
+      "W.WW.W..W",
+      "W.......W",
+      "W.WWWW..W",
+      "W.......W",
+      "W.......W",
+      "W.WWWW..W",
+      "W.......W",
+      "W.......W",
+      "W.......W",
       "WWWWWWW.W",
       "WWWWWWWWW"
     ]
   },
   "monsterSpawns": [
     {
-      "x": 2,
-      "y": 7,
-      "rate": 0.8479584608797293,
-      "monsterIdx": 0
-    },
-    {
       "x": 6,
-      "y": 6,
-      "rate": 0.8046998386039487,
+      "y": 9,
+      "rate": 0.9817266853117269,
       "monsterIdx": 0
     },
     {
-      "x": 5,
-      "y": 8,
-      "rate": 0.856299526369517,
-      "monsterIdx": 0
+      "x": 4,
+      "y": 7,
+      "rate": 0.8368772310298067,
+      "monsterIdx": 1
     },
     {
-      "x": 2,
-      "y": 4,
-      "rate": 0.9357369566572764,
+      "x": 3,
+      "y": 11,
+      "rate": 0.8580222556592441,
       "monsterIdx": 0
     }
   ],
   "bossSpawn": {
-    "x": 5,
-    "y": 13,
+    "x": 7,
+    "y": 12,
     "rate": 1,
-    "monsterIdx": 1
+    "monsterIdx": 2
   },
   "chestSpawns": [
     {
-      "x": 5,
-      "y": 6,
-      "rate": 0.9130912515729654,
+      "x": 4,
+      "y": 3,
+      "rate": 0.956600307751568,
       "lootPool": [
         {
           "type": "gold",
@@ -84,53 +78,6 @@
           "desc": "恢复 80 点生命值",
           "qty": 2,
           "chance": 0.54
-        }
-      ]
-    },
-    {
-      "x": 6,
-      "y": 11,
-      "rate": 0.9073538563969095,
-      "lootPool": [
-        {
-          "type": "gold",
-          "name": "金币",
-          "icon": "💰",
-          "min": 21,
-          "max": 47,
-          "chance": 1
-        },
-        {
-          "type": "item",
-          "id": "hp_potion",
-          "name": "生命药水",
-          "icon": "🧪",
-          "desc": "恢复 80 点生命值",
-          "qty": 2,
-          "chance": 0.54
-        },
-        {
-          "type": "item",
-          "id": "mp_potion",
-          "name": "法力药水",
-          "icon": "💧",
-          "desc": "恢复 40 点法力值",
-          "qty": 1,
-          "chance": 0.4
-        },
-        {
-          "type": "equipment",
-          "id": "chest_equip_lvl8_1",
-          "name": "宝箱装备",
-          "icon": "🪖",
-          "desc": "从宝箱中发现的装备",
-          "slot": "ring2",
-          "stats": {
-            "str": 2,
-            "agi": 2
-          },
-          "sellPrice": 21,
-          "chance": 0.14
         }
       ]
     }
@@ -171,17 +118,67 @@
           "desc": "恢复 80 点生命值",
           "qty": 1,
           "sellPrice": 10,
-          "chance": 0.25
+          "chance": 0.15
         },
         {
           "type": "material",
-          "id": "mat_lvl8",
-          "name": "材料·野兔",
-          "icon": "📦",
-          "desc": "从野兔身上获得的材料",
+          "id": "mat_crystal",
+          "name": "水晶碎片",
+          "icon": "💎",
+          "desc": "从野兔身上获得的水晶碎片",
           "qty": 1,
           "qtyMax": 2,
-          "sellPrice": 4,
+          "sellPrice": 3,
+          "chance": 0.5
+        }
+      ]
+    },
+    {
+      "name": "石像鬼",
+      "icon": "🗿",
+      "hp": 57,
+      "attack": 15,
+      "aggro": 1,
+      "xpReward": 57,
+      "skills": [
+        {
+          "name": "普通攻击",
+          "icon": "💥",
+          "dmgMul": 1.3
+        },
+        {
+          "name": "重击",
+          "icon": "💢",
+          "dmgMul": 2.16
+        }
+      ],
+      "loot": [
+        {
+          "type": "gold",
+          "icon": "💰",
+          "min": 12,
+          "max": 24,
+          "chance": 1
+        },
+        {
+          "type": "item",
+          "id": "hp_potion",
+          "name": "生命药水",
+          "icon": "🧪",
+          "desc": "恢复 80 点生命值",
+          "qty": 1,
+          "sellPrice": 10,
+          "chance": 0.15
+        },
+        {
+          "type": "material",
+          "id": "mat_herb",
+          "name": "草药",
+          "icon": "🌿",
+          "desc": "从石像鬼身上获得的草药",
+          "qty": 1,
+          "qtyMax": 2,
+          "sellPrice": 3,
           "chance": 0.5
         }
       ]
@@ -223,7 +220,7 @@
         "desc": "恢复 200 点生命值",
         "qty": 1,
         "sellPrice": 25,
-        "chance": 0.5
+        "chance": 0.3
       },
       {
         "type": "item",
@@ -233,7 +230,7 @@
         "desc": "恢复 40 点法力值",
         "qty": 2,
         "sellPrice": 7,
-        "chance": 0.4
+        "chance": 0.25
       },
       {
         "type": "equipment",
@@ -256,35 +253,8 @@
   "questions": [
     {
       "type": "fill",
-      "question": "英语 → ___",
-      "answer": "English",
-      "alternatives": [
-        "english"
-      ],
-      "timeThreshold": 7
-    },
-    {
-      "type": "choice",
-      "question": "___ a book on the desk.",
-      "options": [
-        "There is",
-        "There are",
-        "There was",
-        "There were"
-      ],
-      "answer": 0,
-      "timeThreshold": 7
-    },
-    {
-      "type": "choice",
-      "question": "The book is ___ the desk（在……上）.",
-      "options": [
-        "in",
-        "on",
-        "under",
-        "behind"
-      ],
-      "answer": 1,
+      "question": "noodles → 中文：___",
+      "answer": "面条",
       "timeThreshold": 7
     },
     {
@@ -300,13 +270,43 @@
       "timeThreshold": 7
     },
     {
+      "type": "fill",
+      "question": "baby → 复数：___",
+      "answer": "babies",
+      "timeThreshold": 7
+    },
+    {
+      "type": "fill",
+      "question": "科学 → ___",
+      "answer": "science",
+      "timeThreshold": 7
+    },
+    {
+      "type": "fill",
+      "question": "语文 → ___",
+      "answer": "Chinese",
+      "alternatives": [
+        "chinese"
+      ],
+      "timeThreshold": 7
+    },
+    {
+      "type": "fill",
+      "question": "英语 → ___",
+      "answer": "English",
+      "alternatives": [
+        "english"
+      ],
+      "timeThreshold": 7
+    },
+    {
       "type": "choice",
-      "question": "___ two pens in the case.",
+      "question": "The book is ___ the desk（在……上）.",
       "options": [
-        "There is",
-        "There are",
-        "There was",
-        "There were"
+        "in",
+        "on",
+        "under",
+        "behind"
       ],
       "answer": 1,
       "timeThreshold": 7
@@ -325,11 +325,32 @@
     },
     {
       "type": "fill",
-      "question": "语文 → ___",
-      "answer": "Chinese",
-      "alternatives": [
-        "chinese"
+      "question": "man → 复数：___",
+      "answer": "men",
+      "timeThreshold": 7
+    },
+    {
+      "type": "choice",
+      "question": "___ a book on the desk.",
+      "options": [
+        "There is",
+        "There are",
+        "There was",
+        "There were"
       ],
+      "answer": 0,
+      "timeThreshold": 7
+    },
+    {
+      "type": "fill",
+      "question": "___ he like dogs?（Does/Do）",
+      "answer": "Does",
+      "timeThreshold": 7
+    },
+    {
+      "type": "fill",
+      "question": "child → 复数：___",
+      "answer": "children",
       "timeThreshold": 7
     },
     {
@@ -345,15 +366,15 @@
       "timeThreshold": 7
     },
     {
-      "type": "fill",
-      "question": "cat → 复数：___",
-      "answer": "cats",
-      "timeThreshold": 6
-    },
-    {
-      "type": "fill",
-      "question": "noodles → 中文：___",
-      "answer": "面条",
+      "type": "choice",
+      "question": "___ two pens in the case.",
+      "options": [
+        "There is",
+        "There are",
+        "There was",
+        "There were"
+      ],
+      "answer": 1,
       "timeThreshold": 7
     },
     {
@@ -364,36 +385,6 @@
         "math",
         "Maths"
       ],
-      "timeThreshold": 7
-    },
-    {
-      "type": "choice",
-      "question": "The cat ___ fish.",
-      "options": [
-        "eat",
-        "eats",
-        "eating",
-        "ate"
-      ],
-      "answer": 1,
-      "timeThreshold": 7
-    },
-    {
-      "type": "fill",
-      "question": "baby → 复数：___",
-      "answer": "babies",
-      "timeThreshold": 7
-    },
-    {
-      "type": "fill",
-      "question": "科学 → ___",
-      "answer": "science",
-      "timeThreshold": 7
-    },
-    {
-      "type": "fill",
-      "question": "___ he like dogs?（Does/Do）",
-      "answer": "Does",
       "timeThreshold": 7
     }
   ],

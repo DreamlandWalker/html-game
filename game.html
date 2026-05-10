@@ -54,16 +54,10 @@ body{min-height:100vh;background:#0b0d17;font-family:'Segoe UI','PingFang SC','M
 /* ── Modal Base ── */
 .modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.65);z-index:50;align-items:center;justify-content:center}
 .modal-overlay.show{display:flex}
-.modal-box{background:#1a1f35;border:1px solid rgba(255,255,255,.08);border-radius:18px;padding:28px 32px;max-width:440px;width:90vw;box-shadow:0 20px 60px rgba(0,0,0,.6);position:relative}
+.modal-box{background:#1a1f35;border:1px solid rgba(255,255,255,.08);border-radius:18px;padding:24px 20px;max-width:540px;width:92vw;box-shadow:0 20px 60px rgba(0,0,0,.6);position:relative}
 
 /* ── Battle Modal ── */
-.battle-enemy{text-align:center;margin-bottom:16px}
-.battle-enemy .be-icon{font-size:42px;display:block}
-.battle-enemy .be-name{font-size:15px;font-weight:700;color:#e8ddce;margin-top:2px}
-.battle-enemy .be-hp-row{display:flex;align-items:center;gap:6px;justify-content:center;margin-top:6px}
-.battle-enemy .be-hp-bg{width:120px;height:6px;background:rgba(255,255,255,.06);border-radius:4px;overflow:hidden}
-.battle-enemy .be-hp-fill{height:100%;border-radius:4px;background:linear-gradient(90deg,#e06c6c,#ff6b6b);transition:width .4s}
-.battle-enemy .be-hp-text{font-size:11px;color:rgba(255,255,255,.4)}
+
 
 /* Timer */
 .timer-bar{height:4px;background:rgba(255,255,255,.06);border-radius:3px;overflow:hidden;margin-bottom:14px}
@@ -159,7 +153,7 @@ body{min-height:100vh;background:#0b0d17;font-family:'Segoe UI','PingFang SC','M
 /* ── Action Panel ── */
 .action-panel{flex-direction:column;gap:8px;margin-top:12px}
 .action-row{display:flex;gap:6px;justify-content:center;flex-wrap:wrap}
-.action-btn{padding:8px 14px;border:1px solid rgba(255,255,255,.08);border-radius:10px;background:rgba(255,255,255,.03);color:rgba(255,255,255,.5);font-size:13px;font-family:inherit;cursor:pointer;transition:all .2s}
+.action-btn{padding:5px 8px;border:1px solid rgba(255,255,255,.08);border-radius:8px;background:rgba(255,255,255,.03);color:rgba(255,255,255,.5);font-size:11px;font-family:inherit;cursor:pointer;transition:all .2s}
 .action-btn:not(.disabled):hover{border-color:rgba(255,255,255,.2);color:rgba(255,255,255,.9);background:rgba(255,255,255,.06)}
 .action-btn.disabled{opacity:.22;cursor:default;pointer-events:none}
 .action-btn.skill-btn{border-color:rgba(255,215,128,.15);color:#ffd780;background:rgba(255,215,128,.05)}
@@ -176,7 +170,38 @@ body{min-height:100vh;background:#0b0d17;font-family:'Segoe UI','PingFang SC','M
 .battle-log::-webkit-scrollbar{width:4px}
 .battle-log::-webkit-scrollbar-thumb{background:rgba(255,255,255,.06);border-radius:2px}
 .battle-log .log-entry{display:flex;gap:6px;align-items:baseline}
-.battle-log .log-entry.round{border-top:1px solid rgba(255,255,255,.04);margin-top:2px;padding-top:2px;color:rgba(255,255,255,.15)}</style>
+.battle-log .log-entry.round{border-top:1px solid rgba(255,255,255,.04);margin-top:2px;padding-top:2px;color:rgba(255,255,255,.15)}
+
+/* ── Battle Arena ── */
+.battle-arena{display:flex;gap:8px;align-items:stretch;margin-bottom:10px}
+.ba-side{width:64px;flex-shrink:0;display:flex;flex-direction:column;align-items:center;justify-content:flex-start}
+.ba-side .ba-avatar{width:46px;height:46px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:30px;margin-bottom:4px;position:relative}
+.ba-side .ba-avatar img{width:42px;height:42px;object-fit:contain;image-rendering:pixelated}
+.ba-player .ba-avatar{background:rgba(108,160,255,.08);border:1px solid rgba(108,160,255,.15)}
+.ba-player .ba-avatar.ba-attacking{animation:baAttack .35s ease-out}
+.ba-player .ba-avatar.ba-defending{animation:baDefend .3s ease-out}
+.ba-player .ba-avatar.ba-healing{animation:baHeal .4s ease-out}
+.ba-player .ba-avatar.ba-hit{animation:baHit .3s ease-out}
+.ba-monster .ba-avatar{background:rgba(224,108,108,.08);border:1px solid rgba(224,108,108,.15)}
+.ba-monster .ba-avatar.ma-damaged{animation:baMonsterDamage .3s ease-out}
+.ba-side .ba-name{font-size:12px;font-weight:700;color:#e8ddce;margin-bottom:5px;text-align:center;line-height:1.2}
+.ba-bar-row{display:flex;align-items:center;gap:2px;width:100%;margin-bottom:2px}
+.ba-bar-row .ba-lbl{width:18px;text-align:right;font-size:9px;color:rgba(255,255,255,.3);flex-shrink:0}
+.ba-bar-row .ba-bg{flex:1;height:5px;background:rgba(255,255,255,.06);border-radius:3px;overflow:hidden;min-width:0}
+.ba-bar-row .ba-fill{height:100%;border-radius:3px;transition:width .3s}
+.ba-bar-row .ba-fill.hp{background:linear-gradient(90deg,#e06c6c,#ff6b6b)}
+.ba-bar-row .ba-fill.mp{background:linear-gradient(90deg,#6ca0ff,#5b9aff)}
+.ba-bar-row .ba-fill.ehp{background:linear-gradient(90deg,#e06c6c,#ff6b6b)}
+.ba-bar-row .ba-txt{font-size:9px;color:rgba(255,255,255,.3);white-space:nowrap;flex-shrink:0;min-width:32px;text-align:right}
+.ba-vs{text-align:center;font-size:20px;color:rgba(255,215,128,.25);margin-bottom:4px}
+.ba-mid{flex:1;min-width:0;display:flex;flex-direction:column}
+@keyframes baAttack{0%{transform:translateX(0)}35%{transform:translateX(35px)}65%{transform:translateX(35px) scale(1.1)}100%{transform:translateX(0)}}
+@keyframes baDefend{0%{transform:scale(1)}50%{transform:scale(.88)}100%{transform:scale(1)}}
+@keyframes baHeal{0%{box-shadow:0 0 0 rgba(108,219,108,0)}50%{box-shadow:0 0 18px rgba(108,219,108,.5)}100%{box-shadow:0 0 0 rgba(108,219,108,0)}}
+@keyframes baHit{0%{transform:translateX(0)}25%{transform:translateX(5px)}50%{transform:translateX(-3px)}75%{transform:translateX(2px)}100%{transform:translateX(0)}}
+@keyframes baMonsterDamage{0%{opacity:1;transform:translateX(0)}25%{opacity:.5;transform:translateX(-8px)}50%{opacity:1;transform:translateX(4px)}75%{opacity:.7;transform:translateX(-2px)}100%{opacity:1;transform:translateX(0)}}
+
+.confirm-btn{padding:8px 24px;border:1px solid rgba(255,215,128,.25);border-radius:10px;background:rgba(255,215,128,.08);color:#ffd780;font-size:13px;font-family:inherit;cursor:pointer;transition:all .2s;margin-top:8px}.confirm-btn:hover{background:rgba(255,215,128,.16);border-color:#ffd780}.confirm-btn:focus{outline:2px solid rgba(255,215,128,.3)}.key-hint{font-size:10px;color:rgba(255,255,255,.2);margin-top:4px;display:flex;gap:4px;justify-content:center;flex-wrap:wrap}.key-hint kbd{padding:1px 5px;border:1px solid rgba(255,255,255,.08);border-radius:3px;font-size:9px;font-family:monospace;background:rgba(255,255,255,.03);color:rgba(255,255,255,.25)}@media(max-width:640px){.modal-box{padding:16px 12px}.ba-side{width:48px}.ba-side .ba-avatar{width:38px;height:38px;font-size:24px}}</style>
 </head>
 <body>
 
@@ -217,30 +242,41 @@ body{min-height:100vh;background:#0b0d17;font-family:'Segoe UI','PingFang SC','M
   <!-- ══ Battle Modal ══ -->
   <div class="modal-overlay" id="battleModal">
     <div class="modal-box">
-      <div class="battle-enemy">
-        <span class="be-icon" id="beIcon">👺</span>
-        <div class="be-name" id="beName">哥布林</div>
-        <div class="be-hp-row">
-          <div class="be-hp-bg"><div class="be-hp-fill" id="beHpFill" style="width:100%"></div></div>
-          <span class="be-hp-text" id="beHpText">30/30</span>
+      <div class="battle-arena">
+        <!-- Player Side -->
+        <div class="ba-side ba-player">
+          <div class="ba-avatar" id="baPlayerAvatar"><img src="images/character/face/warrior-male.png" id="baPlayerImg"></div>
+          <div class="ba-name" id="baPlayerName">战士</div>
+          <div class="ba-bar-row"><span class="ba-lbl">HP</span><div class="ba-bg"><div class="ba-fill hp" id="baHpFill" style="width:100%"></div></div><span class="ba-txt" id="baHpText">80/80</span></div>
+          <div class="ba-bar-row"><span class="ba-lbl">MP</span><div class="ba-bg"><div class="ba-fill mp" id="baMpFill" style="width:100%"></div></div><span class="ba-txt" id="baMpText">50/50</span></div>
+        </div>
+        <!-- Middle -->
+        <div class="ba-mid">
+          <div class="ba-vs">⚔️</div>
+          <div class="timer-bar"><div class="timer-fill safe" id="timerFill" style="width:100%"></div></div>
+          <div class="question-text" id="questionText">加载题目中……</div>
+          <div id="answerArea"></div>
+          <div class="action-panel" id="actionPanel" style="display:none">
+            <div class="action-row" id="skillRow"></div>
+            <div class="action-row" style="gap:8px">
+              <button class="action-btn attack-btn" id="actAttack" onclick="executeAction('attack')">⚔️ 攻击 <kbd style="font-size:9px;opacity:.4;margin-left:3px;border:1px solid rgba(255,255,255,.1);padding:0 3px;border-radius:2px">Q</kbd></button>
+              <button class="action-btn defend-btn" id="actDefend" onclick="executeAction('defend')">🛡️ 防御 <kbd style="font-size:9px;opacity:.4;margin-left:3px;border:1px solid rgba(255,255,255,.1);padding:0 3px;border-radius:2px">E</kbd></button>
+              <button class="action-btn potion-btn" id="actPotion" onclick="executePotion()">🧪 用药水 <kbd style="font-size:9px;opacity:.4;margin-left:3px;border:1px solid rgba(255,255,255,.1);padding:0 3px;border-radius:2px">R</kbd></button>
+            </div>
+            <div class="key-hint"><kbd>1</kbd>技能1 <kbd>2</kbd>技能2 <kbd>3</kbd>技能3 <kbd>4</kbd>技能4</div>
+          </div>
+          <div class="battle-result" id="battleResult" style="display:none"></div>
+          <div class="battle-log" id="battleLog"></div>
+        </div>
+        <!-- Monster Side -->
+        <div class="ba-side ba-monster">
+          <div class="ba-avatar" id="baMonsterAvatar">👺</div>
+          <div class="ba-name" id="beName">哥布林</div>
+          <div class="ba-bar-row"><span class="ba-lbl">HP</span><div class="ba-bg"><div class="ba-fill ehp" id="beHpFill" style="width:100%"></div></div><span class="ba-txt" id="beHpText">30/30</span></div>
         </div>
       </div>
-      <div class="timer-bar"><div class="timer-fill safe" id="timerFill" style="width:100%"></div></div>
-      <div class="question-text" id="questionText">加载题目中……</div>
-      <div id="answerArea"></div>
-      <div class="action-panel" id="actionPanel" style="display:none">
-        <div class="action-row" id="skillRow"></div>
-        <div class="action-row" style="gap:8px">
-          <button class="action-btn attack-btn" id="actAttack" onclick="executeAction('attack')">⚔️ 攻击</button>
-          <button class="action-btn defend-btn" id="actDefend" onclick="executeAction('defend')">🛡️ 防御</button>
-          <button class="action-btn potion-btn" id="actPotion" onclick="executePotion()">🧪 用药水</button>
-        </div>
-      </div>
-      <div class="battle-result" id="battleResult" style="display:none"></div>
-      <div class="battle-log" id="battleLog"></div>
     </div>
   </div>
-
   <!-- ══ Chest Modal ══ -->
   <div class="modal-overlay" id="chestModal">
     <div class="modal-box" style="max-width:380px">
@@ -293,6 +329,32 @@ body{min-height:100vh;background:#0b0d17;font-family:'Segoe UI','PingFang SC','M
 // ═══════════════════════════════════════════
 const urlParams = new URLSearchParams(window.location.search);
 const levelId = parseInt(urlParams.get('level')) || 1;
+
+
+// ─── 音频播放（音效 + BGM）───
+const _audioCache={};
+function playSFX(name, vol){
+  try{
+    const a=document.createElement('audio');
+    a.src='sounds/'+name+'.mp3';
+    a.volume=vol!=null?vol:0.3;
+    a.play().catch(function(){});
+  }catch(e){}
+}
+function playBGM(name, vol){
+  var old=document.getElementById('_bgm');
+  if(old){old.pause();old.remove();}
+  var a=document.createElement('audio');
+  a.id='_bgm';
+  a.loop=true;
+  a.src='sounds/'+name+'.mp3';
+  a.volume=vol!=null?vol:0.15;
+  a.play().catch(function(){});
+}
+function stopBGM(){
+  var a=document.getElementById('_bgm');
+  if(a){a.pause();a.remove();}
+}
 
 function getPlayerData() {
   try { return JSON.parse(localStorage.getItem('hanako_game_data')) || {}; } catch(e) { return {}; }
@@ -366,6 +428,122 @@ const PASSIVE_REGISTRY={
 };
 
 
+// ════════ 难度系数配置 ════════
+const DIFFICULTY_CONFIG = {
+  easy:   { hpMul:0.7, atkMul:0.7, lootMul:1.3, timeMul:1.4 },
+  normal: { hpMul:1.0, atkMul:1.0, lootMul:1.0, timeMul:1.0 },
+  hard:   { hpMul:1.5, atkMul:1.5, lootMul:0.6, timeMul:0.7 }
+};
+
+function getDifficulty(){
+  const data = getPlayerData();
+  return data.difficulty || 'normal';
+}
+
+function getDifficultyConfig(){
+  return DIFFICULTY_CONFIG[getDifficulty()] || DIFFICULTY_CONFIG.normal;
+}
+
+// ════════ 套装效果系统 ════════
+const SET_BONUSES = {
+  warrior_set:{
+    name:'战神套',pieces:['weapon','offhand','head','chest','legs','shoes','ring1','neck'],
+    tiers:[
+      {count:2,effects:[{type:'stat',stat:'str',value:15}]},
+      {count:4,effects:[{type:'stat',stat:'hp',value:80}]},
+      {count:6,effects:[{type:'counter',dmgMul:0.5}]},
+      {count:8,effects:[{type:'atk_per_kill',value:3}]}
+    ]
+  },
+  mage_set:{
+    name:'大魔导套',pieces:['weapon','offhand','head','chest','legs','shoes','ring1','neck'],
+    tiers:[
+      {count:2,effects:[{type:'stat',stat:'int',value:15}]},
+      {count:4,effects:[{type:'stat',stat:'mp',value:60}]},
+      {count:6,effects:[{type:'skill_dmg_boost',value:0.2}]},
+      {count:8,effects:[{type:'mp_on_kill',value:10}]}
+    ]
+  },
+  priest_set:{
+    name:'大主教套',pieces:['weapon','offhand','head','chest','legs','shoes','ring1','neck'],
+    tiers:[
+      {count:2,effects:[{type:'stat',stat:'spr',value:15}]},
+      {count:4,effects:[{type:'stat',stat:'heal_boost',value:0.1}]},
+      {count:6,effects:[{type:'clear_debuff_cycle',value:3}]},
+      {count:8,effects:[{type:'revive_once'}]}
+    ]
+  },
+  archer_set:{
+    name:'神射手套',pieces:['weapon','offhand','head','chest','legs','shoes','ring2','neck'],
+    tiers:[
+      {count:2,effects:[{type:'stat',stat:'agi',value:15}]},
+      {count:4,effects:[{type:'stat',stat:'crit_chance',value:0.1}]},
+      {count:6,effects:[{type:'crit_dmg_mul',value:0.5}]},
+      {count:8,effects:[{type:'hp_on_kill_pct',value:0.15}]}
+    ]
+  }
+};
+
+// 各职业默认对应的套装
+const CLASS_SET_MAP = {warrior:'warrior_set',mage:'mage_set',priest:'priest_set',archer:'archer_set'};
+
+function getEquippedSetCount(setId){
+  const data = getPlayerData();
+  const eq = data.equipment || {};
+  const set = SET_BONUSES[setId];
+  if (!set) return 0;
+  let count = 0;
+  for (const slot of set.pieces) {
+    if (eq[slot] && eq[slot].setId === setId) count++;
+  }
+  return count;
+}
+
+function getActiveSetTiers(setId){
+  const count = getEquippedSetCount(setId);
+  const set = SET_BONUSES[setId];
+  if (!set) return [];
+  return set.tiers.filter(t => count >= t.count);
+}
+
+function applySetBonuses(){
+  const cls = getPlayerData().selectedClass || 'warrior';
+  const setId = CLASS_SET_MAP[cls];
+  if (!setId) return {};
+  const tiers = getActiveSetTiers(setId);
+  const result = {stats:{},combat:{}};
+  tiers.forEach(t => {
+    t.effects.forEach(e => {
+      if (e.type === 'stat') {
+        result.stats[e.stat] = (result.stats[e.stat] || 0) + e.value;
+      } else if (e.type === 'atk_per_kill') {
+        result.combat.atkPerKill = e.value;
+      } else if (e.type === 'skill_dmg_boost') {
+        result.combat.skillDmgBoost = e.value;
+      } else if (e.type === 'mp_on_kill') {
+        result.combat.mpOnKill = e.value;
+      } else if (e.type === 'hp_on_kill_pct') {
+        result.combat.hpOnKillPct = e.value;
+      } else if (e.type === 'counter') {
+        result.combat.counterMul = e.dmgMul;
+      } else if (e.type === 'clear_debuff_cycle') {
+        result.combat.clearDebuffCycle = e.value;
+      } else if (e.type === 'revive_once') {
+        result.combat.reviveOnce = true;
+      } else if (e.type === 'crit_chance') {
+        result.stats.critChance = e.value;
+      } else if (e.type === 'crit_dmg_mul') {
+        result.stats.critDmgMul = e.value;
+      } else if (e.type === 'heal_boost') {
+        result.stats.healBoost = e.value;
+      }
+    });
+  });
+  return result;
+}
+
+// 将套装被动加入战斗状态
+let battleSetEffects = {};
 
 function getScaledBaseStats(cls,level){
   const b=classBaseStats[cls]||classBaseStats.warrior;
@@ -421,6 +599,32 @@ let player={
   gold:char.gold||0
 };
 
+// ── 套装属性加成（2件/4件静态效果）──
+battleSetEffects = {};
+const setBonuses = applySetBonuses();
+if(setBonuses && setBonuses.stats){
+  const sb = setBonuses.stats;
+  // 属性加成
+  baseStats.str = (baseStats.str || 0) + (sb.str || 0);
+  baseStats.int = (baseStats.int || 0) + (sb.int || 0);
+  baseStats.agi = (baseStats.agi || 0) + (sb.agi || 0);
+  baseStats.spr = (baseStats.spr || 0) + (sb.spr || 0);
+  // 重新计算攻防
+  player.attack = calcAttack(cls,baseStats,eqS,player.level);
+  player.defense = Math.round(3+baseStats.str*0.05+(eqS.str||0)*0.05);
+  // HP/MP 加成
+  if(sb.hp){ player.maxHp += sb.hp; player.hp = Math.min(player.hp + sb.hp, player.maxHp); }
+  if(sb.mp){ player.maxMp += sb.mp; player.mp = Math.min(player.mp + sb.mp, player.maxMp); }
+  // 战斗效果
+  if(setBonuses.combat){
+    battleSetEffects = setBonuses.combat;
+    // 暴击加成
+    if(sb.critChance !== undefined) player.critChance = sb.critChance;
+    if(sb.critDmgMul !== undefined) player.critDmgMul = sb.critDmgMul;
+    if(sb.healBoost !== undefined) player.healBoost = sb.healBoost;
+  }
+}
+
 // ── 战斗 Buff 状态 ──
 let battleBuffs={
   playerAttackMul:1.0, playerAttackMulStacks:0,  // 战吼
@@ -447,6 +651,10 @@ function getActivePassives(){
   // 装备槽被动
   const eq=player.equippedPassive;
   if(eq&&PASSIVE_REGISTRY[eq]&&player.level>=PASSIVE_REGISTRY[eq].unlockLevel) list.push(PASSIVE_REGISTRY[eq]);
+  // 套装战斗效果（6件/8件）
+  if(battleSetEffects && battleSetEffects.skillDmgBoost){
+    list.push({effect:{type:'skill_dmg_boost',skills:['mage_1','mage_2','mage_3','warrior_1','priest_2','priest_1','archer_1','archer_2'],value:battleSetEffects.skillDmgBoost}});
+  }
   return list;
 }
 
@@ -823,6 +1031,83 @@ let battleQuestion=null;
 let timeLeft=0;
 let answerGiven=false;
 let autoContinueTimer=null;
+let battleCorrectAnswer='';
+
+// ─── 音频朗读（Web Speech API）───
+let _voicesLoaded=false;
+function ensureVoices(){
+  if(!_voicesLoaded&&window.speechSynthesis){
+    window.speechSynthesis.getVoices();
+    window.speechSynthesis.onvoiceschanged=()=>{_voicesLoaded=true;};
+    _voicesLoaded=true;
+  }
+}
+ensureVoices();
+
+function buildSpeakSentence(q, answerText){
+  let text=q.question;
+  // 去除括号注释： （Do/Does） (is/are)
+  text=text.replace(/[（(][^）)]*[）)]/g,'').trim();
+  // 去除箭头前的题干： "I like winter. → I ___ like winter." → "I ___ like winter."
+  text=text.replace(/^.*?→\s*/,'').trim();
+  // 有空格 → 替换成答案
+  if(text.includes('___')){
+    return text.replace(/__+/g, answerText);
+  }
+  // 无空格 → 只读答案词
+  return answerText;
+}
+
+let _lastSpoken='';
+function _doSpeak(text, lang){
+  if(!window.speechSynthesis) return;
+  window.speechSynthesis.cancel();
+  const utter=new SpeechSynthesisUtterance(text);
+  utter.lang=lang||'en-US';
+  utter.rate=0.85;
+  const voices=window.speechSynthesis.getVoices();
+  for(const v of voices){
+    if(v.lang.startsWith('en')&&(v.name.includes('Microsoft David')||v.name.includes('Microsoft Zira')||v.name.includes('Samantha')||v.name.includes('Google US English'))){
+      utter.voice=v; break;
+    }
+  }
+  window.speechSynthesis.speak(utter);
+}
+function speakAnswer(q, answerText){
+  const sentence=buildSpeakSentence(q, answerText);
+  _lastSpoken=sentence;
+  const replayBtn=document.getElementById('qReplayBtn');
+  if(replayBtn) replayBtn.style.display='';
+  _doSpeak(sentence);
+}
+
+function replayLast(){
+  if(_lastSpoken) _doSpeak(_lastSpoken);
+}
+
+// ─── 战场更新 ───
+function updateBattleArena(){
+  const hf=document.getElementById('baHpFill'), mf=document.getElementById('baMpFill');
+  const ht=document.getElementById('baHpText'), mt=document.getElementById('baMpText');
+  if(hf) hf.style.width=Math.max(0,player.hp/player.maxHp*100)+'%';
+  if(mf) mf.style.width=Math.max(0,player.mp/player.maxMp*100)+'%';
+  if(ht) ht.textContent=Math.max(0,player.hp)+'/'+player.maxHp;
+  if(mt) mt.textContent=Math.max(0,player.mp)+'/'+player.maxMp;
+}
+
+// ─── 动作动画 ───
+function triggerAnim(elId,animClass){
+  const el=document.getElementById(elId);
+  if(!el) return;
+  el.classList.remove(animClass);
+  void el.offsetWidth;
+  el.classList.add(animClass);
+}
+function animAttack(){ triggerAnim('baPlayerAvatar','ba-attacking'); }
+function animDefend(){ triggerAnim('baPlayerAvatar','ba-defending'); }
+function animHeal(){ triggerAnim('baPlayerAvatar','ba-healing'); }
+function animPlayerHit(){ triggerAnim('baPlayerAvatar','ba-hit'); }
+function animMonsterHit(){ triggerAnim('baMonsterAvatar','ma-damaged'); }
 
 function addLog(icon,text,isRound=false){
   const log=document.getElementById('battleLog');
@@ -863,12 +1148,17 @@ function killMonster(){
   player.xp+=xp;
   addLog('💥','击败了 '+currentMonster.name+'！获得 '+xp+' XP');
   battlePassiveState.killsThisBattle++;
+  // 套装·击杀回能
+  if(battleSetEffects.mpOnKill){ player.mp=Math.min(player.maxMp,player.mp+battleSetEffects.mpOnKill); addLog('💧','套装效果 回复 '+battleSetEffects.mpOnKill+' MP'); }
+  if(battleSetEffects.hpOnKillPct){ const heal=Math.round(player.maxHp*battleSetEffects.hpOnKillPct); player.hp=Math.min(player.maxHp,player.hp+heal); addLog('💚','套装效果 回复 '+heal+' HP'); }
 
   // 战利品
   let lootItems=[];
   if(currentMonster.loot){
     currentMonster.loot.forEach(l=>{
-      if(Math.random()<(l.chance||1)){
+      const dc_loot=getDifficultyConfig();
+      const effectiveChance=Math.min(1,(l.chance||1)*dc_loot.lootMul);
+      if(Math.random()<effectiveChance){
         if(l.type==='gold'){
           const amt=Math.floor(Math.random()*(l.max-l.min+1))+l.min;
           player.gold+=amt;
@@ -911,6 +1201,59 @@ function killMonster(){
   },1500);
 }
 
+// ─── 弹窗回车确认（胜利/失败/宝箱/通用） ───
+document.addEventListener('keydown', function modalEnterHandler(e){
+  if(e.key!=='Enter') return;
+  const winModal=document.getElementById('winModal');
+  const loseModal=document.getElementById('loseModal');
+  const chestModal=document.getElementById('chestModal');
+  if(winModal.classList.contains('show')){
+    const btn=winModal.querySelector('.w-btn');
+    if(btn){ btn.click(); e.preventDefault(); }
+  }else if(loseModal.classList.contains('show')){
+    const btn=loseModal.querySelector('.l-btn');
+    if(btn){ btn.click(); e.preventDefault(); }
+  }else if(chestModal.classList.contains('show')){
+    const btn=chestModal.querySelector('.cl-btn');
+    if(btn){ btn.click(); e.preventDefault(); }
+  }
+});
+
+// ─── 战斗键盘快捷键 ───
+function battleKeyHandler(e){
+  const key=e.key.toLowerCase();
+  // 确认按钮（答错后）—— 仅在非答题状态下生效，避免和 Enter 提交答案冲突
+  if(key==='enter'){
+    const answerArea=document.getElementById('answerArea');
+    if(answerArea.style.display==='none'){
+      const confirmBtn=document.querySelector('#battleResult .confirm-btn');
+      if(confirmBtn){ confirmBtn.click(); e.preventDefault(); return; }
+    }
+  }
+  // 动作面板快捷键
+  if(document.getElementById('actionPanel').style.display!=='none'){
+    if(key==='q'){ document.getElementById('actAttack').click(); e.preventDefault(); return; }
+    if(key==='e'){ document.getElementById('actDefend').click(); e.preventDefault(); return; }
+    if(key==='r'){ document.getElementById('actPotion').click(); e.preventDefault(); return; }
+    if(['1','2','3','4'].includes(key)&&!e.ctrlKey&&!e.altKey&&!e.metaKey){
+      const btns=document.querySelectorAll('#skillRow .action-btn:not(.disabled)');
+      const idx=parseInt(key)-1;
+      if(btns[idx]){ btns[idx].click(); e.preventDefault(); }
+    }
+    return;
+  }
+  // 选择题快捷键
+  const answerArea=document.getElementById('answerArea');
+  if(answerArea.style.display!=='none'&&!answerGiven){
+    const q=battleQuestion;
+    if(q&&q.type==='choice'&&['1','2','3','4'].includes(key)&&!e.ctrlKey&&!e.altKey&&!e.metaKey){
+      const btns=document.querySelectorAll('.choice-btn:not(:disabled)');
+      const idx=parseInt(key)-1;
+      if(idx>=0&&idx<btns.length){ btns[idx].click(); e.preventDefault(); }
+    }
+  }
+}
+
 function startBattle(monster){
   if(battleInProgress) return;
   stopMonsterMovement();
@@ -923,13 +1266,26 @@ function startBattle(monster){
   monsterCombo=0;
   battlePassiveState={killsThisBattle:0,firstHitTaken:false,roundCounter:0,poisonTurns:0};
   currentMonster=monster;
+  // 难度系数：缩放怪物血量
+  const dc=getDifficultyConfig();
+  if(currentMonster.hp && currentMonster.maxHp){
+    currentMonster.hp=Math.max(1,Math.round(currentMonster.hp*dc.hpMul));
+    currentMonster.maxHp=Math.max(1,Math.round(currentMonster.maxHp*dc.hpMul));
+  }
   document.getElementById('battleLog').innerHTML='';
   clearTimeout(autoContinueTimer);
 
-  document.getElementById('beIcon').textContent=monster.icon;
+  document.getElementById('baMonsterAvatar').innerHTML=monster.icon;
   document.getElementById('beName').textContent=monster.name;
+  playBGM('battle_background_music',0.12);
+  // 设置玩家侧
+  const pImg=document.getElementById('baPlayerImg');
+  if(pImg) pImg.src='images/character/face/'+cls+'-'+gender+'.png';
+  document.getElementById('baPlayerName').textContent=player.name;
   updateBeHp();
+  updateBattleArena();
   document.getElementById('battleModal').classList.add('show');
+  document.addEventListener('keydown', battleKeyHandler);
   nextBattleRound();
 }
 
@@ -945,6 +1301,10 @@ function nextBattleRound(){
   battleBuffs.dodge=false;
   battleBuffs.manaShield=false;
   answerGiven=false;
+  // 清理上一轮残留的确认按钮
+  const prevRes=document.getElementById('battleResult');
+  prevRes.innerHTML='';
+  prevRes.style.display='none';
 
   battlePassiveState.roundCounter++;
 
@@ -961,6 +1321,13 @@ function nextBattleRound(){
       addLog(p.icon,'圣盾 本回合自动格挡');
     }
   });
+
+  // ── 套装·净化：定期消除负面状态 ──
+  if(battleSetEffects && battleSetEffects.clearDebuffCycle && battlePassiveState.roundCounter % battleSetEffects.clearDebuffCycle === 0){
+    monsterCombo=0;
+    battlePassiveState.poisonTurns=0;
+    addLog('✨','套装效果·净化 清除了所有负面状态');
+  }
 
   // ── 淬毒扣血 ──
   if(battlePassiveState.poisonTurns>0){
@@ -988,13 +1355,15 @@ function nextBattleRound(){
   // 随机抽题
   const qs=levelData.questions;
   battleQuestion=qs[Math.floor(Math.random()*qs.length)];
-  const threshold=battleQuestion.timeThreshold||10;
+  const dc_time=getDifficultyConfig();
+  const threshold=Math.round((battleQuestion.timeThreshold||10)*dc_time.timeMul);
 
   const roundNum=currentMonster.maxHp-currentMonster.hp+1;
   addLog('━','━ 第 '+roundNum+' 回合 ━',true);
 
   const qDiv=document.getElementById('questionText');
-  qDiv.innerHTML='<span class="q-label">❓ 第 '+roundNum+' 回合（时限 '+threshold+' 秒）</span>'+battleQuestion.question;
+  qDiv.innerHTML='<span class="q-label">❓ 第 '+roundNum+' 回合（时限 '+threshold+' 秒）</span>'+battleQuestion.question+
+    '<span id="qReplayBtn" style="display:none;cursor:pointer;margin-left:6px;font-size:16px;vertical-align:middle" onclick="replayLast()">🔊</span>';
 
   renderAnswerArea();
 
@@ -1014,7 +1383,15 @@ function nextBattleRound(){
     else if(timeLeft<=t50) timerFill.className='timer-fill warn';
     if(timeLeft<=0){
       clearInterval(battleTimer);
-      if(!answerGiven){ answerGiven=true; resolveRound('timeout'); }
+      if(!answerGiven){
+        answerGiven=true;
+        if(battleQuestion.type==='choice') battleCorrectAnswer=battleQuestion.options[battleQuestion.answer];
+        else{
+          const altsList=battleQuestion.alternatives&&battleQuestion.alternatives.length?(' / '+battleQuestion.alternatives.join(' / ')):'';
+          battleCorrectAnswer=battleQuestion.answer+altsList;
+        }
+        resolveRound('timeout');
+      }
     }
   },100);
 }
@@ -1026,18 +1403,20 @@ function renderAnswerArea(){
   if(battleQuestion.type==='choice'){
     const grid=document.createElement('div');
     grid.className='choice-grid';
+    const keyLabels=['①','②','③','④'];
     battleQuestion.options.forEach((opt,idx)=>{
       const btn=document.createElement('button');
       btn.className='choice-btn';
-      btn.innerHTML=opt;
+      btn.innerHTML='<span style="display:inline-block;width:16px;text-align:center;opacity:.35;font-size:11px;margin-right:4px">'+(keyLabels[idx]||'·')+'</span>'+opt;
       btn.addEventListener('click',()=>{if(!answerGiven){answerGiven=true;submitChoice(idx);}});
+      btn.addEventListener('keydown',(e)=>{if(e.key==='Enter'&&!answerGiven) e.stopPropagation();});
       grid.appendChild(btn);
     });
     area.appendChild(grid);
   }else{
     const input=document.createElement('input');
     input.type='text'; input.className='fill-input'; input.placeholder='输入答案……'; input.id='fillInput';
-    input.addEventListener('keydown',(e)=>{if(e.key==='Enter'&&!answerGiven){answerGiven=true;submitFill();}});
+    input.addEventListener('keydown',(e)=>{if(e.key==='Enter'&&!answerGiven){answerGiven=true;e.stopPropagation();submitFill();}});
     area.appendChild(input);
     const btn=document.createElement('button');
     btn.className='fill-submit'; btn.textContent='提交';
@@ -1051,7 +1430,10 @@ function submitChoice(idx){
   clearInterval(battleTimer);
   const btns=document.querySelectorAll('.choice-btn');
   btns.forEach((b,i)=>{b.disabled=true; if(i===battleQuestion.answer) b.classList.add('correct'); if(i===idx&&idx!==battleQuestion.answer) b.classList.add('wrong');});
-  resolveRound(idx===battleQuestion.answer?'correct':'wrong');
+  if(idx!==battleQuestion.answer) battleCorrectAnswer=battleQuestion.options[battleQuestion.answer];
+  const correct=idx===battleQuestion.answer;
+  if(correct) speakAnswer(battleQuestion, battleQuestion.options[battleQuestion.answer]);
+  resolveRound(correct?'correct':'wrong');
 }
 
 function submitFill(){
@@ -1063,6 +1445,11 @@ function submitFill(){
   const correct=val===ans||alts.includes(val);
   input.disabled=true;
   if(!correct) input.style.borderColor='rgba(224,108,108,.4)'; else input.style.borderColor='rgba(108,219,108,.4)';
+  if(!correct){
+    const altsList=battleQuestion.alternatives&&battleQuestion.alternatives.length?(' / '+battleQuestion.alternatives.join(' / ')):'';
+    battleCorrectAnswer=battleQuestion.answer+altsList;
+  }
+  if(correct) speakAnswer(battleQuestion, battleQuestion.answer);
   resolveRound(correct?'correct':'wrong');
 }
 
@@ -1079,7 +1466,8 @@ function resolveRound(result){
 
 // ══ 动作选择面板 ══
 function showActionPanel(){
-  const threshold=battleQuestion.timeThreshold||10;
+  const dc_time=getDifficultyConfig();
+  const threshold=Math.round((battleQuestion.timeThreshold||10)*dc_time.timeMul);
   const timeUsed=threshold-timeLeft;
   const pct=timeUsed/threshold;
 
@@ -1139,14 +1527,24 @@ function executeAction(type){
   document.getElementById('actionPanel').style.display='none';
   const resDiv=document.getElementById('battleResult');
   resDiv.style.display='block';
-  updatePlayerBars();
+  updatePlayerBars();updateBattleArena();
 
   if(type==='attack'){
+    animAttack();
+    playSFX('sword_hit',0.35);
     const mul=battleBuffs.playerAttackMul*getPassiveAttackMul();
-    const dmg=Math.max(1,Math.round(player.attack*mul)+Math.floor(Math.random()*5));
+    let dmg=Math.max(1,Math.round(player.attack*mul)+Math.floor(Math.random()*5));
+    // 套装·暴击
+    let critFlag='';
+    if(player.critChance && Math.random()<player.critChance){
+      const critMul=player.critDmgMul?1+player.critDmgMul:1.5;
+      dmg=Math.round(dmg*critMul);
+      critFlag=' 💥暴击！';
+    }
     currentMonster.hp=Math.max(0,currentMonster.hp-dmg);
     updateBeHp();
-    addLog('⚔️','攻击 '+currentMonster.name+' 造成 '+dmg+' 伤害');
+    animMonsterHit();
+    addLog('⚔️','攻击 '+currentMonster.name+' 造成 '+dmg+' 伤害'+critFlag);
     // 淬毒
     getActivePassives().forEach(p=>{
       if(p.effect.type==='poison_on_hit'&&Math.random()<p.effect.chance){
@@ -1154,10 +1552,21 @@ function executeAction(type){
         addLog('☠️','淬毒！附加 '+p.effect.dmg+' 点/回合 ×'+p.effect.turns+' 回合');
       }
     });
-    resDiv.innerHTML='<span class="br-icon">⚔️</span><div class="br-text attack">攻击！</div><div class="br-sub">对 '+currentMonster.name+' 造成 '+dmg+' 点伤害</div>';
+    resDiv.innerHTML='<span class="br-icon">⚔️</span><div class="br-text attack">攻击！'+(critFlag?' 💥暴击！':'')+'</div><div class="br-sub">对 '+currentMonster.name+' 造成 '+dmg+' 点伤害</div>';
   }else{
+    animDefend();
+    playSFX('shield_block',0.3);
     addLog('🛡️','格挡 '+currentMonster.name+' 的攻击');
-    resDiv.innerHTML='<span class="br-icon">🛡️</span><div class="br-text defend">格挡</div><div class="br-sub">挡下了 '+currentMonster.name+' 的攻击</div>';
+    let defendHtml='<span class="br-icon">🛡️</span><div class="br-text defend">格挡</div><div class="br-sub">挡下了 '+currentMonster.name+' 的攻击</div>';
+    // 套装·反击
+    if(battleSetEffects && battleSetEffects.counterMul){
+      const counterDmg=Math.max(1,Math.round(player.attack*battleSetEffects.counterMul));
+      currentMonster.hp=Math.max(0,currentMonster.hp-counterDmg);
+      updateBeHp();
+      addLog('⚡','套装效果·反击 造成 '+counterDmg+' 伤害');
+      defendHtml+='<div style="margin-top:4px;font-size:12px;color:#ffd780">⚡ 反击！造成 '+counterDmg+' 点伤害</div>';
+    }
+    resDiv.innerHTML=defendHtml;
   }
   scheduleAdvance(1.0);
 }
@@ -1168,6 +1577,8 @@ function executeSkill(skillId){
   resDiv.style.display='block';
   const s=SKILL_REGISTRY[skillId];
   if(!s)return;
+  animAttack();
+  playSFX('magic_spell',0.3);
 
   let actualMpCost=s.mpCost;
   // ── 应用被动：法术专注（MP 消耗降低）──
@@ -1175,7 +1586,7 @@ function executeSkill(skillId){
   actualMpCost=Math.max(0,actualMpCost);
   player.mp-=actualMpCost;
   if(player.mp<0)player.mp=0;
-  updatePlayerBars();
+  updatePlayerBars();updateBattleArena();
 
   const eff=s.effect;
   const sc=getScaledBaseStats(cls,player.level);
@@ -1226,6 +1637,7 @@ function executeSkill(skillId){
   }else if(eff.type==='heal'){
     let healMul=1;
     getActivePassives().forEach(p=>{ if(p.effect.type==='heal_boost') healMul+=p.effect.value; });
+    if(player.healBoost) healMul += player.healBoost;
     const heal=Math.round(player.maxHp*eff.percent*healMul);
     player.hp=Math.min(player.maxHp,player.hp+heal);
     updatePlayerBars();
@@ -1260,20 +1672,26 @@ function executePotion(){
   const mpPot=player.inventory.find(i=>i.id==='mp_potion');
 
   if(hpPot){
+    animHeal();
+    playSFX('magic_spell',0.15);
+    _doSpeak('生命药水','zh-CN');
     const heal=80;
     player.hp=Math.min(player.maxHp,player.hp+heal);
     hpPot.qty--;
     if(hpPot.qty<=0) player.inventory=player.inventory.filter(i=>i.id!=='hp_potion');
-    updatePlayerBars();
+    updatePlayerBars();updateBattleArena();
     resDiv.innerHTML='<span class="br-icon">🧪</span><div class="br-text defend">使用生命药水</div><div class="br-sub">恢复 '+heal+' 点生命值</div>';
     addLog('🧪','使用生命药水，恢复 '+heal+' HP');
     saveGameState();
   }else if(mpPot){
+    animHeal();
+    playSFX('magic_spell',0.15);
+    _doSpeak('法力药水','zh-CN');
     const restore=40;
     player.mp=Math.min(player.maxMp,player.mp+restore);
     mpPot.qty--;
     if(mpPot.qty<=0) player.inventory=player.inventory.filter(i=>i.id!=='mp_potion');
-    updatePlayerBars();
+    updatePlayerBars();updateBattleArena();
     resDiv.innerHTML='<span class="br-icon">💧</span><div class="br-text defend">使用法力药水</div><div class="br-sub">恢复 '+restore+' 点法力值</div>';
     addLog('💧','使用法力药水，恢复 '+restore+' MP');
     saveGameState();
@@ -1282,18 +1700,40 @@ function executePotion(){
 }
 
 // ══ 怪物攻击 + 连招 ══
+// ─── 答错后确认继续 ───
+function showContinueConfirm(){
+  cancelAdvance();
+  const resDiv=document.getElementById('battleResult');
+  const btn=document.createElement('button');
+  btn.className='confirm-btn';
+  btn.textContent='⏩ 继续（Enter）';
+  btn.addEventListener('click',()=>{ cancelAdvance(); advanceBattle(); });
+  resDiv.appendChild(document.createElement('br'));
+  resDiv.appendChild(btn);
+  // 延迟聚焦，避免在 keydown 回调中聚焦而触发浏览器自动点击
+  setTimeout(() => btn.focus(), 0);
+}
+
 function handleMonsterAttack(){
   const resDiv=document.getElementById('battleResult');
   resDiv.style.display='block';
+  // 答错时显示正确答案
+  let correctHtml='';
+  if(battleCorrectAnswer){
+    correctHtml='<div style="margin-bottom:6px;padding:5px 10px;border-radius:6px;background:rgba(108,219,108,.06);border:1px solid rgba(108,219,108,.15);font-size:12px;color:#8aff8a">✅ 正确答案：'+battleCorrectAnswer+'</div>';
+    battleCorrectAnswer='';
+  }
 
+  playSFX('monster_attack',0.3);
   if(battleBuffs.dodge){
-    resDiv.innerHTML='<span class="br-icon">💨</span><div class="br-text defend">闪避！</div><div class="br-sub">躲开了 '+currentMonster.name+' 的攻击</div>';
+    resDiv.innerHTML=correctHtml+'<span class="br-icon">💨</span><div class="br-text defend">闪避！</div><div class="br-sub">躲开了 '+currentMonster.name+' 的攻击</div>';
     addLog('💨','闪避了 '+currentMonster.name+' 的攻击');
-    scheduleAdvance(1.0);
+    showContinueConfirm();
     return;
   }
 
-  let baseDmg=Math.max(1,currentMonster.attack-Math.floor(player.defense*0.3));
+  const dc_atk=getDifficultyConfig();
+  let baseDmg=Math.max(1,Math.round((currentMonster.attack-Math.floor(player.defense*0.3))*dc_atk.atkMul));
 
   // ── 被动：首次击中减半（坚韧）──
   if(!battlePassiveState.firstHitTaken){
@@ -1304,9 +1744,9 @@ function handleMonsterAttack(){
   // ── 被动：闪避（轻灵）──
   let passiveDodge=false;
   getActivePassives().forEach(p=>{ if(p.effect.type==='dodge_chance'&&Math.random()<p.effect.value){ passiveDodge=true; addLog(p.icon,'轻灵 触发闪避'); } });
-  if(passiveDodge&&!battleBuffs.dodge){ resDiv.innerHTML='<span class="br-icon">💨</span><div class="br-text defend">轻灵闪避！</div><div class="br-sub">躲开了 '+currentMonster.name+' 的攻击</div>';
+  if(passiveDodge&&!battleBuffs.dodge){ resDiv.innerHTML=correctHtml+'<span class="br-icon">💨</span><div class="br-text defend">轻灵闪避！</div><div class="br-sub">躲开了 '+currentMonster.name+' 的攻击</div>';
     addLog('💨','躲开了 '+currentMonster.name+' 的攻击');
-    scheduleAdvance(1.0); return; }
+    showContinueConfirm(); return; }
 
   // ── 被动：伤害减免（铁骨）──
   getActivePassives().forEach(p=>{ if(p.effect.type==='dmg_taken_reduce') baseDmg=Math.round(baseDmg*(1-p.effect.value)); });
@@ -1330,29 +1770,42 @@ function handleMonsterAttack(){
   if(battleBuffs.manaShield){
     const mpCost=baseDmg*2;
     player.mp=Math.max(0,player.mp-mpCost);
-    updatePlayerBars();
-    resDiv.innerHTML='<span class="br-icon">🔮</span><div class="br-text defend">法力护盾</div><div class="br-sub">消耗 '+mpCost+' MP 抵消 '+baseDmg+' 点伤害</div>';
+    updatePlayerBars();updateBattleArena();
+    resDiv.innerHTML=correctHtml+'<span class="br-icon">🔮</span><div class="br-text defend">法力护盾</div><div class="br-sub">消耗 '+mpCost+' MP 抵消 '+baseDmg+' 点伤害</div>';
     addLog('🔮','法力护盾 消耗 '+mpCost+' MP 抵消 '+baseDmg+' 伤害');
   }else{
     player.hp=Math.max(0,player.hp-baseDmg);
-    updatePlayerBars();
+    updatePlayerBars();updateBattleArena();
     if(skillUsed){
-      resDiv.innerHTML='<span class="br-icon">'+skillIcon+'</span><div class="br-text hit">'+skillName+'！</div><div class="br-sub">'+currentMonster.name+' 发动技能，造成 '+baseDmg+' 点伤害（连错 '+monsterCombo+' 次）</div>';
+      resDiv.innerHTML=correctHtml+'<span class="br-icon">'+skillIcon+'</span><div class="br-text hit">'+skillName+'！</div><div class="br-sub">'+currentMonster.name+' 发动技能，造成 '+baseDmg+' 点伤害（连错 '+monsterCombo+' 次）</div>';
+      animMonsterHit();
       addLog(skillIcon,currentMonster.name+' 发动 '+skillName+' 造成 '+baseDmg+' 伤害');
     }else{
-      resDiv.innerHTML='<span class="br-icon">❌</span><div class="br-text hit">回答错误！</div><div class="br-sub">'+currentMonster.name+' 攻击，造成 '+baseDmg+' 点伤害</div>';
+      resDiv.innerHTML=correctHtml+'<span class="br-icon">❌</span><div class="br-text hit">回答错误！</div><div class="br-sub">'+currentMonster.name+' 攻击，造成 '+baseDmg+' 点伤害</div>';
+      animMonsterHit();animPlayerHit();
       addLog('❌',currentMonster.name+' 攻击 造成 '+baseDmg+' 伤害');
     }
   }
 
   if(player.hp<=0){
+    // 套装·复活
+    if(battleSetEffects && battleSetEffects.reviveOnce && !battleSetEffects._reviveUsed){
+      battleSetEffects._reviveUsed=true;
+      player.hp=Math.round(player.maxHp*0.3);
+      updatePlayerBars();
+      addLog('✨','套装效果·圣光庇护！复活！恢复 30% HP');
+      const tempDiv=document.getElementById('battleResult');
+      tempDiv.innerHTML=tempDiv.innerHTML+'<div style="margin-top:6px;font-size:12px;color:#8aff8a">✨ 圣光庇护！你被复活了！</div>';
+      scheduleAdvance(1.0);
+      return;
+    }
     battleInProgress=false;
     clearInterval(battleTimer);
     addLog('💀','力竭倒地……');
     document.getElementById('battleModal').classList.remove('show');
     document.getElementById('loseModal').classList.add('show');
   }else{
-    scheduleAdvance(1.0);
+    showContinueConfirm();
   }
 }
 
@@ -1429,6 +1882,8 @@ function endBattle(win){
 }
 
 function closeBattle(){
+  stopBGM();playBGM('map_background_music',0.12);
+  document.removeEventListener('keydown', battleKeyHandler);
   document.getElementById('battleModal').classList.remove('show');
   document.getElementById('battleResult').style.display='none';
   renderEntities();
@@ -1615,6 +2070,7 @@ function completeLevel(){
   data.learnedSkills=data.learnedSkills||[cls+'_1',cls+'_2',cls+'_3'];
   localStorage.setItem('hanako_game_data',JSON.stringify(data));
 
+  stopBGM();
   document.getElementById('winModal').classList.add('show');
 }
 
@@ -1649,6 +2105,8 @@ document.addEventListener('keydown',(e)=>{
 //  Init
 // ═══════════════════════════════════════════
 loadLevel();
+
+playBGM('map_background_music',0.12);
 </script>
 </body>
 </html>

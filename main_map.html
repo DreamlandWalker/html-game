@@ -78,6 +78,18 @@ body{min-height:100vh;background:#0b0d17;font-family:'Segoe UI','PingFang SC','M
 .legend{display:flex;gap:14px;margin-top:10px;justify-content:center;position:relative;z-index:2;flex-wrap:wrap}
 .legend-item{display:flex;align-items:center;gap:4px;font-size:10px;color:rgba(255,255,255,.2)}
 
+/* ── Difficulty Bar ── */
+.difficulty-bar{display:flex;align-items:center;gap:12px;margin-bottom:14px;padding:8px 14px;border-radius:10px;border:1px solid rgba(255,255,255,.04);background:rgba(0,0,0,.08);position:relative;z-index:2}
+.difficulty-bar .db-label{font-size:11px;color:rgba(255,255,255,.25);letter-spacing:1px;white-space:nowrap;margin-right:2px}
+.diff-btn{padding:4px 16px;border:1px solid rgba(255,255,255,.08);border-radius:8px;background:rgba(255,255,255,.03);color:rgba(255,255,255,.35);font-size:12px;font-family:inherit;cursor:pointer;transition:all .2s;letter-spacing:1px;font-weight:600}
+.diff-btn:hover{border-color:rgba(255,255,255,.15);color:rgba(255,255,255,.6)}
+.diff-btn.active-easy{border-color:rgba(108,219,108,.3);color:#8aff8a;background:rgba(108,219,108,.08)}
+.diff-btn.active-easy:hover{border-color:rgba(108,219,108,.5);background:rgba(108,219,108,.14)}
+.diff-btn.active-normal{border-color:rgba(255,215,128,.3);color:#ffd780;background:rgba(255,215,128,.08)}
+.diff-btn.active-normal:hover{border-color:#ffd780;background:rgba(255,215,128,.14)}
+.diff-btn.active-hard{border-color:rgba(240,108,108,.3);color:#ff8a8a;background:rgba(240,108,108,.08)}
+.diff-btn.active-hard:hover{border-color:rgba(240,108,108,.5);background:rgba(240,108,108,.14)}
+
 /* Modal */
 .modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.65);z-index:50;align-items:center;justify-content:center}
 .modal-overlay.show{display:flex}
@@ -110,6 +122,13 @@ body{min-height:100vh;background:#0b0d17;font-family:'Segoe UI','PingFang SC','M
     </div>
   </div>
 
+  <div class="difficulty-bar">
+    <span class="db-label">⚙ 难度</span>
+    <button class="diff-btn" data-diff="easy" onclick="setDifficulty('easy')">🌱 简单</button>
+    <button class="diff-btn active-normal" data-diff="normal" onclick="setDifficulty('normal')">⚖️ 普通</button>
+    <button class="diff-btn" data-diff="hard" onclick="setDifficulty('hard')">🔥 困难</button>
+  </div>
+
   <div class="level-grid" id="levelGrid"></div>
 
   <div class="progress-bar"><div class="progress-fill" id="progressFill" style="width:0%"></div></div>
@@ -133,6 +152,9 @@ body{min-height:100vh;background:#0b0d17;font-family:'Segoe UI','PingFang SC','M
 </div>
 
 <script>
+// ─── 背景音乐 ───
+(function(){var a=document.createElement('audio');a.id='_bgm';a.loop=true;a.src='sounds/map_background_music.mp3';a.volume=0.12;a.play().catch(function(){})})();
+
 const LEVEL_COUNT = 40;
 
 const LEVEL_NAMES = [
@@ -157,6 +179,21 @@ const genderMap={male:'♂',female:'♀'};
 const data = getData();
 const levels = data.levels || {};
 let currentLevel = data.currentLevel || 1;
+const DIFFICULTY_KEY = 'difficulty';
+
+// ─── 难度 ───
+function getDifficulty(){
+  return data[DIFFICULTY_KEY] || 'normal';
+}
+
+function setDifficulty(diff){
+  data[DIFFICULTY_KEY] = diff;
+  saveData(data);
+  document.querySelectorAll('.diff-btn').forEach(b => {
+    b.className = 'diff-btn';
+    if(b.dataset.diff === diff) b.classList.add('active-'+diff);
+  });
+}
 
 // ─── 初始化 ───
 function init(){
@@ -166,6 +203,13 @@ function init(){
   const ch = data.character||{};
   document.getElementById('mapLevel').textContent = ch.level||1;
   document.getElementById('mapGold').textContent = ch.gold||0;
+
+  // 显示当前难度
+  const curDiff = getDifficulty();
+  document.querySelectorAll('.diff-btn').forEach(b => {
+    b.className = 'diff-btn';
+    if(b.dataset.diff === curDiff) b.classList.add('active-'+curDiff);
+  });
 
   const cleared = Object.values(levels).filter(v=>v.completed).length;
   document.getElementById('mapCleared').textContent = cleared;

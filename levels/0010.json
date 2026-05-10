@@ -28,65 +28,35 @@
   },
   "monsterSpawns": [
     {
-      "x": 10,
+      "x": 9,
       "y": 5,
-      "rate": 0.8874972072749789,
+      "rate": 0.8406675318935625,
       "monsterIdx": 0
     },
     {
-      "x": 12,
+      "x": 5,
+      "y": 3,
+      "rate": 0.9413086120127578,
+      "monsterIdx": 1
+    },
+    {
+      "x": 3,
       "y": 8,
-      "rate": 0.9103571296773937,
-      "monsterIdx": 0
-    },
-    {
-      "x": 10,
-      "y": 7,
-      "rate": 0.8001272704092453,
-      "monsterIdx": 0
-    },
-    {
-      "x": 7,
-      "y": 8,
-      "rate": 0.9417906551140244,
-      "monsterIdx": 0
+      "rate": 0.9671424646863763,
+      "monsterIdx": 1
     }
   ],
   "bossSpawn": {
-    "x": 11,
-    "y": 9,
+    "x": 13,
+    "y": 8,
     "rate": 1,
-    "monsterIdx": 1
+    "monsterIdx": 2
   },
   "chestSpawns": [
     {
-      "x": 10,
-      "y": 8,
-      "rate": 0.903598464282344,
-      "lootPool": [
-        {
-          "type": "gold",
-          "name": "金币",
-          "icon": "💰",
-          "min": 25,
-          "max": 55,
-          "chance": 1
-        },
-        {
-          "type": "item",
-          "id": "hp_potion",
-          "name": "生命药水",
-          "icon": "🧪",
-          "desc": "恢复 80 点生命值",
-          "qty": 2,
-          "chance": 0.55
-        }
-      ]
-    },
-    {
-      "x": 6,
-      "y": 8,
-      "rate": 0.963008214537803,
+      "x": 9,
+      "y": 5,
+      "rate": 0.9788468608886363,
       "lootPool": [
         {
           "type": "gold",
@@ -112,7 +82,7 @@
           "icon": "💧",
           "desc": "恢复 40 点法力值",
           "qty": 2,
-          "chance": 0.4
+          "chance": 0.25
         },
         {
           "type": "equipment",
@@ -167,7 +137,7 @@
           "desc": "恢复 80 点生命值",
           "qty": 1,
           "sellPrice": 10,
-          "chance": 0.25
+          "chance": 0.15
         },
         {
           "type": "item",
@@ -177,17 +147,77 @@
           "desc": "恢复 40 点法力值",
           "qty": 1,
           "sellPrice": 7,
-          "chance": 0.2
+          "chance": 0.1
         },
         {
           "type": "material",
-          "id": "mat_lvl10",
-          "name": "材料·圣殿卫士",
-          "icon": "📦",
-          "desc": "从圣殿卫士身上获得的材料",
+          "id": "mat_water",
+          "name": "清水",
+          "icon": "💧",
+          "desc": "从圣殿卫士身上获得的清水",
           "qty": 1,
           "qtyMax": 2,
-          "sellPrice": 5,
+          "sellPrice": 3,
+          "chance": 0.5
+        }
+      ]
+    },
+    {
+      "name": "骷髅兵",
+      "icon": "💀",
+      "hp": 66,
+      "attack": 18,
+      "aggro": 2,
+      "xpReward": 66,
+      "skills": [
+        {
+          "name": "普通攻击",
+          "icon": "💥",
+          "dmgMul": 1.3
+        },
+        {
+          "name": "重击",
+          "icon": "💢",
+          "dmgMul": 2.2
+        }
+      ],
+      "loot": [
+        {
+          "type": "gold",
+          "icon": "💰",
+          "min": 15,
+          "max": 30,
+          "chance": 1
+        },
+        {
+          "type": "item",
+          "id": "hp_potion",
+          "name": "生命药水",
+          "icon": "🧪",
+          "desc": "恢复 80 点生命值",
+          "qty": 1,
+          "sellPrice": 10,
+          "chance": 0.15
+        },
+        {
+          "type": "item",
+          "id": "mp_potion",
+          "name": "法力药水",
+          "icon": "💧",
+          "desc": "恢复 40 点法力值",
+          "qty": 1,
+          "sellPrice": 7,
+          "chance": 0.1
+        },
+        {
+          "type": "material",
+          "id": "mat_crystal",
+          "name": "水晶碎片",
+          "icon": "💎",
+          "desc": "从骷髅兵身上获得的水晶碎片",
+          "qty": 1,
+          "qtyMax": 2,
+          "sellPrice": 3,
           "chance": 0.5
         }
       ]
@@ -229,7 +259,7 @@
         "desc": "恢复 200 点生命值",
         "qty": 2,
         "sellPrice": 25,
-        "chance": 0.5
+        "chance": 0.3
       },
       {
         "type": "item",
@@ -239,7 +269,7 @@
         "desc": "恢复 40 点法力值",
         "qty": 2,
         "sellPrice": 7,
-        "chance": 0.4
+        "chance": 0.25
       },
       {
         "type": "equipment",
@@ -262,36 +292,14 @@
   "questions": [
     {
       "type": "fill",
-      "question": "see → 过去式：___",
-      "answer": "saw",
-      "timeThreshold": 7
-    },
-    {
-      "type": "fill",
-      "question": "take → 过去式：___",
-      "answer": "took",
-      "timeThreshold": 7
-    },
-    {
-      "type": "fill",
-      "question": "eat → 过去式：___",
-      "answer": "ate",
-      "timeThreshold": 7
-    },
-    {
-      "type": "fill",
-      "question": "Buy books here → ___",
-      "answer": "bookstore",
-      "alternatives": [
-        "book shop",
-        "bookshop"
-      ],
+      "question": "Buy food here → ___",
+      "answer": "supermarket",
       "timeThreshold": 9
     },
     {
       "type": "fill",
-      "question": "go → 过去式：___",
-      "answer": "went",
+      "question": "play → 过去式：___",
+      "answer": "played",
       "timeThreshold": 7
     },
     {
@@ -308,9 +316,21 @@
     },
     {
       "type": "fill",
-      "question": "Buy food here → ___",
-      "answer": "supermarket",
-      "timeThreshold": 9
+      "question": "see → 过去式：___",
+      "answer": "saw",
+      "timeThreshold": 7
+    },
+    {
+      "type": "fill",
+      "question": "study → 过去式：___",
+      "answer": "studied",
+      "timeThreshold": 7
+    },
+    {
+      "type": "fill",
+      "question": "take → 过去式：___",
+      "answer": "took",
+      "timeThreshold": 7
     },
     {
       "type": "fill",
@@ -320,14 +340,17 @@
     },
     {
       "type": "fill",
-      "question": "play → 过去式：___",
-      "answer": "played",
-      "timeThreshold": 7
+      "question": "See a film here → ___",
+      "answer": "cinema",
+      "alternatives": [
+        "movie theater"
+      ],
+      "timeThreshold": 9
     },
     {
       "type": "fill",
-      "question": "like → 过去式：___",
-      "answer": "liked",
+      "question": "go → 过去式：___",
+      "answer": "went",
       "timeThreshold": 7
     },
     {
@@ -344,10 +367,17 @@
     },
     {
       "type": "fill",
-      "question": "See a film here → ___",
-      "answer": "cinema",
+      "question": "eat → 过去式：___",
+      "answer": "ate",
+      "timeThreshold": 7
+    },
+    {
+      "type": "fill",
+      "question": "Buy books here → ___",
+      "answer": "bookstore",
       "alternatives": [
-        "movie theater"
+        "book shop",
+        "bookshop"
       ],
       "timeThreshold": 9
     }

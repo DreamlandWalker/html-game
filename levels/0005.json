@@ -26,111 +26,14 @@
       "WWWWWWWWWWW"
     ]
   },
-  "monsterSpawns": [
-    {
-      "x": 4,
-      "y": 3,
-      "rate": 0.9345707836617368,
-      "monsterIdx": 0
-    },
-    {
-      "x": 3,
-      "y": 2,
-      "rate": 0.8300857170298124,
-      "monsterIdx": 0
-    },
-    {
-      "x": 5,
-      "y": 8,
-      "rate": 0.9020514971584435,
-      "monsterIdx": 0
-    },
-    {
-      "x": 4,
-      "y": 5,
-      "rate": 0.8493240161988087,
-      "monsterIdx": 0
-    }
-  ],
+  "monsterSpawns": [],
   "bossSpawn": {
     "x": 7,
     "y": 9,
     "rate": 1,
     "monsterIdx": 1
   },
-  "chestSpawns": [
-    {
-      "x": 5,
-      "y": 8,
-      "rate": 0.9026458921011319,
-      "lootPool": [
-        {
-          "type": "gold",
-          "name": "金币",
-          "icon": "💰",
-          "min": 15,
-          "max": 35,
-          "chance": 1
-        },
-        {
-          "type": "item",
-          "id": "hp_potion",
-          "name": "生命药水",
-          "icon": "🧪",
-          "desc": "恢复 80 点生命值",
-          "qty": 1,
-          "chance": 0.525
-        }
-      ]
-    },
-    {
-      "x": 5,
-      "y": 3,
-      "rate": 0.9980739318910894,
-      "lootPool": [
-        {
-          "type": "gold",
-          "name": "金币",
-          "icon": "💰",
-          "min": 15,
-          "max": 35,
-          "chance": 1
-        },
-        {
-          "type": "item",
-          "id": "hp_potion",
-          "name": "生命药水",
-          "icon": "🧪",
-          "desc": "恢复 80 点生命值",
-          "qty": 1,
-          "chance": 0.525
-        },
-        {
-          "type": "item",
-          "id": "mp_potion",
-          "name": "法力药水",
-          "icon": "💧",
-          "desc": "恢复 40 点法力值",
-          "qty": 1,
-          "chance": 0.4
-        },
-        {
-          "type": "equipment",
-          "id": "chest_equip_lvl5_1",
-          "name": "宝箱装备",
-          "icon": "🪖",
-          "desc": "从宝箱中发现的装备",
-          "slot": "ring2",
-          "stats": {
-            "str": 1,
-            "agi": 1
-          },
-          "sellPrice": 15,
-          "chance": 0.125
-        }
-      ]
-    }
-  ],
+  "chestSpawns": [],
   "monsters": [
     {
       "name": "暗黑骑士",
@@ -167,17 +70,17 @@
           "desc": "恢复 80 点生命值",
           "qty": 1,
           "sellPrice": 10,
-          "chance": 0.25
+          "chance": 0.15
         },
         {
           "type": "material",
-          "id": "mat_lvl5",
-          "name": "材料·暗黑骑士",
-          "icon": "📦",
-          "desc": "从暗黑骑士身上获得的材料",
+          "id": "mat_water",
+          "name": "清水",
+          "icon": "💧",
+          "desc": "从暗黑骑士身上获得的清水",
           "qty": 1,
           "qtyMax": 2,
-          "sellPrice": 2,
+          "sellPrice": 3,
           "chance": 0.5
         }
       ]
@@ -219,7 +122,7 @@
         "desc": "恢复 200 点生命值",
         "qty": 1,
         "sellPrice": 25,
-        "chance": 0.5
+        "chance": 0.3
       },
       {
         "type": "equipment",
@@ -241,42 +144,6 @@
   },
   "questions": [
     {
-      "type": "choice",
-      "question": "They ___ summer.",
-      "options": [
-        "like",
-        "likes",
-        "liked",
-        "liking"
-      ],
-      "answer": 0,
-      "timeThreshold": 7
-    },
-    {
-      "type": "choice",
-      "question": "A fish ___ swim.",
-      "options": [
-        "can",
-        "can't",
-        "is",
-        "are"
-      ],
-      "answer": 0,
-      "timeThreshold": 6
-    },
-    {
-      "type": "fill",
-      "question": "They ___ (swim) now.",
-      "answer": "are swimming",
-      "timeThreshold": 9
-    },
-    {
-      "type": "fill",
-      "question": "I ___ (read) a book now.",
-      "answer": "am reading",
-      "timeThreshold": 9
-    },
-    {
       "type": "fill",
       "question": "We ___ go to school on Sunday.",
       "answer": "don't",
@@ -287,14 +154,23 @@
     },
     {
       "type": "choice",
-      "question": "What day is it? — It's ___.",
+      "question": "A bird ___ fly.",
       "options": [
-        "7 o'clock",
-        "Monday",
-        "hot",
-        "sunny"
+        "can't",
+        "is",
+        "can",
+        "are"
       ],
-      "answer": 1,
+      "answer": 2,
+      "timeThreshold": 6
+    },
+    {
+      "type": "fill",
+      "question": "___ time is it?",
+      "answer": "What",
+      "alternatives": [
+        "what"
+      ],
       "timeThreshold": 7
     },
     {
@@ -310,51 +186,69 @@
       "timeThreshold": 7
     },
     {
+      "type": "fill",
+      "question": "Monday → 星期一. Saturday → ___",
+      "answer": "星期六",
+      "alternatives": [
+        "Saturday"
+      ],
+      "timeThreshold": 7
+    },
+    {
+      "type": "fill",
+      "question": "I ___ (read) a book now.",
+      "answer": "am reading",
+      "timeThreshold": 9
+    },
+    {
       "type": "choice",
-      "question": "A cat ___ fly.",
+      "question": "A fish ___ swim.",
       "options": [
         "can",
         "can't",
         "is",
         "are"
       ],
-      "answer": 1,
-      "timeThreshold": 6
-    },
-    {
-      "type": "choice",
-      "question": "We ___ to school by bus.",
-      "options": [
-        "go",
-        "goes",
-        "going",
-        "went"
-      ],
-      "answer": 0,
-      "timeThreshold": 7
-    },
-    {
-      "type": "choice",
-      "question": "It's six ___.",
-      "options": [
-        "o'clock",
-        "clock",
-        "time",
-        "hour"
-      ],
       "answer": 0,
       "timeThreshold": 6
     },
     {
       "type": "fill",
-      "question": "She ___ (dance) now.",
-      "answer": "is dancing",
+      "question": "He ___ (play) football now.",
+      "answer": "is playing",
       "timeThreshold": 9
     },
     {
       "type": "fill",
-      "question": "We ___ (sing) a song now.",
-      "answer": "are singing",
+      "question": "I like winter. → I ___ like winter.",
+      "answer": "don't",
+      "alternatives": [
+        "do not"
+      ],
+      "timeThreshold": 9
+    },
+    {
+      "type": "fill",
+      "question": "___ you like summer?（Do/Does）",
+      "answer": "Do",
+      "timeThreshold": 7
+    },
+    {
+      "type": "choice",
+      "question": "Which is transport?",
+      "options": [
+        "spring",
+        "cloudy",
+        "train",
+        "go to bed"
+      ],
+      "answer": 2,
+      "timeThreshold": 7
+    },
+    {
+      "type": "fill",
+      "question": "They ___ (swim) now.",
+      "answer": "are swimming",
       "timeThreshold": 9
     }
   ],

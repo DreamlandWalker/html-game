@@ -129,6 +129,9 @@
       font-weight: 600;
       letter-spacing: 0;
       white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 38px;
     }
     .equip-slot.has-item {
       border-color: rgba(138,184,255,.25);
@@ -767,6 +770,9 @@
 </div>
 
 <script>
+// ─── 背景音乐 ───
+(function(){var a=document.createElement('audio');a.id='_bgm';a.loop=true;a.src='sounds/main_background_music.mp3';a.volume=0.12;a.play().catch(function(){})})();
+
   // ── Read data ──
   function getPlayerData() {
     try {
@@ -957,6 +963,7 @@
       const nameSpan = document.createElement('span');
       nameSpan.className = 'slot-item';
       nameSpan.textContent = item.name || '?';
+      nameSpan.title = item.name || '?';
       slot.appendChild(nameSpan);
 
       // Tooltip：物品名 + 描述 + 属性
@@ -995,6 +1002,52 @@
       slot.appendChild(labelSpan);
     }
   });
+
+  // ── 套装效果显示 ──
+  const SET_BONUS_INFO = {
+    warrior_set:{icon:'⚔️',name:'战神套',tiers:[{n:2,e:'力量 +15'},{n:4,e:'最大生命 +80'},{n:6,e:'防御后反击 50% 伤害'},{n:8,e:'每击败一怪攻击力 +3（本场）'}],pieces:['weapon','offhand','head','chest','legs','shoes','ring1','neck']},
+    mage_set:{icon:'🔮',name:'大魔导套',tiers:[{n:2,e:'智力 +15'},{n:4,e:'最大法力 +60'},{n:6,e:'技能伤害 +20%'},{n:8,e:'每击败一怪回复 10 MP'}],pieces:['weapon','offhand','head','chest','legs','shoes','ring1','neck']},
+    priest_set:{icon:'✨',name:'大主教套',tiers:[{n:2,e:'精神 +15'},{n:4,e:'治疗效果 +10%'},{n:6,e:'每 3 回合清除负面效果'},{n:8,e:'每场战斗复活一次'}],pieces:['weapon','offhand','head','chest','legs','shoes','ring1','neck']},
+    archer_set:{icon:'🏹',name:'神射手套',tiers:[{n:2,e:'敏捷 +15'},{n:4,e:'暴击率 +10%'},{n:6,e:'暴击伤害 \u00d71.5'},{n:8,e:'每次击杀后回复 15% 最大 HP'}],pieces:['weapon','offhand','head','chest','legs','shoes','ring2','neck']}
+  };
+
+  function getSetCount(setId){
+    const info=SET_BONUS_INFO[setId];
+    if(!info) return 0;
+    let count=0;
+    for(const slot of info.pieces){
+      if(equipment[slot] && equipment[slot].setId===setId) count++;
+    }
+    return count;
+  }
+
+  // 收集当前装备的套装
+  const activeSets={};
+  for(const key in equipment){
+    const item=equipment[key];
+    if(item && item.setId){
+      if(!activeSets[item.setId]) activeSets[item.setId]={count:0,items:[]};
+      activeSets[item.setId].count++;
+      activeSets[item.setId].items.push(key);
+    }
+  }
+
+  const setDisplayArea=document.querySelector('.right-panel');
+  if(setDisplayArea && Object.keys(activeSets).length>0){
+    for(const [setId,info] of Object.entries(activeSets)){
+      const setInfo=SET_BONUS_INFO[setId];
+      if(!setInfo) continue;
+      const div=document.createElement('div');
+      div.style.cssText='border:1px solid rgba(255,215,128,.15);border-radius:10px;padding:10px 12px;background:rgba(255,215,128,.04);margin-top:12px';
+      let html='<div style="display:flex;align-items:center;gap:6px;margin-bottom:6px"><span style="font-size:18px">'+setInfo.icon+'</span><span style="font-size:13px;font-weight:700;color:#ffd780">'+setInfo.name+'</span><span style="font-size:11px;color:rgba(255,215,128,.5);margin-left:auto">'+info.count+'/8 件</span></div>';
+      setInfo.tiers.forEach(t=>{
+        const active=info.count>=t.n;
+        html+='<div style="font-size:11px;'+(active?'color:#8aff8a':'color:rgba(255,255,255,.2)')+';margin-bottom:2px">'+(active?'✅ ':'🔒 ')+t.n+'件套：'+t.e+'</div>';
+      });
+      div.innerHTML=html;
+      setDisplayArea.prepend(div);
+    }
+  }
 
   // ── 保存 & 重渲染 ──
   function saveData() {

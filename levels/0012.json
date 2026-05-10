@@ -14,155 +14,38 @@
     "height": 10,
     "tiles": [
       "WWWWWWWWWWWW",
-      "W........WWW",
-      "W.WWW.WW.WWW",
-      "W.W....W.WWW",
-      "W...WW...WWW",
-      "WW.W..W.WWWW",
-      "W..W..W..WWW",
-      "W........WWW",
+      "W..........W",
+      "W.WWW.WW.W.W",
+      "W.W....W.W.W",
+      "W...WW...W.W",
+      "WW.W..W.WW.W",
+      "W..W..W..W.W",
+      "W........W.W",
       "WWWWWWWWWW.W",
       "WWWWWWWWWWWW"
     ]
   },
   "monsterSpawns": [
     {
-      "x": 9,
+      "x": 6,
       "y": 4,
-      "rate": 0.9643029067705776,
+      "rate": 0.9608228257643652,
       "monsterIdx": 0
     },
     {
-      "x": 9,
-      "y": 2,
-      "rate": 0.8140796871331784,
-      "monsterIdx": 0
-    },
-    {
-      "x": 3,
-      "y": 2,
-      "rate": 0.9591415141891176,
-      "monsterIdx": 0
-    },
-    {
-      "x": 8,
-      "y": 3,
-      "rate": 0.9706536561530003,
-      "monsterIdx": 0
+      "x": 2,
+      "y": 7,
+      "rate": 0.8132357117048135,
+      "monsterIdx": 1
     }
   ],
   "bossSpawn": {
-    "x": 9,
-    "y": 8,
+    "x": 10,
+    "y": 7,
     "rate": 1,
-    "monsterIdx": 1
+    "monsterIdx": 2
   },
-  "chestSpawns": [
-    {
-      "x": 6,
-      "y": 7,
-      "rate": 0.9060670323669275,
-      "lootPool": [
-        {
-          "type": "gold",
-          "name": "金币",
-          "icon": "💰",
-          "min": 29,
-          "max": 63,
-          "chance": 1
-        },
-        {
-          "type": "item",
-          "id": "hp_potion",
-          "name": "生命药水",
-          "icon": "🧪",
-          "desc": "恢复 80 点生命值",
-          "qty": 2,
-          "chance": 0.56
-        }
-      ]
-    },
-    {
-      "x": 7,
-      "y": 3,
-      "rate": 0.9724849475168473,
-      "lootPool": [
-        {
-          "type": "gold",
-          "name": "金币",
-          "icon": "💰",
-          "min": 29,
-          "max": 63,
-          "chance": 1
-        },
-        {
-          "type": "item",
-          "id": "hp_potion",
-          "name": "生命药水",
-          "icon": "🧪",
-          "desc": "恢复 80 点生命值",
-          "qty": 2,
-          "chance": 0.56
-        },
-        {
-          "type": "item",
-          "id": "mp_potion",
-          "name": "法力药水",
-          "icon": "💧",
-          "desc": "恢复 40 点法力值",
-          "qty": 2,
-          "chance": 0.4
-        },
-        {
-          "type": "equipment",
-          "id": "chest_equip_lvl12_1",
-          "name": "宝箱装备",
-          "icon": "🪖",
-          "desc": "从宝箱中发现的装备",
-          "slot": "ring2",
-          "stats": {
-            "str": 3,
-            "agi": 3
-          },
-          "sellPrice": 29,
-          "chance": 0.16
-        }
-      ]
-    },
-    {
-      "x": 3,
-      "y": 4,
-      "rate": 0.9021669536888346,
-      "lootPool": [
-        {
-          "type": "gold",
-          "name": "金币",
-          "icon": "💰",
-          "min": 29,
-          "max": 63,
-          "chance": 1
-        },
-        {
-          "type": "item",
-          "id": "hp_potion",
-          "name": "生命药水",
-          "icon": "🧪",
-          "desc": "恢复 80 点生命值",
-          "qty": 2,
-          "chance": 0.56
-        },
-        {
-          "type": "item",
-          "id": "mp_potion",
-          "name": "法力药水",
-          "icon": "💧",
-          "desc": "恢复 40 点法力值",
-          "qty": 2,
-          "chance": 0.4
-        }
-      ]
-    }
-  ],
+  "chestSpawns": [],
   "monsters": [
     {
       "name": "混沌魔龙",
@@ -199,7 +82,7 @@
           "desc": "恢复 80 点生命值",
           "qty": 1,
           "sellPrice": 10,
-          "chance": 0.25
+          "chance": 0.15
         },
         {
           "type": "item",
@@ -209,17 +92,77 @@
           "desc": "恢复 40 点法力值",
           "qty": 1,
           "sellPrice": 7,
-          "chance": 0.2
+          "chance": 0.1
         },
         {
           "type": "material",
-          "id": "mat_lvl12",
-          "name": "材料·混沌魔龙",
-          "icon": "📦",
-          "desc": "从混沌魔龙身上获得的材料",
+          "id": "mat_herb",
+          "name": "草药",
+          "icon": "🌿",
+          "desc": "从混沌魔龙身上获得的草药",
           "qty": 1,
           "qtyMax": 2,
-          "sellPrice": 6,
+          "sellPrice": 3,
+          "chance": 0.5
+        }
+      ]
+    },
+    {
+      "name": "影狼",
+      "icon": "🐺",
+      "hp": 75,
+      "attack": 20,
+      "aggro": 2,
+      "xpReward": 75,
+      "skills": [
+        {
+          "name": "普通攻击",
+          "icon": "💥",
+          "dmgMul": 1.3
+        },
+        {
+          "name": "重击",
+          "icon": "💢",
+          "dmgMul": 2.24
+        }
+      ],
+      "loot": [
+        {
+          "type": "gold",
+          "icon": "💰",
+          "min": 18,
+          "max": 36,
+          "chance": 1
+        },
+        {
+          "type": "item",
+          "id": "hp_potion",
+          "name": "生命药水",
+          "icon": "🧪",
+          "desc": "恢复 80 点生命值",
+          "qty": 1,
+          "sellPrice": 10,
+          "chance": 0.15
+        },
+        {
+          "type": "item",
+          "id": "mp_potion",
+          "name": "法力药水",
+          "icon": "💧",
+          "desc": "恢复 40 点法力值",
+          "qty": 1,
+          "sellPrice": 7,
+          "chance": 0.1
+        },
+        {
+          "type": "material",
+          "id": "mat_leather",
+          "name": "皮革",
+          "icon": "🧶",
+          "desc": "从影狼身上获得的皮革",
+          "qty": 1,
+          "qtyMax": 2,
+          "sellPrice": 3,
           "chance": 0.5
         }
       ]
@@ -261,7 +204,7 @@
         "desc": "恢复 200 点生命值",
         "qty": 2,
         "sellPrice": 25,
-        "chance": 0.5
+        "chance": 0.3
       },
       {
         "type": "item",
@@ -271,7 +214,7 @@
         "desc": "恢复 40 点法力值",
         "qty": 2,
         "sellPrice": 7,
-        "chance": 0.4
+        "chance": 0.25
       },
       {
         "type": "equipment",
@@ -294,44 +237,14 @@
   "questions": [
     {
       "type": "choice",
-      "question": "Tom is ___ than Mike.",
-      "options": [
-        "tall",
-        "taller",
-        "tallest",
-        "more tall"
-      ],
-      "answer": 1,
-      "timeThreshold": 7
-    },
-    {
-      "type": "choice",
-      "question": "This book is ___ than that one.",
-      "options": [
-        "interesting",
-        "more interesting",
-        "most interesting",
-        "interestinger"
-      ],
-      "answer": 1,
-      "timeThreshold": 9
-    },
-    {
-      "type": "fill",
-      "question": "She is ___ (happy) than before.",
-      "answer": "happier",
-      "timeThreshold": 8
-    },
-    {
-      "type": "choice",
-      "question": "I ___ going to visit my grandpa.",
+      "question": "She ___ going to learn swimming.",
       "options": [
         "am",
         "is",
         "are",
         "be"
       ],
-      "answer": 0,
+      "answer": 1,
       "timeThreshold": 7
     },
     {
@@ -348,18 +261,24 @@
     },
     {
       "type": "fill",
+      "question": "She is ___ (happy) than before.",
+      "answer": "happier",
+      "timeThreshold": 8
+    },
+    {
+      "type": "fill",
       "question": "This pen is ___ (cheap) than that one.",
       "answer": "cheaper",
       "timeThreshold": 8
     },
     {
       "type": "choice",
-      "question": "My bag is ___ (big) than yours.",
+      "question": "Tom is ___ than Mike.",
       "options": [
-        "big",
-        "bigger",
-        "biggest",
-        "more big"
+        "tall",
+        "taller",
+        "tallest",
+        "more tall"
       ],
       "answer": 1,
       "timeThreshold": 7
@@ -378,52 +297,42 @@
     },
     {
       "type": "choice",
-      "question": "She ___ going to learn swimming.",
+      "question": "My bag is ___ (big) than yours.",
+      "options": [
+        "big",
+        "bigger",
+        "biggest",
+        "more big"
+      ],
+      "answer": 1,
+      "timeThreshold": 7
+    },
+    {
+      "type": "choice",
+      "question": "This book is ___ than that one.",
+      "options": [
+        "interesting",
+        "more interesting",
+        "most interesting",
+        "interestinger"
+      ],
+      "answer": 1,
+      "timeThreshold": 9
+    },
+    {
+      "type": "choice",
+      "question": "I ___ going to visit my grandpa.",
       "options": [
         "am",
         "is",
         "are",
         "be"
       ],
-      "answer": 1,
+      "answer": 0,
       "timeThreshold": 7
     }
   ],
-  "merchant": {
-    "x": 5,
-    "y": 5,
-    "npcName": "旅行商人",
-    "npcIcon": "🧳",
-    "stock": [
-      {
-        "id": "hp_potion",
-        "name": "生命药水",
-        "icon": "🧪",
-        "desc": "恢复 80 点生命值",
-        "buyPrice": 30,
-        "sellPrice": 15,
-        "qty": 6
-      },
-      {
-        "id": "mp_potion",
-        "name": "法力药水",
-        "icon": "💧",
-        "desc": "恢复 40 点法力值",
-        "buyPrice": 25,
-        "sellPrice": 12,
-        "qty": 5
-      },
-      {
-        "id": "hp_big_potion",
-        "name": "大生命药水",
-        "icon": "🧪",
-        "desc": "恢复 200 点生命值",
-        "buyPrice": 64,
-        "sellPrice": 32,
-        "qty": 3
-      }
-    ]
-  },
+  "merchant": null,
   "reward": {
     "gold": 126,
     "xp": 240

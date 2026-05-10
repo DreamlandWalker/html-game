@@ -26,27 +26,15 @@
   },
   "monsterSpawns": [
     {
-      "x": 8,
+      "x": 6,
       "y": 3,
-      "rate": 0.9148342678719593,
+      "rate": 0.9058858564776423,
       "monsterIdx": 0
     },
     {
-      "x": 3,
-      "y": 2,
-      "rate": 0.816804339575423,
-      "monsterIdx": 0
-    },
-    {
-      "x": 2,
-      "y": 4,
-      "rate": 0.8452623193874872,
-      "monsterIdx": 0
-    },
-    {
-      "x": 4,
+      "x": 9,
       "y": 5,
-      "rate": 0.8586466001543392,
+      "rate": 0.8682811518317473,
       "monsterIdx": 0
     }
   ],
@@ -58,9 +46,9 @@
   },
   "chestSpawns": [
     {
-      "x": 8,
-      "y": 6,
-      "rate": 0.9493776217919129,
+      "x": 7,
+      "y": 3,
+      "rate": 0.9474140996741317,
       "lootPool": [
         {
           "type": "gold",
@@ -78,39 +66,6 @@
           "desc": "恢复 80 点生命值",
           "qty": 1,
           "chance": 0.515
-        }
-      ]
-    },
-    {
-      "x": 10,
-      "y": 4,
-      "rate": 0.9661035681341019,
-      "lootPool": [
-        {
-          "type": "gold",
-          "name": "金币",
-          "icon": "💰",
-          "min": 11,
-          "max": 27,
-          "chance": 1
-        },
-        {
-          "type": "item",
-          "id": "hp_potion",
-          "name": "生命药水",
-          "icon": "🧪",
-          "desc": "恢复 80 点生命值",
-          "qty": 1,
-          "chance": 0.515
-        },
-        {
-          "type": "item",
-          "id": "mp_potion",
-          "name": "法力药水",
-          "icon": "💧",
-          "desc": "恢复 40 点法力值",
-          "qty": 1,
-          "chance": 0.4
         }
       ]
     }
@@ -145,13 +100,13 @@
         },
         {
           "type": "material",
-          "id": "mat_lvl3",
-          "name": "材料·堕落骑士",
-          "icon": "📦",
-          "desc": "从堕落骑士身上获得的材料",
+          "id": "mat_water",
+          "name": "清水",
+          "icon": "💧",
+          "desc": "从堕落骑士身上获得的清水",
           "qty": 1,
           "qtyMax": 2,
-          "sellPrice": 2,
+          "sellPrice": 3,
           "chance": 0.5
         }
       ]
@@ -193,7 +148,7 @@
         "desc": "恢复 200 点生命值",
         "qty": 1,
         "sellPrice": 25,
-        "chance": 0.5
+        "chance": 0.3
       },
       {
         "type": "equipment",
@@ -216,6 +171,24 @@
   "questions": [
     {
       "type": "choice",
+      "question": "___ apple",
+      "options": [
+        "A",
+        "An",
+        "The",
+        "/"
+      ],
+      "answer": 1,
+      "timeThreshold": 7
+    },
+    {
+      "type": "fill",
+      "question": "Your mother's sister → ___（姨妈）",
+      "answer": "aunt",
+      "timeThreshold": 9
+    },
+    {
+      "type": "choice",
       "question": "___ book",
       "options": [
         "A",
@@ -224,6 +197,36 @@
         "/"
       ],
       "answer": 0,
+      "timeThreshold": 7
+    },
+    {
+      "type": "fill",
+      "question": "I ___ a boy.（用am/is/are）",
+      "answer": "am",
+      "timeThreshold": 7
+    },
+    {
+      "type": "fill",
+      "question": "You ___ my friend.",
+      "answer": "are",
+      "timeThreshold": 7
+    },
+    {
+      "type": "fill",
+      "question": "She ___ my mother.",
+      "answer": "is",
+      "timeThreshold": 7
+    },
+    {
+      "type": "choice",
+      "question": "___ egg",
+      "options": [
+        "A",
+        "An",
+        "The",
+        "/"
+      ],
+      "answer": 1,
       "timeThreshold": 7
     },
     {
@@ -246,8 +249,18 @@
     },
     {
       "type": "fill",
-      "question": "Your mother's sister → ___（姨妈）",
-      "answer": "aunt",
+      "question": "Your father's father → ___（爷爷）",
+      "answer": "grandpa",
+      "alternatives": [
+        "grandfather",
+        "granddad"
+      ],
+      "timeThreshold": 9
+    },
+    {
+      "type": "fill",
+      "question": "Your father's brother → ___（叔叔）",
+      "answer": "uncle",
       "timeThreshold": 9
     },
     {
@@ -261,69 +274,11 @@
       ],
       "answer": 1,
       "timeThreshold": 7
-    },
-    {
-      "type": "choice",
-      "question": "___ egg",
-      "options": [
-        "A",
-        "An",
-        "The",
-        "/"
-      ],
-      "answer": 1,
-      "timeThreshold": 7
-    },
-    {
-      "type": "fill",
-      "question": "She ___ my mother.",
-      "answer": "is",
-      "timeThreshold": 7
-    },
-    {
-      "type": "fill",
-      "question": "Your father's brother → ___（叔叔）",
-      "answer": "uncle",
-      "timeThreshold": 9
-    },
-    {
-      "type": "fill",
-      "question": "You ___ my friend.",
-      "answer": "are",
-      "timeThreshold": 7
-    },
-    {
-      "type": "choice",
-      "question": "___ apple",
-      "options": [
-        "A",
-        "An",
-        "The",
-        "/"
-      ],
-      "answer": 1,
-      "timeThreshold": 7
-    },
-    {
-      "type": "fill",
-      "question": "Your father's father → ___（爷爷）",
-      "answer": "grandpa",
-      "alternatives": [
-        "grandfather",
-        "granddad"
-      ],
-      "timeThreshold": 9
-    },
-    {
-      "type": "fill",
-      "question": "I ___ a boy.（用am/is/are）",
-      "answer": "am",
-      "timeThreshold": 7
     }
   ],
   "merchant": {
-    "x": 9,
-    "y": 4,
+    "x": 11,
+    "y": 7,
     "npcName": "神秘商贩",
     "npcIcon": "🧳",
     "stock": [

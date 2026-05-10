@@ -29,40 +29,46 @@
   "monsterSpawns": [
     {
       "x": 10,
-      "y": 3,
-      "rate": 0.9525015902005759,
+      "y": 7,
+      "rate": 0.8604607650045949,
       "monsterIdx": 0
     },
     {
       "x": 5,
-      "y": 8,
-      "rate": 0.8375591680121509,
+      "y": 3,
+      "rate": 0.8251149258916202,
       "monsterIdx": 1
     },
     {
       "x": 8,
       "y": 5,
-      "rate": 0.9850325845616527,
+      "rate": 0.9229745048498578,
+      "monsterIdx": 2
+    },
+    {
+      "x": 4,
+      "y": 8,
+      "rate": 0.9304319729768703,
       "monsterIdx": 0
     },
     {
-      "x": 6,
-      "y": 4,
-      "rate": 0.8512824368591766,
+      "x": 7,
+      "y": 3,
+      "rate": 0.9373206038600383,
       "monsterIdx": 1
     }
   ],
   "bossSpawn": {
-    "x": 12,
-    "y": 9,
+    "x": 14,
+    "y": 8,
     "rate": 1,
-    "monsterIdx": 2
+    "monsterIdx": 3
   },
   "chestSpawns": [
     {
-      "x": 4,
-      "y": 8,
-      "rate": 0.9740174580666556,
+      "x": 7,
+      "y": 5,
+      "rate": 0.9053660536129083,
       "lootPool": [
         {
           "type": "gold",
@@ -84,9 +90,9 @@
       ]
     },
     {
-      "x": 9,
-      "y": 5,
-      "rate": 0.908889972820205,
+      "x": 5,
+      "y": 8,
+      "rate": 0.9478272070118118,
       "lootPool": [
         {
           "type": "gold",
@@ -112,7 +118,7 @@
           "icon": "💧",
           "desc": "恢复 40 点法力值",
           "qty": 3,
-          "chance": 0.4
+          "chance": 0.25
         },
         {
           "type": "equipment",
@@ -132,8 +138,8 @@
     },
     {
       "x": 10,
-      "y": 3,
-      "rate": 0.9519712831085622,
+      "y": 4,
+      "rate": 0.9615787161644513,
       "lootPool": [
         {
           "type": "gold",
@@ -159,7 +165,7 @@
           "icon": "💧",
           "desc": "恢复 40 点法力值",
           "qty": 3,
-          "chance": 0.4
+          "chance": 0.25
         }
       ]
     }
@@ -200,7 +206,7 @@
           "desc": "恢复 80 点生命值",
           "qty": 1,
           "sellPrice": 10,
-          "chance": 0.25
+          "chance": 0.15
         },
         {
           "type": "item",
@@ -210,17 +216,17 @@
           "desc": "恢复 40 点法力值",
           "qty": 1,
           "sellPrice": 7,
-          "chance": 0.2
+          "chance": 0.1
         },
         {
           "type": "material",
-          "id": "mat_lvl20",
-          "name": "材料·霜巨人",
-          "icon": "📦",
-          "desc": "从霜巨人身上获得的材料",
+          "id": "mat_herb",
+          "name": "草药",
+          "icon": "🌿",
+          "desc": "从霜巨人身上获得的草药",
           "qty": 1,
           "qtyMax": 2,
-          "sellPrice": 10,
+          "sellPrice": 3,
           "chance": 0.5
         }
       ]
@@ -260,7 +266,7 @@
           "desc": "恢复 80 点生命值",
           "qty": 1,
           "sellPrice": 10,
-          "chance": 0.25
+          "chance": 0.15
         },
         {
           "type": "item",
@@ -270,17 +276,77 @@
           "desc": "恢复 40 点法力值",
           "qty": 1,
           "sellPrice": 7,
-          "chance": 0.2
+          "chance": 0.1
         },
         {
           "type": "material",
-          "id": "mat_lvl20",
-          "name": "材料·火焰精灵",
-          "icon": "📦",
-          "desc": "从火焰精灵身上获得的材料",
+          "id": "mat_crystal",
+          "name": "水晶碎片",
+          "icon": "💎",
+          "desc": "从火焰精灵身上获得的水晶碎片",
           "qty": 1,
           "qtyMax": 2,
+          "sellPrice": 3,
+          "chance": 0.5
+        }
+      ]
+    },
+    {
+      "name": "暗影刺客",
+      "icon": "🗡️",
+      "hp": 140,
+      "attack": 35,
+      "aggro": 3,
+      "xpReward": 140,
+      "skills": [
+        {
+          "name": "普通攻击",
+          "icon": "💥",
+          "dmgMul": 1.3
+        },
+        {
+          "name": "重击",
+          "icon": "💢",
+          "dmgMul": 2.4
+        }
+      ],
+      "loot": [
+        {
+          "type": "gold",
+          "icon": "💰",
+          "min": 30,
+          "max": 60,
+          "chance": 1
+        },
+        {
+          "type": "item",
+          "id": "hp_potion",
+          "name": "生命药水",
+          "icon": "🧪",
+          "desc": "恢复 80 点生命值",
+          "qty": 1,
           "sellPrice": 10,
+          "chance": 0.15
+        },
+        {
+          "type": "item",
+          "id": "mp_potion",
+          "name": "法力药水",
+          "icon": "💧",
+          "desc": "恢复 40 点法力值",
+          "qty": 1,
+          "sellPrice": 7,
+          "chance": 0.1
+        },
+        {
+          "type": "material",
+          "id": "mat_iron",
+          "name": "铁锭",
+          "icon": "⛏️",
+          "desc": "从暗影刺客身上获得的铁锭",
+          "qty": 1,
+          "qtyMax": 2,
+          "sellPrice": 3,
           "chance": 0.5
         }
       ]
@@ -322,7 +388,7 @@
         "desc": "恢复 200 点生命值",
         "qty": 3,
         "sellPrice": 25,
-        "chance": 0.5
+        "chance": 0.3
       },
       {
         "type": "item",
@@ -332,7 +398,7 @@
         "desc": "恢复 40 点法力值",
         "qty": 2,
         "sellPrice": 7,
-        "chance": 0.4
+        "chance": 0.25
       },
       {
         "type": "equipment",
@@ -355,45 +421,21 @@
   "questions": [
     {
       "type": "fill",
-      "question": "毕业 → ___",
-      "answer": "graduation",
-      "timeThreshold": 8
+      "question": "同学 → ___",
+      "answer": "classmate",
+      "timeThreshold": 7
     },
     {
       "type": "choice",
-      "question": "I am playing football now. 是什么时态？",
+      "question": "I play football every day. 是什么时态？",
       "options": [
         "一般现在时",
         "现在进行时",
         "一般过去时",
         "现在完成时"
       ],
-      "answer": 1,
-      "timeThreshold": 7
-    },
-    {
-      "type": "fill",
-      "question": "She likes apples. → ___ she like apples?（一般疑问句）",
-      "answer": "Does",
-      "timeThreshold": 8
-    },
-    {
-      "type": "fill",
-      "question": "He ___ (be) to the UK twice.",
-      "answer": "has been",
-      "timeThreshold": 9
-    },
-    {
-      "type": "choice",
-      "question": "He go to school.（改错）",
-      "options": [
-        "He goes to school",
-        "He is go to school",
-        "He went to school",
-        "He go to school"
-      ],
       "answer": 0,
-      "timeThreshold": 10
+      "timeThreshold": 7
     },
     {
       "type": "fill",
@@ -402,6 +444,75 @@
       "alternatives": [
         "what time"
       ],
+      "timeThreshold": 8
+    },
+    {
+      "type": "fill",
+      "question": "My name is Tom. → ___ is your name?（提问）",
+      "answer": "What",
+      "alternatives": [
+        "what"
+      ],
+      "timeThreshold": 7
+    },
+    {
+      "type": "fill",
+      "question": "He went to the park. → ___ he go to the park?（一般疑问句）",
+      "answer": "Did",
+      "timeThreshold": 8
+    },
+    {
+      "type": "choice",
+      "question": "I like apples ___ oranges.",
+      "options": [
+        "and",
+        "but",
+        "so",
+        "because"
+      ],
+      "answer": 0,
+      "timeThreshold": 6
+    },
+    {
+      "type": "choice",
+      "question": "She is tired, ___ she goes to bed early.",
+      "options": [
+        "and",
+        "but",
+        "so",
+        "because"
+      ],
+      "answer": 2,
+      "timeThreshold": 7
+    },
+    {
+      "type": "fill",
+      "question": "We ___ (visit) the museum next week.",
+      "answer": "will visit",
+      "alternatives": [
+        "are going to visit"
+      ],
+      "timeThreshold": 9
+    },
+    {
+      "type": "fill",
+      "question": "小学 → ___",
+      "answer": "primary school",
+      "timeThreshold": 8
+    },
+    {
+      "type": "fill",
+      "question": "初中 → ___",
+      "answer": "junior high school",
+      "alternatives": [
+        "junior school"
+      ],
+      "timeThreshold": 9
+    },
+    {
+      "type": "fill",
+      "question": "She likes apples. → ___ she like apples?（一般疑问句）",
+      "answer": "Does",
       "timeThreshold": 8
     },
     {
@@ -415,57 +526,6 @@
       ],
       "answer": 2,
       "timeThreshold": 7
-    },
-    {
-      "type": "choice",
-      "question": "She don't like cats.（改错）",
-      "options": [
-        "She doesn't like cats",
-        "She don't likes cats",
-        "She not like cats",
-        "She isn't like cats"
-      ],
-      "answer": 0,
-      "timeThreshold": 10
-    },
-    {
-      "type": "choice",
-      "question": "I stayed home ___ it rained.",
-      "options": [
-        "and",
-        "but",
-        "so",
-        "because"
-      ],
-      "answer": 3,
-      "timeThreshold": 7
-    },
-    {
-      "type": "fill",
-      "question": "They are playing. → ___ they playing?（一般疑问句）",
-      "answer": "Are",
-      "timeThreshold": 8
-    },
-    {
-      "type": "fill",
-      "question": "初中 → ___",
-      "answer": "junior high school",
-      "alternatives": [
-        "junior school"
-      ],
-      "timeThreshold": 9
-    },
-    {
-      "type": "choice",
-      "question": "I think he ___ right.",
-      "options": [
-        "is",
-        "are",
-        "was",
-        "were"
-      ],
-      "answer": 0,
-      "timeThreshold": 8
     }
   ],
   "merchant": null,

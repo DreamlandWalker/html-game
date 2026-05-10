@@ -14,108 +14,44 @@
     "height": 10,
     "tiles": [
       "WWWWWWWWWWW",
-      "W........WW",
-      "W.WWW.WW.WW",
-      "W.W....W.WW",
-      "W...WW...WW",
-      "WW.W..W.WWW",
-      "W..W..W..WW",
-      "W........WW",
+      "W.........W",
+      "W.WWW.WW..W",
+      "W.W....W..W",
+      "W...WW....W",
+      "WW.W..W.W.W",
+      "W..W..W...W",
+      "W.........W",
       "WWWWWWWWW.W",
       "WWWWWWWWWWW"
     ]
   },
   "monsterSpawns": [
     {
-      "x": 3,
+      "x": 5,
       "y": 2,
-      "rate": 0.934438030107099,
+      "rate": 0.8380813919404537,
       "monsterIdx": 0
     },
     {
       "x": 3,
-      "y": 5,
-      "rate": 0.8667168047496274,
-      "monsterIdx": 0
-    },
-    {
-      "x": 2,
-      "y": 6,
-      "rate": 0.8266371629491229,
-      "monsterIdx": 0
-    },
-    {
-      "x": 4,
       "y": 4,
-      "rate": 0.9500841092179623,
+      "rate": 0.828651700990247,
+      "monsterIdx": 0
+    },
+    {
+      "x": 6,
+      "y": 3,
+      "rate": 0.9542814336914347,
       "monsterIdx": 0
     }
   ],
   "bossSpawn": {
-    "x": 7,
-    "y": 8,
+    "x": 9,
+    "y": 7,
     "rate": 1,
     "monsterIdx": 1
   },
-  "chestSpawns": [
-    {
-      "x": 4,
-      "y": 7,
-      "rate": 0.914466602455337,
-      "lootPool": [
-        {
-          "type": "gold",
-          "name": "金币",
-          "icon": "💰",
-          "min": 9,
-          "max": 23,
-          "chance": 1
-        },
-        {
-          "type": "item",
-          "id": "hp_potion",
-          "name": "生命药水",
-          "icon": "🧪",
-          "desc": "恢复 80 点生命值",
-          "qty": 1,
-          "chance": 0.51
-        }
-      ]
-    },
-    {
-      "x": 7,
-      "y": 4,
-      "rate": 0.9783173471488253,
-      "lootPool": [
-        {
-          "type": "gold",
-          "name": "金币",
-          "icon": "💰",
-          "min": 9,
-          "max": 23,
-          "chance": 1
-        },
-        {
-          "type": "item",
-          "id": "hp_potion",
-          "name": "生命药水",
-          "icon": "🧪",
-          "desc": "恢复 80 点生命值",
-          "qty": 1,
-          "chance": 0.51
-        },
-        {
-          "type": "item",
-          "id": "mp_potion",
-          "name": "法力药水",
-          "icon": "💧",
-          "desc": "恢复 40 点法力值",
-          "qty": 1,
-          "chance": 0.4
-        }
-      ]
-    }
-  ],
+  "chestSpawns": [],
   "monsters": [
     {
       "name": "冰狼",
@@ -146,13 +82,13 @@
         },
         {
           "type": "material",
-          "id": "mat_lvl2",
-          "name": "材料·冰狼",
-          "icon": "📦",
-          "desc": "从冰狼身上获得的材料",
+          "id": "mat_herb",
+          "name": "草药",
+          "icon": "🌿",
+          "desc": "从冰狼身上获得的草药",
           "qty": 1,
           "qtyMax": 2,
-          "sellPrice": 2,
+          "sellPrice": 3,
           "chance": 0.5
         }
       ]
@@ -194,7 +130,7 @@
         "desc": "恢复 200 点生命值",
         "qty": 1,
         "sellPrice": 25,
-        "chance": 0.5
+        "chance": 0.3
       },
       {
         "type": "equipment",
@@ -217,9 +153,9 @@
   "questions": [
     {
       "type": "fill",
-      "question": "They ___ teachers.",
-      "answer": "are",
-      "timeThreshold": 7
+      "question": "Your mother's sister → ___（姨妈）",
+      "answer": "aunt",
+      "timeThreshold": 9
     },
     {
       "type": "fill",
@@ -231,12 +167,104 @@
       "timeThreshold": 9
     },
     {
+      "type": "choice",
+      "question": "A: ___ your name? B: My name is Lucy.",
+      "options": [
+        "What",
+        "What's",
+        "How",
+        "How's"
+      ],
+      "answer": 1,
+      "timeThreshold": 7
+    },
+    {
       "type": "fill",
-      "question": "I hear with my ___（耳朵）.",
-      "answer": "ear",
+      "question": "Your father's father → ___（爷爷）",
+      "answer": "grandpa",
       "alternatives": [
-        "ears",
-        "Ear"
+        "grandfather",
+        "granddad"
+      ],
+      "timeThreshold": 9
+    },
+    {
+      "type": "choice",
+      "question": "What colour is it? — It's ___.",
+      "options": [
+        "red",
+        "a cat",
+        "three",
+        "fine"
+      ],
+      "answer": 0,
+      "timeThreshold": 7
+    },
+    {
+      "type": "fill",
+      "question": "I eat with my ___（嘴巴）.",
+      "answer": "mouth",
+      "alternatives": [
+        "Mouth"
+      ],
+      "timeThreshold": 9
+    },
+    {
+      "type": "fill",
+      "question": "Arrange: this / What / is / ?",
+      "answer": "What is this",
+      "alternatives": [
+        "what is this"
+      ],
+      "timeThreshold": 12
+    },
+    {
+      "type": "choice",
+      "question": "Is it a dog? — ___, it isn't.",
+      "options": [
+        "Yes",
+        "No",
+        "OK",
+        "Fine"
+      ],
+      "answer": 1,
+      "timeThreshold": 7
+    },
+    {
+      "type": "fill",
+      "question": "Your father's brother → ___（叔叔）",
+      "answer": "uncle",
+      "timeThreshold": 9
+    },
+    {
+      "type": "choice",
+      "question": "What's this? — It's ___ apple.",
+      "options": [
+        "a",
+        "an",
+        "the",
+        "/"
+      ],
+      "answer": 1,
+      "timeThreshold": 8
+    },
+    {
+      "type": "fill",
+      "question": "Arrange: It's / blue / .",
+      "answer": "It's blue",
+      "alternatives": [
+        "it is blue",
+        "it's blue"
+      ],
+      "timeThreshold": 12
+    },
+    {
+      "type": "fill",
+      "question": "I see with my ___（眼睛）.",
+      "answer": "eye",
+      "alternatives": [
+        "eyes",
+        "Eye"
       ],
       "timeThreshold": 9
     },
@@ -253,77 +281,6 @@
       "timeThreshold": 7
     },
     {
-      "type": "fill",
-      "question": "Your mother's sister → ___（姨妈）",
-      "answer": "aunt",
-      "timeThreshold": 9
-    },
-    {
-      "type": "choice",
-      "question": "Is it a dog? — ___, it isn't.",
-      "options": [
-        "Yes",
-        "No",
-        "OK",
-        "Fine"
-      ],
-      "answer": 1,
-      "timeThreshold": 7
-    },
-    {
-      "type": "choice",
-      "question": "I ___ a student.",
-      "options": [
-        "am",
-        "is",
-        "are",
-        "be"
-      ],
-      "answer": 0,
-      "timeThreshold": 8
-    },
-    {
-      "type": "fill",
-      "question": "Your father's brother → ___（叔叔）",
-      "answer": "uncle",
-      "timeThreshold": 9
-    },
-    {
-      "type": "fill",
-      "question": "I eat with my ___（嘴巴）.",
-      "answer": "mouth",
-      "alternatives": [
-        "Mouth"
-      ],
-      "timeThreshold": 9
-    },
-    {
-      "type": "fill",
-      "question": "I ___ a boy.（用am/is/are）",
-      "answer": "am",
-      "timeThreshold": 7
-    },
-    {
-      "type": "fill",
-      "question": "Your father's father → ___（爷爷）",
-      "answer": "grandpa",
-      "alternatives": [
-        "grandfather",
-        "granddad"
-      ],
-      "timeThreshold": 9
-    },
-    {
-      "type": "fill",
-      "question": "I see with my ___（眼睛）.",
-      "answer": "eye",
-      "alternatives": [
-        "eyes",
-        "Eye"
-      ],
-      "timeThreshold": 9
-    },
-    {
       "type": "choice",
       "question": "___ egg",
       "options": [
@@ -334,16 +291,10 @@
       ],
       "answer": 1,
       "timeThreshold": 7
-    },
-    {
-      "type": "fill",
-      "question": "She ___ my mother.",
-      "answer": "is",
-      "timeThreshold": 7
     }
   ],
   "merchant": {
-    "x": 6,
+    "x": 9,
     "y": 5,
     "npcName": "旅行商人",
     "npcIcon": "🧳",

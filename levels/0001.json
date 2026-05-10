@@ -25,27 +25,27 @@
   },
   "monsterSpawns": [
     {
-      "x": 7,
-      "y": 3,
-      "rate": 0.8417701227021146,
-      "monsterIdx": 0
-    },
-    {
-      "x": 4,
-      "y": 3,
-      "rate": 0.892857392367902,
+      "x": 3,
+      "y": 4,
+      "rate": 0.9941615910744361,
       "monsterIdx": 0
     },
     {
       "x": 8,
-      "y": 2,
-      "rate": 0.9944138070394846,
+      "y": 4,
+      "rate": 0.9781909642975931,
       "monsterIdx": 0
     },
     {
       "x": 5,
-      "y": 5,
-      "rate": 0.9490567491730588,
+      "y": 4,
+      "rate": 0.9919794580440932,
+      "monsterIdx": 0
+    },
+    {
+      "x": 3,
+      "y": 2,
+      "rate": 0.8176711604593203,
       "monsterIdx": 0
     }
   ],
@@ -57,9 +57,9 @@
   },
   "chestSpawns": [
     {
-      "x": 7,
-      "y": 4,
-      "rate": 0.9906030424368059,
+      "x": 4,
+      "y": 3,
+      "rate": 0.9141021053749763,
       "lootPool": [
         {
           "type": "gold",
@@ -81,9 +81,9 @@
       ]
     },
     {
-      "x": 3,
-      "y": 4,
-      "rate": 0.9227765376634631,
+      "x": 7,
+      "y": 5,
+      "rate": 0.9803418954009102,
       "lootPool": [
         {
           "type": "gold",
@@ -109,7 +109,7 @@
           "icon": "💧",
           "desc": "恢复 40 点法力值",
           "qty": 1,
-          "chance": 0.4
+          "chance": 0.25
         }
       ]
     }
@@ -144,13 +144,13 @@
         },
         {
           "type": "material",
-          "id": "mat_lvl1",
-          "name": "材料·史莱姆",
-          "icon": "📦",
-          "desc": "从史莱姆身上获得的材料",
+          "id": "mat_water",
+          "name": "清水",
+          "icon": "💧",
+          "desc": "从史莱姆身上获得的清水",
           "qty": 1,
           "qtyMax": 2,
-          "sellPrice": 2,
+          "sellPrice": 3,
           "chance": 0.5
         }
       ]
@@ -192,7 +192,7 @@
         "desc": "恢复 200 点生命值",
         "qty": 1,
         "sellPrice": 25,
-        "chance": 0.5
+        "chance": 0.3
       },
       {
         "type": "equipment",
@@ -214,12 +214,33 @@
   },
   "questions": [
     {
+      "type": "choice",
+      "question": "I ___ a student.",
+      "options": [
+        "am",
+        "is",
+        "are",
+        "be"
+      ],
+      "answer": 0,
+      "timeThreshold": 8
+    },
+    {
       "type": "fill",
-      "question": "I hear with my ___（耳朵）.",
-      "answer": "ear",
+      "question": "I smell with my ___（鼻子）.",
+      "answer": "nose",
       "alternatives": [
-        "ears",
-        "Ear"
+        "Nose"
+      ],
+      "timeThreshold": 9
+    },
+    {
+      "type": "fill",
+      "question": "I see with my ___（眼睛）.",
+      "answer": "eye",
+      "alternatives": [
+        "eyes",
+        "Eye"
       ],
       "timeThreshold": 9
     },
@@ -236,6 +257,28 @@
       "timeThreshold": 7
     },
     {
+      "type": "choice",
+      "question": "What colour is it? — It's ___.",
+      "options": [
+        "red",
+        "a cat",
+        "three",
+        "fine"
+      ],
+      "answer": 0,
+      "timeThreshold": 7
+    },
+    {
+      "type": "fill",
+      "question": "Arrange: It's / blue / .",
+      "answer": "It's blue",
+      "alternatives": [
+        "it is blue",
+        "it's blue"
+      ],
+      "timeThreshold": 12
+    },
+    {
       "type": "fill",
       "question": "Arrange: this / What / is / ?",
       "answer": "What is this",
@@ -243,6 +286,25 @@
         "what is this"
       ],
       "timeThreshold": 12
+    },
+    {
+      "type": "fill",
+      "question": "I eat with my ___（嘴巴）.",
+      "answer": "mouth",
+      "alternatives": [
+        "Mouth"
+      ],
+      "timeThreshold": 9
+    },
+    {
+      "type": "fill",
+      "question": "I hear with my ___（耳朵）.",
+      "answer": "ear",
+      "alternatives": [
+        "ears",
+        "Ear"
+      ],
+      "timeThreshold": 9
     },
     {
       "type": "choice",
@@ -258,58 +320,6 @@
     },
     {
       "type": "choice",
-      "question": "I ___ a student.",
-      "options": [
-        "am",
-        "is",
-        "are",
-        "be"
-      ],
-      "answer": 0,
-      "timeThreshold": 8
-    },
-    {
-      "type": "choice",
-      "question": "What colour is it? — It's ___.",
-      "options": [
-        "red",
-        "a cat",
-        "three",
-        "fine"
-      ],
-      "answer": 0,
-      "timeThreshold": 7
-    },
-    {
-      "type": "fill",
-      "question": "I eat with my ___（嘴巴）.",
-      "answer": "mouth",
-      "alternatives": [
-        "Mouth"
-      ],
-      "timeThreshold": 9
-    },
-    {
-      "type": "fill",
-      "question": "Arrange: It's / blue / .",
-      "answer": "It's blue",
-      "alternatives": [
-        "it is blue",
-        "it's blue"
-      ],
-      "timeThreshold": 12
-    },
-    {
-      "type": "fill",
-      "question": "I smell with my ___（鼻子）.",
-      "answer": "nose",
-      "alternatives": [
-        "Nose"
-      ],
-      "timeThreshold": 9
-    },
-    {
-      "type": "choice",
       "question": "What's this? — It's ___ apple.",
       "options": [
         "a",
@@ -319,21 +329,11 @@
       ],
       "answer": 1,
       "timeThreshold": 8
-    },
-    {
-      "type": "fill",
-      "question": "I see with my ___（眼睛）.",
-      "answer": "eye",
-      "alternatives": [
-        "eyes",
-        "Eye"
-      ],
-      "timeThreshold": 9
     }
   ],
   "merchant": {
-    "x": 4,
-    "y": 4,
+    "x": 2,
+    "y": 5,
     "npcName": "神秘商贩",
     "npcIcon": "🧳",
     "stock": [

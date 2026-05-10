@@ -14,60 +14,48 @@
     "height": 10,
     "tiles": [
       "WWWWWWWWWWW",
-      "W........WW",
-      "W.WWW.WW.WW",
-      "W.W....W.WW",
-      "W...WW...WW",
-      "WW.W..W.WWW",
-      "W..W..W..WW",
-      "W........WW",
+      "W.........W",
+      "W.WWW.WW..W",
+      "W.W....W..W",
+      "W...WW....W",
+      "WW.W..W.W.W",
+      "W..W..W...W",
+      "W.........W",
       "WWWWWWWWW.W",
       "WWWWWWWWWWW"
     ]
   },
   "monsterSpawns": [
     {
-      "x": 8,
-      "y": 2,
-      "rate": 0.8984578729202795,
-      "monsterIdx": 0
-    },
-    {
-      "x": 6,
-      "y": 4,
-      "rate": 0.9577400228158115,
-      "monsterIdx": 1
-    },
-    {
-      "x": 8,
-      "y": 5,
-      "rate": 0.8296514586976645,
-      "monsterIdx": 2
-    },
-    {
       "x": 2,
-      "y": 2,
-      "rate": 0.9614777325031677,
+      "y": 4,
+      "rate": 0.8681846157918924,
       "monsterIdx": 0
+    },
+    {
+      "x": 4,
+      "y": 6,
+      "rate": 0.8281623588375011,
+      "monsterIdx": 1
     },
     {
       "x": 3,
-      "y": 5,
-      "rate": 0.8271125010148492,
-      "monsterIdx": 1
+      "y": 3,
+      "rate": 0.8443431206506284,
+      "monsterIdx": 3
     }
   ],
   "bossSpawn": {
-    "x": 7,
-    "y": 8,
+    "x": 9,
+    "y": 7,
     "rate": 1,
-    "monsterIdx": 3
+    "monsterIdx": 5
   },
   "chestSpawns": [
     {
-      "x": 7,
-      "y": 4,
-      "rate": 0.9401533351532977,
+      "x": 6,
+      "y": 7,
+      "rate": 0.9515068761808876,
       "lootPool": [
         {
           "type": "gold",
@@ -89,9 +77,9 @@
       ]
     },
     {
-      "x": 3,
+      "x": 4,
       "y": 6,
-      "rate": 0.9024515112688763,
+      "rate": 0.9753942999848683,
       "lootPool": [
         {
           "type": "gold",
@@ -117,7 +105,7 @@
           "icon": "💧",
           "desc": "恢复 40 点法力值",
           "qty": 4,
-          "chance": 0.4
+          "chance": 0.25
         },
         {
           "type": "equipment",
@@ -136,9 +124,9 @@
       ]
     },
     {
-      "x": 7,
-      "y": 7,
-      "rate": 0.9077787080616899,
+      "x": 8,
+      "y": 6,
+      "rate": 0.943402927416661,
       "lootPool": [
         {
           "type": "gold",
@@ -164,47 +152,14 @@
           "icon": "💧",
           "desc": "恢复 40 点法力值",
           "qty": 4,
-          "chance": 0.4
-        }
-      ]
-    },
-    {
-      "x": 5,
-      "y": 5,
-      "rate": 0.9084054819044649,
-      "lootPool": [
-        {
-          "type": "gold",
-          "name": "金币",
-          "icon": "💰",
-          "min": 69,
-          "max": 143,
-          "chance": 1
-        },
-        {
-          "type": "item",
-          "id": "hp_potion",
-          "name": "生命药水",
-          "icon": "🧪",
-          "desc": "恢复 80 点生命值",
-          "qty": 5,
-          "chance": 0.66
-        },
-        {
-          "type": "item",
-          "id": "mp_potion",
-          "name": "法力药水",
-          "icon": "💧",
-          "desc": "恢复 40 点法力值",
-          "qty": 4,
-          "chance": 0.4
+          "chance": 0.25
         }
       ]
     },
     {
       "x": 4,
       "y": 3,
-      "rate": 0.9605532008586739,
+      "rate": 0.9385586673091382,
       "lootPool": [
         {
           "type": "gold",
@@ -230,7 +185,40 @@
           "icon": "💧",
           "desc": "恢复 40 点法力值",
           "qty": 4,
-          "chance": 0.4
+          "chance": 0.25
+        }
+      ]
+    },
+    {
+      "x": 8,
+      "y": 3,
+      "rate": 0.9474455317940992,
+      "lootPool": [
+        {
+          "type": "gold",
+          "name": "金币",
+          "icon": "💰",
+          "min": 69,
+          "max": 143,
+          "chance": 1
+        },
+        {
+          "type": "item",
+          "id": "hp_potion",
+          "name": "生命药水",
+          "icon": "🧪",
+          "desc": "恢复 80 点生命值",
+          "qty": 5,
+          "chance": 0.66
+        },
+        {
+          "type": "item",
+          "id": "mp_potion",
+          "name": "法力药水",
+          "icon": "💧",
+          "desc": "恢复 40 点法力值",
+          "qty": 4,
+          "chance": 0.25
         }
       ]
     }
@@ -271,7 +259,7 @@
           "desc": "恢复 80 点生命值",
           "qty": 1,
           "sellPrice": 10,
-          "chance": 0.25
+          "chance": 0.15
         },
         {
           "type": "item",
@@ -281,17 +269,17 @@
           "desc": "恢复 40 点法力值",
           "qty": 1,
           "sellPrice": 7,
-          "chance": 0.2
+          "chance": 0.1
         },
         {
           "type": "material",
-          "id": "mat_lvl32",
-          "name": "材料·混沌魔龙",
-          "icon": "📦",
-          "desc": "从混沌魔龙身上获得的材料",
+          "id": "mat_crystal",
+          "name": "水晶碎片",
+          "icon": "💎",
+          "desc": "从混沌魔龙身上获得的水晶碎片",
           "qty": 1,
           "qtyMax": 2,
-          "sellPrice": 16,
+          "sellPrice": 3,
           "chance": 0.5
         }
       ]
@@ -331,7 +319,7 @@
           "desc": "恢复 80 点生命值",
           "qty": 1,
           "sellPrice": 10,
-          "chance": 0.25
+          "chance": 0.15
         },
         {
           "type": "item",
@@ -341,17 +329,17 @@
           "desc": "恢复 40 点法力值",
           "qty": 1,
           "sellPrice": 7,
-          "chance": 0.2
+          "chance": 0.1
         },
         {
           "type": "material",
-          "id": "mat_lvl32",
-          "name": "材料·影狼",
-          "icon": "📦",
-          "desc": "从影狼身上获得的材料",
+          "id": "mat_leather",
+          "name": "皮革",
+          "icon": "🧶",
+          "desc": "从影狼身上获得的皮革",
           "qty": 1,
           "qtyMax": 2,
-          "sellPrice": 16,
+          "sellPrice": 3,
           "chance": 0.5
         }
       ]
@@ -391,7 +379,7 @@
           "desc": "恢复 80 点生命值",
           "qty": 1,
           "sellPrice": 10,
-          "chance": 0.25
+          "chance": 0.15
         },
         {
           "type": "item",
@@ -401,17 +389,137 @@
           "desc": "恢复 40 点法力值",
           "qty": 1,
           "sellPrice": 7,
-          "chance": 0.2
+          "chance": 0.1
         },
         {
           "type": "material",
-          "id": "mat_lvl32",
-          "name": "材料·岩巨人",
-          "icon": "📦",
-          "desc": "从岩巨人身上获得的材料",
+          "id": "mat_iron",
+          "name": "铁锭",
+          "icon": "⛏️",
+          "desc": "从岩巨人身上获得的铁锭",
           "qty": 1,
           "qtyMax": 2,
-          "sellPrice": 16,
+          "sellPrice": 3,
+          "chance": 0.5
+        }
+      ]
+    },
+    {
+      "name": "毒蜂群",
+      "icon": "🐝",
+      "hp": 252,
+      "attack": 58,
+      "aggro": 4,
+      "xpReward": 252,
+      "skills": [
+        {
+          "name": "普通攻击",
+          "icon": "💥",
+          "dmgMul": 1.3
+        },
+        {
+          "name": "重击",
+          "icon": "💢",
+          "dmgMul": 2.64
+        }
+      ],
+      "loot": [
+        {
+          "type": "gold",
+          "icon": "💰",
+          "min": 48,
+          "max": 96,
+          "chance": 1
+        },
+        {
+          "type": "item",
+          "id": "hp_potion",
+          "name": "生命药水",
+          "icon": "🧪",
+          "desc": "恢复 80 点生命值",
+          "qty": 1,
+          "sellPrice": 10,
+          "chance": 0.15
+        },
+        {
+          "type": "item",
+          "id": "mp_potion",
+          "name": "法力药水",
+          "icon": "💧",
+          "desc": "恢复 40 点法力值",
+          "qty": 1,
+          "sellPrice": 7,
+          "chance": 0.1
+        },
+        {
+          "type": "material",
+          "id": "mat_wood",
+          "name": "木材",
+          "icon": "🪵",
+          "desc": "从毒蜂群身上获得的木材",
+          "qty": 1,
+          "qtyMax": 2,
+          "sellPrice": 3,
+          "chance": 0.5
+        }
+      ]
+    },
+    {
+      "name": "霜巨人",
+      "icon": "🧊",
+      "hp": 296,
+      "attack": 65,
+      "aggro": 4,
+      "xpReward": 296,
+      "skills": [
+        {
+          "name": "普通攻击",
+          "icon": "💥",
+          "dmgMul": 1.3
+        },
+        {
+          "name": "重击",
+          "icon": "💢",
+          "dmgMul": 2.64
+        }
+      ],
+      "loot": [
+        {
+          "type": "gold",
+          "icon": "💰",
+          "min": 48,
+          "max": 96,
+          "chance": 1
+        },
+        {
+          "type": "item",
+          "id": "hp_potion",
+          "name": "生命药水",
+          "icon": "🧪",
+          "desc": "恢复 80 点生命值",
+          "qty": 1,
+          "sellPrice": 10,
+          "chance": 0.15
+        },
+        {
+          "type": "item",
+          "id": "mp_potion",
+          "name": "法力药水",
+          "icon": "💧",
+          "desc": "恢复 40 点法力值",
+          "qty": 1,
+          "sellPrice": 7,
+          "chance": 0.1
+        },
+        {
+          "type": "material",
+          "id": "mat_herb",
+          "name": "草药",
+          "icon": "🌿",
+          "desc": "从霜巨人身上获得的草药",
+          "qty": 1,
+          "qtyMax": 2,
+          "sellPrice": 3,
           "chance": 0.5
         }
       ]
@@ -453,7 +561,7 @@
         "desc": "恢复 200 点生命值",
         "qty": 4,
         "sellPrice": 25,
-        "chance": 0.5
+        "chance": 0.3
       },
       {
         "type": "item",
@@ -463,7 +571,7 @@
         "desc": "恢复 40 点法力值",
         "qty": 2,
         "sellPrice": 7,
-        "chance": 0.4
+        "chance": 0.25
       },
       {
         "type": "equipment",
@@ -485,25 +593,10 @@
   },
   "questions": [
     {
-      "type": "choice",
-      "question": "___ a book on the desk.",
-      "options": [
-        "There is",
-        "There are",
-        "There was",
-        "There were"
-      ],
-      "answer": 0,
-      "timeThreshold": 7
-    },
-    {
       "type": "fill",
-      "question": "英语 → ___",
-      "answer": "English",
-      "alternatives": [
-        "english"
-      ],
-      "timeThreshold": 7
+      "question": "She ___ (dance) now.",
+      "answer": "is dancing",
+      "timeThreshold": 9
     },
     {
       "type": "choice",
@@ -518,38 +611,25 @@
       "timeThreshold": 7
     },
     {
+      "type": "fill",
+      "question": "Monday → 星期一. Saturday → ___",
+      "answer": "星期六",
+      "alternatives": [
+        "Saturday"
+      ],
+      "timeThreshold": 7
+    },
+    {
       "type": "choice",
-      "question": "A bird ___ fly.",
+      "question": "A fish ___ swim.",
       "options": [
+        "can",
         "can't",
         "is",
-        "can",
         "are"
       ],
-      "answer": 2,
+      "answer": 0,
       "timeThreshold": 6
-    },
-    {
-      "type": "fill",
-      "question": "hamburger → 中文：___",
-      "answer": "汉堡包",
-      "alternatives": [
-        "汉堡",
-        "汉堡包"
-      ],
-      "timeThreshold": 7
-    },
-    {
-      "type": "choice",
-      "question": "___ do you get up? — At 6.",
-      "options": [
-        "What",
-        "Where",
-        "What time",
-        "How"
-      ],
-      "answer": 2,
-      "timeThreshold": 7
     },
     {
       "type": "fill",
@@ -561,18 +641,6 @@
       "timeThreshold": 9
     },
     {
-      "type": "choice",
-      "question": "She ___ to school by bus.",
-      "options": [
-        "go",
-        "goes",
-        "going",
-        "went"
-      ],
-      "answer": 1,
-      "timeThreshold": 7
-    },
-    {
       "type": "fill",
       "question": "科学 → ___",
       "answer": "science",
@@ -580,22 +648,46 @@
     },
     {
       "type": "fill",
-      "question": "bus → 复数：___",
-      "answer": "buses",
+      "question": "baby → 复数：___",
+      "answer": "babies",
       "timeThreshold": 7
     },
     {
       "type": "fill",
-      "question": "man → 复数：___",
-      "answer": "men",
+      "question": "I ___ (read) a book now.",
+      "answer": "am reading",
+      "timeThreshold": 9
+    },
+    {
+      "type": "choice",
+      "question": "___ two pens in the case.",
+      "options": [
+        "There is",
+        "There are",
+        "There was",
+        "There were"
+      ],
+      "answer": 1,
       "timeThreshold": 7
     },
     {
       "type": "fill",
-      "question": "语文 → ___",
-      "answer": "Chinese",
+      "question": "We ___ (sing) a song now.",
+      "answer": "are singing",
+      "timeThreshold": 9
+    },
+    {
+      "type": "fill",
+      "question": "child → 复数：___",
+      "answer": "children",
+      "timeThreshold": 7
+    },
+    {
+      "type": "fill",
+      "question": "英语 → ___",
+      "answer": "English",
       "alternatives": [
-        "chinese"
+        "english"
       ],
       "timeThreshold": 7
     },
@@ -613,8 +705,12 @@
     },
     {
       "type": "fill",
-      "question": "___ he like dogs?（Does/Do）",
-      "answer": "Does",
+      "question": "hamburger → 中文：___",
+      "answer": "汉堡包",
+      "alternatives": [
+        "汉堡",
+        "汉堡包"
+      ],
       "timeThreshold": 7
     }
   ],

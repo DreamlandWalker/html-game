@@ -26,40 +26,34 @@
   "monsterSpawns": [
     {
       "x": 10,
-      "y": 2,
-      "rate": 0.9089195086802699,
-      "monsterIdx": 0
-    },
-    {
-      "x": 8,
       "y": 3,
-      "rate": 0.9611932520875556,
+      "rate": 0.8822667300703139,
+      "monsterIdx": 1
+    },
+    {
+      "x": 5,
+      "y": 3,
+      "rate": 0.886558949937751,
       "monsterIdx": 0
     },
     {
-      "x": 2,
+      "x": 6,
       "y": 4,
-      "rate": 0.9913818429097803,
-      "monsterIdx": 0
-    },
-    {
-      "x": 10,
-      "y": 5,
-      "rate": 0.9124923363948553,
-      "monsterIdx": 0
+      "rate": 0.8833651219350527,
+      "monsterIdx": 1
     }
   ],
   "bossSpawn": {
     "x": 9,
     "y": 6,
     "rate": 1,
-    "monsterIdx": 1
+    "monsterIdx": 2
   },
   "chestSpawns": [
     {
-      "x": 9,
-      "y": 5,
-      "rate": 0.9639125678806273,
+      "x": 3,
+      "y": 3,
+      "rate": 0.9717152193755235,
       "lootPool": [
         {
           "type": "gold",
@@ -82,8 +76,8 @@
     },
     {
       "x": 7,
-      "y": 3,
-      "rate": 0.9483487478535546,
+      "y": 4,
+      "rate": 0.9529805230801579,
       "lootPool": [
         {
           "type": "gold",
@@ -109,7 +103,7 @@
           "icon": "💧",
           "desc": "恢复 40 点法力值",
           "qty": 2,
-          "chance": 0.4
+          "chance": 0.25
         },
         {
           "type": "equipment",
@@ -128,9 +122,9 @@
       ]
     },
     {
-      "x": 6,
-      "y": 5,
-      "rate": 0.9557700639388267,
+      "x": 10,
+      "y": 3,
+      "rate": 0.9968114405491296,
       "lootPool": [
         {
           "type": "gold",
@@ -156,7 +150,7 @@
           "icon": "💧",
           "desc": "恢复 40 点法力值",
           "qty": 2,
-          "chance": 0.4
+          "chance": 0.25
         }
       ]
     }
@@ -197,7 +191,7 @@
           "desc": "恢复 80 点生命值",
           "qty": 1,
           "sellPrice": 10,
-          "chance": 0.25
+          "chance": 0.15
         },
         {
           "type": "item",
@@ -207,17 +201,77 @@
           "desc": "恢复 40 点法力值",
           "qty": 1,
           "sellPrice": 7,
-          "chance": 0.2
+          "chance": 0.1
         },
         {
           "type": "material",
-          "id": "mat_lvl11",
-          "name": "材料·飞龙幼崽",
-          "icon": "📦",
-          "desc": "从飞龙幼崽身上获得的材料",
+          "id": "mat_crystal",
+          "name": "水晶碎片",
+          "icon": "💎",
+          "desc": "从飞龙幼崽身上获得的水晶碎片",
           "qty": 1,
           "qtyMax": 2,
-          "sellPrice": 5,
+          "sellPrice": 3,
+          "chance": 0.5
+        }
+      ]
+    },
+    {
+      "name": "云巨人",
+      "icon": "☁️",
+      "hp": 70,
+      "attack": 19,
+      "aggro": 2,
+      "xpReward": 70,
+      "skills": [
+        {
+          "name": "普通攻击",
+          "icon": "💥",
+          "dmgMul": 1.3
+        },
+        {
+          "name": "重击",
+          "icon": "💢",
+          "dmgMul": 2.22
+        }
+      ],
+      "loot": [
+        {
+          "type": "gold",
+          "icon": "💰",
+          "min": 16,
+          "max": 33,
+          "chance": 1
+        },
+        {
+          "type": "item",
+          "id": "hp_potion",
+          "name": "生命药水",
+          "icon": "🧪",
+          "desc": "恢复 80 点生命值",
+          "qty": 1,
+          "sellPrice": 10,
+          "chance": 0.15
+        },
+        {
+          "type": "item",
+          "id": "mp_potion",
+          "name": "法力药水",
+          "icon": "💧",
+          "desc": "恢复 40 点法力值",
+          "qty": 1,
+          "sellPrice": 7,
+          "chance": 0.1
+        },
+        {
+          "type": "material",
+          "id": "mat_herb",
+          "name": "草药",
+          "icon": "🌿",
+          "desc": "从云巨人身上获得的草药",
+          "qty": 1,
+          "qtyMax": 2,
+          "sellPrice": 3,
           "chance": 0.5
         }
       ]
@@ -259,7 +313,7 @@
         "desc": "恢复 200 点生命值",
         "qty": 2,
         "sellPrice": 25,
-        "chance": 0.5
+        "chance": 0.3
       },
       {
         "type": "item",
@@ -269,7 +323,7 @@
         "desc": "恢复 40 点法力值",
         "qty": 2,
         "sellPrice": 7,
-        "chance": 0.4
+        "chance": 0.25
       },
       {
         "type": "equipment",
@@ -292,72 +346,6 @@
   "questions": [
     {
       "type": "choice",
-      "question": "Tom is ___ than Mike.",
-      "options": [
-        "tall",
-        "taller",
-        "tallest",
-        "more tall"
-      ],
-      "answer": 1,
-      "timeThreshold": 7
-    },
-    {
-      "type": "fill",
-      "question": "This pen is ___ (cheap) than that one.",
-      "answer": "cheaper",
-      "timeThreshold": 8
-    },
-    {
-      "type": "choice",
-      "question": "They ___ going to go on a trip.",
-      "options": [
-        "am",
-        "is",
-        "are",
-        "be"
-      ],
-      "answer": 2,
-      "timeThreshold": 7
-    },
-    {
-      "type": "fill",
-      "question": "like → 过去式：___",
-      "answer": "liked",
-      "timeThreshold": 7
-    },
-    {
-      "type": "fill",
-      "question": "take → 过去式：___",
-      "answer": "took",
-      "timeThreshold": 7
-    },
-    {
-      "type": "choice",
-      "question": "I ___ TV yesterday.",
-      "options": [
-        "watch",
-        "watched",
-        "watching",
-        "watches"
-      ],
-      "answer": 1,
-      "timeThreshold": 7
-    },
-    {
-      "type": "choice",
-      "question": "I ___ going to visit my grandpa.",
-      "options": [
-        "am",
-        "is",
-        "are",
-        "be"
-      ],
-      "answer": 0,
-      "timeThreshold": 7
-    },
-    {
-      "type": "choice",
       "question": "My bag is ___ (big) than yours.",
       "options": [
         "big",
@@ -366,12 +354,6 @@
         "more big"
       ],
       "answer": 1,
-      "timeThreshold": 7
-    },
-    {
-      "type": "fill",
-      "question": "play → 过去式：___",
-      "answer": "played",
       "timeThreshold": 7
     },
     {
@@ -388,15 +370,55 @@
     },
     {
       "type": "choice",
-      "question": "She ___ going to learn swimming.",
+      "question": "I ___ TV yesterday.",
+      "options": [
+        "watch",
+        "watched",
+        "watching",
+        "watches"
+      ],
+      "answer": 1,
+      "timeThreshold": 7
+    },
+    {
+      "type": "fill",
+      "question": "Buy books here → ___",
+      "answer": "bookstore",
+      "alternatives": [
+        "book shop",
+        "bookshop"
+      ],
+      "timeThreshold": 9
+    },
+    {
+      "type": "choice",
+      "question": "I ___ going to visit my grandpa.",
       "options": [
         "am",
         "is",
         "are",
         "be"
       ],
-      "answer": 1,
+      "answer": 0,
       "timeThreshold": 7
+    },
+    {
+      "type": "fill",
+      "question": "play → 过去式：___",
+      "answer": "played",
+      "timeThreshold": 7
+    },
+    {
+      "type": "choice",
+      "question": "What ___ you doing?",
+      "options": [
+        "am",
+        "is",
+        "are",
+        "be"
+      ],
+      "answer": 2,
+      "timeThreshold": 6
     },
     {
       "type": "choice",
@@ -411,10 +433,43 @@
       "timeThreshold": 9
     },
     {
-      "type": "fill",
-      "question": "study → 过去式：___",
-      "answer": "studied",
+      "type": "choice",
+      "question": "She ___ going to learn swimming.",
+      "options": [
+        "am",
+        "is",
+        "are",
+        "be"
+      ],
+      "answer": 1,
       "timeThreshold": 7
+    },
+    {
+      "type": "fill",
+      "question": "like → 过去式：___",
+      "answer": "liked",
+      "timeThreshold": 7
+    },
+    {
+      "type": "fill",
+      "question": "She is ___ (happy) than before.",
+      "answer": "happier",
+      "timeThreshold": 8
+    },
+    {
+      "type": "fill",
+      "question": "Buy food here → ___",
+      "answer": "supermarket",
+      "timeThreshold": 9
+    },
+    {
+      "type": "fill",
+      "question": "See a film here → ___",
+      "answer": "cinema",
+      "alternatives": [
+        "movie theater"
+      ],
+      "timeThreshold": 9
     }
   ],
   "merchant": null,

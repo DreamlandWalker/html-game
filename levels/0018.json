@@ -14,59 +14,59 @@
     "height": 15,
     "tiles": [
       "WWWWWWWWWW",
-      "W......WWW",
-      "W.WW.W.WWW",
-      "W......WWW",
-      "W.WW.W.WWW",
-      "W......WWW",
-      "W.WWWW.WWW",
-      "W......WWW",
-      "W......WWW",
-      "W.WWWW.WWW",
-      "W......WWW",
-      "W......WWW",
-      "W......WWW",
+      "W........W",
+      "W.WW.W.W.W",
+      "W......W.W",
+      "W.WW.W.W.W",
+      "W......W.W",
+      "W.WWWW.W.W",
+      "W......W.W",
+      "W......W.W",
+      "W.WWWW.W.W",
+      "W......W.W",
+      "W......W.W",
+      "W......W.W",
       "WWWWWWWW.W",
       "WWWWWWWWWW"
     ]
   },
   "monsterSpawns": [
     {
-      "x": 2,
-      "y": 10,
-      "rate": 0.9806301123561852,
-      "monsterIdx": 0
-    },
-    {
-      "x": 4,
-      "y": 2,
-      "rate": 0.8394099063421545,
+      "x": 5,
+      "y": 3,
+      "rate": 0.8799443950665597,
       "monsterIdx": 1
     },
     {
-      "x": 2,
-      "y": 8,
-      "rate": 0.8451522005209231,
+      "x": 5,
+      "y": 5,
+      "rate": 0.8459557014502381,
+      "monsterIdx": 2
+    },
+    {
+      "x": 4,
+      "y": 4,
+      "rate": 0.8524816848630159,
       "monsterIdx": 0
     },
     {
-      "x": 7,
-      "y": 7,
-      "rate": 0.9783593279535816,
+      "x": 6,
+      "y": 4,
+      "rate": 0.9752542110369761,
       "monsterIdx": 1
     }
   ],
   "bossSpawn": {
-    "x": 7,
-    "y": 13,
+    "x": 8,
+    "y": 12,
     "rate": 1,
-    "monsterIdx": 2
+    "monsterIdx": 3
   },
   "chestSpawns": [
     {
-      "x": 6,
-      "y": 6,
-      "rate": 0.9106029259908247,
+      "x": 5,
+      "y": 11,
+      "rate": 0.9089250174201519,
       "lootPool": [
         {
           "type": "gold",
@@ -88,9 +88,9 @@
       ]
     },
     {
-      "x": 4,
-      "y": 10,
-      "rate": 0.9311684360928347,
+      "x": 6,
+      "y": 3,
+      "rate": 0.9857622673539208,
       "lootPool": [
         {
           "type": "gold",
@@ -116,7 +116,7 @@
           "icon": "💧",
           "desc": "恢复 40 点法力值",
           "qty": 2,
-          "chance": 0.4
+          "chance": 0.25
         },
         {
           "type": "equipment",
@@ -135,9 +135,9 @@
       ]
     },
     {
-      "x": 6,
-      "y": 12,
-      "rate": 0.9334514196976033,
+      "x": 3,
+      "y": 7,
+      "rate": 0.9779323660187175,
       "lootPool": [
         {
           "type": "gold",
@@ -163,7 +163,7 @@
           "icon": "💧",
           "desc": "恢复 40 点法力值",
           "qty": 2,
-          "chance": 0.4
+          "chance": 0.25
         }
       ]
     }
@@ -204,7 +204,7 @@
           "desc": "恢复 80 点生命值",
           "qty": 1,
           "sellPrice": 10,
-          "chance": 0.25
+          "chance": 0.15
         },
         {
           "type": "item",
@@ -214,17 +214,17 @@
           "desc": "恢复 40 点法力值",
           "qty": 1,
           "sellPrice": 7,
-          "chance": 0.2
+          "chance": 0.1
         },
         {
           "type": "material",
-          "id": "mat_lvl18",
-          "name": "材料·云巨人",
-          "icon": "📦",
-          "desc": "从云巨人身上获得的材料",
+          "id": "mat_leather",
+          "name": "皮革",
+          "icon": "🧶",
+          "desc": "从云巨人身上获得的皮革",
           "qty": 1,
           "qtyMax": 2,
-          "sellPrice": 9,
+          "sellPrice": 3,
           "chance": 0.5
         }
       ]
@@ -264,7 +264,7 @@
           "desc": "恢复 80 点生命值",
           "qty": 1,
           "sellPrice": 10,
-          "chance": 0.25
+          "chance": 0.15
         },
         {
           "type": "item",
@@ -274,17 +274,77 @@
           "desc": "恢复 40 点法力值",
           "qty": 1,
           "sellPrice": 7,
-          "chance": 0.2
+          "chance": 0.1
         },
         {
           "type": "material",
-          "id": "mat_lvl18",
-          "name": "材料·暗黑骑士",
-          "icon": "📦",
-          "desc": "从暗黑骑士身上获得的材料",
+          "id": "mat_herb",
+          "name": "草药",
+          "icon": "🌿",
+          "desc": "从暗黑骑士身上获得的草药",
           "qty": 1,
           "qtyMax": 2,
-          "sellPrice": 9,
+          "sellPrice": 3,
+          "chance": 0.5
+        }
+      ]
+    },
+    {
+      "name": "混沌魔龙",
+      "icon": "🐲",
+      "hp": 129,
+      "attack": 31,
+      "aggro": 3,
+      "xpReward": 129,
+      "skills": [
+        {
+          "name": "普通攻击",
+          "icon": "💥",
+          "dmgMul": 1.3
+        },
+        {
+          "name": "重击",
+          "icon": "💢",
+          "dmgMul": 2.36
+        }
+      ],
+      "loot": [
+        {
+          "type": "gold",
+          "icon": "💰",
+          "min": 27,
+          "max": 54,
+          "chance": 1
+        },
+        {
+          "type": "item",
+          "id": "hp_potion",
+          "name": "生命药水",
+          "icon": "🧪",
+          "desc": "恢复 80 点生命值",
+          "qty": 1,
+          "sellPrice": 10,
+          "chance": 0.15
+        },
+        {
+          "type": "item",
+          "id": "mp_potion",
+          "name": "法力药水",
+          "icon": "💧",
+          "desc": "恢复 40 点法力值",
+          "qty": 1,
+          "sellPrice": 7,
+          "chance": 0.1
+        },
+        {
+          "type": "material",
+          "id": "mat_crystal",
+          "name": "水晶碎片",
+          "icon": "💎",
+          "desc": "从混沌魔龙身上获得的水晶碎片",
+          "qty": 1,
+          "qtyMax": 2,
+          "sellPrice": 3,
           "chance": 0.5
         }
       ]
@@ -326,7 +386,7 @@
         "desc": "恢复 200 点生命值",
         "qty": 2,
         "sellPrice": 25,
-        "chance": 0.5
+        "chance": 0.3
       },
       {
         "type": "item",
@@ -336,7 +396,7 @@
         "desc": "恢复 40 点法力值",
         "qty": 2,
         "sellPrice": 7,
-        "chance": 0.4
+        "chance": 0.25
       },
       {
         "type": "equipment",
@@ -359,20 +419,47 @@
   "questions": [
     {
       "type": "fill",
-      "question": "毕业 → ___",
-      "answer": "graduation",
-      "timeThreshold": 8
+      "question": "Listen! She ___ (sing) in the room.",
+      "answer": "is singing",
+      "timeThreshold": 9
+    },
+    {
+      "type": "fill",
+      "question": "He ___ (be) to the UK twice.",
+      "answer": "has been",
+      "timeThreshold": 9
+    },
+    {
+      "type": "fill",
+      "question": "We ___ (visit) the museum next week.",
+      "answer": "will visit",
+      "alternatives": [
+        "are going to visit"
+      ],
+      "timeThreshold": 9
     },
     {
       "type": "choice",
-      "question": "I stayed home ___ it rained.",
+      "question": "I like apples ___ oranges.",
       "options": [
         "and",
         "but",
         "so",
         "because"
       ],
-      "answer": 3,
+      "answer": 0,
+      "timeThreshold": 6
+    },
+    {
+      "type": "fill",
+      "question": "毕业 → ___",
+      "answer": "graduation",
+      "timeThreshold": 8
+    },
+    {
+      "type": "fill",
+      "question": "同学 → ___",
+      "answer": "classmate",
       "timeThreshold": 7
     },
     {
@@ -389,42 +476,24 @@
     },
     {
       "type": "fill",
-      "question": "小学 → ___",
-      "answer": "primary school",
-      "timeThreshold": 8
-    },
-    {
-      "type": "fill",
-      "question": "We ___ (visit) the museum next week.",
-      "answer": "will visit",
+      "question": "初中 → ___",
+      "answer": "junior high school",
       "alternatives": [
-        "are going to visit"
+        "junior school"
       ],
       "timeThreshold": 9
     },
     {
-      "type": "fill",
-      "question": "I ___ (go) to the park yesterday.",
-      "answer": "went",
-      "timeThreshold": 7
-    },
-    {
       "type": "choice",
-      "question": "I like apples ___ oranges.",
+      "question": "I stayed home ___ it rained.",
       "options": [
         "and",
         "but",
         "so",
         "because"
       ],
-      "answer": 0,
-      "timeThreshold": 6
-    },
-    {
-      "type": "fill",
-      "question": "Listen! She ___ (sing) in the room.",
-      "answer": "is singing",
-      "timeThreshold": 9
+      "answer": 3,
+      "timeThreshold": 7
     },
     {
       "type": "choice",
@@ -440,29 +509,20 @@
     },
     {
       "type": "fill",
-      "question": "He ___ (be) to the UK twice.",
-      "answer": "has been",
-      "timeThreshold": 9
+      "question": "小学 → ___",
+      "answer": "primary school",
+      "timeThreshold": 8
     },
     {
       "type": "fill",
-      "question": "同学 → ___",
-      "answer": "classmate",
+      "question": "I ___ (go) to the park yesterday.",
+      "answer": "went",
       "timeThreshold": 7
-    },
-    {
-      "type": "fill",
-      "question": "初中 → ___",
-      "answer": "junior high school",
-      "alternatives": [
-        "junior school"
-      ],
-      "timeThreshold": 9
     }
   ],
   "merchant": {
-    "x": 4,
-    "y": 2,
+    "x": 5,
+    "y": 11,
     "npcName": "旅行商人",
     "npcIcon": "🧳",
     "stock": [

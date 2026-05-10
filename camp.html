@@ -126,7 +126,7 @@ body{min-height:100vh;background:#0b0d17;font-family:'Segoe UI','PingFang SC','M
     <button class="camp-tab active" onclick="switchTab('shop')">🛒 购买</button>
     <button class="camp-tab" onclick="switchTab('sell')">💰 出售</button>
     <button class="camp-tab" onclick="switchTab('craft')">🔨 制作</button>
-    <button class="camp-tab" onclick="switchTab('equip')">⚔️ 装备</button>
+    <button class="camp-tab" onclick="switchTab('storage')">🏪 仓库</button>
   </div>
 
   <!-- ══ 购买面板 ══ -->
@@ -144,22 +144,16 @@ body{min-height:100vh;background:#0b0d17;font-family:'Segoe UI','PingFang SC','M
     <div class="craft-grid" id="craftItems"></div>
   </div>
 
-  <!-- ══ 装备面板 ══ -->
-  <div class="camp-panel" id="panel-equip">
-    <div class="equip-panel" id="equipPanel"></div>
-  </div>
-
-  <!-- ══ 物品选择弹窗 ══ -->
-  <div class="modal-overlay" id="pickModal">
-    <div class="modal-box">
-      <div class="modal-title" id="pickTitle">选择物品</div>
-      <div class="modal-items" id="pickItems"></div>
-      <button class="modal-cancel" onclick="closePick()">取消</button>
-    </div>
+  <!-- ══ 仓库面板 ══ -->
+  <div class="camp-panel" id="panel-storage">
+    <div class="shop-grid" id="storageItems"></div>
   </div>
 </div>
 
 <script>
+// ─── 背景音乐 ───
+(function(){var a=document.createElement('audio');a.id='_bgm';a.loop=true;a.src='sounds/map_background_music.mp3';a.volume=0.12;a.play().catch(function(){})})();
+
 // ─── Data ───
 function getData(){
   try{return JSON.parse(localStorage.getItem('hanako_game_data'))||{};}catch(e){return {};}
@@ -192,17 +186,99 @@ const SHOP_CATALOG = [
   {id:'camp_health_amulet',name:'生命护符',icon:'📿',desc:'蕴藏生命能量的护符',buyPrice:95,sellPrice:48,category:'饰品',slot:'neck',stats:{hp:30,spr:3}}
 ];
 
+// ─── 套装装备定义（不可购买，只能制作） ───
+const SET_ITEMS = [
+  // ══ 战神套 ══
+  {id:'warrior_set_weapon',name:'战神巨剑',icon:'🗡️',desc:'战神之握，劈山断岳',slot:'weapon',stats:{str:12,agi:3},sellPrice:40,setId:'warrior_set'},
+  {id:'warrior_set_offhand',name:'战神盾牌',icon:'🛡️',desc:'坚不可摧的守护',slot:'offhand',stats:{str:6,hp:30},sellPrice:30,setId:'warrior_set'},
+  {id:'warrior_set_head',name:'战神战盔',icon:'🪖',desc:'染血钢铁铸就',slot:'head',stats:{str:5,hp:20},sellPrice:25,setId:'warrior_set'},
+  {id:'warrior_set_chest',name:'战神板甲',icon:'🛡️',desc:'千锤百炼的重甲',slot:'chest',stats:{str:8,hp:50},sellPrice:35,setId:'warrior_set'},
+  {id:'warrior_set_legs',name:'战神腿甲',icon:'🦵',desc:'铁壁般的下半身防护',slot:'legs',stats:{str:6,hp:25},sellPrice:28,setId:'warrior_set'},
+  {id:'warrior_set_shoes',name:'战神铁靴',icon:'🥾',desc:'踏碎敌人的重靴',slot:'shoes',stats:{str:4,agi:4},sellPrice:26,setId:'warrior_set'},
+  {id:'warrior_set_ring',name:'战神指环',icon:'💍',desc:'蕴含力量的铁环',slot:'ring1',stats:{str:7},sellPrice:32,setId:'warrior_set'},
+  {id:'warrior_set_neck',name:'战神吊坠',icon:'📿',desc:'战场勇气的象征',slot:'neck',stats:{str:5,spr:3},sellPrice:30,setId:'warrior_set'},
+  // ══ 大魔导套 ══
+  {id:'mage_set_weapon',name:'大魔导法杖',icon:'🔮',desc:'凝聚奥术之力的法杖',slot:'weapon',stats:{int:14,spr:4},sellPrice:42,setId:'mage_set'},
+  {id:'mage_set_offhand',name:'大魔导典籍',icon:'📖',desc:'记载远古咒语的魔法书',slot:'offhand',stats:{int:7,mp:25},sellPrice:32,setId:'mage_set'},
+  {id:'mage_set_head',name:'大魔导冠冕',icon:'👑',desc:'镶嵌魔晶的法师冠',slot:'head',stats:{int:6,mp:15},sellPrice:28,setId:'mage_set'},
+  {id:'mage_set_chest',name:'大魔导法袍',icon:'👘',desc:'符文流转的奥术长袍',slot:'chest',stats:{int:8,mp:40},sellPrice:36,setId:'mage_set'},
+  {id:'mage_set_legs',name:'大魔导法裤',icon:'👖',desc:'轻盈的附魔法裤',slot:'legs',stats:{int:6,mp:20},sellPrice:28,setId:'mage_set'},
+  {id:'mage_set_shoes',name:'大魔导法靴',icon:'🥾',desc:'灌注法力增加移速',slot:'shoes',stats:{int:4,agi:3},sellPrice:26,setId:'mage_set'},
+  {id:'mage_set_ring',name:'大魔导指环',icon:'💍',desc:'增强法术共鸣的戒指',slot:'ring1',stats:{int:8},sellPrice:34,setId:'mage_set'},
+  {id:'mage_set_neck',name:'大魔导挂坠',icon:'📿',desc:'封印着魔力水晶的项链',slot:'neck',stats:{int:6,spr:4},sellPrice:32,setId:'mage_set'},
+  // ══ 大主教套 ══
+  {id:'priest_set_weapon',name:'大主教圣典',icon:'📖',desc:'记载神圣祷言的圣典',slot:'weapon',stats:{spr:12,int:4},sellPrice:40,setId:'priest_set'},
+  {id:'priest_set_offhand',name:'大主教圣徽',icon:'✨',desc:'散发柔和光芒的圣徽',slot:'offhand',stats:{spr:6,hp:20},sellPrice:30,setId:'priest_set'},
+  {id:'priest_set_head',name:'大主教圣冠',icon:'👑',desc:'神圣加冕的冠冕',slot:'head',stats:{spr:5,mp:15},sellPrice:26,setId:'priest_set'},
+  {id:'priest_set_chest',name:'大主教祭袍',icon:'👘',desc:'圣洁无瑕的祭祀长袍',slot:'chest',stats:{spr:8,hp:40},sellPrice:36,setId:'priest_set'},
+  {id:'priest_set_legs',name:'大主教圣裤',icon:'👖',desc:'绣有圣纹的圣洁长裤',slot:'legs',stats:{spr:5,mp:20},sellPrice:26,setId:'priest_set'},
+  {id:'priest_set_shoes',name:'大主教布靴',icon:'🥾',desc:'柔软舒适的传道布靴',slot:'shoes',stats:{spr:4,agi:3},sellPrice:24,setId:'priest_set'},
+  {id:'priest_set_ring',name:'大主教指环',icon:'💍',desc:'承载信仰的祝福指环',slot:'ring1',stats:{spr:7},sellPrice:32,setId:'priest_set'},
+  {id:'priest_set_neck',name:'大主教项链',icon:'📿',desc:'灌注圣力的十字吊坠',slot:'neck',stats:{spr:5,int:4},sellPrice:30,setId:'priest_set'},
+  // ══ 神射手套 ══
+  {id:'archer_set_weapon',name:'神射手长弓',icon:'🏹',desc:'百步穿杨的精灵长弓',slot:'weapon',stats:{agi:14,str:3},sellPrice:42,setId:'archer_set'},
+  {id:'archer_set_offhand',name:'神射手箭袋',icon:'🧰',desc:'永远取不完的魔法箭袋',slot:'offhand',stats:{agi:6,hp:15},sellPrice:30,setId:'archer_set'},
+  {id:'archer_set_head',name:'神射手兜帽',icon:'🎭',desc:'轻便灵活的伪装兜帽',slot:'head',stats:{agi:5,hp:15},sellPrice:26,setId:'archer_set'},
+  {id:'archer_set_chest',name:'神射手链甲',icon:'🛡️',desc:'兼顾灵活与防护的链甲',slot:'chest',stats:{agi:8,hp:30},sellPrice:36,setId:'archer_set'},
+  {id:'archer_set_legs',name:'神射手皮裤',icon:'👖',desc:'紧身灵活的猎手皮裤',slot:'legs',stats:{agi:6,hp:15},sellPrice:28,setId:'archer_set'},
+  {id:'archer_set_shoes',name:'神射手轻靴',icon:'🥾',desc:'无声潜行的软皮靴',slot:'shoes',stats:{agi:5,str:2},sellPrice:26,setId:'archer_set'},
+  {id:'archer_set_ring',name:'神射手指环',icon:'💍',desc:'增强手眼协调的指环',slot:'ring2',stats:{agi:7},sellPrice:32,setId:'archer_set'},
+  {id:'archer_set_neck',name:'神射手吊坠',icon:'📿',desc:'鹰眼祝福的瞄准吊坠',slot:'neck',stats:{agi:6,spr:3},sellPrice:30,setId:'archer_set'}
+];
+
 // ─── 制作配方 ───
 const CRAFT_RECIPES = [
   {id:'craft_hp_pot',name:'生命药水',icon:'🧪',desc:'恢复 80 点生命值',result:{id:'hp_potion',qty:3},materials:[{id:'mat_herb',name:'草药',qty:2},{id:'mat_water',name:'清水',qty:1}]},
   {id:'craft_mp_pot',name:'法力药水',icon:'💧',desc:'恢复 40 点法力值',result:{id:'mp_potion',qty:3},materials:[{id:'mat_crystal',name:'水晶碎片',qty:2},{id:'mat_water',name:'清水',qty:1}]},
-  {id:'craft_hp_big',name:'大生命药水',icon:'🧪',desc:'恢复 200 点生命值',result:{id:'hp_big_potion',qty:1},materials:[{id:'hp_potion',qty:2},{id:'mat_herb',name:'草药',qty:3}]},
+  {id:'craft_hp_big',name:'大生命药水',icon:'🧪',desc:'恢复 200 点生命值',result:{id:'hp_big_potion',qty:1},materials:[{id:'mat_herb',name:'草药',qty:3},{id:'mat_water',name:'清水',qty:2},{id:'mat_crystal',name:'水晶碎片',qty:1}]},
   {id:'craft_scroll_fire',name:'火焰卷轴',icon:'📜',desc:'造成50点火伤害',result:{id:'scroll_of_fire',qty:1},materials:[{id:'mat_herb',name:'草药',qty:3},{id:'mat_crystal',name:'水晶碎片',qty:2}]},
   {id:'craft_scroll_ice',name:'冰霜卷轴',icon:'📜',desc:'造成45点冰伤害',result:{id:'scroll_of_ice',qty:1},materials:[{id:'mat_crystal',name:'水晶碎片',qty:3},{id:'mat_water',name:'清水',qty:2}]},
   {id:'craft_speed_boots',name:'疾风靴',icon:'🥾',desc:'轻便灵活的皮靴',result:{id:'camp_speed_boots',qty:1},materials:[{id:'mat_leather',name:'皮革',qty:3},{id:'mat_iron',name:'铁锭',qty:1}]},
   {id:'craft_leather_armor',name:'硬皮甲',icon:'🛡️',desc:'鞣制过的硬皮甲',result:{id:'camp_leather_armor',qty:1},materials:[{id:'mat_leather',name:'皮革',qty:5},{id:'mat_iron',name:'铁锭',qty:3}]},
   {id:'craft_iron_sword',name:'精铁剑',icon:'⚔️',desc:'铁匠锻造的精良长剑',result:{id:'camp_iron_sword',qty:1},materials:[{id:'mat_iron',name:'铁锭',qty:4},{id:'mat_wood',name:'木材',qty:2}]},
-  {id:'craft_magic_ring',name:'魔力指环',icon:'💍',desc:'提升魔法亲和力',result:{id:'camp_magic_ring',qty:1},materials:[{id:'mat_crystal',name:'水晶碎片',qty:4},{id:'mat_iron',name:'铁锭',qty:2}]}
+  {id:'craft_magic_ring',name:'魔力指环',icon:'💍',desc:'提升魔法亲和力',result:{id:'camp_magic_ring',qty:1},materials:[{id:'mat_crystal',name:'水晶碎片',qty:4},{id:'mat_iron',name:'铁锭',qty:2}]},
+
+  // ══════ 装装配方 ══════
+
+  // 战神套
+  {id:'craft_warrior_weapon',name:'战神巨剑',icon:'🗡️',desc:'套装·战士武器',result:{id:'warrior_set_weapon',qty:1},materials:[{id:'mat_iron',name:'铁锭',qty:4},{id:'mat_wood',name:'木材',qty:2}]},
+  {id:'craft_warrior_offhand',name:'战神盾牌',icon:'🛡️',desc:'套装·战士副手',result:{id:'warrior_set_offhand',qty:1},materials:[{id:'mat_iron',name:'铁锭',qty:3},{id:'mat_leather',name:'皮革',qty:2}]},
+  {id:'craft_warrior_head',name:'战神战盔',icon:'🪖',desc:'套装·战士头盔',result:{id:'warrior_set_head',qty:1},materials:[{id:'mat_iron',name:'铁锭',qty:3},{id:'mat_leather',name:'皮革',qty:1}]},
+  {id:'craft_warrior_chest',name:'战神板甲',icon:'🛡️',desc:'套装·战士胸甲',result:{id:'warrior_set_chest',qty:1},materials:[{id:'mat_iron',name:'铁锭',qty:5},{id:'mat_leather',name:'皮革',qty:2}]},
+  {id:'craft_warrior_legs',name:'战神腿甲',icon:'🦵',desc:'套装·战士护腿',result:{id:'warrior_set_legs',qty:1},materials:[{id:'mat_iron',name:'铁锭',qty:4},{id:'mat_leather',name:'皮革',qty:1}]},
+  {id:'craft_warrior_shoes',name:'战神铁靴',icon:'🥾',desc:'套装·战士战靴',result:{id:'warrior_set_shoes',qty:1},materials:[{id:'mat_leather',name:'皮革',qty:2},{id:'mat_iron',name:'铁锭',qty:2}]},
+  {id:'craft_warrior_ring',name:'战神指环',icon:'💍',desc:'套装·战士戒指',result:{id:'warrior_set_ring',qty:1},materials:[{id:'mat_iron',name:'铁锭',qty:2},{id:'mat_crystal',name:'水晶碎片',qty:2}]},
+  {id:'craft_warrior_neck',name:'战神吊坠',icon:'📿',desc:'套装·战士项链',result:{id:'warrior_set_neck',qty:1},materials:[{id:'mat_iron',name:'铁锭',qty:1},{id:'mat_crystal',name:'水晶碎片',qty:3}]},
+
+  // 大魔导套
+  {id:'craft_mage_weapon',name:'大魔导法杖',icon:'🔮',desc:'套装·法师武器',result:{id:'mage_set_weapon',qty:1},materials:[{id:'mat_wood',name:'木材',qty:4},{id:'mat_crystal',name:'水晶碎片',qty:3}]},
+  {id:'craft_mage_offhand',name:'大魔导典籍',icon:'📖',desc:'套装·法师副手',result:{id:'mage_set_offhand',qty:1},materials:[{id:'mat_leather',name:'皮革',qty:2},{id:'mat_crystal',name:'水晶碎片',qty:2}]},
+  {id:'craft_mage_head',name:'大魔导冠冕',icon:'👑',desc:'套装·法师头盔',result:{id:'mage_set_head',qty:1},materials:[{id:'mat_leather',name:'皮革',qty:2},{id:'mat_crystal',name:'水晶碎片',qty:1}]},
+  {id:'craft_mage_chest',name:'大魔导法袍',icon:'👘',desc:'套装·法师胸甲',result:{id:'mage_set_chest',qty:1},materials:[{id:'mat_leather',name:'皮革',qty:4},{id:'mat_crystal',name:'水晶碎片',qty:1}]},
+  {id:'craft_mage_legs',name:'大魔导法裤',icon:'👖',desc:'套装·法师护腿',result:{id:'mage_set_legs',qty:1},materials:[{id:'mat_leather',name:'皮革',qty:3},{id:'mat_wood',name:'木材',qty:1}]},
+  {id:'craft_mage_shoes',name:'大魔导法靴',icon:'🥾',desc:'套装·法师战靴',result:{id:'mage_set_shoes',qty:1},materials:[{id:'mat_leather',name:'皮革',qty:2},{id:'mat_crystal',name:'水晶碎片',qty:1}]},
+  {id:'craft_mage_ring',name:'大魔导指环',icon:'💍',desc:'套装·法师戒指',result:{id:'mage_set_ring',qty:1},materials:[{id:'mat_crystal',name:'水晶碎片',qty:3},{id:'mat_iron',name:'铁锭',qty:1}]},
+  {id:'craft_mage_neck',name:'大魔导挂坠',icon:'📿',desc:'套装·法师项链',result:{id:'mage_set_neck',qty:1},materials:[{id:'mat_crystal',name:'水晶碎片',qty:3},{id:'mat_leather',name:'皮革',qty:1}]},
+
+  // 大主教套
+  {id:'craft_priest_weapon',name:'大主教圣典',icon:'📖',desc:'套装·牧师武器',result:{id:'priest_set_weapon',qty:1},materials:[{id:'mat_leather',name:'皮革',qty:2},{id:'mat_wood',name:'木材',qty:2},{id:'mat_crystal',name:'水晶碎片',qty:1}]},
+  {id:'craft_priest_offhand',name:'大主教圣徽',icon:'✨',desc:'套装·牧师副手',result:{id:'priest_set_offhand',qty:1},materials:[{id:'mat_iron',name:'铁锭',qty:2},{id:'mat_crystal',name:'水晶碎片',qty:2}]},
+  {id:'craft_priest_head',name:'大主教圣冠',icon:'👑',desc:'套装·牧师头盔',result:{id:'priest_set_head',qty:1},materials:[{id:'mat_leather',name:'皮革',qty:2},{id:'mat_crystal',name:'水晶碎片',qty:2}]},
+  {id:'craft_priest_chest',name:'大主教祭袍',icon:'👘',desc:'套装·牧师胸甲',result:{id:'priest_set_chest',qty:1},materials:[{id:'mat_leather',name:'皮革',qty:4},{id:'mat_herb',name:'草药',qty:2}]},
+  {id:'craft_priest_legs',name:'大主教圣裤',icon:'👖',desc:'套装·牧师护腿',result:{id:'priest_set_legs',qty:1},materials:[{id:'mat_leather',name:'皮革',qty:3},{id:'mat_wood',name:'木材',qty:1}]},
+  {id:'craft_priest_shoes',name:'大主教布靴',icon:'🥾',desc:'套装·牧师战靴',result:{id:'priest_set_shoes',qty:1},materials:[{id:'mat_leather',name:'皮革',qty:2},{id:'mat_herb',name:'草药',qty:1}]},
+  {id:'craft_priest_ring',name:'大主教指环',icon:'💍',desc:'套装·牧师戒指',result:{id:'priest_set_ring',qty:1},materials:[{id:'mat_crystal',name:'水晶碎片',qty:3},{id:'mat_herb',name:'草药',qty:2}]},
+  {id:'craft_priest_neck',name:'大主教项链',icon:'📿',desc:'套装·牧师项链',result:{id:'priest_set_neck',qty:1},materials:[{id:'mat_crystal',name:'水晶碎片',qty:2},{id:'mat_herb',name:'草药',qty:3}]},
+
+  // 神射手套
+  {id:'craft_archer_weapon',name:'神射手长弓',icon:'🏹',desc:'套装·弓手武器',result:{id:'archer_set_weapon',qty:1},materials:[{id:'mat_wood',name:'木材',qty:4},{id:'mat_leather',name:'皮革',qty:2}]},
+  {id:'craft_archer_offhand',name:'神射手箭袋',icon:'🧰',desc:'套装·弓手副手',result:{id:'archer_set_offhand',qty:1},materials:[{id:'mat_leather',name:'皮革',qty:3},{id:'mat_wood',name:'木材',qty:1}]},
+  {id:'craft_archer_head',name:'神射手兜帽',icon:'🎭',desc:'套装·弓手头盔',result:{id:'archer_set_head',qty:1},materials:[{id:'mat_leather',name:'皮革',qty:2},{id:'mat_wood',name:'木材',qty:1}]},
+  {id:'craft_archer_chest',name:'神射手链甲',icon:'🛡️',desc:'套装·弓手胸甲',result:{id:'archer_set_chest',qty:1},materials:[{id:'mat_leather',name:'皮革',qty:3},{id:'mat_iron',name:'铁锭',qty:2}]},
+  {id:'craft_archer_legs',name:'神射手皮裤',icon:'👖',desc:'套装·弓手护腿',result:{id:'archer_set_legs',qty:1},materials:[{id:'mat_leather',name:'皮革',qty:3},{id:'mat_wood',name:'木材',qty:1}]},
+  {id:'craft_archer_shoes',name:'神射手轻靴',icon:'🥾',desc:'套装·弓手战靴',result:{id:'archer_set_shoes',qty:1},materials:[{id:'mat_leather',name:'皮革',qty:2},{id:'mat_wood',name:'木材',qty:1}]},
+  {id:'craft_archer_ring',name:'神射手指环',icon:'💍',desc:'套装·弓手戒指',result:{id:'archer_set_ring',qty:1},materials:[{id:'mat_crystal',name:'水晶碎片',qty:2},{id:'mat_leather',name:'皮革',qty:2}]},
+  {id:'craft_archer_neck',name:'神射手吊坠',icon:'📿',desc:'套装·弓手项链',result:{id:'archer_set_neck',qty:1},materials:[{id:'mat_crystal',name:'水晶碎片',qty:3},{id:'mat_wood',name:'木材',qty:1}]}
 ];
 
 // ─── 基础材料（玩家背包里的材料做兜底） ───
@@ -234,13 +310,14 @@ function init(){
   renderShop();
   renderSell();
   renderCraft();
-  renderEquip();
+  renderStorage();
 }
 
 function switchTab(t){
   tab = t;
   document.querySelectorAll('.camp-tab').forEach(el=>el.classList.remove('active'));
-  document.querySelector('.camp-tab[onclick*="'+t+'"]').classList.add('active');
+  const tabBtn = document.querySelector('[onclick*="switchTab(\''+t+'\')"]');
+  if(tabBtn) tabBtn.classList.add('active');
   document.querySelectorAll('.camp-panel').forEach(el=>el.classList.remove('active'));
   document.getElementById('panel-'+t).classList.add('active');
 }
@@ -307,7 +384,8 @@ function renderSell(){
       <div class="si-desc">${item.desc||''}</div></div>
       <span class="si-price">${sellPrice}💰</span>
       <span class="si-qty">×${item.qty||1}</span>
-      <button class="si-btn" onclick="sellItem(${idx})">出售</button>`;
+      <button class="si-btn" onclick="sellItem(${idx})" style="border-color:rgba(255,215,128,.2);color:#ffd780">出售</button>
+      <button class="si-btn" onclick="storeItem(${idx})" style="border-color:rgba(108,160,255,.2);color:#8ab8ff">存入</button>`;
     g.appendChild(div);
   });
 }
@@ -352,6 +430,19 @@ function renderCraft(){
       const ok = have >= m.qty;
       return `<span class="${ok?'have':'need'}">${getMatIcon(m.id)} ${m.name} ${have}/${m.qty}</span>`;
     }).join(' + ');
+    // 查询物品属性
+    const resultId = recipe.result.id;
+    const setItem = SET_ITEMS.find(s => s.id === resultId);
+    const shopItem = SHOP_CATALOG.find(c => c.id === resultId);
+    const itemStats = setItem ? setItem.stats : (shopItem ? shopItem.stats : null);
+    let statsHtml = '';
+    if (itemStats) {
+      const m = {str:'力量',int:'智力',agi:'敏捷',spr:'精神',hp:'生命',mp:'法力'};
+      statsHtml = Object.entries(itemStats).map(([k,v]) =>
+        `<span style="color:#8ab8ff;font-size:11px">${m[k]||k} +${v}</span>`
+      ).join('  ');
+      statsHtml = '<div style="margin:4px 0 6px">' + statsHtml + '</div>';
+    }
     card.innerHTML = `
       <div class="cc-header">
         <span class="cc-icon">${recipe.icon}</span>
@@ -359,9 +450,27 @@ function renderCraft(){
         <span style="font-size:11px;color:rgba(255,255,255,.2);margin-left:auto">×${recipe.result.qty}</span>
       </div>
       <div class="cc-desc">${recipe.desc}</div>
+      ${statsHtml}
       <div class="cc-mats">所需材料：${matHtml}</div>
       <button class="cc-btn"${canCraft?'':' disabled'} onclick="craftItem('${recipe.id}')">🔨 制作</button>`;
     g.appendChild(card);
+  });
+  // 套装效果预览
+  const SET_DISPLAY = [
+    {setId:'warrior_set',icon:'⚔️',name:'战神套 · 战士',tiers:[{n:2,e:'力量 +15'},{n:4,e:'最大生命 +80'},{n:6,e:'防御后反击 50% 伤害'},{n:8,e:'每击败一怪攻击力 +3（本场）'}]},
+    {setId:'mage_set',icon:'🔮',name:'大魔导套 · 法师',tiers:[{n:2,e:'智力 +15'},{n:4,e:'最大法力 +60'},{n:6,e:'技能伤害 +20%'},{n:8,e:'每击败一怪回复 10 MP'}]},
+    {setId:'priest_set',icon:'✨',name:'大主教套 · 牧师',tiers:[{n:2,e:'精神 +15'},{n:4,e:'治疗效果 +10%'},{n:6,e:'每 3 回合清除负面效果'},{n:8,e:'每场战斗复活一次'}]},
+    {setId:'archer_set',icon:'🏹',name:'神射手套 · 弓箭手',tiers:[{n:2,e:'敏捷 +15'},{n:4,e:'暴击率 +10%'},{n:6,e:'暴击伤害 \u00d71.5'},{n:8,e:'每次击杀后回复 15% 最大 HP'}]}
+  ];
+  SET_DISPLAY.forEach(sd => {
+    const infoCard = document.createElement('div');
+    infoCard.className = 'craft-card';
+    infoCard.style.gridColumn = '1 / -1';
+    infoCard.style.borderColor = 'rgba(255,215,128,.2)';
+    infoCard.style.background = 'rgba(255,215,128,.03)';
+    const tierHtml = sd.tiers.map(t => '<div style="font-size:11px;color:rgba(255,215,128,.7);margin-bottom:2px">'+t.n+'件套：'+t.e+'</div>').join('');
+    infoCard.innerHTML = '<div class="cc-header"><span class="cc-icon">'+sd.icon+'</span><span class="cc-name">'+sd.name+'</span></div><div class="cc-desc">集齐套装部件激活效果：</div><div class="cc-mats">'+tierHtml+'</div>';
+    g.appendChild(infoCard);
   });
 }
 
@@ -406,8 +515,14 @@ function craftItem(recipeId){
   // 添加产物
   const result = recipe.result;
   const existing = data.inventory.find(i=>i.id===result.id);
-  if(result.id.startsWith('camp_') && SHOP_CATALOG.find(c=>c.id===result.id && c.stats)){
-    // 装备类
+  // 套装装备
+  const setItem = SET_ITEMS.find(s=>s.id===result.id);
+  if(setItem){
+    if(existing) existing.qty=(existing.qty||1)+result.qty;
+    else data.inventory.push({id:setItem.id,name:setItem.name,icon:setItem.icon,desc:setItem.desc,
+      qty:result.qty,sellPrice:setItem.sellPrice||0,slot:setItem.slot,stats:{...setItem.stats},setId:setItem.setId});
+  } else if(result.id.startsWith('camp_') && SHOP_CATALOG.find(c=>c.id===result.id && c.stats)){
+    // 普通装备类
     const cat = SHOP_CATALOG.find(c=>c.id===result.id);
     if(existing) existing.qty = (existing.qty||1)+result.qty;
     else data.inventory.push({id:cat.id,name:cat.name,icon:cat.icon,desc:cat.desc,
@@ -428,126 +543,62 @@ function craftItem(recipeId){
   document.getElementById('campGold').textContent = (data.character||{}).gold||0;
 }
 
-// ─── 装备管理 ───
-function renderEquip(){
-  const eq = data.equipment||{};
-  const inv = data.inventory||[];
-  const g = document.getElementById('equipPanel');
-
-  const slotNames = {
-    weapon:'武器', offhand:'副手', head:'头盔', neck:'项链',
-    chest:'胸甲', legs:'裤子', shoes:'鞋子', hands:'手套',
-    waist:'腰带', back:'披风', wrist:'护腕', shoulder:'肩膀',
-    ring1:'戒指Ⅰ', ring2:'戒指Ⅱ', trinket1:'饰品Ⅰ', trinket2:'饰品Ⅱ'
-  };
-  const slotIcons = {
-    weapon:'⚔️', offhand:'🛡️', head:'🪖', neck:'📿',
-    chest:'👕', legs:'👖', shoes:'🥾', hands:'🧤',
-    waist:'🎗️', back:'🧣', wrist:'⌛', shoulder:'🛡️',
-    ring1:'💍', ring2:'💍', trinket1:'🔮', trinket2:'🔮'
-  };
-
-  const leftSlots = ['weapon','head','chest','legs','shoes','back'];
-  const rightSlots = ['offhand','neck','hands','waist','wrist','shoulder','ring1','ring2','trinket1','trinket2'];
-
-  function renderColumn(slots, title){
-    let html = `<div class="ep-col"><div class="ep-title">${title}</div>`;
-    slots.forEach(slot => {
-      const item = eq[slot];
-      if(item){
-        const statsStr = item.stats ? Object.entries(item.stats).map(([k,v])=>{
-          const m={str:'力量',int:'智力',agi:'敏捷',spr:'精神',hp:'生命',mp:'法力'};
-          return (m[k]||k)+'+'+v;
-        }).join(' ') : '';
-        html += `<div class="equip-slot-row" onclick="unequipItem('${slot}')">
-          <span class="es-icon">${slotIcons[slot]||'●'}</span>
-          <span class="es-label">${slotNames[slot]||slot}</span>
-          <span class="es-item">${item.icon} ${item.name}</span>
-          <span class="es-unequip">✕ 脱下</span>
-        </div>`;
-      } else {
-        const compatible = inv.filter(i=>i.slot===slot);
-        html += `<div class="equip-slot-row" onclick="${compatible.length>0?`showPick('${slot}')`:'alert(\'无可用装备\')'}">
-          <span class="es-icon">${slotIcons[slot]||'●'}</span>
-          <span class="es-label">${slotNames[slot]||slot}</span>
-          <span class="es-empty">—— 空 ——</span>
-        </div>`;
-      }
-    });
-    html += '</div>';
-    return html;
+// ─── 仓库管理 ───
+function renderStorage(){
+  const g = document.getElementById('storageItems');
+  g.innerHTML = '';
+  const storage = data.storage||[];
+  if(storage.length === 0){
+    g.innerHTML = '<div class="shop-empty">仓库是空的，去背包里存些东西吧</div>';
+    return;
   }
-
-  g.innerHTML = renderColumn(leftSlots, '主装备') + renderColumn(rightSlots, '饰品 & 其他');
+  storage.forEach((item,idx)=>{
+    const div = document.createElement('div');
+    div.className = 'shop-item';
+    div.innerHTML = `<span class="si-icon">${item.icon||'📦'}</span>
+      <div class="si-info"><div class="si-name">${item.name||'未知'}</div>
+      <div class="si-desc">${item.desc||''}</div></div>
+      <span class="si-qty">×${item.qty||1}</span>
+      <button class="si-btn" onclick="withdrawItem(${idx})" style="border-color:rgba(108,219,108,.3);color:#8aff8a">取出</button>`;
+    g.appendChild(div);
+  });
 }
 
-function showPick(slot){
-  const inv = data.inventory||[];
-  const compatible = inv.filter(i=>i.slot===slot && i.id && i.qty>=1);
-  if(compatible.length === 0){ alert('背包中没有适合此槽位的装备'); return; }
-  document.getElementById('pickTitle').textContent = '选择 '+(slotNames[slot]||slot);
-  const body = document.getElementById('pickItems');
-  body.innerHTML = compatible.map((item,idx)=>{
-    const statsStr = item.stats ? Object.entries(item.stats).map(([k,v])=>{
-      const m={str:'力量',int:'智力',agi:'敏捷',spr:'精神',hp:'生命',mp:'法力'};
-      return (m[k]||k)+'+'+v;
-    }).join(' ') : '';
-    return `<div class="modal-item" onclick="equipItem('${slot}',${data.inventory.indexOf(item)})">
-      <span class="mi-icon">${item.icon||'📦'}</span>
-      <div class="mi-info"><div class="mi-name">${item.name}</div>
-      <div class="mi-stats">${statsStr||item.desc||''}</div></div>
-      <span style="font-size:11px;color:rgba(255,255,255,.2)">×${item.qty||1}</span>
-    </div>`;
-  }).join('');
-  document.getElementById('pickModal').classList.add('show');
-}
-
-function closePick(){
-  document.getElementById('pickModal').classList.remove('show');
-}
-
-function equipItem(slot, invIdx){
+function storeItem(invIdx){
   const inv = data.inventory||[];
   const item = inv[invIdx];
   if(!item) return;
-  if(!data.equipment) data.equipment = {};
-  // 如果该槽已有装备，先放回背包
-  if(data.equipment[slot]){
-    const old = data.equipment[slot];
-    const oldExist = inv.find(i=>i.id===old.id);
-    if(oldExist) oldExist.qty = (oldExist.qty||1)+1;
-    else inv.push({...old, qty:1});
-  }
-  // 从背包移除
-  if((item.qty||1) > 1) item.qty--;
+  if(!data.storage) data.storage = [];
+  const qtyToStore = item.qty || 1;
+  if(qtyToStore > 1) item.qty--;
   else inv.splice(invIdx, 1);
-  // 装备
-  data.equipment[slot] = {id:item.id, name:item.name, icon:item.icon, desc:item.desc, slot:item.slot, stats:{...item.stats}};
   data.inventory = inv;
+  const existing = data.storage.find(s => s.id === item.id);
+  if(existing) existing.qty = (existing.qty||1) + 1;
+  else data.storage.push({id:item.id, name:item.name, icon:item.icon, desc:item.desc, qty:1, sellPrice:item.sellPrice||0, slot:item.slot, stats:item.stats ? {...item.stats} : undefined});
   saveData(data);
   data = getData();
-  closePick();
-  renderEquip();
-  document.getElementById('campGold').textContent = (data.character||{}).gold||0;
+  renderSell();
+  renderStorage();
 }
 
-function unequipItem(slot){
-  const eq = data.equipment||{};
-  const item = eq[slot];
+function withdrawItem(storageIdx){
+  const storage = data.storage||[];
+  const item = storage[storageIdx];
   if(!item) return;
-  const inv = data.inventory||[];
-  const existing = inv.find(i=>i.id===item.id);
-  if(existing) existing.qty = (existing.qty||1)+1;
-  else inv.push({id:item.id, name:item.name, icon:item.icon, desc:item.desc, qty:1, sellPrice:item.sellPrice||0, slot:item.slot, stats:{...item.stats}});
-  delete eq[slot];
-  data.equipment = eq;
-  data.inventory = inv;
+  if(!data.inventory) data.inventory = [];
+  const qtyToTake = item.qty || 1;
+  if(qtyToTake > 1) item.qty--;
+  else storage.splice(storageIdx, 1);
+  data.storage = storage;
+  const existing = data.inventory.find(i => i.id === item.id);
+  if(existing) existing.qty = (existing.qty||1) + 1;
+  else data.inventory.push({id:item.id, name:item.name, icon:item.icon, desc:item.desc, qty:1, sellPrice:item.sellPrice||0, slot:item.slot, stats:item.stats ? {...item.stats} : undefined});
   saveData(data);
   data = getData();
-  renderEquip();
+  renderStorage();
+  renderSell();
 }
-
-const slotNames = {weapon:'武器',offhand:'副手',head:'头盔',neck:'项链',chest:'胸甲',legs:'裤子',shoes:'鞋子',hands:'手套',waist:'腰带',back:'披风',wrist:'护腕',shoulder:'肩膀',ring1:'戒指Ⅰ',ring2:'戒指Ⅱ',trinket1:'饰品Ⅰ',trinket2:'饰品Ⅱ'};
 
 init();
 </script>

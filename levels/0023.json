@@ -26,27 +26,33 @@
   },
   "monsterSpawns": [
     {
-      "x": 6,
-      "y": 2,
-      "rate": 0.8395903031106651,
+      "x": 9,
+      "y": 4,
+      "rate": 0.9505943210616118,
       "monsterIdx": 0
     },
     {
-      "x": 4,
-      "y": 6,
-      "rate": 0.9634584263253454,
+      "x": 5,
+      "y": 3,
+      "rate": 0.9366907743809674,
       "monsterIdx": 1
     },
     {
-      "x": 9,
-      "y": 6,
-      "rate": 0.9226834919245479,
+      "x": 5,
+      "y": 5,
+      "rate": 0.8637149319526376,
+      "monsterIdx": 2
+    },
+    {
+      "x": 8,
+      "y": 5,
+      "rate": 0.8017915105816875,
       "monsterIdx": 0
     },
     {
-      "x": 3,
-      "y": 5,
-      "rate": 0.9446527790066707,
+      "x": 7,
+      "y": 3,
+      "rate": 0.8491689613121539,
       "monsterIdx": 1
     }
   ],
@@ -54,13 +60,13 @@
     "x": 8,
     "y": 7,
     "rate": 1,
-    "monsterIdx": 2
+    "monsterIdx": 3
   },
   "chestSpawns": [
     {
-      "x": 7,
-      "y": 6,
-      "rate": 0.9497101197276165,
+      "x": 9,
+      "y": 5,
+      "rate": 0.998542267790252,
       "lootPool": [
         {
           "type": "gold",
@@ -82,9 +88,9 @@
       ]
     },
     {
-      "x": 9,
-      "y": 5,
-      "rate": 0.9108241279985864,
+      "x": 5,
+      "y": 3,
+      "rate": 0.9327166091849577,
       "lootPool": [
         {
           "type": "gold",
@@ -110,28 +116,14 @@
           "icon": "💧",
           "desc": "恢复 40 点法力值",
           "qty": 3,
-          "chance": 0.4
-        },
-        {
-          "type": "equipment",
-          "id": "chest_equip_lvl23_1",
-          "name": "宝箱装备",
-          "icon": "🪖",
-          "desc": "从宝箱中发现的装备",
-          "slot": "ring2",
-          "stats": {
-            "str": 5,
-            "agi": 5
-          },
-          "sellPrice": 51,
-          "chance": 0.21500000000000002
+          "chance": 0.25
         }
       ]
     },
     {
       "x": 4,
       "y": 5,
-      "rate": 0.9909391918036294,
+      "rate": 0.927052900842231,
       "lootPool": [
         {
           "type": "gold",
@@ -157,40 +149,7 @@
           "icon": "💧",
           "desc": "恢复 40 点法力值",
           "qty": 3,
-          "chance": 0.4
-        }
-      ]
-    },
-    {
-      "x": 6,
-      "y": 3,
-      "rate": 0.9526595954800979,
-      "lootPool": [
-        {
-          "type": "gold",
-          "name": "金币",
-          "icon": "💰",
-          "min": 51,
-          "max": 107,
-          "chance": 1
-        },
-        {
-          "type": "item",
-          "id": "hp_potion",
-          "name": "生命药水",
-          "icon": "🧪",
-          "desc": "恢复 80 点生命值",
-          "qty": 3,
-          "chance": 0.615
-        },
-        {
-          "type": "item",
-          "id": "mp_potion",
-          "name": "法力药水",
-          "icon": "💧",
-          "desc": "恢复 40 点法力值",
-          "qty": 3,
-          "chance": 0.4
+          "chance": 0.25
         }
       ]
     }
@@ -231,7 +190,7 @@
           "desc": "恢复 80 点生命值",
           "qty": 1,
           "sellPrice": 10,
-          "chance": 0.25
+          "chance": 0.15
         },
         {
           "type": "item",
@@ -241,17 +200,17 @@
           "desc": "恢复 40 点法力值",
           "qty": 1,
           "sellPrice": 7,
-          "chance": 0.2
+          "chance": 0.1
         },
         {
           "type": "material",
-          "id": "mat_lvl23",
-          "name": "材料·堕落骑士",
-          "icon": "📦",
-          "desc": "从堕落骑士身上获得的材料",
+          "id": "mat_leather",
+          "name": "皮革",
+          "icon": "🧶",
+          "desc": "从堕落骑士身上获得的皮革",
           "qty": 1,
           "qtyMax": 2,
-          "sellPrice": 11,
+          "sellPrice": 3,
           "chance": 0.5
         }
       ]
@@ -291,7 +250,7 @@
           "desc": "恢复 80 点生命值",
           "qty": 1,
           "sellPrice": 10,
-          "chance": 0.25
+          "chance": 0.15
         },
         {
           "type": "item",
@@ -301,17 +260,77 @@
           "desc": "恢复 40 点法力值",
           "qty": 1,
           "sellPrice": 7,
-          "chance": 0.2
+          "chance": 0.1
         },
         {
           "type": "material",
-          "id": "mat_lvl23",
-          "name": "材料·圣殿卫士",
-          "icon": "📦",
-          "desc": "从圣殿卫士身上获得的材料",
+          "id": "mat_herb",
+          "name": "草药",
+          "icon": "🌿",
+          "desc": "从圣殿卫士身上获得的草药",
           "qty": 1,
           "qtyMax": 2,
-          "sellPrice": 11,
+          "sellPrice": 3,
+          "chance": 0.5
+        }
+      ]
+    },
+    {
+      "name": "骷髅兵",
+      "icon": "💀",
+      "hp": 157,
+      "attack": 38,
+      "aggro": 3,
+      "xpReward": 157,
+      "skills": [
+        {
+          "name": "普通攻击",
+          "icon": "💥",
+          "dmgMul": 1.3
+        },
+        {
+          "name": "重击",
+          "icon": "💢",
+          "dmgMul": 2.46
+        }
+      ],
+      "loot": [
+        {
+          "type": "gold",
+          "icon": "💰",
+          "min": 34,
+          "max": 69,
+          "chance": 1
+        },
+        {
+          "type": "item",
+          "id": "hp_potion",
+          "name": "生命药水",
+          "icon": "🧪",
+          "desc": "恢复 80 点生命值",
+          "qty": 1,
+          "sellPrice": 10,
+          "chance": 0.15
+        },
+        {
+          "type": "item",
+          "id": "mp_potion",
+          "name": "法力药水",
+          "icon": "💧",
+          "desc": "恢复 40 点法力值",
+          "qty": 1,
+          "sellPrice": 7,
+          "chance": 0.1
+        },
+        {
+          "type": "material",
+          "id": "mat_crystal",
+          "name": "水晶碎片",
+          "icon": "💎",
+          "desc": "从骷髅兵身上获得的水晶碎片",
+          "qty": 1,
+          "qtyMax": 2,
+          "sellPrice": 3,
           "chance": 0.5
         }
       ]
@@ -353,7 +372,7 @@
         "desc": "恢复 200 点生命值",
         "qty": 3,
         "sellPrice": 25,
-        "chance": 0.5
+        "chance": 0.3
       },
       {
         "type": "item",
@@ -363,7 +382,7 @@
         "desc": "恢复 40 点法力值",
         "qty": 2,
         "sellPrice": 7,
-        "chance": 0.4
+        "chance": 0.25
       },
       {
         "type": "equipment",
@@ -386,6 +405,30 @@
   "questions": [
     {
       "type": "choice",
+      "question": "This book is ___ than that one.",
+      "options": [
+        "interesting",
+        "more interesting",
+        "most interesting",
+        "interestinger"
+      ],
+      "answer": 1,
+      "timeThreshold": 9
+    },
+    {
+      "type": "choice",
+      "question": "Have you ___ seen a panda?",
+      "options": [
+        "ever",
+        "never",
+        "always",
+        "usually"
+      ],
+      "answer": 0,
+      "timeThreshold": 7
+    },
+    {
+      "type": "choice",
       "question": "They ___ going to go on a trip.",
       "options": [
         "am",
@@ -397,9 +440,39 @@
       "timeThreshold": 7
     },
     {
-      "type": "fill",
-      "question": "They ___ (have/has) seen that film.",
-      "answer": "have",
+      "type": "choice",
+      "question": "always → ___ → often → sometimes → never",
+      "options": [
+        "usually",
+        "seldom",
+        "ever",
+        "hardly"
+      ],
+      "answer": 0,
+      "timeThreshold": 9
+    },
+    {
+      "type": "choice",
+      "question": "The capital of USA is ___.",
+      "options": [
+        "London",
+        "Tokyo",
+        "Washington D.C.",
+        "Canberra"
+      ],
+      "answer": 2,
+      "timeThreshold": 8
+    },
+    {
+      "type": "choice",
+      "question": "My bag is ___ (big) than yours.",
+      "options": [
+        "big",
+        "bigger",
+        "biggest",
+        "more big"
+      ],
+      "answer": 1,
       "timeThreshold": 7
     },
     {
@@ -407,6 +480,24 @@
       "question": "I ___ (have/has) been to Beijing.",
       "answer": "have",
       "timeThreshold": 7
+    },
+    {
+      "type": "choice",
+      "question": "What ___ you doing?",
+      "options": [
+        "am",
+        "is",
+        "are",
+        "be"
+      ],
+      "answer": 2,
+      "timeThreshold": 6
+    },
+    {
+      "type": "fill",
+      "question": "She is ___ (happy) than before.",
+      "answer": "happier",
+      "timeThreshold": 8
     },
     {
       "type": "choice",
@@ -422,54 +513,21 @@
     },
     {
       "type": "choice",
-      "question": "I have ___ eaten snake soup.（从未）",
+      "question": "She ___ going to learn swimming.",
       "options": [
-        "ever",
-        "never",
-        "always",
-        "usually"
+        "am",
+        "is",
+        "are",
+        "be"
       ],
       "answer": 1,
       "timeThreshold": 7
-    },
-    {
-      "type": "fill",
-      "question": "China's capital is ___.",
-      "answer": "Beijing",
-      "alternatives": [
-        "beijing"
-      ],
-      "timeThreshold": 7
-    },
-    {
-      "type": "choice",
-      "question": "The capital of USA is ___.",
-      "options": [
-        "London",
-        "Tokyo",
-        "Washington D.C.",
-        "Canberra"
-      ],
-      "answer": 2,
-      "timeThreshold": 8
     },
     {
       "type": "fill",
       "question": "This pen is ___ (cheap) than that one.",
       "answer": "cheaper",
       "timeThreshold": 8
-    },
-    {
-      "type": "choice",
-      "question": "He ___ gone to the supermarket（去了未回）.",
-      "options": [
-        "has been to",
-        "has gone to",
-        "have been to",
-        "have gone to"
-      ],
-      "answer": 1,
-      "timeThreshold": 10
     },
     {
       "type": "choice",
@@ -484,52 +542,25 @@
       "timeThreshold": 7
     },
     {
-      "type": "fill",
-      "question": "She is ___ (happy) than before.",
-      "answer": "happier",
-      "timeThreshold": 8
-    },
-    {
-      "type": "fill",
-      "question": "She ___ (have/has) eaten sushi.",
-      "answer": "has",
-      "timeThreshold": 7
-    },
-    {
       "type": "choice",
-      "question": "She ___ going to learn swimming.",
+      "question": "He ___ gone to the supermarket（去了未回）.",
       "options": [
-        "am",
-        "is",
-        "are",
-        "be"
+        "has been to",
+        "has gone to",
+        "have been to",
+        "have gone to"
       ],
       "answer": 1,
-      "timeThreshold": 7
+      "timeThreshold": 10
     },
     {
-      "type": "choice",
-      "question": "My bag is ___ (big) than yours.",
-      "options": [
-        "big",
-        "bigger",
-        "biggest",
-        "more big"
+      "type": "fill",
+      "question": "China's capital is ___.",
+      "answer": "Beijing",
+      "alternatives": [
+        "beijing"
       ],
-      "answer": 1,
       "timeThreshold": 7
-    },
-    {
-      "type": "choice",
-      "question": "What ___ you doing?",
-      "options": [
-        "am",
-        "is",
-        "are",
-        "be"
-      ],
-      "answer": 2,
-      "timeThreshold": 6
     }
   ],
   "merchant": null,

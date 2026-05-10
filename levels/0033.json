@@ -26,71 +26,23 @@
   },
   "monsterSpawns": [
     {
-      "x": 10,
-      "y": 4,
-      "rate": 0.863902311480822,
-      "monsterIdx": 0
-    },
-    {
       "x": 5,
       "y": 3,
-      "rate": 0.8096400264661354,
-      "monsterIdx": 1
-    },
-    {
-      "x": 6,
-      "y": 5,
-      "rate": 0.8017026958904296,
-      "monsterIdx": 2
-    },
-    {
-      "x": 10,
-      "y": 6,
-      "rate": 0.994220064829165,
-      "monsterIdx": 0
-    },
-    {
-      "x": 9,
-      "y": 5,
-      "rate": 0.994120024861707,
-      "monsterIdx": 1
+      "rate": 0.9122306314529067,
+      "monsterIdx": 3
     }
   ],
   "bossSpawn": {
     "x": 10,
     "y": 7,
     "rate": 1,
-    "monsterIdx": 3
+    "monsterIdx": 5
   },
   "chestSpawns": [
     {
-      "x": 4,
-      "y": 5,
-      "rate": 0.9626875425184188,
-      "lootPool": [
-        {
-          "type": "gold",
-          "name": "金币",
-          "icon": "💰",
-          "min": 71,
-          "max": 147,
-          "chance": 1
-        },
-        {
-          "type": "item",
-          "id": "hp_potion",
-          "name": "生命药水",
-          "icon": "🧪",
-          "desc": "恢复 80 点生命值",
-          "qty": 5,
-          "chance": 0.665
-        }
-      ]
-    },
-    {
-      "x": 8,
-      "y": 5,
-      "rate": 0.9389263548730996,
+      "x": 9,
+      "y": 3,
+      "rate": 0.9802000072808266,
       "lootPool": [
         {
           "type": "gold",
@@ -116,7 +68,7 @@
           "icon": "💧",
           "desc": "恢复 40 点法力值",
           "qty": 4,
-          "chance": 0.4
+          "chance": 0.25
         },
         {
           "type": "equipment",
@@ -135,9 +87,9 @@
       ]
     },
     {
-      "x": 6,
+      "x": 4,
       "y": 3,
-      "rate": 0.9244343193137178,
+      "rate": 0.9739843669324195,
       "lootPool": [
         {
           "type": "gold",
@@ -163,73 +115,7 @@
           "icon": "💧",
           "desc": "恢复 40 点法力值",
           "qty": 4,
-          "chance": 0.4
-        }
-      ]
-    },
-    {
-      "x": 3,
-      "y": 3,
-      "rate": 0.9582539146182965,
-      "lootPool": [
-        {
-          "type": "gold",
-          "name": "金币",
-          "icon": "💰",
-          "min": 71,
-          "max": 147,
-          "chance": 1
-        },
-        {
-          "type": "item",
-          "id": "hp_potion",
-          "name": "生命药水",
-          "icon": "🧪",
-          "desc": "恢复 80 点生命值",
-          "qty": 5,
-          "chance": 0.665
-        },
-        {
-          "type": "item",
-          "id": "mp_potion",
-          "name": "法力药水",
-          "icon": "💧",
-          "desc": "恢复 40 点法力值",
-          "qty": 4,
-          "chance": 0.4
-        }
-      ]
-    },
-    {
-      "x": 10,
-      "y": 3,
-      "rate": 0.9386587572162417,
-      "lootPool": [
-        {
-          "type": "gold",
-          "name": "金币",
-          "icon": "💰",
-          "min": 71,
-          "max": 147,
-          "chance": 1
-        },
-        {
-          "type": "item",
-          "id": "hp_potion",
-          "name": "生命药水",
-          "icon": "🧪",
-          "desc": "恢复 80 点生命值",
-          "qty": 5,
-          "chance": 0.665
-        },
-        {
-          "type": "item",
-          "id": "mp_potion",
-          "name": "法力药水",
-          "icon": "💧",
-          "desc": "恢复 40 点法力值",
-          "qty": 4,
-          "chance": 0.4
+          "chance": 0.25
         }
       ]
     }
@@ -270,7 +156,7 @@
           "desc": "恢复 80 点生命值",
           "qty": 1,
           "sellPrice": 10,
-          "chance": 0.25
+          "chance": 0.15
         },
         {
           "type": "item",
@@ -280,17 +166,17 @@
           "desc": "恢复 40 点法力值",
           "qty": 1,
           "sellPrice": 7,
-          "chance": 0.2
+          "chance": 0.1
         },
         {
           "type": "material",
-          "id": "mat_lvl33",
-          "name": "材料·毒蜂群",
-          "icon": "📦",
-          "desc": "从毒蜂群身上获得的材料",
+          "id": "mat_leather",
+          "name": "皮革",
+          "icon": "🧶",
+          "desc": "从毒蜂群身上获得的皮革",
           "qty": 1,
           "qtyMax": 2,
-          "sellPrice": 16,
+          "sellPrice": 3,
           "chance": 0.5
         }
       ]
@@ -330,7 +216,7 @@
           "desc": "恢复 80 点生命值",
           "qty": 1,
           "sellPrice": 10,
-          "chance": 0.25
+          "chance": 0.15
         },
         {
           "type": "item",
@@ -340,17 +226,17 @@
           "desc": "恢复 40 点法力值",
           "qty": 1,
           "sellPrice": 7,
-          "chance": 0.2
+          "chance": 0.1
         },
         {
           "type": "material",
-          "id": "mat_lvl33",
-          "name": "材料·霜巨人",
-          "icon": "📦",
-          "desc": "从霜巨人身上获得的材料",
+          "id": "mat_iron",
+          "name": "铁锭",
+          "icon": "⛏️",
+          "desc": "从霜巨人身上获得的铁锭",
           "qty": 1,
           "qtyMax": 2,
-          "sellPrice": 16,
+          "sellPrice": 3,
           "chance": 0.5
         }
       ]
@@ -390,7 +276,7 @@
           "desc": "恢复 80 点生命值",
           "qty": 1,
           "sellPrice": 10,
-          "chance": 0.25
+          "chance": 0.15
         },
         {
           "type": "item",
@@ -400,17 +286,137 @@
           "desc": "恢复 40 点法力值",
           "qty": 1,
           "sellPrice": 7,
-          "chance": 0.2
+          "chance": 0.1
         },
         {
           "type": "material",
-          "id": "mat_lvl33",
-          "name": "材料·火焰精灵",
-          "icon": "📦",
-          "desc": "从火焰精灵身上获得的材料",
+          "id": "mat_wood",
+          "name": "木材",
+          "icon": "🪵",
+          "desc": "从火焰精灵身上获得的木材",
           "qty": 1,
           "qtyMax": 2,
-          "sellPrice": 16,
+          "sellPrice": 3,
+          "chance": 0.5
+        }
+      ]
+    },
+    {
+      "name": "暗影刺客",
+      "icon": "🗡️",
+      "hp": 258,
+      "attack": 59,
+      "aggro": 5,
+      "xpReward": 258,
+      "skills": [
+        {
+          "name": "普通攻击",
+          "icon": "💥",
+          "dmgMul": 1.3
+        },
+        {
+          "name": "重击",
+          "icon": "💢",
+          "dmgMul": 2.66
+        }
+      ],
+      "loot": [
+        {
+          "type": "gold",
+          "icon": "💰",
+          "min": 49,
+          "max": 99,
+          "chance": 1
+        },
+        {
+          "type": "item",
+          "id": "hp_potion",
+          "name": "生命药水",
+          "icon": "🧪",
+          "desc": "恢复 80 点生命值",
+          "qty": 1,
+          "sellPrice": 10,
+          "chance": 0.15
+        },
+        {
+          "type": "item",
+          "id": "mp_potion",
+          "name": "法力药水",
+          "icon": "💧",
+          "desc": "恢复 40 点法力值",
+          "qty": 1,
+          "sellPrice": 7,
+          "chance": 0.1
+        },
+        {
+          "type": "material",
+          "id": "mat_herb",
+          "name": "草药",
+          "icon": "🌿",
+          "desc": "从暗影刺客身上获得的草药",
+          "qty": 1,
+          "qtyMax": 2,
+          "sellPrice": 3,
+          "chance": 0.5
+        }
+      ]
+    },
+    {
+      "name": "史莱姆",
+      "icon": "🟢",
+      "hp": 304,
+      "attack": 66,
+      "aggro": 5,
+      "xpReward": 304,
+      "skills": [
+        {
+          "name": "普通攻击",
+          "icon": "💥",
+          "dmgMul": 1.3
+        },
+        {
+          "name": "重击",
+          "icon": "💢",
+          "dmgMul": 2.66
+        }
+      ],
+      "loot": [
+        {
+          "type": "gold",
+          "icon": "💰",
+          "min": 49,
+          "max": 99,
+          "chance": 1
+        },
+        {
+          "type": "item",
+          "id": "hp_potion",
+          "name": "生命药水",
+          "icon": "🧪",
+          "desc": "恢复 80 点生命值",
+          "qty": 1,
+          "sellPrice": 10,
+          "chance": 0.15
+        },
+        {
+          "type": "item",
+          "id": "mp_potion",
+          "name": "法力药水",
+          "icon": "💧",
+          "desc": "恢复 40 点法力值",
+          "qty": 1,
+          "sellPrice": 7,
+          "chance": 0.1
+        },
+        {
+          "type": "material",
+          "id": "mat_water",
+          "name": "清水",
+          "icon": "💧",
+          "desc": "从史莱姆身上获得的清水",
+          "qty": 1,
+          "qtyMax": 2,
+          "sellPrice": 3,
           "chance": 0.5
         }
       ]
@@ -452,7 +458,7 @@
         "desc": "恢复 200 点生命值",
         "qty": 4,
         "sellPrice": 25,
-        "chance": 0.5
+        "chance": 0.3
       },
       {
         "type": "item",
@@ -462,7 +468,7 @@
         "desc": "恢复 40 点法力值",
         "qty": 2,
         "sellPrice": 7,
-        "chance": 0.4
+        "chance": 0.25
       },
       {
         "type": "equipment",
@@ -484,85 +490,15 @@
   },
   "questions": [
     {
-      "type": "fill",
-      "question": "China's capital is ___.",
-      "answer": "Beijing",
-      "alternatives": [
-        "beijing"
-      ],
-      "timeThreshold": 7
-    },
-    {
-      "type": "fill",
-      "question": "See a film here → ___",
-      "answer": "cinema",
-      "alternatives": [
-        "movie theater"
-      ],
-      "timeThreshold": 9
-    },
-    {
-      "type": "fill",
-      "question": "play → 过去式：___",
-      "answer": "played",
-      "timeThreshold": 7
-    },
-    {
       "type": "choice",
-      "question": "The capital of USA is ___.",
+      "question": "Have you ___ seen a panda?",
       "options": [
-        "London",
-        "Tokyo",
-        "Washington D.C.",
-        "Canberra"
+        "ever",
+        "never",
+        "always",
+        "usually"
       ],
-      "answer": 2,
-      "timeThreshold": 8
-    },
-    {
-      "type": "fill",
-      "question": "study → 过去式：___",
-      "answer": "studied",
-      "timeThreshold": 7
-    },
-    {
-      "type": "choice",
-      "question": "The capital of UK is ___.",
-      "options": [
-        "Beijing",
-        "London",
-        "Tokyo",
-        "Paris"
-      ],
-      "answer": 1,
-      "timeThreshold": 7
-    },
-    {
-      "type": "fill",
-      "question": "This pen is ___ (cheap) than that one.",
-      "answer": "cheaper",
-      "timeThreshold": 8
-    },
-    {
-      "type": "fill",
-      "question": "Buy books here → ___",
-      "answer": "bookstore",
-      "alternatives": [
-        "book shop",
-        "bookshop"
-      ],
-      "timeThreshold": 9
-    },
-    {
-      "type": "fill",
-      "question": "Buy food here → ___",
-      "answer": "supermarket",
-      "timeThreshold": 9
-    },
-    {
-      "type": "fill",
-      "question": "go → 过去式：___",
-      "answer": "went",
+      "answer": 0,
       "timeThreshold": 7
     },
     {
@@ -578,27 +514,96 @@
       "timeThreshold": 7
     },
     {
-      "type": "choice",
-      "question": "Have you ___ seen a panda?",
-      "options": [
-        "ever",
-        "never",
-        "always",
-        "usually"
+      "type": "fill",
+      "question": "like → 过去式：___",
+      "answer": "liked",
+      "timeThreshold": 7
+    },
+    {
+      "type": "fill",
+      "question": "China's capital is ___.",
+      "answer": "Beijing",
+      "alternatives": [
+        "beijing"
       ],
-      "answer": 0,
+      "timeThreshold": 7
+    },
+    {
+      "type": "fill",
+      "question": "This pen is ___ (cheap) than that one.",
+      "answer": "cheaper",
+      "timeThreshold": 8
+    },
+    {
+      "type": "fill",
+      "question": "see → 过去式：___",
+      "answer": "saw",
       "timeThreshold": 7
     },
     {
       "type": "choice",
-      "question": "They ___ going to go on a trip.",
+      "question": "My bag is ___ (big) than yours.",
+      "options": [
+        "big",
+        "bigger",
+        "biggest",
+        "more big"
+      ],
+      "answer": 1,
+      "timeThreshold": 7
+    },
+    {
+      "type": "fill",
+      "question": "Send letters here → ___",
+      "answer": "post office",
+      "timeThreshold": 9
+    },
+    {
+      "type": "choice",
+      "question": "This book is ___ than that one.",
+      "options": [
+        "interesting",
+        "more interesting",
+        "most interesting",
+        "interestinger"
+      ],
+      "answer": 1,
+      "timeThreshold": 9
+    },
+    {
+      "type": "fill",
+      "question": "Buy food here → ___",
+      "answer": "supermarket",
+      "timeThreshold": 9
+    },
+    {
+      "type": "choice",
+      "question": "She ___ going to learn swimming.",
       "options": [
         "am",
         "is",
         "are",
         "be"
       ],
-      "answer": 2,
+      "answer": 1,
+      "timeThreshold": 7
+    },
+    {
+      "type": "choice",
+      "question": "She didn't ___ basketball.",
+      "options": [
+        "play",
+        "played",
+        "playing",
+        "plays"
+      ],
+      "answer": 0,
+      "timeThreshold": 9
+    },
+    {
+      "type": "fill",
+      "question": "study → 过去式：___",
+      "answer": "studied",
       "timeThreshold": 7
     },
     {
@@ -621,8 +626,8 @@
     }
   ],
   "merchant": {
-    "x": 4,
-    "y": 5,
+    "x": 5,
+    "y": 7,
     "npcName": "神秘商贩",
     "npcIcon": "🧳",
     "stock": [

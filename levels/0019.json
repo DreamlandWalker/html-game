@@ -27,65 +27,35 @@
   },
   "monsterSpawns": [
     {
-      "x": 7,
+      "x": 6,
       "y": 7,
-      "rate": 0.8068159892111948,
-      "monsterIdx": 0
+      "rate": 0.9960789763604248,
+      "monsterIdx": 1
+    },
+    {
+      "x": 9,
+      "y": 5,
+      "rate": 0.9200386244361454,
+      "monsterIdx": 2
     },
     {
       "x": 5,
-      "y": 4,
-      "rate": 0.9713270661183446,
-      "monsterIdx": 1
-    },
-    {
-      "x": 6,
-      "y": 3,
-      "rate": 0.8735328770952668,
-      "monsterIdx": 0
-    },
-    {
-      "x": 3,
       "y": 5,
-      "rate": 0.8088357374180609,
-      "monsterIdx": 1
+      "rate": 0.9095381831196541,
+      "monsterIdx": 0
     }
   ],
   "bossSpawn": {
-    "x": 9,
-    "y": 8,
+    "x": 11,
+    "y": 7,
     "rate": 1,
-    "monsterIdx": 2
+    "monsterIdx": 3
   },
   "chestSpawns": [
     {
       "x": 4,
       "y": 7,
-      "rate": 0.9531168038266343,
-      "lootPool": [
-        {
-          "type": "gold",
-          "name": "金币",
-          "icon": "💰",
-          "min": 43,
-          "max": 91,
-          "chance": 1
-        },
-        {
-          "type": "item",
-          "id": "hp_potion",
-          "name": "生命药水",
-          "icon": "🧪",
-          "desc": "恢复 80 点生命值",
-          "qty": 3,
-          "chance": 0.595
-        }
-      ]
-    },
-    {
-      "x": 8,
-      "y": 7,
-      "rate": 0.9260962157490682,
+      "rate": 0.9730261715613501,
       "lootPool": [
         {
           "type": "gold",
@@ -111,7 +81,7 @@
           "icon": "💧",
           "desc": "恢复 40 点法力值",
           "qty": 2,
-          "chance": 0.4
+          "chance": 0.25
         },
         {
           "type": "equipment",
@@ -130,9 +100,9 @@
       ]
     },
     {
-      "x": 7,
-      "y": 4,
-      "rate": 0.9556156070641244,
+      "x": 3,
+      "y": 5,
+      "rate": 0.9492577917552267,
       "lootPool": [
         {
           "type": "gold",
@@ -158,7 +128,7 @@
           "icon": "💧",
           "desc": "恢复 40 点法力值",
           "qty": 2,
-          "chance": 0.4
+          "chance": 0.25
         }
       ]
     }
@@ -199,7 +169,7 @@
           "desc": "恢复 80 点生命值",
           "qty": 1,
           "sellPrice": 10,
-          "chance": 0.25
+          "chance": 0.15
         },
         {
           "type": "item",
@@ -209,17 +179,17 @@
           "desc": "恢复 40 点法力值",
           "qty": 1,
           "sellPrice": 7,
-          "chance": 0.2
+          "chance": 0.1
         },
         {
           "type": "material",
-          "id": "mat_lvl19",
-          "name": "材料·影狼",
-          "icon": "📦",
-          "desc": "从影狼身上获得的材料",
+          "id": "mat_iron",
+          "name": "铁锭",
+          "icon": "⛏️",
+          "desc": "从影狼身上获得的铁锭",
           "qty": 1,
           "qtyMax": 2,
-          "sellPrice": 9,
+          "sellPrice": 3,
           "chance": 0.5
         }
       ]
@@ -259,7 +229,7 @@
           "desc": "恢复 80 点生命值",
           "qty": 1,
           "sellPrice": 10,
-          "chance": 0.25
+          "chance": 0.15
         },
         {
           "type": "item",
@@ -269,17 +239,77 @@
           "desc": "恢复 40 点法力值",
           "qty": 1,
           "sellPrice": 7,
-          "chance": 0.2
+          "chance": 0.1
         },
         {
           "type": "material",
-          "id": "mat_lvl19",
-          "name": "材料·岩巨人",
-          "icon": "📦",
-          "desc": "从岩巨人身上获得的材料",
+          "id": "mat_water",
+          "name": "清水",
+          "icon": "💧",
+          "desc": "从岩巨人身上获得的清水",
           "qty": 1,
           "qtyMax": 2,
-          "sellPrice": 9,
+          "sellPrice": 3,
+          "chance": 0.5
+        }
+      ]
+    },
+    {
+      "name": "毒蜂群",
+      "icon": "🐝",
+      "hp": 134,
+      "attack": 32,
+      "aggro": 3,
+      "xpReward": 134,
+      "skills": [
+        {
+          "name": "普通攻击",
+          "icon": "💥",
+          "dmgMul": 1.3
+        },
+        {
+          "name": "重击",
+          "icon": "💢",
+          "dmgMul": 2.38
+        }
+      ],
+      "loot": [
+        {
+          "type": "gold",
+          "icon": "💰",
+          "min": 28,
+          "max": 57,
+          "chance": 1
+        },
+        {
+          "type": "item",
+          "id": "hp_potion",
+          "name": "生命药水",
+          "icon": "🧪",
+          "desc": "恢复 80 点生命值",
+          "qty": 1,
+          "sellPrice": 10,
+          "chance": 0.15
+        },
+        {
+          "type": "item",
+          "id": "mp_potion",
+          "name": "法力药水",
+          "icon": "💧",
+          "desc": "恢复 40 点法力值",
+          "qty": 1,
+          "sellPrice": 7,
+          "chance": 0.1
+        },
+        {
+          "type": "material",
+          "id": "mat_leather",
+          "name": "皮革",
+          "icon": "🧶",
+          "desc": "从毒蜂群身上获得的皮革",
+          "qty": 1,
+          "qtyMax": 2,
+          "sellPrice": 3,
           "chance": 0.5
         }
       ]
@@ -321,7 +351,7 @@
         "desc": "恢复 200 点生命值",
         "qty": 2,
         "sellPrice": 25,
-        "chance": 0.5
+        "chance": 0.3
       },
       {
         "type": "item",
@@ -331,7 +361,7 @@
         "desc": "恢复 40 点法力值",
         "qty": 2,
         "sellPrice": 7,
-        "chance": 0.4
+        "chance": 0.25
       },
       {
         "type": "equipment",
@@ -353,6 +383,30 @@
   },
   "questions": [
     {
+      "type": "fill",
+      "question": "They are playing. → ___ they playing?（一般疑问句）",
+      "answer": "Are",
+      "timeThreshold": 8
+    },
+    {
+      "type": "fill",
+      "question": "He went to the park. → ___ he go to the park?（一般疑问句）",
+      "answer": "Did",
+      "timeThreshold": 8
+    },
+    {
+      "type": "choice",
+      "question": "I play football every day. 是什么时态？",
+      "options": [
+        "一般现在时",
+        "现在进行时",
+        "一般过去时",
+        "现在完成时"
+      ],
+      "answer": 0,
+      "timeThreshold": 7
+    },
+    {
       "type": "choice",
       "question": "I am playing football now. 是什么时态？",
       "options": [
@@ -370,6 +424,27 @@
       "answer": "How",
       "alternatives": [
         "how"
+      ],
+      "timeThreshold": 8
+    },
+    {
+      "type": "choice",
+      "question": "I have finished homework. 是什么时态？",
+      "options": [
+        "一般现在时",
+        "现在进行时",
+        "一般过去时",
+        "现在完成时"
+      ],
+      "answer": 3,
+      "timeThreshold": 7
+    },
+    {
+      "type": "fill",
+      "question": "I get up at 7. → ___ ___ do you get up?（提问）",
+      "answer": "What time",
+      "alternatives": [
+        "what time"
       ],
       "timeThreshold": 8
     },
@@ -399,39 +474,9 @@
     },
     {
       "type": "fill",
-      "question": "They are playing. → ___ they playing?（一般疑问句）",
-      "answer": "Are",
+      "question": "She likes apples. → ___ she like apples?（一般疑问句）",
+      "answer": "Does",
       "timeThreshold": 8
-    },
-    {
-      "type": "choice",
-      "question": "I have finished homework. 是什么时态？",
-      "options": [
-        "一般现在时",
-        "现在进行时",
-        "一般过去时",
-        "现在完成时"
-      ],
-      "answer": 3,
-      "timeThreshold": 7
-    },
-    {
-      "type": "fill",
-      "question": "He went to the park. → ___ he go to the park?（一般疑问句）",
-      "answer": "Did",
-      "timeThreshold": 8
-    },
-    {
-      "type": "choice",
-      "question": "He go to school.（改错）",
-      "options": [
-        "He goes to school",
-        "He is go to school",
-        "He went to school",
-        "He go to school"
-      ],
-      "answer": 0,
-      "timeThreshold": 10
     },
     {
       "type": "fill",
@@ -455,31 +500,16 @@
       "timeThreshold": 7
     },
     {
-      "type": "fill",
-      "question": "I get up at 7. → ___ ___ do you get up?（提问）",
-      "answer": "What time",
-      "alternatives": [
-        "what time"
-      ],
-      "timeThreshold": 8
-    },
-    {
-      "type": "fill",
-      "question": "She likes apples. → ___ she like apples?（一般疑问句）",
-      "answer": "Does",
-      "timeThreshold": 8
-    },
-    {
       "type": "choice",
-      "question": "I play football every day. 是什么时态？",
+      "question": "He go to school.（改错）",
       "options": [
-        "一般现在时",
-        "现在进行时",
-        "一般过去时",
-        "现在完成时"
+        "He goes to school",
+        "He is go to school",
+        "He went to school",
+        "He go to school"
       ],
       "answer": 0,
-      "timeThreshold": 7
+      "timeThreshold": 10
     }
   ],
   "merchant": null,

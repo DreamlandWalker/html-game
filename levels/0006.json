@@ -14,122 +14,32 @@
     "height": 10,
     "tiles": [
       "WWWWWWWWWWWWWWW",
-      "W........W..WWW",
-      "W.WW.WWW.W..WWW",
-      "W...........WWW",
-      "W.WWWWW.WWW.WWW",
-      "W...........WWW",
-      "W.WW.WWW.WW.WWW",
-      "W...........WWW",
+      "W.............W",
+      "W.WW.WWW.W..W.W",
+      "W...........W.W",
+      "W.WWWWW.WWW.W.W",
+      "W...........W.W",
+      "W.WW.WWW.WW.W.W",
+      "W...........W.W",
       "WWWWWWWWWWWWW.W",
       "WWWWWWWWWWWWWWW"
     ]
   },
   "monsterSpawns": [
     {
-      "x": 5,
-      "y": 3,
-      "rate": 0.9057704588927307,
-      "monsterIdx": 0
-    },
-    {
       "x": 10,
-      "y": 2,
-      "rate": 0.9526231066956115,
-      "monsterIdx": 0
-    },
-    {
-      "x": 2,
-      "y": 7,
-      "rate": 0.805825278972105,
-      "monsterIdx": 0
-    },
-    {
-      "x": 12,
-      "y": 7,
-      "rate": 0.936446070421805,
+      "y": 5,
+      "rate": 0.9185330558723241,
       "monsterIdx": 0
     }
   ],
   "bossSpawn": {
-    "x": 12,
-    "y": 8,
+    "x": 13,
+    "y": 7,
     "rate": 1,
     "monsterIdx": 1
   },
-  "chestSpawns": [
-    {
-      "x": 10,
-      "y": 5,
-      "rate": 0.9920118117489192,
-      "lootPool": [
-        {
-          "type": "gold",
-          "name": "金币",
-          "icon": "💰",
-          "min": 17,
-          "max": 39,
-          "chance": 1
-        },
-        {
-          "type": "item",
-          "id": "hp_potion",
-          "name": "生命药水",
-          "icon": "🧪",
-          "desc": "恢复 80 点生命值",
-          "qty": 1,
-          "chance": 0.53
-        }
-      ]
-    },
-    {
-      "x": 12,
-      "y": 7,
-      "rate": 0.9298033508587195,
-      "lootPool": [
-        {
-          "type": "gold",
-          "name": "金币",
-          "icon": "💰",
-          "min": 17,
-          "max": 39,
-          "chance": 1
-        },
-        {
-          "type": "item",
-          "id": "hp_potion",
-          "name": "生命药水",
-          "icon": "🧪",
-          "desc": "恢复 80 点生命值",
-          "qty": 1,
-          "chance": 0.53
-        },
-        {
-          "type": "item",
-          "id": "mp_potion",
-          "name": "法力药水",
-          "icon": "💧",
-          "desc": "恢复 40 点法力值",
-          "qty": 1,
-          "chance": 0.4
-        },
-        {
-          "type": "equipment",
-          "id": "chest_equip_lvl6_1",
-          "name": "宝箱装备",
-          "icon": "🪖",
-          "desc": "从宝箱中发现的装备",
-          "slot": "ring2",
-          "stats": {
-            "str": 1,
-            "agi": 1
-          },
-          "sellPrice": 17,
-          "chance": 0.13
-        }
-      ]
-    }
-  ],
+  "chestSpawns": [],
   "monsters": [
     {
       "name": "岩巨人",
@@ -166,14 +76,14 @@
           "desc": "恢复 80 点生命值",
           "qty": 1,
           "sellPrice": 10,
-          "chance": 0.25
+          "chance": 0.15
         },
         {
           "type": "material",
-          "id": "mat_lvl6",
-          "name": "材料·岩巨人",
-          "icon": "📦",
-          "desc": "从岩巨人身上获得的材料",
+          "id": "mat_herb",
+          "name": "草药",
+          "icon": "🌿",
+          "desc": "从岩巨人身上获得的草药",
           "qty": 1,
           "qtyMax": 2,
           "sellPrice": 3,
@@ -218,7 +128,7 @@
         "desc": "恢复 200 点生命值",
         "qty": 1,
         "sellPrice": 25,
-        "chance": 0.5
+        "chance": 0.3
       },
       {
         "type": "equipment",
@@ -240,10 +150,16 @@
   },
   "questions": [
     {
-      "type": "fill",
-      "question": "We ___ (sing) a song now.",
-      "answer": "are singing",
-      "timeThreshold": 9
+      "type": "choice",
+      "question": "What day is it? — It's ___.",
+      "options": [
+        "7 o'clock",
+        "Monday",
+        "hot",
+        "sunny"
+      ],
+      "answer": 1,
+      "timeThreshold": 7
     },
     {
       "type": "fill",
@@ -253,14 +169,14 @@
     },
     {
       "type": "choice",
-      "question": "A cat ___ fly.",
+      "question": "A fish ___ swim.",
       "options": [
         "can",
         "can't",
         "is",
         "are"
       ],
-      "answer": 1,
+      "answer": 0,
       "timeThreshold": 6
     },
     {
@@ -276,16 +192,10 @@
       "timeThreshold": 6
     },
     {
-      "type": "choice",
-      "question": "A fish ___ swim.",
-      "options": [
-        "can",
-        "can't",
-        "is",
-        "are"
-      ],
-      "answer": 0,
-      "timeThreshold": 6
+      "type": "fill",
+      "question": "We ___ (sing) a song now.",
+      "answer": "are singing",
+      "timeThreshold": 9
     },
     {
       "type": "fill",
@@ -297,33 +207,9 @@
       "timeThreshold": 7
     },
     {
-      "type": "choice",
-      "question": "What day is it? — It's ___.",
-      "options": [
-        "7 o'clock",
-        "Monday",
-        "hot",
-        "sunny"
-      ],
-      "answer": 1,
-      "timeThreshold": 7
-    },
-    {
-      "type": "fill",
-      "question": "He ___ (play) football now.",
-      "answer": "is playing",
-      "timeThreshold": 9
-    },
-    {
       "type": "fill",
       "question": "I ___ (read) a book now.",
       "answer": "am reading",
-      "timeThreshold": 9
-    },
-    {
-      "type": "fill",
-      "question": "They ___ (swim) now.",
-      "answer": "are swimming",
       "timeThreshold": 9
     },
     {
@@ -337,11 +223,35 @@
       ],
       "answer": 2,
       "timeThreshold": 7
+    },
+    {
+      "type": "fill",
+      "question": "They ___ (swim) now.",
+      "answer": "are swimming",
+      "timeThreshold": 9
+    },
+    {
+      "type": "fill",
+      "question": "He ___ (play) football now.",
+      "answer": "is playing",
+      "timeThreshold": 9
+    },
+    {
+      "type": "choice",
+      "question": "A cat ___ fly.",
+      "options": [
+        "can",
+        "can't",
+        "is",
+        "are"
+      ],
+      "answer": 1,
+      "timeThreshold": 6
     }
   ],
   "merchant": {
-    "x": 9,
-    "y": 2,
+    "x": 13,
+    "y": 4,
     "npcName": "旅行商人",
     "npcIcon": "🧳",
     "stock": [

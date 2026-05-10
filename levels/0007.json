@@ -28,27 +28,15 @@
   },
   "monsterSpawns": [
     {
-      "x": 4,
-      "y": 4,
-      "rate": 0.8187084211799951,
-      "monsterIdx": 0
-    },
-    {
       "x": 5,
       "y": 3,
-      "rate": 0.8446222642509691,
+      "rate": 0.992204899223713,
       "monsterIdx": 0
     },
     {
-      "x": 3,
-      "y": 8,
-      "rate": 0.9953981679208012,
-      "monsterIdx": 0
-    },
-    {
-      "x": 8,
-      "y": 3,
-      "rate": 0.8675542300679092,
+      "x": 4,
+      "y": 7,
+      "rate": 0.8690594856819676,
       "monsterIdx": 0
     }
   ],
@@ -60,9 +48,9 @@
   },
   "chestSpawns": [
     {
-      "x": 4,
+      "x": 6,
       "y": 6,
-      "rate": 0.9657064116775461,
+      "rate": 0.9473359181875014,
       "lootPool": [
         {
           "type": "gold",
@@ -84,9 +72,9 @@
       ]
     },
     {
-      "x": 9,
-      "y": 4,
-      "rate": 0.9602224407070387,
+      "x": 7,
+      "y": 3,
+      "rate": 0.9053487017648416,
       "lootPool": [
         {
           "type": "gold",
@@ -112,7 +100,7 @@
           "icon": "💧",
           "desc": "恢复 40 点法力值",
           "qty": 1,
-          "chance": 0.4
+          "chance": 0.25
         },
         {
           "type": "equipment",
@@ -167,14 +155,14 @@
           "desc": "恢复 80 点生命值",
           "qty": 1,
           "sellPrice": 10,
-          "chance": 0.25
+          "chance": 0.15
         },
         {
           "type": "material",
-          "id": "mat_lvl7",
-          "name": "材料·火焰精灵",
-          "icon": "📦",
-          "desc": "从火焰精灵身上获得的材料",
+          "id": "mat_water",
+          "name": "清水",
+          "icon": "💧",
+          "desc": "从火焰精灵身上获得的清水",
           "qty": 1,
           "qtyMax": 2,
           "sellPrice": 3,
@@ -219,7 +207,7 @@
         "desc": "恢复 200 点生命值",
         "qty": 1,
         "sellPrice": 25,
-        "chance": 0.5
+        "chance": 0.3
       },
       {
         "type": "equipment",
@@ -241,12 +229,37 @@
   },
   "questions": [
     {
-      "type": "fill",
-      "question": "英语 → ___",
-      "answer": "English",
-      "alternatives": [
-        "english"
+      "type": "choice",
+      "question": "The cat ___ fish.",
+      "options": [
+        "eat",
+        "eats",
+        "eating",
+        "ate"
       ],
+      "answer": 1,
+      "timeThreshold": 7
+    },
+    {
+      "type": "fill",
+      "question": "科学 → ___",
+      "answer": "science",
+      "timeThreshold": 7
+    },
+    {
+      "type": "fill",
+      "question": "数学 → ___",
+      "answer": "maths",
+      "alternatives": [
+        "math",
+        "Maths"
+      ],
+      "timeThreshold": 7
+    },
+    {
+      "type": "fill",
+      "question": "___ he like dogs?（Does/Do）",
+      "answer": "Does",
       "timeThreshold": 7
     },
     {
@@ -263,24 +276,14 @@
     },
     {
       "type": "choice",
-      "question": "The cat ___ fish.",
+      "question": "She ___ to school by bus.",
       "options": [
-        "eat",
-        "eats",
-        "eating",
-        "ate"
+        "go",
+        "goes",
+        "going",
+        "went"
       ],
       "answer": 1,
-      "timeThreshold": 7
-    },
-    {
-      "type": "fill",
-      "question": "数学 → ___",
-      "answer": "maths",
-      "alternatives": [
-        "math",
-        "Maths"
-      ],
       "timeThreshold": 7
     },
     {
@@ -291,15 +294,6 @@
         "chinese"
       ],
       "timeThreshold": 7
-    },
-    {
-      "type": "fill",
-      "question": "He likes apples. → He ___ like apples.",
-      "answer": "doesn't",
-      "alternatives": [
-        "does not"
-      ],
-      "timeThreshold": 9
     },
     {
       "type": "choice",
@@ -314,28 +308,22 @@
       "timeThreshold": 7
     },
     {
-      "type": "choice",
-      "question": "She ___ to school by bus.",
-      "options": [
-        "go",
-        "goes",
-        "going",
-        "went"
+      "type": "fill",
+      "question": "英语 → ___",
+      "answer": "English",
+      "alternatives": [
+        "english"
       ],
-      "answer": 1,
       "timeThreshold": 7
     },
     {
       "type": "fill",
-      "question": "科学 → ___",
-      "answer": "science",
-      "timeThreshold": 7
-    },
-    {
-      "type": "fill",
-      "question": "___ he like dogs?（Does/Do）",
-      "answer": "Does",
-      "timeThreshold": 7
+      "question": "He likes apples. → He ___ like apples.",
+      "answer": "doesn't",
+      "alternatives": [
+        "does not"
+      ],
+      "timeThreshold": 9
     }
   ],
   "merchant": null,

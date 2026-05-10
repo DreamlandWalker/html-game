@@ -29,71 +29,35 @@
   },
   "monsterSpawns": [
     {
-      "x": 8,
-      "y": 6,
-      "rate": 0.848930179074068,
-      "monsterIdx": 0
+      "x": 2,
+      "y": 9,
+      "rate": 0.9134023541311449,
+      "monsterIdx": 1
     },
     {
-      "x": 8,
-      "y": 4,
-      "rate": 0.8468603756086573,
-      "monsterIdx": 1
+      "x": 7,
+      "y": 8,
+      "rate": 0.9842325667832788,
+      "monsterIdx": 3
     },
     {
       "x": 5,
-      "y": 6,
-      "rate": 0.8549174241450431,
-      "monsterIdx": 2
-    },
-    {
-      "x": 3,
-      "y": 8,
-      "rate": 0.8086398814408117,
-      "monsterIdx": 0
-    },
-    {
-      "x": 7,
-      "y": 9,
-      "rate": 0.9667465193025375,
-      "monsterIdx": 1
+      "y": 5,
+      "rate": 0.9366000714179018,
+      "monsterIdx": 4
     }
   ],
   "bossSpawn": {
-    "x": 7,
-    "y": 10,
+    "x": 9,
+    "y": 9,
     "rate": 1,
-    "monsterIdx": 3
+    "monsterIdx": 5
   },
   "chestSpawns": [
     {
-      "x": 7,
-      "y": 4,
-      "rate": 0.98819589689577,
-      "lootPool": [
-        {
-          "type": "gold",
-          "name": "金币",
-          "icon": "💰",
-          "min": 73,
-          "max": 151,
-          "chance": 1
-        },
-        {
-          "type": "item",
-          "id": "hp_potion",
-          "name": "生命药水",
-          "icon": "🧪",
-          "desc": "恢复 80 点生命值",
-          "qty": 5,
-          "chance": 0.67
-        }
-      ]
-    },
-    {
-      "x": 3,
-      "y": 9,
-      "rate": 0.909194540558098,
+      "x": 8,
+      "y": 8,
+      "rate": 0.9809958264478291,
       "lootPool": [
         {
           "type": "gold",
@@ -119,7 +83,7 @@
           "icon": "💧",
           "desc": "恢复 40 点法力值",
           "qty": 4,
-          "chance": 0.4
+          "chance": 0.25
         },
         {
           "type": "equipment",
@@ -139,8 +103,8 @@
     },
     {
       "x": 5,
-      "y": 5,
-      "rate": 0.9525548421059193,
+      "y": 9,
+      "rate": 0.9338383894617467,
       "lootPool": [
         {
           "type": "gold",
@@ -166,47 +130,14 @@
           "icon": "💧",
           "desc": "恢复 40 点法力值",
           "qty": 4,
-          "chance": 0.4
-        }
-      ]
-    },
-    {
-      "x": 5,
-      "y": 8,
-      "rate": 0.9409700967849005,
-      "lootPool": [
-        {
-          "type": "gold",
-          "name": "金币",
-          "icon": "💰",
-          "min": 73,
-          "max": 151,
-          "chance": 1
-        },
-        {
-          "type": "item",
-          "id": "hp_potion",
-          "name": "生命药水",
-          "icon": "🧪",
-          "desc": "恢复 80 点生命值",
-          "qty": 5,
-          "chance": 0.67
-        },
-        {
-          "type": "item",
-          "id": "mp_potion",
-          "name": "法力药水",
-          "icon": "💧",
-          "desc": "恢复 40 点法力值",
-          "qty": 4,
-          "chance": 0.4
+          "chance": 0.25
         }
       ]
     },
     {
       "x": 3,
       "y": 3,
-      "rate": 0.9291532550402678,
+      "rate": 0.9760145874341579,
       "lootPool": [
         {
           "type": "gold",
@@ -232,7 +163,7 @@
           "icon": "💧",
           "desc": "恢复 40 点法力值",
           "qty": 4,
-          "chance": 0.4
+          "chance": 0.25
         }
       ]
     }
@@ -273,7 +204,7 @@
           "desc": "恢复 80 点生命值",
           "qty": 1,
           "sellPrice": 10,
-          "chance": 0.25
+          "chance": 0.15
         },
         {
           "type": "item",
@@ -283,17 +214,17 @@
           "desc": "恢复 40 点法力值",
           "qty": 1,
           "sellPrice": 7,
-          "chance": 0.2
+          "chance": 0.1
         },
         {
           "type": "material",
-          "id": "mat_lvl34",
-          "name": "材料·暗影刺客",
-          "icon": "📦",
-          "desc": "从暗影刺客身上获得的材料",
+          "id": "mat_iron",
+          "name": "铁锭",
+          "icon": "⛏️",
+          "desc": "从暗影刺客身上获得的铁锭",
           "qty": 1,
           "qtyMax": 2,
-          "sellPrice": 17,
+          "sellPrice": 3,
           "chance": 0.5
         }
       ]
@@ -333,7 +264,7 @@
           "desc": "恢复 80 点生命值",
           "qty": 1,
           "sellPrice": 10,
-          "chance": 0.25
+          "chance": 0.15
         },
         {
           "type": "item",
@@ -343,17 +274,17 @@
           "desc": "恢复 40 点法力值",
           "qty": 1,
           "sellPrice": 7,
-          "chance": 0.2
+          "chance": 0.1
         },
         {
           "type": "material",
-          "id": "mat_lvl34",
-          "name": "材料·史莱姆",
-          "icon": "📦",
-          "desc": "从史莱姆身上获得的材料",
+          "id": "mat_wood",
+          "name": "木材",
+          "icon": "🪵",
+          "desc": "从史莱姆身上获得的木材",
           "qty": 1,
           "qtyMax": 2,
-          "sellPrice": 17,
+          "sellPrice": 3,
           "chance": 0.5
         }
       ]
@@ -393,7 +324,7 @@
           "desc": "恢复 80 点生命值",
           "qty": 1,
           "sellPrice": 10,
-          "chance": 0.25
+          "chance": 0.15
         },
         {
           "type": "item",
@@ -403,17 +334,137 @@
           "desc": "恢复 40 点法力值",
           "qty": 1,
           "sellPrice": 7,
-          "chance": 0.2
+          "chance": 0.1
         },
         {
           "type": "material",
-          "id": "mat_lvl34",
-          "name": "材料·野兔",
-          "icon": "📦",
-          "desc": "从野兔身上获得的材料",
+          "id": "mat_herb",
+          "name": "草药",
+          "icon": "🌿",
+          "desc": "从野兔身上获得的草药",
           "qty": 1,
           "qtyMax": 2,
-          "sellPrice": 17,
+          "sellPrice": 3,
+          "chance": 0.5
+        }
+      ]
+    },
+    {
+      "name": "石像鬼",
+      "icon": "🗿",
+      "hp": 265,
+      "attack": 61,
+      "aggro": 5,
+      "xpReward": 265,
+      "skills": [
+        {
+          "name": "普通攻击",
+          "icon": "💥",
+          "dmgMul": 1.3
+        },
+        {
+          "name": "重击",
+          "icon": "💢",
+          "dmgMul": 2.68
+        }
+      ],
+      "loot": [
+        {
+          "type": "gold",
+          "icon": "💰",
+          "min": 51,
+          "max": 102,
+          "chance": 1
+        },
+        {
+          "type": "item",
+          "id": "hp_potion",
+          "name": "生命药水",
+          "icon": "🧪",
+          "desc": "恢复 80 点生命值",
+          "qty": 1,
+          "sellPrice": 10,
+          "chance": 0.15
+        },
+        {
+          "type": "item",
+          "id": "mp_potion",
+          "name": "法力药水",
+          "icon": "💧",
+          "desc": "恢复 40 点法力值",
+          "qty": 1,
+          "sellPrice": 7,
+          "chance": 0.1
+        },
+        {
+          "type": "material",
+          "id": "mat_water",
+          "name": "清水",
+          "icon": "💧",
+          "desc": "从石像鬼身上获得的清水",
+          "qty": 1,
+          "qtyMax": 2,
+          "sellPrice": 3,
+          "chance": 0.5
+        }
+      ]
+    },
+    {
+      "name": "冰狼",
+      "icon": "🐺",
+      "hp": 312,
+      "attack": 68,
+      "aggro": 5,
+      "xpReward": 312,
+      "skills": [
+        {
+          "name": "普通攻击",
+          "icon": "💥",
+          "dmgMul": 1.3
+        },
+        {
+          "name": "重击",
+          "icon": "💢",
+          "dmgMul": 2.68
+        }
+      ],
+      "loot": [
+        {
+          "type": "gold",
+          "icon": "💰",
+          "min": 51,
+          "max": 102,
+          "chance": 1
+        },
+        {
+          "type": "item",
+          "id": "hp_potion",
+          "name": "生命药水",
+          "icon": "🧪",
+          "desc": "恢复 80 点生命值",
+          "qty": 1,
+          "sellPrice": 10,
+          "chance": 0.15
+        },
+        {
+          "type": "item",
+          "id": "mp_potion",
+          "name": "法力药水",
+          "icon": "💧",
+          "desc": "恢复 40 点法力值",
+          "qty": 1,
+          "sellPrice": 7,
+          "chance": 0.1
+        },
+        {
+          "type": "material",
+          "id": "mat_crystal",
+          "name": "水晶碎片",
+          "icon": "💎",
+          "desc": "从冰狼身上获得的水晶碎片",
+          "qty": 1,
+          "qtyMax": 2,
+          "sellPrice": 3,
           "chance": 0.5
         }
       ]
@@ -455,7 +506,7 @@
         "desc": "恢复 200 点生命值",
         "qty": 4,
         "sellPrice": 25,
-        "chance": 0.5
+        "chance": 0.3
       },
       {
         "type": "item",
@@ -465,7 +516,7 @@
         "desc": "恢复 40 点法力值",
         "qty": 2,
         "sellPrice": 7,
-        "chance": 0.4
+        "chance": 0.25
       },
       {
         "type": "equipment",
@@ -493,16 +544,10 @@
       "timeThreshold": 8
     },
     {
-      "type": "choice",
-      "question": "People ___ live on Mars in future.",
-      "options": [
-        "will",
-        "are going to",
-        "is going to",
-        "have"
-      ],
-      "answer": 0,
-      "timeThreshold": 8
+      "type": "fill",
+      "question": "I ___ (always/never) brush my teeth every single day!",
+      "answer": "always",
+      "timeThreshold": 7
     },
     {
       "type": "fill",
@@ -514,75 +559,27 @@
       "timeThreshold": 9
     },
     {
-      "type": "choice",
-      "question": "She likes reading. → ___ she like reading?",
-      "options": [
-        "Do",
-        "Does",
-        "Did",
-        "Is"
-      ],
-      "answer": 1,
-      "timeThreshold": 9
-    },
-    {
-      "type": "choice",
-      "question": "They went to the park. → They ___ go.",
-      "options": [
-        "didn't",
-        "don't",
-        "doesn't",
-        "wasn't"
-      ],
-      "answer": 0,
-      "timeThreshold": 9
-    },
-    {
-      "type": "choice",
-      "question": "You ___ eat too much candy.（不应该）",
-      "options": [
-        "should",
-        "shouldn't",
-        "must",
-        "mustn't"
-      ],
-      "answer": 1,
+      "type": "fill",
+      "question": "I ___ (go) to the park yesterday.",
+      "answer": "went",
       "timeThreshold": 7
     },
     {
       "type": "choice",
-      "question": "We clean the classroom. → The classroom ___ cleaned.",
+      "question": "She is tired, ___ she goes to bed early.",
       "options": [
-        "is",
-        "are",
-        "was",
-        "were"
+        "and",
+        "but",
+        "so",
+        "because"
       ],
-      "answer": 0,
-      "timeThreshold": 9
+      "answer": 2,
+      "timeThreshold": 7
     },
     {
-      "type": "choice",
-      "question": "I think he ___ right.",
-      "options": [
-        "is",
-        "are",
-        "was",
-        "were"
-      ],
-      "answer": 0,
-      "timeThreshold": 8
-    },
-    {
-      "type": "choice",
-      "question": "I ___ be a doctor when I grow up.",
-      "options": [
-        "will",
-        "am going to",
-        "have",
-        "was"
-      ],
-      "answer": 1,
+      "type": "fill",
+      "question": "小学 → ___",
+      "answer": "primary school",
       "timeThreshold": 8
     },
     {
@@ -599,33 +596,33 @@
     },
     {
       "type": "fill",
-      "question": "I exercise ___ a week.（每周一次）",
-      "answer": "once",
+      "question": "He ___ (be) to the UK twice.",
+      "answer": "has been",
+      "timeThreshold": 9
+    },
+    {
+      "type": "choice",
+      "question": "You ___ eat too much candy.（不应该）",
+      "options": [
+        "should",
+        "shouldn't",
+        "must",
+        "mustn't"
+      ],
+      "answer": 1,
       "timeThreshold": 7
     },
     {
       "type": "choice",
-      "question": "I like apples ___ oranges.",
+      "question": "He can swim. → ___ he swim?",
       "options": [
-        "and",
-        "but",
-        "so",
-        "because"
+        "Can",
+        "Does",
+        "Did",
+        "Is"
       ],
       "answer": 0,
-      "timeThreshold": 6
-    },
-    {
-      "type": "choice",
-      "question": "She is tired, ___ she goes to bed early.",
-      "options": [
-        "and",
-        "but",
-        "so",
-        "because"
-      ],
-      "answer": 2,
-      "timeThreshold": 7
+      "timeThreshold": 8
     },
     {
       "type": "choice",
@@ -640,10 +637,16 @@
       "timeThreshold": 6
     },
     {
-      "type": "fill",
-      "question": "Listen! She ___ (sing) in the room.",
-      "answer": "is singing",
-      "timeThreshold": 9
+      "type": "choice",
+      "question": "You ___ drink more water.（应该）",
+      "options": [
+        "should",
+        "shouldn't",
+        "must",
+        "mustn't"
+      ],
+      "answer": 0,
+      "timeThreshold": 7
     },
     {
       "type": "fill",
@@ -652,6 +655,39 @@
       "alternatives": [
         "whose"
       ],
+      "timeThreshold": 7
+    },
+    {
+      "type": "choice",
+      "question": "They went to the park. → They ___ go.",
+      "options": [
+        "didn't",
+        "don't",
+        "doesn't",
+        "wasn't"
+      ],
+      "answer": 0,
+      "timeThreshold": 9
+    },
+    {
+      "type": "fill",
+      "question": "初中 → ___",
+      "answer": "junior high school",
+      "alternatives": [
+        "junior school"
+      ],
+      "timeThreshold": 9
+    },
+    {
+      "type": "choice",
+      "question": "You ___ run in the classroom.（禁止）",
+      "options": [
+        "should",
+        "shouldn't",
+        "must",
+        "mustn't"
+      ],
+      "answer": 3,
       "timeThreshold": 7
     }
   ],

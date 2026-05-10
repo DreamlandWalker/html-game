@@ -14,54 +14,48 @@
     "height": 10,
     "tiles": [
       "WWWWWWWWWWWWWWW",
-      "W.....W.....WWW",
-      "W..WWW.WWW..WWW",
-      "W...........WWW",
-      "W..WWWWWWW..WWW",
-      "W...........WWW",
-      "W..WWWWWWW..WWW",
-      "W...........WWW",
+      "W.............W",
+      "W..WWW.WWW..W.W",
+      "W...........W.W",
+      "W..WWWWWWW..W.W",
+      "W...........W.W",
+      "W..WWWWWWW..W.W",
+      "W...........W.W",
       "W..WWW.WWW..W.W",
       "WWWWWWWWWWWWWWW"
     ]
   },
   "monsterSpawns": [
     {
-      "x": 8,
-      "y": 2,
-      "rate": 0.9584259338209147,
-      "monsterIdx": 0
-    },
-    {
-      "x": 3,
-      "y": 5,
-      "rate": 0.8667470187015687,
-      "monsterIdx": 0
-    },
-    {
-      "x": 12,
+      "x": 4,
       "y": 3,
-      "rate": 0.8863754711030842,
+      "rate": 0.8888200286761586,
       "monsterIdx": 0
     },
     {
-      "x": 10,
-      "y": 6,
-      "rate": 0.8592666418960799,
+      "x": 2,
+      "y": 2,
+      "rate": 0.9781365608320542,
+      "monsterIdx": 1
+    },
+    {
+      "x": 11,
+      "y": 5,
+      "rate": 0.9276697583239821,
       "monsterIdx": 0
     }
   ],
   "bossSpawn": {
-    "x": 12,
-    "y": 8,
+    "x": 13,
+    "y": 7,
     "rate": 1,
-    "monsterIdx": 1
+    "monsterIdx": 2
   },
   "chestSpawns": [
     {
-      "x": 4,
-      "y": 5,
-      "rate": 0.9186573101675523,
+      "x": 10,
+      "y": 7,
+      "rate": 0.9804809805316526,
       "lootPool": [
         {
           "type": "gold",
@@ -83,9 +77,9 @@
       ]
     },
     {
-      "x": 11,
-      "y": 7,
-      "rate": 0.9385986374183417,
+      "x": 9,
+      "y": 5,
+      "rate": 0.9280066898919409,
       "lootPool": [
         {
           "type": "gold",
@@ -111,7 +105,7 @@
           "icon": "💧",
           "desc": "恢复 40 点法力值",
           "qty": 1,
-          "chance": 0.4
+          "chance": 0.25
         },
         {
           "type": "equipment",
@@ -166,17 +160,67 @@
           "desc": "恢复 80 点生命值",
           "qty": 1,
           "sellPrice": 10,
-          "chance": 0.25
+          "chance": 0.15
         },
         {
           "type": "material",
-          "id": "mat_lvl9",
-          "name": "材料·熔岩小鬼",
-          "icon": "📦",
-          "desc": "从熔岩小鬼身上获得的材料",
+          "id": "mat_herb",
+          "name": "草药",
+          "icon": "🌿",
+          "desc": "从熔岩小鬼身上获得的草药",
           "qty": 1,
           "qtyMax": 2,
-          "sellPrice": 4,
+          "sellPrice": 3,
+          "chance": 0.5
+        }
+      ]
+    },
+    {
+      "name": "深渊幽灵",
+      "icon": "👻",
+      "hp": 62,
+      "attack": 16,
+      "aggro": 2,
+      "xpReward": 62,
+      "skills": [
+        {
+          "name": "普通攻击",
+          "icon": "💥",
+          "dmgMul": 1.3
+        },
+        {
+          "name": "重击",
+          "icon": "💢",
+          "dmgMul": 2.18
+        }
+      ],
+      "loot": [
+        {
+          "type": "gold",
+          "icon": "💰",
+          "min": 13,
+          "max": 27,
+          "chance": 1
+        },
+        {
+          "type": "item",
+          "id": "hp_potion",
+          "name": "生命药水",
+          "icon": "🧪",
+          "desc": "恢复 80 点生命值",
+          "qty": 1,
+          "sellPrice": 10,
+          "chance": 0.15
+        },
+        {
+          "type": "material",
+          "id": "mat_water",
+          "name": "清水",
+          "icon": "💧",
+          "desc": "从深渊幽灵身上获得的清水",
+          "qty": 1,
+          "qtyMax": 2,
+          "sellPrice": 3,
           "chance": 0.5
         }
       ]
@@ -218,7 +262,7 @@
         "desc": "恢复 200 点生命值",
         "qty": 1,
         "sellPrice": 25,
-        "chance": 0.5
+        "chance": 0.3
       },
       {
         "type": "item",
@@ -228,7 +272,7 @@
         "desc": "恢复 40 点法力值",
         "qty": 2,
         "sellPrice": 7,
-        "chance": 0.4
+        "chance": 0.25
       },
       {
         "type": "equipment",
@@ -250,21 +294,15 @@
   },
   "questions": [
     {
-      "type": "fill",
-      "question": "child → 复数：___",
-      "answer": "children",
-      "timeThreshold": 7
-    },
-    {
-      "type": "fill",
-      "question": "bus → 复数：___",
-      "answer": "buses",
-      "timeThreshold": 7
-    },
-    {
-      "type": "fill",
-      "question": "baby → 复数：___",
-      "answer": "babies",
+      "type": "choice",
+      "question": "The book is ___ the desk（在……上）.",
+      "options": [
+        "in",
+        "on",
+        "under",
+        "behind"
+      ],
+      "answer": 1,
       "timeThreshold": 7
     },
     {
@@ -275,32 +313,8 @@
     },
     {
       "type": "fill",
-      "question": "noodles → 中文：___",
-      "answer": "面条",
-      "timeThreshold": 7
-    },
-    {
-      "type": "choice",
-      "question": "___ a book on the desk.",
-      "options": [
-        "There is",
-        "There are",
-        "There was",
-        "There were"
-      ],
-      "answer": 0,
-      "timeThreshold": 7
-    },
-    {
-      "type": "choice",
-      "question": "The book is ___ the desk（在……上）.",
-      "options": [
-        "in",
-        "on",
-        "under",
-        "behind"
-      ],
-      "answer": 1,
+      "question": "child → 复数：___",
+      "answer": "children",
       "timeThreshold": 7
     },
     {
@@ -317,8 +331,8 @@
     },
     {
       "type": "fill",
-      "question": "man → 复数：___",
-      "answer": "men",
+      "question": "noodles → 中文：___",
+      "answer": "面条",
       "timeThreshold": 7
     },
     {
@@ -342,10 +356,40 @@
         "汉堡包"
       ],
       "timeThreshold": 7
+    },
+    {
+      "type": "fill",
+      "question": "bus → 复数：___",
+      "answer": "buses",
+      "timeThreshold": 7
+    },
+    {
+      "type": "choice",
+      "question": "___ a book on the desk.",
+      "options": [
+        "There is",
+        "There are",
+        "There was",
+        "There were"
+      ],
+      "answer": 0,
+      "timeThreshold": 7
+    },
+    {
+      "type": "fill",
+      "question": "baby → 复数：___",
+      "answer": "babies",
+      "timeThreshold": 7
+    },
+    {
+      "type": "fill",
+      "question": "man → 复数：___",
+      "answer": "men",
+      "timeThreshold": 7
     }
   ],
   "merchant": {
-    "x": 7,
+    "x": 10,
     "y": 8,
     "npcName": "神秘商贩",
     "npcIcon": "🧳",

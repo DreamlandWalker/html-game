@@ -27,41 +27,35 @@
   },
   "monsterSpawns": [
     {
-      "x": 2,
-      "y": 5,
-      "rate": 0.9301950269647611,
-      "monsterIdx": 0
-    },
-    {
-      "x": 2,
+      "x": 3,
       "y": 3,
-      "rate": 0.9082076718694618,
+      "rate": 0.9079356178381414,
       "monsterIdx": 1
     },
     {
       "x": 9,
-      "y": 6,
-      "rate": 0.9057216535674185,
+      "y": 7,
+      "rate": 0.8790146173660576,
       "monsterIdx": 0
     },
     {
-      "x": 4,
-      "y": 5,
-      "rate": 0.8596350327806985,
+      "x": 8,
+      "y": 2,
+      "rate": 0.9939730484404314,
       "monsterIdx": 1
     }
   ],
   "bossSpawn": {
-    "x": 9,
-    "y": 8,
+    "x": 11,
+    "y": 7,
     "rate": 1,
-    "monsterIdx": 2
+    "monsterIdx": 3
   },
   "chestSpawns": [
     {
-      "x": 7,
-      "y": 4,
-      "rate": 0.9488535025997077,
+      "x": 6,
+      "y": 3,
+      "rate": 0.9423224097438295,
       "lootPool": [
         {
           "type": "gold",
@@ -84,8 +78,8 @@
     },
     {
       "x": 4,
-      "y": 7,
-      "rate": 0.9578828853324267,
+      "y": 5,
+      "rate": 0.9758660025588843,
       "lootPool": [
         {
           "type": "gold",
@@ -111,7 +105,7 @@
           "icon": "💧",
           "desc": "恢复 40 点法力值",
           "qty": 2,
-          "chance": 0.4
+          "chance": 0.25
         },
         {
           "type": "equipment",
@@ -130,9 +124,9 @@
       ]
     },
     {
-      "x": 9,
+      "x": 3,
       "y": 7,
-      "rate": 0.9456192548608763,
+      "rate": 0.9586880383715395,
       "lootPool": [
         {
           "type": "gold",
@@ -158,7 +152,7 @@
           "icon": "💧",
           "desc": "恢复 40 点法力值",
           "qty": 2,
-          "chance": 0.4
+          "chance": 0.25
         }
       ]
     }
@@ -199,7 +193,7 @@
           "desc": "恢复 80 点生命值",
           "qty": 1,
           "sellPrice": 10,
-          "chance": 0.25
+          "chance": 0.15
         },
         {
           "type": "item",
@@ -209,17 +203,17 @@
           "desc": "恢复 40 点法力值",
           "qty": 1,
           "sellPrice": 7,
-          "chance": 0.2
+          "chance": 0.1
         },
         {
           "type": "material",
-          "id": "mat_lvl16",
-          "name": "材料·深渊幽灵",
-          "icon": "📦",
-          "desc": "从深渊幽灵身上获得的材料",
+          "id": "mat_herb",
+          "name": "草药",
+          "icon": "🌿",
+          "desc": "从深渊幽灵身上获得的草药",
           "qty": 1,
           "qtyMax": 2,
-          "sellPrice": 8,
+          "sellPrice": 3,
           "chance": 0.5
         }
       ]
@@ -259,7 +253,7 @@
           "desc": "恢复 80 点生命值",
           "qty": 1,
           "sellPrice": 10,
-          "chance": 0.25
+          "chance": 0.15
         },
         {
           "type": "item",
@@ -269,17 +263,77 @@
           "desc": "恢复 40 点法力值",
           "qty": 1,
           "sellPrice": 7,
-          "chance": 0.2
+          "chance": 0.1
         },
         {
           "type": "material",
-          "id": "mat_lvl16",
-          "name": "材料·堕落骑士",
-          "icon": "📦",
-          "desc": "从堕落骑士身上获得的材料",
+          "id": "mat_leather",
+          "name": "皮革",
+          "icon": "🧶",
+          "desc": "从堕落骑士身上获得的皮革",
           "qty": 1,
           "qtyMax": 2,
-          "sellPrice": 8,
+          "sellPrice": 3,
+          "chance": 0.5
+        }
+      ]
+    },
+    {
+      "name": "圣殿卫士",
+      "icon": "🛡️",
+      "hp": 118,
+      "attack": 29,
+      "aggro": 2,
+      "xpReward": 118,
+      "skills": [
+        {
+          "name": "普通攻击",
+          "icon": "💥",
+          "dmgMul": 1.3
+        },
+        {
+          "name": "重击",
+          "icon": "💢",
+          "dmgMul": 2.32
+        }
+      ],
+      "loot": [
+        {
+          "type": "gold",
+          "icon": "💰",
+          "min": 24,
+          "max": 48,
+          "chance": 1
+        },
+        {
+          "type": "item",
+          "id": "hp_potion",
+          "name": "生命药水",
+          "icon": "🧪",
+          "desc": "恢复 80 点生命值",
+          "qty": 1,
+          "sellPrice": 10,
+          "chance": 0.15
+        },
+        {
+          "type": "item",
+          "id": "mp_potion",
+          "name": "法力药水",
+          "icon": "💧",
+          "desc": "恢复 40 点法力值",
+          "qty": 1,
+          "sellPrice": 7,
+          "chance": 0.1
+        },
+        {
+          "type": "material",
+          "id": "mat_crystal",
+          "name": "水晶碎片",
+          "icon": "💎",
+          "desc": "从圣殿卫士身上获得的水晶碎片",
+          "qty": 1,
+          "qtyMax": 2,
+          "sellPrice": 3,
           "chance": 0.5
         }
       ]
@@ -321,7 +375,7 @@
         "desc": "恢复 200 点生命值",
         "qty": 2,
         "sellPrice": 25,
-        "chance": 0.5
+        "chance": 0.3
       },
       {
         "type": "item",
@@ -331,7 +385,7 @@
         "desc": "恢复 40 点法力值",
         "qty": 2,
         "sellPrice": 7,
-        "chance": 0.4
+        "chance": 0.25
       },
       {
         "type": "equipment",
@@ -354,18 +408,6 @@
   "questions": [
     {
       "type": "choice",
-      "question": "We clean the classroom. → The classroom ___ cleaned.",
-      "options": [
-        "is",
-        "are",
-        "was",
-        "were"
-      ],
-      "answer": 0,
-      "timeThreshold": 9
-    },
-    {
-      "type": "choice",
       "question": "If you ___ hard, you will get good grades.",
       "options": [
         "study",
@@ -377,10 +419,34 @@
       "timeThreshold": 9
     },
     {
+      "type": "choice",
+      "question": "My mother washed the dishes. → The dishes ___ washed.",
+      "options": [
+        "is",
+        "are",
+        "was",
+        "were"
+      ],
+      "answer": 3,
+      "timeThreshold": 9
+    },
+    {
+      "type": "choice",
+      "question": "If it ___ tomorrow, we will stay home.",
+      "options": [
+        "rain",
+        "rains",
+        "rained",
+        "will rain"
+      ],
+      "answer": 1,
+      "timeThreshold": 9
+    },
+    {
       "type": "fill",
-      "question": "If she ___ (have) time, she will go shopping.",
-      "answer": "has",
-      "timeThreshold": 8
+      "question": "Look at clouds! It ___ (rain).（有迹象）",
+      "answer": "is going to rain",
+      "timeThreshold": 11
     },
     {
       "type": "choice",
@@ -396,45 +462,6 @@
     },
     {
       "type": "choice",
-      "question": "My mother washed the dishes. → The dishes ___ washed.",
-      "options": [
-        "is",
-        "are",
-        "was",
-        "were"
-      ],
-      "answer": 3,
-      "timeThreshold": 9
-    },
-    {
-      "type": "fill",
-      "question": "Look at clouds! It ___ (rain).（有迹象）",
-      "answer": "is going to rain",
-      "timeThreshold": 11
-    },
-    {
-      "type": "fill",
-      "question": "The sports day ___ (hold) by students.（被动语态）",
-      "answer": "will be held",
-      "alternatives": [
-        "will be holded"
-      ],
-      "timeThreshold": 12
-    },
-    {
-      "type": "choice",
-      "question": "If it ___ tomorrow, we will stay home.",
-      "options": [
-        "rain",
-        "rains",
-        "rained",
-        "will rain"
-      ],
-      "answer": 1,
-      "timeThreshold": 9
-    },
-    {
-      "type": "choice",
       "question": "People ___ live on Mars in future.",
       "options": [
         "will",
@@ -444,6 +471,33 @@
       ],
       "answer": 0,
       "timeThreshold": 8
+    },
+    {
+      "type": "choice",
+      "question": "We clean the classroom. → The classroom ___ cleaned.",
+      "options": [
+        "is",
+        "are",
+        "was",
+        "were"
+      ],
+      "answer": 0,
+      "timeThreshold": 9
+    },
+    {
+      "type": "fill",
+      "question": "If she ___ (have) time, she will go shopping.",
+      "answer": "has",
+      "timeThreshold": 8
+    },
+    {
+      "type": "fill",
+      "question": "The sports day ___ (hold) by students.（被动语态）",
+      "answer": "will be held",
+      "alternatives": [
+        "will be holded"
+      ],
+      "timeThreshold": 12
     }
   ],
   "merchant": null,
