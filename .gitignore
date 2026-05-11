@@ -10,6 +10,9 @@ Thumbs.db
 .DS_Store
 *.swp
 
+# 原始资源（游戏中不使用）
+images/origin/
+
 # 编辑器/IDE
 .vscode/
 .idea/
