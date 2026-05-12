@@ -336,5 +336,6 @@
   "reward": {
     "gold": 126,
     "xp": 240
-  }
+  },
+  "background": "images/levels/0012.jpg"
 }

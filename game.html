@@ -330,6 +330,15 @@ body{min-height:100vh;background:#0b0d17;font-family:'Segoe UI','PingFang SC','M
 const urlParams = new URLSearchParams(window.location.search);
 const levelId = parseInt(urlParams.get('level')) || 1;
 
+// ─── 怪物名 → 图片映射 ───
+const MONSTER_IMG_MAP={
+  '史莱姆':'slime','野兔':'hare','石像鬼':'gargoyle','冰狼':'ice_wolf',
+  '熔岩小鬼':'lava_imp','深渊幽灵':'abyss_ghost','堕落骑士':'fallen_knight','圣殿卫士':'temple_guard',
+  '骷髅兵':'skeleton_soldier','渡魂使者':'soul_reaper','飞龙幼崽':'dragon_whelp','云巨人':'cloud_giant',
+  '暗黑骑士':'dark_knight','混沌魔龙':'chaos_dragon','影狼':'shadow_wolf','岩巨人':'rock_giant',
+  '毒蜂群':'poison_bee_swarm','霜巨人':'frost_giant','火焰精灵':'fire_spirit','暗影刺客':'shadow_assassin'
+};
+function getMonsterImg(n){var k=MONSTER_IMG_MAP[n];return k?'images/monster/'+k+'.png':null;}
 
 // ─── 音频播放（音效 + BGM）───
 const _audioCache={};
@@ -692,6 +701,7 @@ async function loadLevel(){
     levelData=await res.json();
   }catch(e){document.getElementById('levelTitle').textContent='加载失败';return}
   document.getElementById('levelTitle').textContent='第 '+levelId+' 关 · '+levelData.name;
+  document.body.style.backgroundImage="url('"+levelData.background+"')";
   player.x=levelData.playerStart.x; player.y=levelData.playerStart.y;
   unlockPassives();
   buildMap();
@@ -854,7 +864,8 @@ function renderEntities(){
     const p=pos(mo.x,mo.y);
     e.style.cssText='left:'+p.left+';top:'+p.top+';width:'+p.width+';height:'+p.height;
     const hpPct=Math.round((mo.hp/mo.maxHp)*100);
-    e.innerHTML=mo.icon+'<div class="e-hp-mini"><div class="fill" style="width:'+hpPct+'%"></div></div><span class="entity-label">'+mo.name+'</span>';
+    var _mi=getMonsterImg(mo.name);
+    e.innerHTML=(_mi?'<img src="'+_mi+'" style="width:70%;height:70%;object-fit:contain;image-rendering:pixelated">':mo.icon)+'<div class="e-hp-mini"><div class="fill" style="width:'+hpPct+'%"></div></div><span class="entity-label">'+mo.name+'</span>';
     layer.appendChild(e);
   });
 

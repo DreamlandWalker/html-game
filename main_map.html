@@ -6,9 +6,10 @@
 <title>征程地图 · 选关</title>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-body{min-height:100vh;background:#0b0d17;font-family:'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif;padding:20px;display:flex;justify-content:center;align-items:center}
+body{min-height:100vh;background:#0b0d17 url('images/map_background.jpg') center/cover fixed no-repeat;font-family:'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif;padding:20px;display:flex;justify-content:center;align-items:center;position:relative}
+body::before{content:'';position:fixed;inset:0;background:rgba(11,13,23,.55);pointer-events:none;z-index:0}
 
-.map-container{width:960px;max-width:100%;background:linear-gradient(145deg,#14182a,#1a1f35);border-radius:32px;padding:28px 26px 32px;box-shadow:0 20px 60px rgba(0,0,0,.7);border:1px solid rgba(255,255,255,.05);position:relative}
+.map-container{width:960px;max-width:100%;background:linear-gradient(145deg,rgba(20,24,42,.92),rgba(26,31,53,.92));border-radius:32px;padding:28px 26px 32px;box-shadow:0 20px 60px rgba(0,0,0,.7);border:1px solid rgba(255,255,255,.05);position:relative;z-index:1}
 .map-container::before{content:'';position:absolute;inset:0;border-radius:32px;background:radial-gradient(ellipse at 20% 80%,rgba(98,114,255,.06) 0%,transparent 50%),radial-gradient(ellipse at 80% 20%,rgba(255,215,128,.04) 0%,transparent 50%);pointer-events:none}
 
 /* Header */
