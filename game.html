@@ -351,18 +351,23 @@ function playSFX(name, vol){
   }catch(e){}
 }
 function playBGM(name, vol){
-  var old=document.getElementById('_bgm');
-  if(old){old.pause();old.remove();}
-  var a=document.createElement('audio');
-  a.id='_bgm';
-  a.loop=true;
+  var a=document.getElementById('_bgm');
+  if(!a){
+    a=document.createElement('audio');
+    a.id='_bgm';
+    a.loop=true;
+    document.body.appendChild(a);
+  }else{
+    a.pause();
+  }
   a.src='sounds/'+name+'.mp3';
   a.volume=vol!=null?vol:0.15;
+  a.load();
   a.play().catch(function(){});
 }
 function stopBGM(){
   var a=document.getElementById('_bgm');
-  if(a){a.pause();a.remove();}
+  if(a){a.pause();a.src='';a.load();}
 }
 
 function getPlayerData() {
@@ -1812,6 +1817,7 @@ function handleMonsterAttack(){
     }
     battleInProgress=false;
     clearInterval(battleTimer);
+    stopBGM();
     addLog('💀','力竭倒地……');
     document.getElementById('battleModal').classList.remove('show');
     document.getElementById('loseModal').classList.add('show');
@@ -1887,6 +1893,7 @@ function endBattle(win){
   if(win){
     resDiv.innerHTML='<span class="br-icon">💥</span><div class="br-text attack">击败了 '+currentMonster.name+'！</div><div class="br-sub"></div><button class="br-btn" onclick="closeBattle()">关闭</button>';
   }else{
+    stopBGM();
     document.getElementById('battleModal').classList.remove('show');
     document.getElementById('loseModal').classList.add('show');
   }
