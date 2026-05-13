@@ -152,18 +152,27 @@
   },
   "questions": [
     {
-      "type": "fill",
+      "type": "choice",
       "question": "Your mother's sister → ___（姨妈）",
-      "answer": "aunt",
+      "options": [
+        "grandpa",
+        "grandma",
+        "uncle",
+        "aunt"
+      ],
+      "answer": 3,
       "timeThreshold": 9
     },
     {
-      "type": "fill",
+      "type": "choice",
       "question": "I smell with my ___（鼻子）.",
-      "answer": "nose",
-      "alternatives": [
-        "Nose"
+      "options": [
+        "nose",
+        "foot",
+        "head",
+        "hand"
       ],
+      "answer": 0,
       "timeThreshold": 9
     },
     {
@@ -179,13 +188,15 @@
       "timeThreshold": 7
     },
     {
-      "type": "fill",
+      "type": "choice",
       "question": "Your father's father → ___（爷爷）",
-      "answer": "grandpa",
-      "alternatives": [
-        "grandfather",
-        "granddad"
+      "options": [
+        "father",
+        "grandpa",
+        "mother",
+        "grandma"
       ],
+      "answer": 1,
       "timeThreshold": 9
     },
     {
@@ -201,21 +212,27 @@
       "timeThreshold": 7
     },
     {
-      "type": "fill",
+      "type": "choice",
       "question": "I eat with my ___（嘴巴）.",
-      "answer": "mouth",
-      "alternatives": [
-        "Mouth"
+      "options": [
+        "mouth",
+        "nose",
+        "ear",
+        "hand"
       ],
+      "answer": 0,
       "timeThreshold": 9
     },
     {
-      "type": "fill",
+      "type": "choice",
       "question": "Arrange: this / What / is / ?",
-      "answer": "What is this",
-      "alternatives": [
-        "what is this"
+      "options": [
+        "this is what",
+        "is this what",
+        "what this is",
+        "What is this"
       ],
+      "answer": 3,
       "timeThreshold": 12
     },
     {
@@ -231,9 +248,15 @@
       "timeThreshold": 7
     },
     {
-      "type": "fill",
+      "type": "choice",
       "question": "Your father's brother → ___（叔叔）",
-      "answer": "uncle",
+      "options": [
+        "grandma",
+        "uncle",
+        "brother",
+        "aunt"
+      ],
+      "answer": 1,
       "timeThreshold": 9
     },
     {
@@ -249,23 +272,27 @@
       "timeThreshold": 8
     },
     {
-      "type": "fill",
+      "type": "choice",
       "question": "Arrange: It's / blue / .",
-      "answer": "It's blue",
-      "alternatives": [
-        "it is blue",
-        "it's blue"
+      "options": [
+        "blue it's",
+        "???",
+        "It's blue",
+        "???"
       ],
+      "answer": 2,
       "timeThreshold": 12
     },
     {
-      "type": "fill",
+      "type": "choice",
       "question": "I see with my ___（眼睛）.",
-      "answer": "eye",
-      "alternatives": [
-        "eyes",
-        "Eye"
+      "options": [
+        "hand",
+        "eye",
+        "foot",
+        "mouth"
       ],
+      "answer": 1,
       "timeThreshold": 9
     },
     {

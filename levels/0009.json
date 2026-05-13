@@ -306,15 +306,27 @@
       "timeThreshold": 7
     },
     {
-      "type": "fill",
+      "type": "choice",
       "question": "cat → 复数：___",
-      "answer": "cats",
+      "options": [
+        "cats",
+        "cates",
+        "cates",
+        "cat"
+      ],
+      "answer": 0,
       "timeThreshold": 6
     },
     {
-      "type": "fill",
+      "type": "choice",
       "question": "child → 复数：___",
-      "answer": "children",
+      "options": [
+        "children",
+        "childrens",
+        "child",
+        "childes"
+      ],
+      "answer": 0,
       "timeThreshold": 7
     },
     {
@@ -330,9 +342,15 @@
       "timeThreshold": 7
     },
     {
-      "type": "fill",
+      "type": "choice",
       "question": "noodles → 中文：___",
-      "answer": "面条",
+      "options": [
+        "面条",
+        "蛋糕",
+        "米饭",
+        "饺子"
+      ],
+      "answer": 0,
       "timeThreshold": 7
     },
     {
@@ -348,19 +366,27 @@
       "timeThreshold": 7
     },
     {
-      "type": "fill",
+      "type": "choice",
       "question": "hamburger → 中文：___",
-      "answer": "汉堡包",
-      "alternatives": [
-        "汉堡",
-        "汉堡包"
+      "options": [
+        "面条",
+        "饺子",
+        "汉堡包",
+        "蛋糕"
       ],
+      "answer": 2,
       "timeThreshold": 7
     },
     {
-      "type": "fill",
+      "type": "choice",
       "question": "bus → 复数：___",
-      "answer": "buses",
+      "options": [
+        "buses",
+        "buseses",
+        "buss",
+        "bus"
+      ],
+      "answer": 0,
       "timeThreshold": 7
     },
     {
@@ -376,15 +402,27 @@
       "timeThreshold": 7
     },
     {
-      "type": "fill",
+      "type": "choice",
       "question": "baby → 复数：___",
-      "answer": "babies",
+      "options": [
+        "babys",
+        "babies",
+        "baby",
+        "babyes"
+      ],
+      "answer": 1,
       "timeThreshold": 7
     },
     {
-      "type": "fill",
+      "type": "choice",
       "question": "man → 复数：___",
-      "answer": "men",
+      "options": [
+        "mens",
+        "man",
+        "mans",
+        "men"
+      ],
+      "answer": 3,
       "timeThreshold": 7
     }
   ],

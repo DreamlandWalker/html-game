@@ -182,9 +182,15 @@
       "timeThreshold": 7
     },
     {
-      "type": "fill",
+      "type": "choice",
       "question": "Your mother's sister → ___（姨妈）",
-      "answer": "aunt",
+      "options": [
+        "uncle",
+        "aunt",
+        "grandma",
+        "cousin"
+      ],
+      "answer": 1,
       "timeThreshold": 9
     },
     {
@@ -200,21 +206,39 @@
       "timeThreshold": 7
     },
     {
-      "type": "fill",
+      "type": "choice",
       "question": "I ___ a boy.（用am/is/are）",
-      "answer": "am",
+      "options": [
+        "be",
+        "was",
+        "am",
+        "are"
+      ],
+      "answer": 2,
       "timeThreshold": 7
     },
     {
-      "type": "fill",
+      "type": "choice",
       "question": "You ___ my friend.",
-      "answer": "are",
+      "options": [
+        "am",
+        "be",
+        "is",
+        "are"
+      ],
+      "answer": 3,
       "timeThreshold": 7
     },
     {
-      "type": "fill",
+      "type": "choice",
       "question": "She ___ my mother.",
-      "answer": "is",
+      "options": [
+        "was",
+        "is",
+        "be",
+        "am"
+      ],
+      "answer": 1,
       "timeThreshold": 7
     },
     {
@@ -242,25 +266,39 @@
       "timeThreshold": 6
     },
     {
-      "type": "fill",
+      "type": "choice",
       "question": "They ___ teachers.",
-      "answer": "are",
+      "options": [
+        "were",
+        "be",
+        "am",
+        "are"
+      ],
+      "answer": 3,
       "timeThreshold": 7
     },
     {
-      "type": "fill",
+      "type": "choice",
       "question": "Your father's father → ___（爷爷）",
-      "answer": "grandpa",
-      "alternatives": [
-        "grandfather",
-        "granddad"
+      "options": [
+        "uncle",
+        "mother",
+        "grandpa",
+        "aunt"
       ],
+      "answer": 2,
       "timeThreshold": 9
     },
     {
-      "type": "fill",
+      "type": "choice",
       "question": "Your father's brother → ___（叔叔）",
-      "answer": "uncle",
+      "options": [
+        "grandma",
+        "grandpa",
+        "brother",
+        "uncle"
+      ],
+      "answer": 3,
       "timeThreshold": 9
     },
     {

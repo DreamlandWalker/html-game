@@ -162,9 +162,15 @@
       "timeThreshold": 7
     },
     {
-      "type": "fill",
+      "type": "choice",
       "question": "She ___ (dance) now.",
-      "answer": "is dancing",
+      "options": [
+        "dances",
+        "is dancing",
+        "are dancing",
+        "am dancing"
+      ],
+      "answer": 1,
       "timeThreshold": 9
     },
     {
@@ -192,24 +198,39 @@
       "timeThreshold": 6
     },
     {
-      "type": "fill",
+      "type": "choice",
       "question": "We ___ (sing) a song now.",
-      "answer": "are singing",
+      "options": [
+        "are singing",
+        "sing",
+        "sings",
+        "is singing"
+      ],
+      "answer": 0,
       "timeThreshold": 9
     },
     {
-      "type": "fill",
+      "type": "choice",
       "question": "Monday → 星期一. Saturday → ___",
-      "answer": "星期六",
-      "alternatives": [
-        "Saturday"
+      "options": [
+        "老师",
+        "书本",
+        "苹果",
+        "星期六"
       ],
+      "answer": 3,
       "timeThreshold": 7
     },
     {
-      "type": "fill",
+      "type": "choice",
       "question": "I ___ (read) a book now.",
-      "answer": "am reading",
+      "options": [
+        "read",
+        "am reading",
+        "are reading",
+        "reads"
+      ],
+      "answer": 1,
       "timeThreshold": 9
     },
     {
@@ -225,15 +246,27 @@
       "timeThreshold": 7
     },
     {
-      "type": "fill",
+      "type": "choice",
       "question": "They ___ (swim) now.",
-      "answer": "are swimming",
+      "options": [
+        "is swimming",
+        "am swimming",
+        "are swimming",
+        "swim"
+      ],
+      "answer": 2,
       "timeThreshold": 9
     },
     {
-      "type": "fill",
+      "type": "choice",
       "question": "He ___ (play) football now.",
-      "answer": "is playing",
+      "options": [
+        "are playing",
+        "is playing",
+        "plays",
+        "am playing"
+      ],
+      "answer": 1,
       "timeThreshold": 9
     },
     {

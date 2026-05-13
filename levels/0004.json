@@ -260,12 +260,15 @@
       "timeThreshold": 7
     },
     {
-      "type": "fill",
+      "type": "choice",
       "question": "I like winter. → I ___ like winter.",
-      "answer": "don't",
-      "alternatives": [
-        "do not"
+      "options": [
+        "don't",
+        "do not",
+        "isn't",
+        "doesn't"
       ],
+      "answer": 0,
       "timeThreshold": 9
     },
     {
@@ -281,9 +284,15 @@
       "timeThreshold": 7
     },
     {
-      "type": "fill",
+      "type": "choice",
       "question": "___ you like summer?（Do/Does）",
-      "answer": "Do",
+      "options": [
+        "Do",
+        "is",
+        "are",
+        "does"
+      ],
+      "answer": 0,
       "timeThreshold": 7
     },
     {
@@ -299,12 +308,15 @@
       "timeThreshold": 6
     },
     {
-      "type": "fill",
+      "type": "choice",
       "question": "___ time is it?",
-      "answer": "What",
-      "alternatives": [
-        "what"
+      "options": [
+        "who",
+        "where",
+        "What",
+        "when"
       ],
+      "answer": 2,
       "timeThreshold": 7
     },
     {
@@ -320,12 +332,15 @@
       "timeThreshold": 7
     },
     {
-      "type": "fill",
+      "type": "choice",
       "question": "We ___ go to school on Sunday.",
-      "answer": "don't",
-      "alternatives": [
-        "do not"
+      "options": [
+        "aren't",
+        "do not",
+        "isn't",
+        "don't"
       ],
+      "answer": 3,
       "timeThreshold": 8
     }
   ],

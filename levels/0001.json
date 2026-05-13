@@ -226,22 +226,27 @@
       "timeThreshold": 8
     },
     {
-      "type": "fill",
+      "type": "choice",
       "question": "I smell with my ___（鼻子）.",
-      "answer": "nose",
-      "alternatives": [
-        "Nose"
+      "options": [
+        "ear",
+        "eye",
+        "nose",
+        "hand"
       ],
+      "answer": 2,
       "timeThreshold": 9
     },
     {
-      "type": "fill",
+      "type": "choice",
       "question": "I see with my ___（眼睛）.",
-      "answer": "eye",
-      "alternatives": [
-        "eyes",
-        "Eye"
+      "options": [
+        "hand",
+        "ear",
+        "mouth",
+        "eye"
       ],
+      "answer": 3,
       "timeThreshold": 9
     },
     {
@@ -269,41 +274,51 @@
       "timeThreshold": 7
     },
     {
-      "type": "fill",
+      "type": "choice",
       "question": "Arrange: It's / blue / .",
-      "answer": "It's blue",
-      "alternatives": [
-        "it is blue",
-        "it's blue"
+      "options": [
+        "blue it's",
+        "???",
+        "It's blue",
+        "???"
       ],
+      "answer": 2,
       "timeThreshold": 12
     },
     {
-      "type": "fill",
+      "type": "choice",
       "question": "Arrange: this / What / is / ?",
-      "answer": "What is this",
-      "alternatives": [
-        "what is this"
+      "options": [
+        "is this what",
+        "this what is",
+        "what this is",
+        "What is this"
       ],
+      "answer": 3,
       "timeThreshold": 12
     },
     {
-      "type": "fill",
+      "type": "choice",
       "question": "I eat with my ___（嘴巴）.",
-      "answer": "mouth",
-      "alternatives": [
-        "Mouth"
+      "options": [
+        "hand",
+        "nose",
+        "eye",
+        "mouth"
       ],
+      "answer": 3,
       "timeThreshold": 9
     },
     {
-      "type": "fill",
+      "type": "choice",
       "question": "I hear with my ___（耳朵）.",
-      "answer": "ear",
-      "alternatives": [
-        "ears",
-        "Ear"
+      "options": [
+        "ear",
+        "mouth",
+        "eye",
+        "hand"
       ],
+      "answer": 0,
       "timeThreshold": 9
     },
     {

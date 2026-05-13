@@ -291,15 +291,27 @@
   },
   "questions": [
     {
-      "type": "fill",
+      "type": "choice",
       "question": "Buy food here → ___",
-      "answer": "supermarket",
+      "options": [
+        "hospital",
+        "supermarket",
+        "bookstore",
+        "cinema"
+      ],
+      "answer": 1,
       "timeThreshold": 9
     },
     {
-      "type": "fill",
+      "type": "choice",
       "question": "play → 过去式：___",
-      "answer": "played",
+      "options": [
+        "played",
+        "playing",
+        "plays",
+        "plaied"
+      ],
+      "answer": 0,
       "timeThreshold": 7
     },
     {
@@ -315,42 +327,75 @@
       "timeThreshold": 9
     },
     {
-      "type": "fill",
+      "type": "choice",
       "question": "see → 过去式：___",
-      "answer": "saw",
-      "timeThreshold": 7
-    },
-    {
-      "type": "fill",
-      "question": "study → 过去式：___",
-      "answer": "studied",
-      "timeThreshold": 7
-    },
-    {
-      "type": "fill",
-      "question": "take → 过去式：___",
-      "answer": "took",
-      "timeThreshold": 7
-    },
-    {
-      "type": "fill",
-      "question": "Send letters here → ___",
-      "answer": "post office",
-      "timeThreshold": 9
-    },
-    {
-      "type": "fill",
-      "question": "See a film here → ___",
-      "answer": "cinema",
-      "alternatives": [
-        "movie theater"
+      "options": [
+        "saw",
+        "see",
+        "sawed",
+        "seen"
       ],
+      "answer": 0,
+      "timeThreshold": 7
+    },
+    {
+      "type": "choice",
+      "question": "study → 过去式：___",
+      "options": [
+        "studys",
+        "studied",
+        "studing",
+        "studyed"
+      ],
+      "answer": 1,
+      "timeThreshold": 7
+    },
+    {
+      "type": "choice",
+      "question": "take → 过去式：___",
+      "options": [
+        "took",
+        "tooking",
+        "take",
+        "taked"
+      ],
+      "answer": 0,
+      "timeThreshold": 7
+    },
+    {
+      "type": "choice",
+      "question": "Send letters here → ___",
+      "options": [
+        "bookstore",
+        "post office",
+        "supermarket",
+        "cinema"
+      ],
+      "answer": 1,
       "timeThreshold": 9
     },
     {
-      "type": "fill",
+      "type": "choice",
+      "question": "See a film here → ___",
+      "options": [
+        "bookstore",
+        "hospital",
+        "school",
+        "cinema"
+      ],
+      "answer": 3,
+      "timeThreshold": 9
+    },
+    {
+      "type": "choice",
       "question": "go → 过去式：___",
-      "answer": "went",
+      "options": [
+        "wented",
+        "goes",
+        "go",
+        "went"
+      ],
+      "answer": 3,
       "timeThreshold": 7
     },
     {
@@ -366,19 +411,27 @@
       "timeThreshold": 7
     },
     {
-      "type": "fill",
+      "type": "choice",
       "question": "eat → 过去式：___",
-      "answer": "ate",
+      "options": [
+        "eat",
+        "ate",
+        "eaten",
+        "eated"
+      ],
+      "answer": 1,
       "timeThreshold": 7
     },
     {
-      "type": "fill",
+      "type": "choice",
       "question": "Buy books here → ___",
-      "answer": "bookstore",
-      "alternatives": [
-        "book shop",
-        "bookshop"
+      "options": [
+        "cinema",
+        "bookstore",
+        "supermarket",
+        "post office"
       ],
+      "answer": 1,
       "timeThreshold": 9
     }
   ],

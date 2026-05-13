@@ -144,12 +144,15 @@
   },
   "questions": [
     {
-      "type": "fill",
+      "type": "choice",
       "question": "We ___ go to school on Sunday.",
-      "answer": "don't",
-      "alternatives": [
-        "do not"
+      "options": [
+        "isn't",
+        "aren't",
+        "do not",
+        "don't"
       ],
+      "answer": 3,
       "timeThreshold": 8
     },
     {
@@ -165,12 +168,15 @@
       "timeThreshold": 6
     },
     {
-      "type": "fill",
+      "type": "choice",
       "question": "___ time is it?",
-      "answer": "What",
-      "alternatives": [
-        "what"
+      "options": [
+        "where",
+        "how",
+        "What",
+        "which"
       ],
+      "answer": 2,
       "timeThreshold": 7
     },
     {
@@ -186,18 +192,27 @@
       "timeThreshold": 7
     },
     {
-      "type": "fill",
+      "type": "choice",
       "question": "Monday → 星期一. Saturday → ___",
-      "answer": "星期六",
-      "alternatives": [
-        "Saturday"
+      "options": [
+        "星期六",
+        "老师",
+        "椅子",
+        "苹果"
       ],
+      "answer": 0,
       "timeThreshold": 7
     },
     {
-      "type": "fill",
+      "type": "choice",
       "question": "I ___ (read) a book now.",
-      "answer": "am reading",
+      "options": [
+        "reads",
+        "is reading",
+        "read",
+        "am reading"
+      ],
+      "answer": 3,
       "timeThreshold": 9
     },
     {
@@ -213,24 +228,39 @@
       "timeThreshold": 6
     },
     {
-      "type": "fill",
+      "type": "choice",
       "question": "He ___ (play) football now.",
-      "answer": "is playing",
-      "timeThreshold": 9
-    },
-    {
-      "type": "fill",
-      "question": "I like winter. → I ___ like winter.",
-      "answer": "don't",
-      "alternatives": [
-        "do not"
+      "options": [
+        "are playing",
+        "plays",
+        "is playing",
+        "play"
       ],
+      "answer": 2,
       "timeThreshold": 9
     },
     {
-      "type": "fill",
+      "type": "choice",
+      "question": "I like winter. → I ___ like winter.",
+      "options": [
+        "isn't",
+        "do not",
+        "don't",
+        "doesn't"
+      ],
+      "answer": 2,
+      "timeThreshold": 9
+    },
+    {
+      "type": "choice",
       "question": "___ you like summer?（Do/Does）",
-      "answer": "Do",
+      "options": [
+        "did",
+        "is",
+        "does",
+        "Do"
+      ],
+      "answer": 3,
       "timeThreshold": 7
     },
     {
@@ -246,9 +276,15 @@
       "timeThreshold": 7
     },
     {
-      "type": "fill",
+      "type": "choice",
       "question": "They ___ (swim) now.",
-      "answer": "are swimming",
+      "options": [
+        "are swimming",
+        "is swimming",
+        "swim",
+        "am swimming"
+      ],
+      "answer": 0,
       "timeThreshold": 9
     }
   ],

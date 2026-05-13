@@ -252,9 +252,15 @@
   },
   "questions": [
     {
-      "type": "fill",
+      "type": "choice",
       "question": "noodles → 中文：___",
-      "answer": "面条",
+      "options": [
+        "饺子",
+        "蛋糕",
+        "面条",
+        "米饭"
+      ],
+      "answer": 2,
       "timeThreshold": 7
     },
     {
@@ -270,33 +276,51 @@
       "timeThreshold": 7
     },
     {
-      "type": "fill",
+      "type": "choice",
       "question": "baby → 复数：___",
-      "answer": "babies",
+      "options": [
+        "babys",
+        "babyes",
+        "baby",
+        "babies"
+      ],
+      "answer": 3,
       "timeThreshold": 7
     },
     {
-      "type": "fill",
+      "type": "choice",
       "question": "科学 → ___",
-      "answer": "science",
+      "options": [
+        "science",
+        "music",
+        "English",
+        "art"
+      ],
+      "answer": 0,
       "timeThreshold": 7
     },
     {
-      "type": "fill",
+      "type": "choice",
       "question": "语文 → ___",
-      "answer": "Chinese",
-      "alternatives": [
-        "chinese"
+      "options": [
+        "science",
+        "art",
+        "English",
+        "Chinese"
       ],
+      "answer": 3,
       "timeThreshold": 7
     },
     {
-      "type": "fill",
+      "type": "choice",
       "question": "英语 → ___",
-      "answer": "English",
-      "alternatives": [
-        "english"
+      "options": [
+        "Chinese",
+        "music",
+        "English",
+        "art"
       ],
+      "answer": 2,
       "timeThreshold": 7
     },
     {
@@ -324,9 +348,15 @@
       "timeThreshold": 7
     },
     {
-      "type": "fill",
+      "type": "choice",
       "question": "man → 复数：___",
-      "answer": "men",
+      "options": [
+        "mens",
+        "mans",
+        "men",
+        "man"
+      ],
+      "answer": 2,
       "timeThreshold": 7
     },
     {
@@ -342,15 +372,27 @@
       "timeThreshold": 7
     },
     {
-      "type": "fill",
+      "type": "choice",
       "question": "___ he like dogs?（Does/Do）",
-      "answer": "Does",
+      "options": [
+        "did",
+        "is",
+        "Does",
+        "are"
+      ],
+      "answer": 2,
       "timeThreshold": 7
     },
     {
-      "type": "fill",
+      "type": "choice",
       "question": "child → 复数：___",
-      "answer": "children",
+      "options": [
+        "children",
+        "childes",
+        "child",
+        "childrens"
+      ],
+      "answer": 0,
       "timeThreshold": 7
     },
     {
@@ -378,13 +420,15 @@
       "timeThreshold": 7
     },
     {
-      "type": "fill",
+      "type": "choice",
       "question": "数学 → ___",
-      "answer": "maths",
-      "alternatives": [
-        "math",
-        "Maths"
+      "options": [
+        "science",
+        "art",
+        "Chinese",
+        "maths"
       ],
+      "answer": 3,
       "timeThreshold": 7
     }
   ],

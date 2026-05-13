@@ -241,25 +241,39 @@
       "timeThreshold": 7
     },
     {
-      "type": "fill",
+      "type": "choice",
       "question": "科学 → ___",
-      "answer": "science",
-      "timeThreshold": 7
-    },
-    {
-      "type": "fill",
-      "question": "数学 → ___",
-      "answer": "maths",
-      "alternatives": [
-        "math",
-        "Maths"
+      "options": [
+        "English",
+        "music",
+        "science",
+        "Chinese"
       ],
+      "answer": 2,
       "timeThreshold": 7
     },
     {
-      "type": "fill",
+      "type": "choice",
+      "question": "数学 → ___",
+      "options": [
+        "maths",
+        "art",
+        "music",
+        "science"
+      ],
+      "answer": 0,
+      "timeThreshold": 7
+    },
+    {
+      "type": "choice",
       "question": "___ he like dogs?（Does/Do）",
-      "answer": "Does",
+      "options": [
+        "is",
+        "did",
+        "are",
+        "Does"
+      ],
+      "answer": 3,
       "timeThreshold": 7
     },
     {
@@ -287,12 +301,15 @@
       "timeThreshold": 7
     },
     {
-      "type": "fill",
+      "type": "choice",
       "question": "语文 → ___",
-      "answer": "Chinese",
-      "alternatives": [
-        "chinese"
+      "options": [
+        "maths",
+        "music",
+        "science",
+        "Chinese"
       ],
+      "answer": 3,
       "timeThreshold": 7
     },
     {
@@ -308,21 +325,27 @@
       "timeThreshold": 7
     },
     {
-      "type": "fill",
+      "type": "choice",
       "question": "英语 → ___",
-      "answer": "English",
-      "alternatives": [
-        "english"
+      "options": [
+        "music",
+        "science",
+        "art",
+        "English"
       ],
+      "answer": 3,
       "timeThreshold": 7
     },
     {
-      "type": "fill",
+      "type": "choice",
       "question": "He likes apples. → He ___ like apples.",
-      "answer": "doesn't",
-      "alternatives": [
-        "does not"
+      "options": [
+        "isn't",
+        "aren't",
+        "does not",
+        "doesn't"
       ],
+      "answer": 3,
       "timeThreshold": 9
     }
   ],
